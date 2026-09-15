@@ -1,0 +1,11 @@
+{
+  "//": "Extension nên cài cho bộ này. VS Code sẽ hiện gợi ý khi mở thư mục dự án lần đầu.",
+  "recommendations": [
+    "anthropic.claude-code",
+    "yzhang.markdown-all-in-one",
+    "bierner.markdown-mermaid",
+    "davidanson.vscode-markdownlint",
+    "redhat.vscode-yaml"
+  ],
+  "unwantedRecommendations": []
+}

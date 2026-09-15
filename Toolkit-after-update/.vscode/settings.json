@@ -1,0 +1,42 @@
+{
+  "//": "Cấu hình sẵn cho bộ Pipeline v2. Tối ưu cho việc đọc và viết tài liệu markdown.",
+
+  "editor.wordWrap": "on",
+  "editor.rulers": [110],
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.encoding": "utf8",
+
+  "[markdown]": {
+    "editor.wordWrap": "on",
+    "editor.quickSuggestions": { "comments": "off", "strings": "off", "other": "off" },
+    "editor.tabSize": 2,
+    "editor.formatOnSave": false
+  },
+
+  "markdown.preview.fontSize": 15,
+  "markdown.preview.lineHeight": 1.7,
+  "markdown.preview.breaks": true,
+
+  "search.exclude": {
+    "**/.claude/skills/**/references/**": true,
+    "**/.claude.backup.*/**": true
+  },
+  "search.useGlobalIgnoreFiles": false,
+
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "//fileNesting": "Gom 5 file ở gốc thành 1 dòng dưới README.md. KHÔNG di chuyển file — CLAUDE.md và AGENTS.md bắt buộc nằm ở gốc thì công cụ mới tự đọc. Bấm mũi tên cạnh README.md để mở ra.",
+  "explorer.fileNesting.patterns": {
+    "README.md": "BAT_DAU_TU_DAY.txt, HUONG_DAN.md, Pipeline_v2_Huong_Dan.docx, CLAUDE.md, AGENTS.md",
+    ".gitignore": ".mcp.example.json, .mcp.json"
+  },
+  "explorer.sortOrder": "default",
+
+  "outline.showStrings": false,
+
+  "workbench.editorAssociations": { "*.md": "default" },
+
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.scrollback": 20000
+}

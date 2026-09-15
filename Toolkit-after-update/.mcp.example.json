@@ -1,0 +1,14 @@
+{
+  "_huong_dan": "Copy file này thành .mcp.json rồi điền khoá thật. .mcp.json đã được gitignore.",
+  "mcpServers": {
+    "Framelink MCP for Figma": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key=<DIEN_FIGMA_TOKEN>",
+        "--stdio"
+      ]
+    }
+  }
+}

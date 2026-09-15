@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-102 Tạo nhóm · ST-210 Đang nhập tên</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-102 · Tạo nhóm</span>
+  <span class="w-st">ST-210 Đang nhập tên</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav w-nav--center">
+    <span class="w-btn--text"></span>
+    <span class="w-title">Nhóm mới</span>
+    <span class="w-x">✕</span>
+  </div>
+  <div class="w-body">
+    <div class="w-steps"><span aria-current="true"></span><span></span><span></span><span></span></div>
+    <h1 class="w-h1">Đặt tên cho nhóm này</h1>
+    <p class="w-sm">Ví dụ: Mạng xã hội, Game, Buổi tối.</p>
+    <input class="w-field" value="Mạng xã hội" readonly>
+    <div class="w-btn w-btn--2">Chọn app cho nhóm ›</div>
+  </div>
+  <div class="w-kb">
+    <div class="w-kbrow"><span>q</span><span>w</span><span>e</span><span>r</span><span>t</span><span>y</span><span>u</span><span>i</span><span>o</span><span>p</span></div>
+    <div class="w-kbrow"><span>a</span><span>s</span><span>d</span><span>f</span><span>g</span><span>h</span><span>j</span><span>k</span><span>l</span></div>
+    <div class="w-kbrow"><span>⇧</span><span>z</span><span>x</span><span>c</span><span>v</span><span>b</span><span>n</span><span>m</span><span>⌫</span></div>
+    <div class="w-kbrow"><span>123</span><span class="w-kbwide">dấu cách</span><span>xong</span></div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Người dùng đặt tên nhóm trước khi chọn app, để sau này nhìn danh sách là nhớ nhóm nào là nhóm gì. <code>FLOW-101</code> bước 2/5 · <code>UC-101</code> · <code>FR-103</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-101</code> — bấm "+ Tạo giới hạn đầu tiên"</li>
+    <li><b>"Chọn app cho nhóm"</b> → <code>SCR-103</code></li>
+    <li><b>"✕"</b> → <code>SCR-101</code>, xoá nháp — <i>đường thoát</i></li>
+    <li><b>"Chọn app cho nhóm"</b> xám khi ô tên còn rỗng</li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-211</code> tên trùng nhóm đã có — dòng nhắc dưới ô nhập, nút vẫn xám</li>
+    <li><code>ST-212</code> bàn phím đã đóng — vùng nhìn thấy dài hơn, nút nằm sát đáy</li>
+  </ul>
+</div>
+
+</body>
+</html>

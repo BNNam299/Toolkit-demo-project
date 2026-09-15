@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-103 Chọn app · ST-220 Đã chọn 1</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-103 · Chọn app</span>
+  <span class="w-st">ST-220 Đã chọn 1</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav w-nav--center">
+    <span class="w-btn--text">✕</span>
+    <span class="w-title">Đã chọn 1</span>
+    <span class="w-btn--text">Xong</span>
+  </div>
+  <div class="w-body">
+    <div class="w-search">Tìm app</div>
+    <div class="w-check" aria-checked="true"><div class="w-ph w-ph--avatar">icon</div><span>Facebook</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>TikTok</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>Instagram</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>YouTube</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>X</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>Threads</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>Reddit</span></div>
+    <div class="w-check"><div class="w-ph w-ph--avatar">icon</div><span>Shopee</span></div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Người dùng chọn những app hay làm mình mất tập trung. Số ở tiêu đề cho biết đã chọn mấy cái mà không phải đếm tay. <code>FLOW-101</code> bước 3/5 · <code>UC-101</code> · <code>FR-104</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-102</code> — bấm "Chọn app cho nhóm"</li>
+    <li><b>"Xong"</b> → <code>SCR-104</code></li>
+    <li><b>"✕"</b> → <code>SCR-102</code>, giữ tên đã nhập — <i>đường thoát</i></li>
+    <li><b>"Xong"</b> xám khi chưa chọn app nào</li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-221</code> chưa chọn gì — tiêu đề là "Chọn app", nút "Xong" xám</li>
+    <li><code>ST-222</code> đang tìm, không có kết quả — dòng "Không thấy app nào tên này"</li>
+    <li><code>ST-223</code> chưa cấp quyền đọc danh sách app — danh sách rỗng kèm nút mở Cài đặt</li>
+  </ul>
+</div>
+
+</body>
+</html>

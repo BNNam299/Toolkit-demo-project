@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "defaultMode": "acceptEdits",
+    "allow": [
+      "Read(**)",
+      "Glob(**)",
+      "Grep(**)",
+      "Edit(docs/**)",
+      "Write(docs/**)",
+      "Edit(CLAUDE.md)",
+      "Edit(research-raw/SENSOR_TOWER_REQUEST.md)",
+      "Edit(research-raw/sensor-tower/_MANIFEST.md)",
+      "Edit(research-raw/sensor-tower/_EXTRACTED.md)",
+      "Edit(research-raw/ho-so-cu/_MAP.md)",
+      "Write(research-raw/ho-so-cu/_MAP.md)",
+      "Write(research-raw/SENSOR_TOWER_REQUEST.md)",
+      "Write(research-raw/sensor-tower/_MANIFEST.md)",
+      "Write(research-raw/sensor-tower/_EXTRACTED.md)",
+      "Bash(python .claude/scripts/validate_docs.py*)",
+      "Bash(python3 .claude/scripts/validate_docs.py*)",
+      "Bash(python .claude/scripts/check_build.py*)",
+      "Bash(python3 .claude/scripts/check_build.py*)",
+      "Bash(python -m http.server*)",
+      "Bash(python3 -m http.server*)",
+      "Edit(design-system/_MANIFEST.md)",
+      "Write(design-system/_MANIFEST.md)",
+      "Edit(wireframes/**)",
+      "Write(wireframes/**)",
+      "WebSearch",
+      "WebFetch(domain:apps.apple.com)",
+      "WebFetch(domain:play.google.com)",
+      "WebFetch(domain:*.reddit.com)",
+      "WebFetch(domain:reddit.com)",
+      "WebFetch(domain:trends.google.com)",
+      "WebFetch(domain:*.appstorespy.com)",
+      "WebFetch(domain:sensortower.com)",
+      "WebFetch(domain:*.sensortower.com)",
+      "mcp__Framelink MCP for Figma__get_figma_data",
+      "mcp__Framelink MCP for Figma__download_figma_images"
+    ],
+    "deny": [
+      "Edit(tech-input/**)",
+      "Write(tech-input/**)",
+      "Edit(research-raw/SENSOR_TOWER_DATA.md)",
+      "Write(research-raw/SENSOR_TOWER_DATA.md)",
+      "Edit(research-raw/nghien-cuu-cu/**)",
+      "Edit(research-raw/review-thu-thap/**)",
+      "Edit(research-raw/anh-chup/**)",
+      "Edit(design-system/**.pen)",
+      "Write(design-system/**.pen)",
+      "Edit(design-system/**.fig)",
+      "Write(design-system/**.fig)",
+      "Read(.mcp.json)"
+    ],
+    "ask": [
+      "Bash(rm *)",
+      "Bash(git push*)"
+    ]
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '✅ Nhớ cập nhật docs/_INDEX.md và commit docs/'"
+          }
+        ]
+      }
+    ]
+  }
+}

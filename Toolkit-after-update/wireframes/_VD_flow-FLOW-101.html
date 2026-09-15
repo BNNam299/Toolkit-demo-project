@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU trang wireflow — file bắt đầu bằng "_" nên check_build.py bỏ qua.
+     Đây là bản mẫu để BẮT CHƯỚC. Ba điều đáng để ý:
+       1. Màn nhúng bằng iframe từ file màn — không chép nội dung màn vào đây.
+       2. Mũi tên nào cũng có nhãn "bấm gì". Đó là tầng chú thích luồng.
+       3. Khối ghi chú nằm ở CUỐI đoạn, chiếm cả dòng — không chen giữa các màn. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · FLOW-101 Tạo nhóm giới hạn — Wireflow</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body class="wf">
+
+<h1>VÍ DỤ · FLOW-101 · Tạo nhóm giới hạn đầu tiên</h1>
+<p class="wf-meta">
+  Mục tiêu người dùng: <b>chặn được nhóm app đầu tiên</b> · Số bước tới giá trị đầu tiên: <b>5</b>
+  · Khớp <code>07-05_UX_FLOWS</code> · <a href="index.html">← mọi luồng</a>
+</p>
+
+<div class="wf-stage">Đường chính — happy path</div>
+
+<div class="wf-row">
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-101_ST-201_home-chua-co-nhom.html" loading="lazy" title="SCR-101 ST-201"></iframe>
+    </div>
+    <figcaption>bước 1 · SCR-101 · Trang chủ · ST-201
+      <span class="wf-purpose">chưa có nhóm nào, chỉ có một đường đi tiếp</span></figcaption>
+  </figure>
+
+  <div class="wf-arrow">
+    <b>bấm "+ Tạo giới hạn đầu tiên"</b>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-102_ST-210_dat-ten-nhom.html" loading="lazy" title="SCR-102 ST-210"></iframe>
+    </div>
+    <figcaption>bước 2 · SCR-102 · Tạo nhóm · ST-210
+      <span class="wf-purpose">bàn phím mở ngay, không phải chạm thêm</span></figcaption>
+  </figure>
+
+  <div class="wf-arrow">
+    <b>bấm "Chọn app cho nhóm"</b>
+    <i>nút xám khi tên còn rỗng</i>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-103_ST-220_chon-app.html" loading="lazy" title="SCR-103 ST-220"></iframe>
+    </div>
+    <figcaption>bước 3 · SCR-103 · Chọn app · ST-220
+      <span class="wf-purpose">tiêu đề đếm hộ số app đã chọn</span></figcaption>
+  </figure>
+
+  <div class="wf-arrow">
+    <b>bấm "Xong"</b>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-104_ST-231_hang-ngay.html" loading="lazy" title="SCR-104 ST-231"></iframe>
+    </div>
+    <figcaption>bước 4 · SCR-104 · Cách giới hạn · ST-231
+      <span class="wf-purpose">mặc định vào tab Hằng ngày</span></figcaption>
+  </figure>
+
+  <div class="wf-arrow">
+    <b>bấm "Tiếp tục"</b>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-105_ST-240_nhac-minh.html" loading="lazy" title="SCR-105 ST-240"></iframe>
+    </div>
+    <figcaption>bước 5 · SCR-105 · Nhắc mình · ST-240
+      <span class="wf-purpose">bước cuối trước khi lưu</span></figcaption>
+  </figure>
+
+  <div class="wf-arrow">
+    <b>bấm "✓ Xong"</b>
+    <i>lưu xong mới chuyển</i>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="_VD_SCR-106_ST-250_xong.html" loading="lazy" title="SCR-106 ST-250"></iframe>
+    </div>
+    <figcaption>bước 6 · SCR-106 · Đã tạo xong · ST-250
+      <span class="wf-purpose">giá trị người dùng nhận được, nói bằng số cụ thể</span></figcaption>
+  </figure>
+
+  <div class="wf-end">Xong việc</div>
+
+  <div class="wf-note">
+    <h4>Ghi chú đoạn này</h4>
+    <ul>
+      <li>Năm bước tới giá trị đầu tiên. Bỏ được bước nào không? <b>Không</b> — bước 2 (tên) có thể
+        đặt mặc định "Nhóm 1", nhưng thử nghiệm ở <code>09-04</code> sẽ trả lời, không quyết ở đây.</li>
+      <li>Bỏ dở giữa luồng: lần sau vào lại ở <b>bước đang dở</b>, không phải từ đầu.</li>
+      <li>Mọi màn từ bước 2 trở đi có <b>"✕"</b> về <code>SCR-101</code>. Bước 4 và 5 hỏi lại
+        "Bỏ nhóm đang tạo?" vì đã nhập nhiều.</li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="wf-stage">Nhánh — rẽ ở bước 4</div>
+
+<div class="wf-branch">
+
+  <span class="wf-cond">nếu người dùng chọn tab "Theo lịch"</span>
+  <div class="wf-row">
+    <div class="wf-arrow"><b>chạm tab "Theo lịch"</b><i>không rời màn</i></div>
+    <figure class="wf-screen">
+      <div class="wf-viewport">
+        <iframe src="_VD_SCR-104_ST-232_theo-lich.html" loading="lazy" title="SCR-104 ST-232"></iframe>
+      </div>
+      <figcaption>bước 4b · SCR-104 · ST-232 Tab Theo lịch
+        <span class="wf-purpose">đổi nội dung trong màn, không phải màn mới</span></figcaption>
+    </figure>
+    <div class="wf-arrow"><b>bấm "Tiếp tục"</b></div>
+    <div class="wf-end">về bước 5</div>
+  </div>
+
+  <span class="wf-cond wf-cond--err">nếu lưu thất bại ở bước 5</span>
+  <div class="wf-row">
+    <div class="wf-arrow"><b>tự chuyển</b><i>không cần bấm</i></div>
+    <div class="wf-end">SCR-106 · ST-251 Lưu thất bại</div>
+    <div class="wf-arrow"><b>bấm "Thử lại"</b></div>
+    <div class="wf-end">về bước 5, giữ nguyên cấu hình</div>
+  </div>
+
+</div>
+
+<div class="wf-stage">Trạng thái còn lại của các màn trong luồng</div>
+
+<div class="wf-states">
+  <span class="wf-slabel">các ô của 08-02 chưa xuất hiện ở hai mục trên</span>
+
+  <div class="wf-note">
+    <h4>Điều kiện vào từng trạng thái</h4>
+    <ul>
+      <li><code>SCR-101</code> · <code>ST-203</code> chưa cấp quyền theo dõi — ba dòng số hiện "—",
+        đường ra: bấm dòng số → màn xin quyền.</li>
+      <li><code>SCR-103</code> · <code>ST-222</code> tìm không ra — dòng "Không thấy app nào tên này",
+        đường ra: xoá từ khoá.</li>
+      <li><code>SCR-103</code> · <code>ST-223</code> chưa cấp quyền đọc danh sách app — danh sách rỗng
+        kèm nút mở Cài đặt hệ thống.</li>
+      <li><code>SCR-105</code> · <code>ST-243</code> đang lưu — nút thành vòng chờ, không bấm được,
+        không có đường ra và <b>đúng như vậy</b>: trạng thái tự kết thúc.</li>
+    </ul>
+    <p style="margin:0"><i>Trạng thái nào không dựng thành file thì phải nằm ở mục này kèm điều kiện.
+      Không có ở cả ba mục nghĩa là bỏ sót một ô của <code>08-02</code>.</i></p>
+  </div>
+</div>
+
+<div class="wf-stage">Tự kiểm luồng này</div>
+
+<div class="wf-note">
+  <h4>Bốn câu phải trả lời được khi nhìn trang này</h4>
+  <ul>
+    <li>Mỗi mũi tên có nhãn ghi <b>bấm gì</b> hoặc <b>tự chuyển</b> — không mũi tên nào trống.</li>
+    <li>Mỗi nhánh có nhãn ghi <b>điều kiện</b>.</li>
+    <li>Mọi màn có <b>đường ra</b> — không ô nào là ngõ cụt.</li>
+    <li>Mọi ô của luồng này trong <code>08-02</code> xuất hiện ở một trong ba mục trên.</li>
+  </ul>
+</div>
+
+</body>
+</html>

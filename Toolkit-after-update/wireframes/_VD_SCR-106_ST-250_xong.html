@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-106 Đã tạo xong · ST-250 Mặc định</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-106 · Đã tạo xong</span>
+  <span class="w-st">ST-250 Mặc định</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav w-nav--center"><span></span><span class="w-title"></span><span class="w-x">✕</span></div>
+  <div class="w-body">
+    <div class="w-empty">
+      <div class="w-ph w-ph--sq" style="width:120px">hình minh hoạ đã xong</div>
+      <div class="w-h1">Xong rồi</div>
+      <p class="w-sm" style="max-width:280px">Nhóm <b>Mạng xã hội</b> sẽ bị giới hạn
+         6 lần mở mỗi ngày, mỗi lần 5 phút.</p>
+    </div>
+  </div>
+  <div class="w-foot">
+    <div class="w-btn">Về trang chủ</div>
+    <div class="w-btn w-btn--text">Tạo thêm một nhóm</div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Nhắc lại đúng thứ người dùng vừa đặt, bằng số cụ thể — để họ biết mình vừa bật cái gì mà không phải mở lại xem. <code>FLOW-101</code> bước cuối · <code>UC-101</code> · <code>FR-107</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-105</code> — bấm "✓ Xong"</li>
+    <li><b>"Về trang chủ"</b> → <code>SCR-101</code> ở <code>ST-202</code> (đã có nhóm)</li>
+    <li><b>"Tạo thêm một nhóm"</b> → <code>SCR-102</code></li>
+    <li><b>"✕"</b> → <code>SCR-101</code> — <i>đường thoát, cùng đích với nút chính</i></li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-251</code> lưu thất bại — đổi thành màn lỗi kèm nút "Thử lại", KHÔNG mất cấu hình đã nhập</li>
+  </ul>
+</div>
+
+</body>
+</html>

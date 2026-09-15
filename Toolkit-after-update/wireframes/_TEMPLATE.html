@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<!-- ===========================================================================
+     TEMPLATE MỘT MÀN — copy file này, đổi tên theo mã màn hình.
+
+     Tên file BẮT BUỘC:   SCR-012_ST-041_ket-qua-phan-tich.html
+                          ^^^^^^^ ^^^^^^^ ^^^^^^^^^^^^^^^^^^^^
+                          mã màn  mã trạng thái  tên gợi nhớ (không dấu)
+
+     Mã BA CHỮ SỐ, khớp docs/08-screens/08-02_STATE_MATRIX.md.
+
+     ───────────────────────────────────────────────────────────────────────────
+     LUẬT MỘT CÂU:  trong khung máy chỉ có thứ NGƯỜI DÙNG SẼ ĐỌC VÀ CHẠM.
+     ───────────────────────────────────────────────────────────────────────────
+
+     Nghĩa là chữ trong khung là chữ thật của app — gần nhất với chữ sẽ chạy
+     thật. Không phải mô tả về chữ đó.
+
+       ĐÚNG                              SAI
+       "Chọn cách giới hạn app này"      "Tiêu đề màn, 22pt, tương phản cao"
+       "Tiếp tục"                        "Hành động chính của màn"
+       "Số lần mở mỗi ngày — 6 lần"      "Row 50pt, vùng tương tác lớn nhất"
+       "Chưa có nhóm chặn nào"           "Empty state, có CTA thoát"
+       "Nghe thử"                        "CTA phụ (CPY-012) → SCR-030"
+
+     TUYỆT ĐỐI KHÔNG viết vào trong khung:
+       · số pt, px, cỡ chữ, khoảng cách, độ cao, bo góc, tương phản
+       · mã FR / UC / NFR / CPY / SCR / ST   (mã chỉ nằm ở .w-tag và .w-notes)
+       · "layout như trên", "vùng tương tác", "chrome", "phần trên màn hình"
+       · lý do thiết kế, mô tả khối, câu ngôi thứ nhất kiểu "Tôi muốn…"
+
+     Câu "Tôi muốn…" (JTBD) và mọi mã truy nguyên nằm ở khối .w-notes DƯỚI khung,
+     hoặc ở figcaption trên trang flow. Đặt trong khung là biến màn hình thành
+     bảng kê — mà bảng kê thì đã có ở docs/08-screens/ rồi.
+
+     Khung cao 844px = đúng một màn. Nội dung dài hơn thì phải CUỘN mới thấy, và
+     đó là thông tin thật: mở trình duyệt lên là biết CTA chính có nằm trong tầm
+     nhìn đầu tiên hay không. ĐỪNG nới chiều cao khung cho vừa nội dung.
+
+     NÚT KHÔNG CẦN BẤM ĐƯỢC. Không href, không JavaScript. Ai bấm gì ra màn nào
+     thì đọc ở mũi tên trên `flow-FLOW-xxx.html`.
+
+     Phận tử có sẵn trong _wireframe.css: nav · segmented (.w-seg) · hàng có giá
+     trị (.w-rowval) · nhóm hàng (.w-group) · checkbox (.w-check) · radio
+     (.w-radio) · công tắc (.w-switch) · ô nhập (.w-field) · tìm kiếm (.w-search)
+     · bàn phím (.w-kb) · sheet (.w-sheet + .w-grab) · tab bar · chip · thanh
+     tiến trình (.w-steps) · trạng thái rỗng (.w-empty) · toast · giữ chỗ (.w-ph).
+     Cần thứ chưa có thì THÊM class vào cuối _wireframe.css — đừng mô tả bằng chữ.
+
+     XEM THỬ:  python -m http.server 8000  →  http://localhost:8000/wireframes/
+     KIỂM:     python .claude/scripts/check_build.py --wireframes wireframes/
+
+     Xoá mọi comment hướng dẫn trong file thật. Giữ khối .w-notes.
+     =========================================================================== -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SCR-000 · Tên màn · ST-000 Tên trạng thái</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<!-- Nhãn — luôn giữ, và là chỗ DUY NHẤT có mã ở phía trên khung. -->
+<div class="w-tag">
+  <span>SCR-000 · Tên màn</span>
+  <span class="w-st">ST-000 Tên trạng thái</span>
+</div>
+
+<div class="w-phone">
+
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+
+  <div class="w-nav">
+    <span class="w-btn--text">‹</span>
+    <span class="w-title">Giới hạn app</span>
+    <span class="w-x">✕</span>
+  </div>
+
+  <div class="w-body">
+
+    <!-- Chữ thật. Có 09-06_COPY_DECK rồi thì chép đúng câu trong đó; chưa có thì
+         viết câu mình định dùng thật, đúng độ dài dự kiến. Không Lorem Ipsum —
+         chữ giả làm layout trông ổn trong khi chữ thật sẽ tràn. -->
+
+    <h1 class="w-h1">Chọn cách giới hạn các app này</h1>
+    <p class="w-sm">Áp dụng cho 4 app trong nhóm Mạng xã hội.</p>
+
+    <div class="w-seg">
+      <span>Ngay bây giờ</span>
+      <span aria-selected="true">Hằng ngày</span>
+      <span>Theo lịch</span>
+    </div>
+
+    <div class="w-group">
+      <div class="w-rowval"><span>Số lần mở mỗi ngày</span><b class="w-step">6 lần</b></div>
+      <div class="w-rowval"><span>Mỗi lần dùng bao lâu</span><b class="w-step">5 phút</b></div>
+      <div class="w-rowval">
+        <span>Nhắc trước khi mở<span class="w-sub">Dừng 5 giây rồi mới vào app</span></span>
+        <span class="w-switch" aria-checked="true"></span>
+      </div>
+    </div>
+
+    <span class="w-glabel">App trong nhóm</span>
+    <div class="w-group">
+      <div class="w-rowval"><span>Facebook</span><b>›</b></div>
+      <div class="w-rowval"><span>TikTok</span><b>›</b></div>
+    </div>
+
+  </div>
+
+  <div class="w-foot">
+    <div class="w-btn">Tiếp tục</div>
+  </div>
+
+</div>
+
+<!-- ═══ Ghi chú — NGOÀI khung, và chỉ ba mục. ═══
+     Đây là chỗ duy nhất được để mã truy nguyên và điều kiện. Ba mục này là mức
+     tối thiểu để người dựng ở phase 12 không phải đoán. Đừng thêm mục thứ tư:
+     mọi thứ về khoảng cách, cỡ chữ, màu thuộc `12-00`, không thuộc đây. -->
+<div class="w-notes">
+
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Người dùng đến đây để <b>&lt;xong việc gì&gt;</b>.
+     <code>FLOW-000</code> bước &lt;n&gt;/&lt;tổng&gt; · <code>UC-000</code> · <code>FR-000</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-000</code> — khi người dùng bấm &lt;gì&gt;</li>
+    <li><b>"Tiếp tục"</b> → <code>SCR-000</code></li>
+    <li><b>"✕"</b> → <code>SCR-000</code> — <i>đường thoát; mọi trạng thái phải có một đường thoát</i></li>
+    <li><b>"Tiếp tục"</b> xám khi &lt;điều kiện&gt;; mở lại khi &lt;điều kiện&gt;</li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-000</code> đang tải — khi &lt;điều kiện&gt;</li>
+    <li><code>ST-000</code> rỗng — khi &lt;điều kiện&gt;</li>
+    <li><code>ST-000</code> lỗi — khi &lt;điều kiện&gt;</li>
+  </ul>
+
+</div>
+
+</body>
+</html>

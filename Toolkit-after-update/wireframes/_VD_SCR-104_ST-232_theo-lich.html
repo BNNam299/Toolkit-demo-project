@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-104 Cách giới hạn · ST-232 Tab Theo lịch</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-104 · Cách giới hạn</span>
+  <span class="w-st">ST-232 Tab Theo lịch</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav w-nav--center">
+    <span class="w-btn--text">‹</span>
+    <span class="w-title">Nhóm Mạng xã hội</span>
+    <span class="w-x">✕</span>
+  </div>
+  <div class="w-body">
+    <div class="w-steps"><span aria-current="true"></span><span aria-current="true"></span><span aria-current="true"></span><span></span></div>
+    <h1 class="w-h1">Giới hạn các app này thế nào?</h1>
+    <div class="w-seg"><span>Ngay bây giờ</span><span>Hằng ngày</span><span aria-selected="true">Theo lịch</span></div>
+    <div style="display:flex;gap:8px">
+      <span class="w-chip" aria-pressed="true">Tự chọn</span>
+      <span class="w-chip">Cả ngày</span>
+      <span class="w-chip">Giờ ngủ</span>
+    </div>
+    <div class="w-group">
+      <div class="w-rowval"><span>Từ</span><b class="w-step">00:00</b></div>
+      <div class="w-rowval"><span>Đến</span><b class="w-step">23:59</b></div>
+    </div>
+    <span class="w-glabel">Lặp vào các ngày</span>
+    <div style="display:flex;gap:6px;flex-wrap:wrap">
+      <span class="w-chip">CN</span><span class="w-chip" aria-pressed="true">T2</span>
+      <span class="w-chip" aria-pressed="true">T3</span><span class="w-chip" aria-pressed="true">T4</span>
+      <span class="w-chip" aria-pressed="true">T5</span><span class="w-chip" aria-pressed="true">T6</span>
+      <span class="w-chip">T7</span>
+    </div>
+  </div>
+  <div class="w-foot">
+    <div class="w-btn">Tiếp tục</div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Người dùng chọn kiểu giới hạn. Ba tab là ba kiểu khác nhau, nội dung bên dưới đổi theo tab. <code>FLOW-101</code> bước 4/5 · <code>UC-102</code> · <code>FR-105</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-103</code> — bấm "Xong"</li>
+    <li><b>"Tiếp tục"</b> → <code>SCR-105</code></li>
+    <li><b>"‹"</b> → <code>SCR-103</code>, giữ nguyên app đã chọn</li>
+    <li><b>"✕"</b> → <code>SCR-101</code>, hỏi "Bỏ nhóm đang tạo?" — <i>đường thoát</i></li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-230</code> tab Ngay bây giờ — chỉ một hàng "Chặn đến" kèm giờ</li>
+    <li><code>ST-231</code> tab Hằng ngày — hai hàng số lần và thời lượng</li>
+    <li><code>ST-234</code> chưa chọn ngày nào — nút "Tiếp tục" xám</li>
+  </ul>
+</div>
+
+</body>
+</html>

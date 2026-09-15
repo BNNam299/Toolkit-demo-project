@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-101 Trang chủ · ST-201 Chưa có nhóm nào</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-101 · Trang chủ</span>
+  <span class="w-st">ST-201 Chưa có nhóm nào</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav">
+    <span class="w-btn--text">⚙</span>
+    <span class="w-title"></span>
+    <span class="w-badge">pro</span>
+  </div>
+  <div class="w-body">
+    <div class="w-group">
+      <div class="w-rowval"><span>Thời gian dùng hôm nay</span><b>2 giờ 14 phút</b></div>
+      <div class="w-rowval"><span>App đang theo dõi</span><b>0</b></div>
+      <div class="w-rowval"><span>Đang bị chặn</span><b>0</b></div>
+    </div>
+    <div class="w-empty">
+      <div class="w-h2">Chưa có nhóm chặn nào</div>
+      <p class="w-sm" style="max-width:260px">Nhóm chặn giúp bạn đặt giới hạn cho
+         những app hay làm bạn mất tập trung.</p>
+      <div class="w-btn">+ Tạo giới hạn đầu tiên</div>
+    </div>
+  </div>
+  <div class="w-tabbar">
+    <div aria-current="page"><span>▣</span><span>Giới hạn</span></div>
+    <div><span>▤</span><span>Thống kê</span></div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Người dùng lần đầu vào app, chưa có gì để xem — màn phải nói được app dùng để làm gì và cho một đường đi tiếp. <code>FLOW-101</code> bước 1/5 · <code>UC-101</code> · <code>FR-102</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ khi mở app, sau onboarding</li>
+    <li><b>"+ Tạo giới hạn đầu tiên"</b> → <code>SCR-102</code></li>
+    <li><b>"⚙"</b> → <code>SCR-140</code> Cài đặt — <i>đường ra khi người dùng chưa muốn tạo gì</i></li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-202</code> đã có nhóm — khi số nhóm ≥ 1, vùng rỗng đổi thành danh sách nhóm</li>
+    <li><code>ST-203</code> chưa cấp quyền theo dõi — khi người dùng từ chối ở onboarding; ba dòng số hiện dấu "—"</li>
+  </ul>
+</div>
+
+</body>
+</html>

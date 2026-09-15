@@ -1,0 +1,527 @@
+/* ============================================================================
+   _wireframe.css — CSS cho WIREFRAME + WIREFLOW của Pipeline v2
+   ----------------------------------------------------------------------------
+   MỘT FILE MÀN = MỘT MÀN HÌNH THẬT, đúng tỉ lệ điện thoại (390×844), cố định.
+   Trong khung chỉ có THỨ NGƯỜI DÙNG SẼ ĐỌC VÀ CHẠM trên app thật.
+
+   Đọc kỹ chỗ này, vì đây là chỗ hay làm sai nhất:
+
+     ĐÚNG   <h1 class="w-h1">Chọn cách giới hạn các app này</h1>
+     SAI     <h1 class="w-h1">Tiêu đề màn, 22pt, tương phản cao nhất</h1>
+
+     ĐÚNG   <div class="w-btn">Tiếp tục</div>
+     SAI     <div class="w-btn">Hành động chính của màn</div>
+
+     ĐÚNG   <div class="w-rowval"><span>Số lần mở mỗi ngày</span><b>6 lần</b></div>
+     SAI     <div class="w-card">Row 50pt, vùng tương tác lớn nhất</div>
+
+   Khung màn KHÔNG phải chỗ ghi chú. Không viết vào trong khung: số pt, px, cỡ
+   chữ, khoảng cách, tương phản, "layout như trên", mã FR/UC/NFR/CPY, lý do
+   thiết kế, mô tả khối. Tất cả những thứ đó hoặc bỏ hẳn, hoặc nằm ở khối
+   .w-notes NGOÀI khung.
+
+   Vì sao nghiêm khắc: wireframe để người đọc tài liệu nhìn ra ngay app sẽ như
+   thế nào và đọc được chữ thật trên đó. Một khung toàn thông số thì không ai
+   đọc được nó như một màn hình — nó thành bảng kê, và bảng kê thì đã có ở
+   docs/08-screens/ rồi.
+
+   BA ĐIỀU KHÔNG ĐƯỢC LÀM:
+     1. Không màu thương hiệu. Chỉ dùng biến --w-* bên dưới.
+     2. Không font khác, không đổi thang cỡ chữ.
+     3. Không ảnh thật. Dùng .w-ph, nhãn ngắn nói đó là ảnh gì.
+
+   Các con số px trong file CSS này là để TRÌNH DUYỆT vẽ đúng tỉ lệ, không phải
+   spec giao cho ai. Đừng chép chúng vào nội dung màn.
+
+   Nút KHÔNG cần bấm được. Ai bấm gì ra màn nào thì đọc ở MŨI TÊN trên trang
+   wireflow `flow-FLOW-xxx.html` — mũi tên là tầng chú thích luồng, và là tầng
+   chú thích duy nhất người đọc tài liệu cần.
+   ========================================================================== */
+
+:root {
+  --w-ink:      #1a1a1a;   /* chữ chính   */
+  --w-ink-2:    #6b6b6b;   /* chữ phụ     */
+  --w-ink-3:    #9a9a9a;   /* chữ mờ      */
+  --w-line:     #d4d4d4;   /* đường viền  */
+  --w-fill:     #ededed;   /* nền khối    */
+  --w-fill-2:   #f7f7f7;   /* nền nhạt    */
+  --w-solid:    #2b2b2b;   /* CTA chính — XÁM ĐẬM, không phải màu thương hiệu */
+  --w-page:     #ffffff;
+  --w-desk:     #8e8e8e;   /* nền ngoài khung máy */
+
+  --w-r:        10px;      /* bo góc      */
+  --w-gap:      12px;
+  --w-pad:      16px;
+  --w-tap:      44px;      /* vùng chạm tối thiểu — sàn tiếp cận */
+
+  --w-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+body {
+  margin: 0;
+  padding: 24px;
+  background: var(--w-desk);
+  font-family: var(--w-font);
+  color: var(--w-ink);
+  font-size: 15px;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ─── Nhãn màn hình — luôn hiện, để xem preview là biết đang xem frame nào ─── */
+
+.w-tag {
+  width: 390px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  color: #fff;
+  background: #3a3a3a;
+  padding: 7px 12px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.w-tag .w-st { color: #d8d8d8; font-weight: 500; }
+
+/* ─── Khung máy ─── */
+
+.w-phone {
+  width: 390px;
+  height: 844px;                 /* iPhone 14/15 logic size */
+  background: var(--w-page);
+  border: 1px solid var(--w-line);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.w-phone[data-size="small"] { width: 375px; height: 667px; }  /* máy nhỏ nhất còn hỗ trợ */
+
+.w-status {                       /* thanh trạng thái hệ thống, chỉ để đúng tỉ lệ */
+  height: 44px; flex: 0 0 44px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--w-pad);
+  font-size: 12px; color: var(--w-ink-3);
+  border-bottom: 1px dashed var(--w-line);
+}
+
+.w-nav {                          /* thanh điều hướng trên */
+  flex: 0 0 auto;
+  min-height: var(--w-tap);
+  display: flex; align-items: center; gap: var(--w-gap);
+  padding: 8px var(--w-pad);
+  border-bottom: 1px solid var(--w-line);
+}
+.w-nav .w-title { font-size: 17px; font-weight: 600; flex: 1; }
+.w-nav .w-x {                     /* nút đóng bên phải, kiểu sheet/modal */
+  width: 30px; height: 30px; border-radius: 50%;
+  background: var(--w-fill); color: var(--w-ink-2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex: 0 0 30px;
+}
+.w-nav--center .w-title { text-align: center; }
+
+.w-body {                         /* vùng cuộn */
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: var(--w-pad);
+  display: flex; flex-direction: column; gap: var(--w-gap);
+}
+
+.w-foot {                         /* vùng CTA cố định đáy */
+  flex: 0 0 auto;
+  padding: var(--w-pad);
+  border-top: 1px solid var(--w-line);
+  display: flex; flex-direction: column; gap: 8px;
+  background: var(--w-page);
+}
+
+.w-tabbar {
+  flex: 0 0 auto;
+  height: 56px;
+  display: flex;
+  border-top: 1px solid var(--w-line);
+}
+.w-tabbar > * {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 2px; font-size: 11px; color: var(--w-ink-2);
+}
+.w-tabbar > [aria-current] { color: var(--w-ink); font-weight: 600; }
+
+/* ─── Thành phần ─── */
+
+.w-h1 { font-size: 22px; font-weight: 700; margin: 0; }
+.w-h2 { font-size: 17px; font-weight: 600; margin: 0; }
+.w-p  { font-size: 15px; margin: 0; }
+.w-sm { font-size: 13px; color: var(--w-ink-2); margin: 0; }
+.w-xs { font-size: 11px; color: var(--w-ink-3); margin: 0; }
+
+.w-btn {
+  min-height: var(--w-tap);
+  border: 1px solid var(--w-solid);
+  border-radius: var(--w-r);
+  background: var(--w-solid);
+  color: #fff;
+  font: 600 16px var(--w-font);
+  display: flex; align-items: center; justify-content: center;
+  padding: 0 16px; cursor: pointer; text-decoration: none;
+}
+.w-btn--2 { background: transparent; color: var(--w-ink); border-color: var(--w-line); font-weight: 500; }
+.w-btn--text { background: none; border: none; color: var(--w-ink-2); font-weight: 500; }
+.w-btn[aria-disabled="true"] { opacity: .38; cursor: not-allowed; }
+
+.w-card {
+  border: 1px solid var(--w-line);
+  border-radius: var(--w-r);
+  padding: var(--w-pad);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.w-row {
+  display: flex; align-items: center; gap: var(--w-gap);
+  min-height: var(--w-tap);
+  padding: 8px 0;
+  border-bottom: 1px solid var(--w-fill);
+}
+.w-row .w-grow { flex: 1; min-width: 0; }
+
+.w-field {
+  min-height: var(--w-tap);
+  border: 1px solid var(--w-line);
+  border-radius: var(--w-r);
+  padding: 10px 12px;
+  font: 15px var(--w-font);
+  color: var(--w-ink);
+  background: var(--w-page);
+  width: 100%;
+}
+.w-field::placeholder { color: var(--w-ink-3); }
+.w-field[aria-invalid="true"] { border-color: var(--w-ink); border-width: 2px; }
+
+/* Khối giữ chỗ. Dùng cho ảnh, biểu đồ, map, video — MỌI thứ chưa có hình thật.
+   Có nhãn để người xem biết chỗ đó là gì, không phải một ô xám vô nghĩa. */
+.w-ph {
+  background: var(--w-fill);
+  border: 1px dashed var(--w-line);
+  border-radius: var(--w-r);
+  min-height: 96px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--w-ink-2); font-size: 12px; text-align: center; padding: 8px;
+}
+.w-ph--sq { aspect-ratio: 1; min-height: 0; }
+.w-ph--avatar { width: 40px; height: 40px; min-height: 0; border-radius: 50%; flex: 0 0 40px; }
+
+.w-chip {
+  border: 1px solid var(--w-line); border-radius: 999px;
+  padding: 5px 12px; font-size: 13px; color: var(--w-ink-2);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.w-chip[aria-pressed="true"] { background: var(--w-ink); color: #fff; border-color: var(--w-ink); }
+
+.w-bar { height: 6px; background: var(--w-fill); border-radius: 999px; overflow: hidden; }
+.w-bar > span { display: block; height: 100%; background: var(--w-solid); }
+
+.w-skel { background: var(--w-fill); border-radius: 6px; height: 14px; }
+.w-skel--w60 { width: 60%; } .w-skel--w40 { width: 40%; } .w-skel--w80 { width: 80%; }
+
+.w-empty { /* trạng thái rỗng — luôn phải có đường ra, xem .w-btn kèm bên trong */
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  text-align: center; color: var(--w-ink-2); padding: 24px;
+}
+
+.w-sheet { /* bottom sheet / modal */
+  position: absolute; left: 0; right: 0; bottom: 0;
+  background: var(--w-page);
+  border-top: 1px solid var(--w-line);
+  border-radius: 16px 16px 0 0;
+  padding: var(--w-pad);
+  display: flex; flex-direction: column; gap: var(--w-gap);
+  box-shadow: 0 -1px 0 var(--w-line);
+}
+.w-scrim { position: absolute; inset: 0; background: rgba(0,0,0,.28); }
+
+.w-toast {
+  position: absolute; left: 16px; right: 16px; bottom: 76px;
+  background: #2b2b2b; color: #fff; border-radius: 8px;
+  padding: 10px 12px; font-size: 13px;
+}
+
+/* ─── Ghi chú thiết kế — hiện cạnh khung, KHÔNG nằm trong màn ───
+   Dùng cho hành vi, điều kiện, mã CPY, đường thoát. Đây là thứ phân biệt
+   một wireframe với một cái ảnh đẹp: người dựng đọc ghi chú, không đoán. */
+
+.w-notes {
+  width: 390px;
+  background: var(--w-fill-2);
+  border: 1px solid var(--w-line);
+  border-radius: var(--w-r);
+  padding: 12px 14px;
+  font-size: 13px;
+  color: var(--w-ink);
+}
+.w-notes h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em;
+               color: var(--w-ink-2); margin: 0 0 8px; }
+.w-notes ol, .w-notes ul { margin: 0; padding-left: 18px; }
+.w-notes li { margin-bottom: 4px; }
+.w-notes code { background: #e4e4e4; padding: 1px 4px; border-radius: 3px; font-size: 12px; }
+
+.w-pin { /* số chú thích gắn vào thành phần trong màn */
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: var(--w-ink); color: #fff;
+  font-size: 11px; font-weight: 700; flex: 0 0 18px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   WIREFLOW — đầu ra chính của phase 08
+   ──────────────────────────────────────────────────────────────────────────
+   Một trang `flow-FLOW-001.html` cho MỘT luồng. Các màn xếp theo hàng, giữa
+   hai màn là một mũi tên có nhãn ghi HÀNH ĐỘNG gây ra bước chuyển. Nhánh thì
+   tách xuống, mỗi nhánh có nhãn ĐIỀU KIỆN.
+
+   Màn hình được NHÚNG bằng iframe từ chính file `SCR-xxx_ST-xxx_*.html`, thu
+   nhỏ bằng transform. Không chép lại nội dung màn vào trang flow — một nguồn.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+body.wf { background: #f4f4f4; align-items: stretch; padding: 28px 32px; }
+body.wf h1 { font-size: 20px; margin: 0; }
+body.wf .wf-meta { font-size: 13px; color: var(--w-ink-2); margin: 0; }
+
+/* Khung màn thu nhỏ. --wf-s là tỉ lệ; đổi ở đây, không đổi trong từng file. */
+.wf-screen { --wf-s: .52; margin: 0; display: flex; flex-direction: column; gap: 6px; flex: 0 0 auto; }
+.wf-screen > .wf-viewport {
+  width: calc(390px * var(--wf-s));
+  height: calc(844px * var(--wf-s));
+  overflow: hidden; border-radius: calc(20px * var(--wf-s));
+  border: 1px solid var(--w-line); background: #fff;
+}
+.wf-screen iframe {
+  width: 390px; height: 844px; border: 0; display: block;
+  transform: scale(var(--wf-s)); transform-origin: 0 0;
+}
+.wf-screen figcaption { font-size: 11px; font-weight: 700; line-height: 1.3; max-width: calc(390px * var(--wf-s)); }
+.wf-screen figcaption .wf-purpose { display: block; font-weight: 400; color: var(--w-ink-2); }
+
+/* Một hàng của luồng: màn → mũi tên → màn → … */
+.wf-row {
+  display: flex; align-items: flex-start; gap: 10px;
+  flex-wrap: wrap; padding: 4px 0;
+}
+
+/* Mũi tên ngang, có nhãn "bấm gì". Nhãn là phần quan trọng, không phải mũi tên. */
+.wf-arrow {
+  align-self: center; flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  min-width: 96px; max-width: 150px; text-align: center;
+  font-size: 11px; color: var(--w-ink); padding-top: 12px;
+}
+.wf-arrow::after {
+  content: "";
+  width: 100%; height: 0;
+  border-top: 1.5px solid var(--w-ink);
+  position: relative;
+}
+.wf-arrow > b { font-weight: 600; }
+.wf-arrow > i { font-style: normal; color: var(--w-ink-2); font-size: 10px; }
+.wf-arrow--tip::before { content: "▸"; position: absolute; }
+
+/* Nhánh: nhiều đường ra từ cùng một màn. Mỗi nhánh mang ĐIỀU KIỆN. */
+.wf-branch {
+  display: flex; flex-direction: column; gap: 14px;
+  border-left: 2px dashed var(--w-ink-3);
+  padding-left: 16px; margin-left: 6px;
+}
+.wf-cond {
+  font-size: 11px; font-weight: 700; color: var(--w-ink);
+  background: #e6e6e6; border-radius: 999px; padding: 3px 10px;
+  align-self: flex-start;
+}
+.wf-cond--err { background: #dcdcdc; }
+
+/* Nhóm trạng thái của cùng một màn — trả lời "tình huống nào ra trạng thái nào" */
+.wf-states {
+  display: flex; flex-wrap: wrap; gap: 10px;
+  background: #eaeaea; border: 1px dashed var(--w-line);
+  border-radius: 12px; padding: 12px;
+}
+.wf-states > .wf-slabel {
+  flex: 0 0 100%; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .05em; color: var(--w-ink-2);
+}
+
+/* Dải chú thích hành vi — cùng nội dung với .w-notes trong file màn, bản gọn */
+/* Ghi chú đoạn: LUÔN xuống dòng riêng, không chen giữa các màn. Chen vào hàng
+   thì nó cao bằng khung máy và người xem đọc nhầm nó là một màn hình. */
+.wf-note {
+  flex: 1 1 100%; width: 100%; max-width: 900px; align-self: flex-start;
+  background: #fff; border: 1px solid var(--w-line); border-radius: 12px;
+  padding: 12px 14px; font-size: 12px;
+}
+.wf-note h4 { margin: 0 0 6px; font-size: 11px; text-transform: uppercase;
+               letter-spacing: .05em; color: var(--w-ink-2); }
+.wf-note ul { margin: 0 0 8px; padding-left: 16px; }
+.wf-note li { margin-bottom: 3px; }
+.wf-note code { background: var(--w-fill); padding: 1px 4px; border-radius: 3px; }
+
+/* Tiêu đề đoạn trong luồng */
+.wf-stage {
+  font-size: 12px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--w-ink-2); border-bottom: 1px solid var(--w-line);
+  padding-bottom: 5px; margin: 18px 0 4px;
+}
+.wf-end {
+  align-self: center; font-size: 11px; font-weight: 700;
+  border: 1.5px solid var(--w-ink); border-radius: 999px; padding: 6px 14px;
+}
+
+/* ─── Trang gallery (index.html) ─── */
+
+.w-gallery {
+  display: flex; flex-wrap: wrap; gap: 28px;
+  align-items: flex-start; justify-content: center;
+  width: 100%;
+}
+.w-gallery > figure { margin: 0; display: flex; flex-direction: column; gap: 8px; }
+.w-gallery iframe {
+  width: 390px; height: 844px; border: 1px solid var(--w-line);
+  border-radius: 20px; background: #fff;
+}
+.w-gallery figcaption { font-size: 12px; color: #fff; font-weight: 600; }
+.w-flowlabel {
+  width: 100%; color: #fff; font-size: 13px; font-weight: 700;
+  letter-spacing: .04em; text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,.35); padding-bottom: 6px;
+}
+
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   PHẬN TỬ ĐIỀU KHIỂN — để dựng được màn thật thay vì hộp xám có chú thích
+   ──────────────────────────────────────────────────────────────────────────
+   Mỗi class dưới đây là một thứ người dùng NHÌN RA NGAY trên app. Có sẵn thì
+   agent dựng; không có sẵn thì agent mô tả bằng chữ — và đó chính là lỗi cũ.
+   Thiếu phận tử cần dùng thì THÊM class mới ở cuối file, đừng mô tả bằng chữ.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Segmented control — "Ngay bây giờ / Hằng ngày / Theo lịch" */
+.w-seg {
+  display: flex; background: var(--w-fill); border-radius: 9px; padding: 2px;
+}
+.w-seg > * {
+  flex: 1; text-align: center; font-size: 13px; font-weight: 500;
+  padding: 7px 4px; border-radius: 7px; color: var(--w-ink-2);
+}
+.w-seg > [aria-selected="true"] { background: var(--w-ink); color: #fff; font-weight: 600; }
+
+/* Hàng có giá trị bên phải — "Số lần mở mỗi ngày ......... 6 lần ⌃⌄" */
+.w-rowval {
+  display: flex; align-items: center; gap: var(--w-gap);
+  min-height: var(--w-tap); padding: 9px 0;
+  border-bottom: 1px solid var(--w-fill); font-size: 15px;
+}
+.w-rowval > span:first-child { flex: 1; min-width: 0; }
+.w-rowval > b { font-weight: 500; color: var(--w-ink-2); }
+.w-rowval .w-step::after { content: " ⌃⌄"; font-size: 10px; color: var(--w-ink-3); }
+.w-rowval .w-sub { display: block; font-size: 12px; color: var(--w-ink-3); font-weight: 400; }
+.w-group {                        /* nhóm hàng, kiểu Settings iOS */
+  border: 1px solid var(--w-line); border-radius: var(--w-r);
+  padding: 2px var(--w-pad);
+}
+.w-group > .w-rowval:last-child { border-bottom: 0; }
+.w-glabel {                       /* nhãn nhóm, chữ nhỏ phía trên */
+  font-size: 12px; text-transform: uppercase; letter-spacing: .04em;
+  color: var(--w-ink-3); padding-left: 4px;
+}
+
+/* Danh sách chọn — ô vuông (nhiều) hoặc ô tròn (một) */
+.w-check, .w-radio {
+  display: flex; align-items: center; gap: 12px;
+  min-height: var(--w-tap); padding: 8px 0;
+  border-bottom: 1px solid var(--w-fill); font-size: 15px;
+}
+.w-check::before {
+  content: ""; width: 21px; height: 21px; flex: 0 0 21px;
+  border: 1.5px solid var(--w-line); border-radius: 5px;
+}
+.w-radio::before {
+  content: ""; width: 21px; height: 21px; flex: 0 0 21px;
+  border: 1.5px solid var(--w-line); border-radius: 50%;
+}
+.w-check[aria-checked="true"]::before {
+  background: var(--w-ink); border-color: var(--w-ink);
+  content: "✓"; color: #fff; font-size: 13px;
+  display: flex; align-items: center; justify-content: center;
+}
+.w-radio[aria-checked="true"]::before {
+  border-color: var(--w-ink); border-width: 6px;
+}
+.w-check > span, .w-radio > span { flex: 1; }
+
+/* Công tắc bật/tắt */
+.w-switch {
+  width: 44px; height: 27px; flex: 0 0 44px; border-radius: 999px;
+  background: var(--w-fill); border: 1px solid var(--w-line); position: relative;
+}
+.w-switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px;
+  width: 21px; height: 21px; border-radius: 50%; background: #fff;
+  border: 1px solid var(--w-line);
+}
+.w-switch[aria-checked="true"] { background: var(--w-ink); border-color: var(--w-ink); }
+.w-switch[aria-checked="true"]::after { left: auto; right: 2px; }
+
+/* Ô tìm kiếm */
+.w-search {
+  display: flex; align-items: center; gap: 8px;
+  min-height: 38px; padding: 0 12px;
+  background: var(--w-fill); border-radius: 10px;
+  color: var(--w-ink-3); font-size: 15px;
+}
+.w-search::before { content: "⌕"; font-size: 16px; }
+
+/* Bàn phím hệ thống. CÓ MẶT = màn này đang có con trỏ trong ô nhập, và
+   vùng nhìn thấy bị mất một nửa. Đó là thông tin hành vi, nên vẽ ra. */
+.w-kb {
+  flex: 0 0 auto; background: var(--w-fill-2);
+  border-top: 1px solid var(--w-line); padding: 6px 3px 8px;
+  display: flex; flex-direction: column; gap: 6px;
+}
+.w-kb .w-kbrow { display: flex; gap: 5px; justify-content: center; }
+.w-kb .w-kbrow > span {
+  flex: 1; max-width: 34px; height: 38px; background: #fff;
+  border: 1px solid var(--w-line); border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; color: var(--w-ink);
+}
+.w-kb .w-kbrow > span.w-kbwide { max-width: none; flex: 3; }
+
+/* Sheet đè lên màn cha. Dùng khi 08-02 ghi trạng thái là sheet/lớp phủ:
+   người dùng vẫn thấy màn cha mờ phía sau — đừng vẽ thành một màn đầy. */
+.w-sheet .w-grab {
+  width: 36px; height: 4px; border-radius: 999px; background: var(--w-line);
+  align-self: center; margin-bottom: 4px;
+}
+.w-sheet--half { max-height: 55%; overflow: hidden; }
+.w-sheet--tall { max-height: 88%; overflow: hidden; }
+
+/* Thanh tiến trình onboarding kiểu 2/4 */
+.w-steps { display: flex; gap: 5px; }
+.w-steps > span { flex: 1; height: 3px; border-radius: 999px; background: var(--w-fill); }
+.w-steps > span[aria-current] { background: var(--w-ink); }
+
+/* Badge nhỏ, ví dụ nhãn "pro" ở góc */
+.w-badge {
+  font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px;
+  border: 1px solid var(--w-line); color: var(--w-ink-2);
+}
+
+/* ─── Thêm class mới ở dưới đây, kèm comment nói vì sao cần ─── */

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!-- VÍ DỤ MẪU — file bắt đầu bằng "_" nên check_build.py bỏ qua, không tính vào
+     số màn của dự án. Đây là bản mẫu để BẮT CHƯỚC: xem cách chữ trong khung là
+     chữ thật, cách mã và điều kiện nằm ở khối ghi chú dưới khung. Không sửa. -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VÍ DỤ · SCR-105 Nhắc mình · ST-240 Mặc định</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body>
+
+<div class="w-tag">
+  <span>VÍ DỤ · SCR-105 · Nhắc mình</span>
+  <span class="w-st">ST-240 Mặc định</span>
+</div>
+
+<div class="w-phone">
+  <div class="w-status"><span>9:41</span><span>▮▮▮</span></div>
+  <div class="w-nav w-nav--center">
+    <span class="w-btn--text">‹</span>
+    <span class="w-title">Nhóm Mạng xã hội</span>
+    <span class="w-x">✕</span>
+  </div>
+  <div class="w-body">
+    <h1 class="w-h1">Nhắc mình một câu trước khi mở</h1>
+    <div class="w-group">
+      <div class="w-rowval">
+        <span>Dừng lại trước khi mở<span class="w-sub">Bạn sẽ thấy màn nhắc trước khi vào app</span></span>
+        <span class="w-switch" aria-checked="true"></span>
+      </div>
+      <div class="w-rowval"><span>Dừng bao lâu</span><b class="w-step">5 giây</b></div>
+    </div>
+    <span class="w-glabel">Câu nhắc</span>
+    <input class="w-field" value="Mình mở app này để làm gì?" readonly>
+    <div class="w-group">
+      <div class="w-rowval">
+        <span>Cho phép mở khi cần gấp<span class="w-sub">Mỗi ngày một lần, phải ghi lý do</span></span>
+        <span class="w-switch"></span>
+      </div>
+    </div>
+  </div>
+  <div class="w-foot">
+    <div class="w-btn">✓ Xong</div>
+  </div>
+</div>
+
+<div class="w-notes">
+  <h3>Màn này để làm gì</h3>
+  <p style="margin:0 0 10px">Bước cuối trước khi lưu. Câu nhắc là chỗ người dùng tự viết cho mình, nên phải cho sửa chứ không cố định. <code>FLOW-101</code> bước 5/5 · <code>UC-102</code> · <code>FR-106</code></p>
+
+  <h3>Vào từ đâu, ra đi đâu</h3>
+  <ul>
+    <li>Vào từ <code>SCR-104</code> — bấm "Tiếp tục"</li>
+    <li><b>"✓ Xong"</b> → <code>SCR-106</code></li>
+    <li><b>"‹"</b> → <code>SCR-104</code>, giữ nguyên cấu hình giới hạn</li>
+    <li><b>"✕"</b> → <code>SCR-101</code>, hỏi "Bỏ nhóm đang tạo?" — <i>đường thoát</i></li>
+  </ul>
+
+  <h3>Các trạng thái khác của màn này</h3>
+  <ul>
+    <li><code>ST-241</code> tắt nhắc — hàng "Dừng bao lâu" và ô câu nhắc ẩn đi</li>
+    <li><code>ST-242</code> câu nhắc rỗng — dùng lại câu mặc định, không chặn nút Xong</li>
+    <li><code>ST-243</code> đang lưu — nút đổi thành vòng chờ, không bấm được</li>
+  </ul>
+</div>
+
+</body>
+</html>

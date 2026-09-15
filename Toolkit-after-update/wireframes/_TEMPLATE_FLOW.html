@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!-- ===========================================================================
+     TEMPLATE WIREFLOW — copy file này cho MỖI luồng.
+
+     Tên file:  flow-FLOW-001.html
+
+     ĐÂY LÀ ĐẦU RA CHÍNH CỦA PHASE 08. Các màn xếp cạnh nhau, nối bằng mũi tên;
+     trên mũi tên ghi HÀNH ĐỘNG, ở nhánh ghi ĐIỀU KIỆN.
+
+     Màn hình NHÚNG bằng iframe từ file `SCR-xxx_ST-xxx_*.html`. Không chép nội
+     dung màn vào đây — một nguồn sự thật, sửa màn thì flow tự cập nhật theo.
+
+     THỨ TỰ trong file phải khớp docs/07-structure/07-05_UX_FLOWS.md.
+     Flow KHÔNG được sinh màn mới: mọi mã ở đây phải có trong 08-01.
+
+     XEM THỬ: python -m http.server 8000 → http://localhost:8000/wireframes/flow-FLOW-001.html
+              (bắt buộc chạy qua http, vì file:// chặn nhúng iframe)
+
+     Xoá comment hướng dẫn trong file thật.
+     =========================================================================== -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FLOW-001 · Tên luồng — Wireflow</title>
+<link rel="stylesheet" href="_wireframe.css">
+</head>
+<body class="wf">
+
+<h1>FLOW-001 · &lt;Tên luồng&gt;</h1>
+<p class="wf-meta">
+  Mục tiêu người dùng: <b>&lt;xong việc gì&gt;</b> · Số bước tới giá trị đầu tiên: <b>&lt;n&gt;</b>
+  · Khớp <code>07-05_UX_FLOWS</code> · <a href="index.html">← mọi luồng</a>
+</p>
+
+<!-- ═══════════ ĐƯỜNG CHÍNH ═══════════════════════════════════════════════ -->
+
+<div class="wf-stage">Đường chính — happy path</div>
+
+<div class="wf-row">
+
+  <!-- Một màn. Lặp khối <figure> này cho từng bước. -->
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="SCR-001_ST-001_ten-man.html" loading="lazy" title="SCR-001 ST-001"></iframe>
+    </div>
+    <figcaption>
+      SCR-001 · Tên màn · ST-001
+      <span class="wf-purpose">để &lt;làm gì&gt;</span>
+    </figcaption>
+  </figure>
+
+  <!-- Mũi tên: <b> = bấm gì · <i> = ghi chú thêm (không bắt buộc) -->
+  <div class="wf-arrow">
+    <b>bấm "Tiếp tục"</b>
+    <i>sau khi nhập đủ mã</i>
+  </div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="SCR-002_ST-010_ten-man.html" loading="lazy" title="SCR-002 ST-010"></iframe>
+    </div>
+    <figcaption>
+      SCR-002 · Tên màn · ST-010
+      <span class="wf-purpose">để &lt;làm gì&gt;</span>
+    </figcaption>
+  </figure>
+
+  <div class="wf-arrow"><b>bấm "Xác nhận"</b></div>
+
+  <figure class="wf-screen">
+    <div class="wf-viewport">
+      <iframe src="SCR-003_ST-020_ten-man.html" loading="lazy" title="SCR-003 ST-020"></iframe>
+    </div>
+    <figcaption>
+      SCR-003 · Tên màn · ST-020
+      <span class="wf-purpose">giá trị người dùng nhận được ở đây</span>
+    </figcaption>
+  </figure>
+
+  <div class="wf-end">Xong việc</div>
+
+  <!-- Chú thích hành vi của cả đoạn — bản gọn, chi tiết ở khối .w-notes trong từng màn -->
+  <div class="wf-note">
+    <h4>Ghi chú đoạn này</h4>
+    <ul>
+      <li><b>SCR-002</b>: nút "Xác nhận" xám khi chưa đủ 4 chữ số.</li>
+      <li>Người dùng bỏ dở giữa đoạn này thì lần sau vào lại ở <code>SCR-002</code>, không phải từ đầu.</li>
+    </ul>
+    <h4>Đường thoát</h4>
+    <ul>
+      <li>Mọi màn trong đoạn có "‹ Quay lại" về màn trước. <code>SCR-001</code> quay lại thì thoát luồng.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ═══════════ NHÁNH THEO ĐIỀU KIỆN ═════════════════════════════════════ -->
+
+<div class="wf-stage">Nhánh — rẽ ở SCR-002</div>
+
+<div class="wf-branch">
+
+  <span class="wf-cond">nếu mã sai 3 lần</span>
+  <div class="wf-row">
+    <div class="wf-arrow"><b>tự chuyển</b><i>không cần bấm</i></div>
+    <figure class="wf-screen">
+      <div class="wf-viewport">
+        <iframe src="SCR-002_ST-012_ma-sai.html" loading="lazy" title="SCR-002 ST-012"></iframe>
+      </div>
+      <figcaption>SCR-002 · ST-012 Mã sai
+        <span class="wf-purpose">nói rõ còn mấy lần thử</span></figcaption>
+    </figure>
+    <div class="wf-arrow"><b>bấm "Gửi lại mã"</b></div>
+    <figure class="wf-screen">
+      <div class="wf-viewport">
+        <iframe src="SCR-002_ST-010_ten-man.html" loading="lazy" title="quay lại ST-010"></iframe>
+      </div>
+      <figcaption>SCR-002 · ST-010 <span class="wf-purpose">quay lại trạng thái mặc định</span></figcaption>
+    </figure>
+  </div>
+
+  <span class="wf-cond wf-cond--err">nếu mất mạng</span>
+  <div class="wf-row">
+    <div class="wf-arrow"><b>tự chuyển</b></div>
+    <figure class="wf-screen">
+      <div class="wf-viewport">
+        <iframe src="SCR-002_ST-014_mat-mang.html" loading="lazy" title="SCR-002 ST-014"></iframe>
+      </div>
+      <figcaption>SCR-002 · ST-014 Mất mạng
+        <span class="wf-purpose">giữ mã đã nhập, không xoá</span></figcaption>
+    </figure>
+    <div class="wf-arrow"><b>bấm "Thử lại"</b></div>
+    <div class="wf-end">về ST-010</div>
+  </div>
+
+  <span class="wf-cond">nếu bấm "Tôi không có mã"</span>
+  <div class="wf-row">
+    <div class="wf-arrow"><b>bấm dòng chữ dưới CTA</b></div>
+    <figure class="wf-screen">
+      <div class="wf-viewport">
+        <iframe src="SCR-005_ST-030_khong-co-ma.html" loading="lazy" title="SCR-005 ST-030"></iframe>
+      </div>
+      <figcaption>SCR-005 · ST-030 <span class="wf-purpose">đường đi khác, không phải ngõ cụt</span></figcaption>
+    </figure>
+  </div>
+
+</div>
+
+<!-- ═══════════ CÁC TRẠNG THÁI CÒN LẠI ═══════════════════════════════════
+     Trạng thái nào chưa xuất hiện ở đường chính hoặc nhánh trên thì đặt ở đây,
+     kèm điều kiện vào trạng thái. Mục này để KHÔNG BỎ SÓT ô nào của 08-02. -->
+
+<div class="wf-stage">Trạng thái còn lại của các màn trong luồng</div>
+
+<div class="wf-states">
+  <span class="wf-slabel">SCR-003 — các trạng thái khác</span>
+
+  <figure class="wf-screen" style="--wf-s:.42">
+    <div class="wf-viewport">
+      <iframe src="SCR-003_ST-021_dang-tai.html" loading="lazy" title="SCR-003 ST-021"></iframe>
+    </div>
+    <figcaption>ST-021 Đang tải <span class="wf-purpose">khi &lt;điều kiện&gt;</span></figcaption>
+  </figure>
+
+  <figure class="wf-screen" style="--wf-s:.42">
+    <div class="wf-viewport">
+      <iframe src="SCR-003_ST-022_rong.html" loading="lazy" title="SCR-003 ST-022"></iframe>
+    </div>
+    <figcaption>ST-022 Rỗng <span class="wf-purpose">khi &lt;điều kiện&gt;</span></figcaption>
+  </figure>
+
+  <div class="wf-note">
+    <h4>Điều kiện vào từng trạng thái</h4>
+    <ul>
+      <li><code>ST-021</code> — khi &lt;điều kiện&gt;. Ra khỏi trạng thái khi &lt;điều kiện&gt;.</li>
+      <li><code>ST-022</code> — khi &lt;điều kiện&gt;. Đường ra: &lt;bấm gì&gt; → <code>SCR-000</code>.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════ TỰ KIỂM ═══════════════════════════════════════════════════ -->
+
+<div class="wf-stage">Tự kiểm luồng này</div>
+
+<div class="wf-note" style="max-width:900px">
+  <h4>Bốn câu phải trả lời được khi nhìn trang này</h4>
+  <ul>
+    <li>Mỗi mũi tên có nhãn ghi <b>bấm gì</b> hoặc <b>tự chuyển</b> — không mũi tên nào trống.</li>
+    <li>Mỗi nhánh có nhãn ghi <b>điều kiện</b>.</li>
+    <li>Mọi màn có <b>đường ra</b> — không ô nào là ngõ cụt.</li>
+    <li>Mọi ô của luồng này trong <code>08-02</code> đều xuất hiện ở một trong ba mục trên.</li>
+  </ul>
+  <h4>Số bước</h4>
+  <ul>
+    <li>Đường chính: <b>&lt;n&gt;</b> bước. Có bước nào bỏ được mà vẫn xong việc không? <b>&lt;có/không, vì sao&gt;</b></li>
+  </ul>
+</div>
+
+</body>
+</html>

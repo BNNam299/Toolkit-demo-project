@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!-- ===========================================================================
+     Trang chủ của wireflow — danh sách luồng.
+
+     Bấm vào một luồng để mở trang wireflow của luồng đó: các màn xếp cạnh nhau,
+     nối bằng mũi tên, có nhãn "bấm gì" và "điều kiện nào".
+
+     Phần dưới là thư viện màn rời — dùng để tra một màn cụ thể, KHÔNG phải
+     cách đọc chính. Cách đọc chính là theo luồng.
+
+     Agent cập nhật file này mỗi khi thêm một luồng hoặc một màn.
+
+     XEM:  python -m http.server 8000  →  http://localhost:8000/wireframes/
+     =========================================================================== -->
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wireflow — [Tên dự án]</title>
+<link rel="stylesheet" href="_wireframe.css">
+<style>
+  body { align-items: stretch; }
+  h1 { color:#fff; font-size:20px; margin:0; }
+  h2 { color:#fff; font-size:14px; margin:18px 0 0; text-transform:uppercase; letter-spacing:.05em;
+       border-bottom:1px solid rgba(255,255,255,.35); padding-bottom:6px; }
+  .meta { color:#fff; font-size:13px; opacity:.85; margin:0; }
+  .flows { display:flex; flex-direction:column; gap:8px; max-width:900px; }
+  .flows a { display:flex; justify-content:space-between; gap:16px;
+             background:#fff; border:1px solid var(--w-line); border-radius:10px;
+             padding:12px 16px; text-decoration:none; color:var(--w-ink); font-size:14px; }
+  .flows a b { font-weight:700; }
+  .flows a span { color:var(--w-ink-2); font-size:12px; }
+</style>
+</head>
+<body>
+
+<h1>Wireflow — [Tên dự án]</h1>
+<p class="meta">
+  Đọc <b>theo luồng</b>, không theo mã màn. Khớp <code>07-05_UX_FLOWS</code> · đếm và kiểm ở <code>08-03_WIREFLOWS</code>.<br>
+  Kiểm phủ: <code>python .claude/scripts/check_build.py --wireframes wireframes/</code>
+</p>
+
+<h2>Bản mẫu — mở cái này trước</h2>
+
+<div class="flows">
+  <a href="_VD_flow-FLOW-101.html">
+    <b>VÍ DỤ · FLOW-101 · Tạo nhóm giới hạn đầu tiên</b>
+    <span>6 bước · 6 màn · 2 nhánh — dựng đúng chuẩn, để bắt chước</span>
+  </a>
+</div>
+
+<h2>Luồng</h2>
+
+<div class="flows">
+  <a href="flow-FLOW-001.html">
+    <b>FLOW-001 · &lt;tên luồng&gt;</b>
+    <span>&lt;n&gt; bước · &lt;m&gt; màn · &lt;k&gt; nhánh</span>
+  </a>
+  <!-- thêm một dòng cho mỗi luồng trong 07-05 -->
+</div>
+
+<h2>Thư viện màn rời — để tra, không phải để đọc</h2>
+
+<div class="w-gallery">
+  <figure>
+    <iframe src="SCR-000_ST-000_ten-man.html" loading="lazy" title="SCR-000 ST-000"></iframe>
+    <figcaption>SCR-000 · ST-000 · tên trạng thái</figcaption>
+  </figure>
+  <!-- thêm một figure cho mỗi file màn -->
+</div>
+
+</body>
+</html>

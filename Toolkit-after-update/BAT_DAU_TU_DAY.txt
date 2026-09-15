@@ -1,0 +1,86 @@
+════════════════════════════════════════════════════════════════
+  PIPELINE V2  —  BO MAU v1.0  —  DOC FILE NAY TRUOC
+════════════════════════════════════════════════════════════════
+
+Thư mục "pipeline-v2" này là BỘ MẪU. Đừng làm việc trực tiếp trong đây.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 1  Đặt bộ mẫu đúng chỗ
+──────────────────────────────────────────────────────────────
+Kéo cả thư mục "pipeline-v2" vào ổ D, thành:
+
+    D:\TOOLKIT\pipeline-v2
+
+Xong bước 1. Từ giờ KHÔNG mở, KHÔNG sửa thư mục này.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 2  Tạo dự án
+──────────────────────────────────────────────────────────────
+Copy thư mục "pipeline-v2", dán vào D:\PROJECTS,
+rồi đổi tên bản copy thành tên app của bạn. Ví dụ:
+
+    D:\PROJECTS\MyApp
+
+Copy bằng chuột là được. Không cần gõ lệnh.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 3  Kiểm đã đúng chưa  <-- QUAN TRỌNG
+──────────────────────────────────────────────────────────────
+Mở D:\PROJECTS\MyApp. Ở gốc có 5 thư mục bạn sẽ dùng, và mấy file
+hướng dẫn. Đủ 5 thư mục này là copy đúng:
+
+    [ ] docs           <- tài liệu AI viết ra, chia sẵn 14 chặng
+    [ ] research-raw   <- BẠN thả nguyên liệu vào: review, ảnh, hồ sơ cũ
+    [ ] tech-input     <- DEV nộp file kỹ thuật vào
+    [ ] design-system  <- hệ thiết kế sẵn của bạn, nếu có
+    [ ] wireframes     <- wireflow HTML, mở bằng trình duyệt
+
+    [ ] file  CLAUDE.md      <- luật, AI tự đọc. Đừng xoá.
+    [ ] file  HUONG_DAN.md   <- sách hướng dẫn cho bạn
+
+Thiếu bất kỳ thứ nào  ->  copy sai, làm lại bước 2.
+Thấy thư mục "specs" hoặc "hooks"  ->  đó là app-spec, không phải bộ này.
+KHÔNG đi tiếp khi chưa thấy đủ.
+
+Gốc trông nhiều thứ hơn bộ app-spec cũ -- đúng như vậy, và là cố ý.
+Bốn thư mục giữa là bốn CỬA BỎ NGUYÊN LIỆU: mỗi bên (bạn / Dev / AI)
+có chỗ riêng, nhìn là biết thả vào đâu. Chôn chúng vào trong một thư
+mục con thì bạn phải nhớ đường dẫn mới thả được file.
+Mở bằng VS Code thì mấy file hướng dẫn tự gom lại dưới README.md --
+bấm mũi tên cạnh README.md để mở ra.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 4  Mở bằng VS Code
+──────────────────────────────────────────────────────────────
+File -> Open Folder -> chọn D:\PROJECTS\MyApp
+Hỏi có tin thư mục không -> chọn "Yes, I trust the authors"
+Hiện gợi ý cài extension -> bấm "Install All"
+
+──────────────────────────────────────────────────────────────
+BƯỚC 5  Bật terminal và chạy
+──────────────────────────────────────────────────────────────
+Bấm Ctrl cùng dấu huyền (phím bên trái số 1).
+Khung đen mở ra phía dưới. Trong đó gõ:
+
+    claude
+
+Rồi gõ:
+
+    /design-docs MyApp
+
+KHÔNG dùng khung chat bên phải -- khung đó thiếu lệnh.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 6  Trả lời 4 câu
+──────────────────────────────────────────────────────────────
+Claude sẽ tự hỏi: tên dự án, nền tảng, mô tả một câu,
+và đã quyết định làm chưa. Nó tự điền vào CLAUDE.md.
+BẠN KHÔNG PHẢI SỬA FILE NÀO BẰNG TAY.
+
+──────────────────────────────────────────────────────────────
+BƯỚC 7  Còn lại
+──────────────────────────────────────────────────────────────
+Mở HUONG_DAN.md (hoặc Pipeline_v2_Huong_Dan.docx)
+và làm theo từ phần 5 -- Nhịp làm việc hằng ngày.
+
+════════════════════════════════════════════════════════════════
