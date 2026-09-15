@@ -1,0 +1,341 @@
+{
+  "meta": {
+    "name": "Motion-First",
+    "version": "1.0",
+    "description": "Every transition, every state change, every user action is an opportunity for delight. Spring physics drive all animations — elements bounce, slide, and scale into place rather than appearing statically. Staggered children animate in sequence, pages transition with shared elements, and haptic feedback maps precisely to every significant interaction. The visual design is intentionally restrained (clean, neutral) so that motion carries the personality. Ideal for apps where playfulness, responsiveness, and polish are the differentiator.",
+    "mood": ["alive", "playful", "responsive", "polished"],
+    "visualWeight": "medium-motion",
+    "bestFor": ["social-creative", "fitness-gamified", "learning-app", "onboarding-flows", "camera-photo", "interactive-stories"]
+  },
+  "color": {
+    "palette": {
+      "background": "#F8F9FA",
+      "surface": "#FFFFFF",
+      "surfaceVariant": "#F1F3F5",
+      "surfaceElevated": "#FFFFFF",
+      "textPrimary": "#212529",
+      "textSecondary": "#6C757D",
+      "textTertiary": "#ADB5BD",
+      "textInverse": "#FFFFFF",
+      "accent": "#4263EB",
+      "accentVariant": "#3B5BDB",
+      "accentSubtle": "#DBE4FF",
+      "onAccent": "#FFFFFF"
+    },
+    "semantic": {
+      "success": { "color": "#2B8A3E", "background": "#EBFBEE" },
+      "warning": { "color": "#E67700", "background": "#FFF9DB" },
+      "error": { "color": "#C92A2A", "background": "#FFF5F5" },
+      "info": { "color": "#1864AB", "background": "#E7F5FF" }
+    },
+    "gradient": [
+      { "name": "subtleShine", "colors": ["rgba(255,255,255,0)", "rgba(255,255,255,0.8)"], "angle": 180 }
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "primary": "SF Pro Display",
+      "secondary": "SF Pro Text",
+      "mono": "SF Mono"
+    },
+    "scale": {
+      "caption2": { "size": 11, "weight": 400, "lineHeight": 13, "letterSpacing": 0.07 },
+      "caption1": { "size": 12, "weight": 400, "lineHeight": 16, "letterSpacing": 0 },
+      "footnote": { "size": 13, "weight": 500, "lineHeight": 18, "letterSpacing": -0.08 },
+      "subhead": { "size": 15, "weight": 500, "lineHeight": 20, "letterSpacing": -0.24 },
+      "callout": { "size": 16, "weight": 400, "lineHeight": 21, "letterSpacing": -0.32 },
+      "body": { "size": 17, "weight": 400, "lineHeight": 22, "letterSpacing": -0.41 },
+      "headline": { "size": 17, "weight": 600, "lineHeight": 22, "letterSpacing": -0.41 },
+      "title3": { "size": 20, "weight": 600, "lineHeight": 25, "letterSpacing": -0.45 },
+      "title2": { "size": 22, "weight": 600, "lineHeight": 28, "letterSpacing": -0.5 },
+      "title1": { "size": 28, "weight": 700, "lineHeight": 34, "letterSpacing": -0.5 },
+      "largeTitle": { "size": 34, "weight": 700, "lineHeight": 41, "letterSpacing": -0.5 },
+      "hero": { "size": 44, "weight": 700, "lineHeight": 50, "letterSpacing": -0.5 }
+    }
+  },
+  "spacing": {
+    "grid": 4,
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32,
+    "xxl": 48,
+    "pageMargin": 16,
+    "sectionGap": 24,
+    "cardPadding": 16,
+    "navBarHeight": 44
+  },
+  "border": {
+    "radius": {
+      "none": 0,
+      "sm": 6,
+      "md": 12,
+      "lg": 16,
+      "xl": 20,
+      "full": 9999
+    },
+    "width": 1,
+    "color": "#DEE2E6",
+    "style": "solid"
+  },
+  "shadow": {
+    "elevation": {
+      "0": { "color": "transparent", "offsetY": 0, "blur": 0, "spread": 0 },
+      "1": { "color": "rgba(0,0,0,0.04)", "offsetY": 2, "blur": 8, "spread": 0 },
+      "2": { "color": "rgba(0,0,0,0.06)", "offsetY": 4, "blur": 12, "spread": 0 },
+      "3": { "color": "rgba(0,0,0,0.10)", "offsetY": 12, "blur": 24, "spread": -4 }
+    }
+  },
+  "animation": {
+    "duration": { "instant": 80, "fast": 180, "normal": 300, "slow": 450, "entrance": 350 },
+    "easing": {
+      "default": [0.25, 1, 0.5, 1],
+      "easeOut": [0, 0, 0.2, 1],
+      "easeIn": [0.7, 0, 1, 1],
+      "easeInOut": [0.45, 0, 0.55, 1]
+    },
+    "spring": {
+      "gentle": { "response": 0.5, "dampingFraction": 0.82 },
+      "bouncy": { "response": 0.45, "dampingFraction": 0.55 },
+      "snappy": { "response": 0.3, "dampingFraction": 0.88 },
+      "playful": { "response": 0.6, "dampingFraction": 0.45 }
+    },
+    "stagger": {
+      "listItem": 50,
+      "card": 80,
+      "word": 30
+    },
+    "scroll": {
+      "parallaxFactor": 0.3,
+      "headerCollapseThreshold": 120,
+      "revealOnScroll": true
+    },
+    "transition": {
+      "pagePush": "slide-left-spring",
+      "pageModal": "scale-up-spring",
+      "sheet": "slide-up-spring",
+      "tab": "crossfade-instant"
+    },
+    "haptic": {
+      "lightTap": "UIImpactFeedbackGenerator(style: .light)",
+      "mediumTap": "UIImpactFeedbackGenerator(style: .medium)",
+      "heavyTap": "UIImpactFeedbackGenerator(style: .heavy)",
+      "selectionChanged": "UISelectionFeedbackGenerator()",
+      "success": "UINotificationFeedbackGenerator(type: .success)",
+      "warning": "UINotificationFeedbackGenerator(type: .warning)",
+      "error": "UINotificationFeedbackGenerator(type: .error)",
+      "useOn": ["buttonPress", "toggleSwitch", "swipeAction", "pullToRefresh", "formSubmit", "errorAppear", "successToast"]
+    }
+  },
+  "component": {
+    "navBar": {
+      "height": 44,
+      "background": "rgba(248,249,250,0.88)",
+      "blur": 15,
+      "hasDivider": true,
+      "dividerColor": "#DEE2E6",
+      "backIcon": { "name": "chevron.left", "weight": "medium", "size": 20 },
+      "titleStyle": "headline",
+      "actionIconSize": 24,
+      "actionIconWeight": "medium",
+      "horizontalPadding": 16,
+      "scrollBehavior": "collapse-title-on-scroll",
+      "collapseAnimation": "spring-snappy"
+    },
+    "tabBar": {
+      "height": 49,
+      "background": "rgba(255,255,255,0.92)",
+      "blur": 15,
+      "hasDivider": true,
+      "dividerColor": "#DEE2E6",
+      "iconSize": 22,
+      "labelStyle": "caption2",
+      "activeColor": "#4263EB",
+      "inactiveColor": "#ADB5BD",
+      "badge": { "size": 16, "background": "#C92A2A", "textColor": "#FFFFFF", "fontSize": 10 },
+      "iconAnimation": "spring-bouncy-bounce",
+      "selectionHaptic": "lightTap"
+    },
+    "button": {
+      "primary": {
+        "height": 50, "radius": 14, "paddingH": 24,
+        "background": "#4263EB", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-1",
+        "font": "headline",
+        "disabled": { "background": "#DEE2E6", "textColor": "#ADB5BD" },
+        "pressAnimation": "scale-0.97-spring-snappy",
+        "pressHaptic": "lightTap",
+        "successAnimation": "scale-up-spring-bouncy + checkmark",
+        "successHaptic": "success"
+      },
+      "secondary": {
+        "height": 50, "radius": 14, "paddingH": 24,
+        "background": "#F1F3F5", "textColor": "#212529",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "headline",
+        "pressAnimation": "scale-0.98-spring-snappy"
+      },
+      "tertiary": {
+        "height": 44, "radius": 12, "paddingH": 16,
+        "background": "transparent", "textColor": "#4263EB",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead",
+        "pressAnimation": "opacity-0.7"
+      },
+      "destructive": {
+        "height": 50, "radius": 14, "paddingH": 24,
+        "background": "#C92A2A", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-1",
+        "font": "headline",
+        "pressHaptic": "heavyTap"
+      },
+      "ghost": {
+        "height": 44, "radius": 12, "paddingH": 12,
+        "background": "transparent", "textColor": "#6C757D",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      }
+    },
+    "card": {
+      "padding": 16,
+      "radius": 14,
+      "background": "#FFFFFF",
+      "border": { "width": 1, "color": "#F1F3F5" },
+      "shadow": "elevation-1",
+      "imageRatio": 1.5,
+      "gap": 14,
+      "appearAnimation": "fade-up-staggered",
+      "tapAnimation": "scale-0.98-spring-snappy",
+      "tapHaptic": "lightTap"
+    },
+    "input": {
+      "height": 50,
+      "radius": 12,
+      "background": "#F8F9FA",
+      "border": { "width": 1, "color": "#DEE2E6" },
+      "focusBorder": { "width": 2, "color": "#4263EB" },
+      "placeholder": "#ADB5BD",
+      "textColor": "#212529",
+      "paddingH": 16,
+      "font": "body",
+      "error": { "border": { "width": 2, "color": "#C92A2A" }, "messageColor": "#C92A2A" },
+      "focusAnimation": "border-color-spring-snappy + scale-1.01",
+      "errorAnimation": "shake-horizontal + border-color",
+      "errorHaptic": "error"
+    },
+    "chip": {
+      "height": 34,
+      "radius": 10,
+      "paddingH": 14,
+      "background": "#F1F3F5",
+      "textColor": "#6C757D",
+      "font": "caption1",
+      "selected": { "background": "#DBE4FF", "textColor": "#3B5BDB" },
+      "border": { "width": 0, "color": "transparent" },
+      "selectionAnimation": "scale-spring-bouncy + color-crossfade",
+      "selectionHaptic": "selectionChanged"
+    },
+    "badge": {
+      "size": 18,
+      "radius": 9999,
+      "background": "#C92A2A",
+      "textColor": "#FFFFFF",
+      "font": "caption2",
+      "position": "topTrailing",
+      "appearAnimation": "scale-up-spring-bouncy"
+    },
+    "avatar": {
+      "sm": { "size": 30, "radius": 9999, "border": { "width": 1.5, "color": "#FFFFFF" } },
+      "md": { "size": 42, "radius": 9999, "border": { "width": 2, "color": "#FFFFFF" } },
+      "lg": { "size": 58, "radius": 9999, "border": { "width": 2.5, "color": "#FFFFFF" } },
+      "xl": { "size": 84, "radius": 20, "border": { "width": 3, "color": "#FFFFFF" } },
+      "loadAnimation": "fade-scale-up-spring-gentle"
+    },
+    "divider": {
+      "height": 1,
+      "color": "#DEE2E6",
+      "inset": 16,
+      "style": "solid"
+    },
+    "toast": {
+      "paddingH": 18,
+      "paddingV": 12,
+      "radius": 14,
+      "background": "#212529",
+      "textColor": "#FFFFFF",
+      "font": "subhead",
+      "position": "bottom",
+      "duration": 3000,
+      "appearAnimation": "slide-up-spring-bouncy",
+      "dismissAnimation": "slide-down-fade",
+      "appearHaptic": "success"
+    },
+    "sheet": {
+      "radius": 20,
+      "background": "#FFFFFF",
+      "handleColor": "#DEE2E6",
+      "handleWidth": 36,
+      "handleHeight": 5,
+      "padding": 20,
+      "appearAnimation": "slide-up-spring-gentle + backdrop-fade",
+      "dismissAnimation": "slide-down-spring-snappy",
+      "dismissHaptic": "lightTap"
+    }
+  },
+  "iconography": {
+    "style": "SF Symbols",
+    "defaultWeight": "medium",
+    "sizeMap": { "sm": 14, "md": 20, "lg": 24, "xl": 32, "nav": 24, "tab": 22, "button": 18 },
+    "animation": "symbol-effect-bounce or variable-color on state change"
+  },
+  "composition": {
+    "discovery": {
+      "layoutDensity": "animated-cards",
+      "heroStyle": "parallax-scroll-hero",
+      "cardArrangement": "staggered-fade-in-grid",
+      "scrollBehavior": "reveal-on-scroll-stagger",
+      "maxColumns": 2,
+      "sectionHeaderStyle": "slide-in-title",
+      "refreshAnimation": "spring-bouncy-spinner"
+    },
+    "action": {
+      "formDensity": "animated-sections",
+      "ctaPlacement": "floating-spring-bottom",
+      "fieldGrouping": "expand-in-sequence",
+      "progressStyle": "animated-spring-bar",
+      "keyboardHandling": "smooth-spring-scroll",
+      "submitAnimation": "button-expand-to-success",
+      "submitHaptic": "success"
+    },
+    "consumption": {
+      "mediaFill": "parallax-hero-image",
+      "chromeOpacity": "fade-on-scroll",
+      "infoPlacement": "slide-up-spring-card",
+      "scrollEffect": "sticky-header-collapse",
+      "likeAnimation": "scale-up-heart-spring",
+      "likeHaptic": "mediumTap"
+    },
+    "management": {
+      "rowDensity": "animated-rows",
+      "swipeStyle": "spring-reveal-actions",
+      "sortPosition": "animated-segment-control",
+      "editModeTransition": "spring-checkbox-appear",
+      "deleteAnimation": "row-collapse-spring + siblings-slide-up",
+      "deleteHaptic": "heavyTap"
+    },
+    "social": {
+      "avatarProminence": "animated-ring",
+      "contentPadding": 16,
+      "reactionStyle": "spring-bounce-icons",
+      "composePosition": "spring-expand-bottom-bar",
+      "reactionAnimation": "pop-scale-spring + count-roll",
+      "reactionHaptic": "lightTap"
+    }
+  }
+}

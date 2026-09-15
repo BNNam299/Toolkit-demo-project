@@ -1,0 +1,45 @@
+{
+  "feature": "dashboard-view",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure", "shared-foundations", "diary-logging"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.1.2","2.1.3","2.1.4","3.1.1","3.2.1","3.2.2","3.2.3","3.2.4","3.2.5","3.3.1","3.4.1"],
+    "tasks_deferred": ["4.1.1","4.1.2","4.1.3","4.1.4","4.1.5","4.2.1"],
+    "deferred_reasons": {
+      "4.1.x": "Unit-test target not present.",
+      "4.2.1": "Depends on 4.1.x."
+    },
+    "files_created": [
+      "calo-ai-test/Features/Dashboard/Models/WeeklyStats.swift",
+      "calo-ai-test/Features/Dashboard/Services/DashboardRepository.swift",
+      "calo-ai-test/Features/Dashboard/Services/InsightsGenerator.swift",
+      "calo-ai-test/Features/Dashboard/Services/ExportService.swift",
+      "calo-ai-test/Features/Dashboard/ViewModels/DashboardViewModel.swift",
+      "calo-ai-test/Features/Dashboard/Views/WeeklySummaryCard.swift",
+      "calo-ai-test/Features/Dashboard/Views/WeeklyBarChart.swift",
+      "calo-ai-test/Features/Dashboard/Views/MacroPieChart.swift",
+      "calo-ai-test/Features/Dashboard/Views/InsightTextView.swift",
+      "calo-ai-test/Features/Dashboard/Views/ShareModal.swift",
+      "calo-ai-test/Features/Dashboard/Views/DashboardView.swift"
+    ],
+    "files_modified": [
+      "calo-ai-test/App/RootView.swift"
+    ],
+    "notes": "Phase 5 (dashboard-view) implemented. DashboardView replaces PlaceholderView on Dashboard tab. Swift Charts bar/pie (iOS 17+ for SectorMark; legend fallback below), 5-minute in-memory cache, CSV export + UIActivityViewController share, weekly insights, View Daily toggle switches tab to Diary."
+  }
+}

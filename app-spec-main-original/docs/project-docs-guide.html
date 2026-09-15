@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hướng dẫn Project Docs — iOS Spec-Driven Toolkit</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --border: #e5e7eb;
+    --text: #111827;
+    --text-muted: #6b7280;
+    --accent: #2563eb;
+    --accent-light: #eff6ff;
+    --group-a: #7c3aed;
+    --group-a-light: #f5f3ff;
+    --group-b: #0891b2;
+    --group-b-light: #ecfeff;
+    --group-c: #059669;
+    --group-c-light: #ecfdf5;
+    --id-bg: #f3f4f6;
+    --id-text: #374151;
+    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 1px 2px rgba(0,0,0,0.03);
+    --shadow-lg: 0 4px 12px rgba(0,0,0,0.06);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 32px 20px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  aside h1 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    color: var(--text);
+  }
+
+  aside .subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+  }
+
+  aside nav a {
+    display: block;
+    padding: 6px 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    border-radius: 6px;
+    margin-bottom: 2px;
+    transition: all 0.15s;
+  }
+
+  aside nav a:hover {
+    background: var(--accent-light);
+    color: var(--accent);
+  }
+
+  aside nav .group-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    padding: 12px 12px 6px;
+    margin-top: 8px;
+  }
+
+  aside nav .group-label.a { color: var(--group-a); }
+  aside nav .group-label.b { color: var(--group-b); }
+  aside nav .group-label.c { color: var(--group-c); }
+
+  main {
+    padding: 40px 60px;
+    max-width: 920px;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #f5f3ff 0%, #ecfeff 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .hero p.tagline {
+    color: var(--text-muted);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+
+  .hero .generation {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: ui-monospace, "SF Mono", Monaco, monospace;
+    font-size: 13px;
+  }
+
+  .hero .generation div { margin-bottom: 6px; }
+  .hero .generation div:last-child { margin-bottom: 0; }
+
+  section {
+    margin-bottom: 56px;
+    scroll-margin-top: 24px;
+  }
+
+  section > h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  section > h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 32px 0 12px;
+    color: var(--text);
+  }
+
+  section > p {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+
+  .group-a, .group-b, .group-c {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 8px;
+  }
+  .group-a { background: var(--group-a-light); color: var(--group-a); }
+  .group-b { background: var(--group-b-light); color: var(--group-b); }
+  .group-c { background: var(--group-c-light); color: var(--group-c); }
+
+  .diagram {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 16px 0 24px;
+    font-family: ui-monospace, "SF Mono", Monaco, monospace;
+    font-size: 13px;
+    color: var(--text);
+    overflow-x: auto;
+    box-shadow: var(--shadow);
+  }
+
+  .diagram .lvl-a { color: var(--group-a); font-weight: 600; }
+  .diagram .lvl-b { color: var(--group-b); font-weight: 600; }
+  .diagram .lvl-c { color: var(--group-c); font-weight: 600; }
+
+  .file-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+    scroll-margin-top: 24px;
+  }
+
+  .file-card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .file-card .file-head {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
+  .file-card .num {
+    color: var(--text-muted);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .file-card .filename {
+    font-family: ui-monospace, "SF Mono", Monaco, monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .file-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+
+  .file-card p {
+    color: var(--text);
+    margin-bottom: 4px;
+    font-size: 14.5px;
+  }
+
+  .file-card .value-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .file-card .value-list li {
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 6px;
+    font-size: 14.5px;
+  }
+
+  .file-card .value-list li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .file-card .example {
+    background: var(--bg);
+    border-left: 3px solid var(--accent);
+    padding: 10px 14px;
+    margin-top: 12px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    border-radius: 0 6px 6px 0;
+  }
+
+  .file-card .example strong {
+    color: var(--text);
+  }
+
+  .ids {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+
+  .id-pill {
+    background: var(--id-bg);
+    color: var(--id-text);
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-family: ui-monospace, "SF Mono", Monaco, monospace;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 16px 0;
+    box-shadow: var(--shadow);
+  }
+
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+
+  th {
+    background: var(--bg);
+    font-weight: 600;
+    color: var(--text);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  tr:last-child td { border-bottom: none; }
+
+  td code, th code {
+    background: var(--id-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12.5px;
+    font-family: ui-monospace, "SF Mono", Monaco, monospace;
+  }
+
+  .note {
+    background: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    border-radius: 0 6px 6px 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    aside {
+      position: static;
+      height: auto;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+    }
+    main { padding: 24px 20px; }
+    .hero h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside>
+    <h1>Hướng dẫn Project Docs</h1>
+    <p class="subtitle">Bộ công cụ Spec-Driven cho iOS · 12 file</p>
+    <nav>
+      <a href="#overview">Tổng quan</a>
+      <a href="#read-order">Thứ tự đọc</a>
+      <a href="#ids">Quy ước ID</a>
+
+      <div class="group-label a">Nhóm A · Cấp dự án</div>
+      <a href="#file-1">1. PRD.md</a>
+      <a href="#file-2">2. Project_Overview.md</a>
+      <a href="#file-3">3. Use_Cases.md</a>
+      <a href="#file-4">4. Functional_Requirements.md</a>
+      <a href="#file-5">5. Wireframes.md</a>
+      <a href="#file-6">6. UX_Flows.md</a>
+      <a href="#file-7">7. Roadmap.md</a>
+      <a href="#file-8">8. _INDEX.md</a>
+
+      <div class="group-label b">Nhóm B · Cấp tính năng</div>
+      <a href="#file-9">9. spec-requirements.md</a>
+      <a href="#file-10">10. spec-design.md</a>
+      <a href="#file-11">11. spec-tasks.md</a>
+
+      <div class="group-label c">Nhóm C · Xác minh</div>
+      <a href="#file-12">12. verification-report.md</a>
+
+      <div class="group-label" style="color: var(--text-muted)">Tham chiếu</div>
+      <a href="#cross-ref">Tham chiếu chéo</a>
+      <a href="#sot">Nguồn chân lý duy nhất</a>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main>
+
+    <!-- Hero -->
+    <div class="hero">
+      <h1>Hướng dẫn Project Docs</h1>
+      <p class="tagline">Mô tả ngắn từng file template — mục đích, giá trị, sections chính, quy ước ID — để người đọc (PO, dev, AI agent) hiểu nhanh và đọc đúng thứ tự.</p>
+      <div class="generation">
+        <div>📱 <strong>/ios-project-docs</strong> → 7 file cấp dự án + _INDEX.md</div>
+        <div>📋 <strong>/ios-spec &lt;feature&gt;</strong> → 3 file cấp tính năng</div>
+        <div>💻 <strong>/ios-execute &lt;feature&gt;</strong> → 1 file báo cáo xác minh</div>
+      </div>
+    </div>
+
+    <!-- Read order -->
+    <section id="read-order">
+      <h2>Thứ tự đọc</h2>
+      <p>Đọc theo sơ đồ từ trên xuống — mỗi file chỉ tham chiếu file ở phía trên nó:</p>
+      <div class="diagram">
+<span class="lvl-a">📱 CẤP DỰ ÁN</span>
+  1. PRD.md                          ← chiến lược, thị trường, monetization, KPI
+  2. Project_Overview.md             ← kiến trúc + tóm tắt kế hoạch
+  3. Use_Cases.md                    ← câu chuyện UC + ánh xạ UC↔màn + độ ưu tiên
+  4. Functional_Requirements.md      ← FR/NFR + tiêu chí chấp nhận EARS + quy tắc validation
+  5. Wireframes.md                   ← danh sách màn + layout ASCII theo archetype
+  6. UX_Flows.md                     ← luồng điều hướng, luồng lỗi/đang tải
+  7. Project_Implementation_Roadmap.md ← các giai đoạn + sơ đồ phụ thuộc
+  8. _INDEX.md                       ← manifest chỉ đường + snapshot
+
+<span class="lvl-b">📋 CẤP TÍNH NĂNG</span> (cho từng tính năng)
+  9.  spec-requirements.md  ← câu chuyện người dùng + tiêu chí chấp nhận
+  10. spec-design.md        ← kiến trúc + components
+  11. spec-tasks.md         ← registry task + checkpoint
+
+<span class="lvl-c">💻 THỰC THI</span>
+  12. verification-report.md ← ma trận ĐẠT / CẢNH_BÁO / TRƯỢT
+      </div>
+    </section>
+
+    <!-- IDs -->
+    <section id="ids">
+      <h2>Quy ước ID</h2>
+      <p>Cùng một prefix được dùng xuyên suốt — <strong>không bao giờ đánh số lại</strong>, thêm mục mới thì cấp ID mới.</p>
+      <table>
+        <thead>
+          <tr><th>Prefix</th><th>Ý nghĩa</th><th>Ví dụ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>UC-XXX</code></td><td>Use Case</td><td>UC-001</td></tr>
+          <tr><td><code>AC-XXX.Y</code></td><td>Tiêu chí chấp nhận (EARS)</td><td>AC-001.1</td></tr>
+          <tr><td><code>AF-XXX.Y</code></td><td>Luồng thay thế / luồng lỗi</td><td>AF-001.1</td></tr>
+          <tr><td><code>FR-XXX</code></td><td>Yêu cầu chức năng</td><td>FR-004</td></tr>
+          <tr><td><code>NFR-XXX</code></td><td>Yêu cầu phi chức năng</td><td>NFR-007</td></tr>
+          <tr><td><code>BR/VR/ERR-XXX.Y</code></td><td>Quy tắc nghiệp vụ / validation / lỗi</td><td>BR-001.2</td></tr>
+          <tr><td><code>WF-XXX</code></td><td>Màn hình wireframe</td><td>WF-017</td></tr>
+          <tr><td><code>TF-XXX / SF-XXX</code></td><td>Luồng task / Luồng con</td><td>TF-002</td></tr>
+          <tr><td><code>Spec-XXX</code></td><td>Thư mục spec tính năng</td><td>Spec-auth</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- GROUP A -->
+    <section id="overview">
+      <h2>Nhóm A — Tài liệu cấp dự án</h2>
+      <p>Sinh bởi <code>/ios-project-docs &lt;AppName&gt;</code>. Mỗi file qua một cổng chất lượng (<code>gate-prd</code>, <code>gate-overview</code>, <code>gate-uc</code>, <code>gate-fr</code>, <code>gate-wireframes</code>, <code>gate-flows</code>, <code>gate-roadmap</code>) trước khi chuyển sang file kế tiếp.</p>
+    </section>
+
+    <div class="file-card" id="file-1">
+      <div class="file-head">
+        <span class="num">1.</span>
+        <span class="filename">PRD.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Tầm nhìn sản phẩm, nghiên cứu thị trường, đối thủ, phạm vi MVP, monetization, KPI.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Câu trả lời <strong>TẠI SAO</strong> xây dựng sản phẩm và <strong>đo lường thành công bằng gì</strong></li>
+        <li>Là nguồn chân lý duy nhất cho pricing/monetization (§11) và giá trị mặc định cho câu hỏi mở (§14)</li>
+        <li>Cung cấp Bảng Bằng chứng (≥28 nguồn thật) làm đầu vào cho mọi quyết định sản phẩm</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Tóm tắt điều hành · Mục tiêu & bối cảnh · Vấn đề người dùng · Phân tích cạnh tranh · Tầm nhìn · Phạm vi MVP/ngoài phạm vi · Yêu cầu & tính năng · Luồng người dùng · Ràng buộc kỹ thuật · Danh sách màn hình · Kiếm tiền · KPI/Phân tích · Rủi ro · Câu hỏi mở · Điều phối triển khai · Bảng bằng chứng.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">không dùng ID</span><span class="id-pill">tham chiếu mục</span></div>
+      <h4>Ai đọc</h4>
+      <p>PO, stakeholder, người ra quyết định "xây hay không".</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> §11 đặt pricing cho gói Premium; §14 chốt giá trị mặc định (GIẢ ĐỊNH) cho free scan/ngày, độ dài dùng thử → các FR/AC/NFR phía sau tham chiếu giá trị này.</div>
+    </div>
+
+    <div class="file-card" id="file-2">
+      <div class="file-head">
+        <span class="num">2.</span>
+        <span class="filename">Project_Overview.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Kiến trúc tổng quan + tóm tắt kế hoạch, <strong>tham chiếu PRD</strong> (không lặp lại chiến lược).</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Cầu nối giữa PRD (chiến lược) và Use_Cases/FR (chi tiết) — đọc 1 file nắm được toàn cảnh kỹ thuật</li>
+        <li>Định nghĩa tech stack, kiến trúc, persona chính, rủi ro</li>
+        <li>Chính sách tham chiếu: tránh trùng lặp giữa PRD và Overview</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Tham chiếu PRD · Giới thiệu (Vấn đề/Giải pháp/Mục tiêu) · Người dùng mục tiêu (Persona) · Tổng quan chức năng · Kiến trúc kỹ thuật · Kiến trúc dữ liệu · Điểm tích hợp · Ràng buộc · Rủi ro.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">tham chiếu PRD</span><span class="id-pill">tên persona</span></div>
+      <h4>Ai đọc</h4>
+      <p>Trưởng nhóm kỹ thuật, dev mới vào dự án, AI agent cần ngữ cảnh.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> §5 chốt tech stack iOS 16+ SwiftUI/MVVM + Supabase + OpenAI/Anthropic + RevenueCat — mọi spec sau này dùng stack này.</div>
+    </div>
+
+    <div class="file-card" id="file-3">
+      <div class="file-head">
+        <span class="num">3.</span>
+        <span class="filename">Use_Cases.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Câu chuyện UC chi tiết + ánh xạ UC↔màn + độ ưu tiên + luồng task.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Câu trả lời <strong>NGƯỜI DÙNG LÀM GÌ</strong> trên app — đọc 1 file biết hết mọi flow</li>
+        <li>Phân tích sáng tạo: nổ tính năng (≥3×N sub-feature), kiểm tra trùng lặp, động não ngữ cảnh — chứng minh UC không copy từ PRD</li>
+        <li>Use Case theo ngữ cảnh màn hình (§4) — mỗi màn hình có UC + hành động phụ riêng (cài đặt, chia sẻ, trợ giúp...) — chống rơi affordance</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Phân tích sáng tạo · Câu chuyện người dùng theo nhóm tính năng · Ma trận biểu hiện tính năng · Ánh xạ UC → Màn · UC theo ngữ cảnh màn · Luồng task · Luồng con & vi tương tác · Kịch bản (chính/biên/theo persona) · Độ ưu tiên (MVP/sau MVP/tương lai) · Bản đồ hành trình người dùng · Tóm tắt ý đồ màn.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">UC-XXX</span><span class="id-pill">TF-XXX</span><span class="id-pill">SF-XXX</span><span class="id-pill">AF-XXX.Y</span></div>
+      <h4>Ai đọc</h4>
+      <p>PO, dev, AI agent sinh FR/Wireframes.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> §3 map <code>UC-001 (Đăng ký)</code> → <code>WF-Auth-01</code>; §4 cho biết màn Onboarding có 5 secondary action (skip, help, share, edit-field, manage) — mỗi cái 1 UC riêng.</div>
+    </div>
+
+    <div class="file-card" id="file-4">
+      <div class="file-head">
+        <span class="num">4.</span>
+        <span class="filename">Functional_Requirements.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>WHAT hệ thống phải làm — FR/NFR với tiêu chí chấp nhận EARS, quy tắc validation, xử lý lỗi.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Câu trả lời <strong>HỆ THỐNG PHẢI LÀM GÌ</strong> — cầu nối giữa UC và Design/Code</li>
+        <li>Mỗi FR có AC testable + độ ưu tiên + traceability ngược về UC → "no behavior without acceptance criteria"</li>
+        <li>Ma trận hành vi component (§2 bis) + Hành vi phụ thuộc ngữ cảnh (§2 ter) — chống FR đa màn bị xử lý tệ</li>
+        <li>NFR đo được (Hiệu năng, Bảo mật, Khả dụng, Độ tin cậy, Khả năng mở rộng) — không có "nhanh/bảo mật" mơ hồ</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Giới thiệu · Yêu cầu chức năng (theo nhóm tính năng) · Ma trận hành vi component · Hành vi theo ngữ cảnh · Yêu cầu phi chức năng · Tóm tắt yêu cầu.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">FR-XXX</span><span class="id-pill">NFR-XXX</span><span class="id-pill">BR-XXX.Y</span><span class="id-pill">VR-XXX.Y</span><span class="id-pill">ERR-XXX.Y</span><span class="id-pill">AC-XXX.Y</span></div>
+      <h4>Ai đọc</h4>
+      <p>Dev, QA, AI agent viết design/tasks/tests.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> <code>FR-004</code> (Nhận diện món ăn từ ảnh) → AC-004.1 (happy path) + AC-004.2 (low confidence → fallback) + ERR-004.1 (network timeout); mỗi FR có 1 NFR-PERF-001 tương ứng (≤3s).</div>
+    </div>
+
+    <div class="file-card" id="file-5">
+      <div class="file-head">
+        <span class="num">5.</span>
+        <span class="filename">Wireframes.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Danh sách màn + layout ASCII theo archetype (Khám phá/Hành động/Tiêu thụ/Quản lý/Xã hội).</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Câu trả lời <strong>MÀN HÌNH TRÔNG NHƯ THẾ NÀO</strong> — đọc 1 file thấy hết UI</li>
+        <li>Phân loại màn (Archetype A–E) — mỗi màn phải khớp mẫu archetype → nhất quán</li>
+        <li>Thành phần mỗi màn: thứ bậc thị giác, bản đồ vùng nội dung, layout, components, trạng thái (tối thiểu 7 trạng thái) — đủ chi tiết để dev vẽ code</li>
+        <li>Truy ngược Affordance→FR (BLOCKING) — Component/Tương tác phải map tới FR hoặc khai ngoài phạm vi tường minh</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Giới thiệu · Danh sách màn · Phân loại màn · Mục màn (theo archetype) · Component chung · Responsive Design · Trợ năng · Dark Mode · Tài nguyên thiết kế · Tích hợp Figma.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">WF-XXX</span></div>
+      <h4>Ai đọc</h4>
+      <p>UI/UX designer, dev SwiftUI, AI agent viết code View.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> <code>WF-005</code> (Camera Capture) là Action archetype → dùng template B: Content Zones A (camera preview), B (capture button), C (gallery shortcut), D (tiện ích: flash, settings).</div>
+    </div>
+
+    <div class="file-card" id="file-6">
+      <div class="file-head">
+        <span class="num">6.</span>
+        <span class="filename">UX_Flows.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Hành trình người dùng, điều hướng giữa các màn, luồng lỗi/loading — mọi WF-XXX phải xuất hiện ≥1 flow.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Câu trả lời <strong>NGƯỜI DÙNG ĐI TỪ A ĐẾN B NHƯ THẾ NÀO</strong></li>
+        <li>Gate phủ: mọi WF phải resolve đúng màn đúng loại trong Danh sách màn → tham chiếu sai = Trượt</li>
+        <li>Luồng chính + Luồng lỗi + Luồng loading + Trường hợp biên — đủ luồng để QA viết test case</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Giới thiệu · Ký hiệu luồng · Hành trình người dùng · Luồng điều hướng · Luồng lỗi/khôi phục · Luồng trạng thái loading · Luồng chéo tính năng.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">WF-XXX</span><span class="id-pill">TF-XXX</span><span class="id-pill">SF-XXX</span></div>
+      <h4>Ai đọc</h4>
+      <p>Dev, QA, AI agent verify logic điều hướng.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> Luồng <code>Capture→AI-Recognition→Confirmation-Edit→Save-Diary</code>: WF-005 → WF-006 (loading) → WF-007 → WF-008 → WF-009; nếu AI confidence &lt;0.7 → WF-006b (thử lại).</div>
+    </div>
+
+    <div class="file-card" id="file-7">
+      <div class="file-head">
+        <span class="num">7.</span>
+        <span class="filename">Project_Implementation_Roadmap.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+<p>Các giai đoạn + Spec + sơ đồ phụ thuộc (JSON máy có thể đọc) + Hồ sơ quyết định phạm vi.</p>
+        <h4>Giá trị</h4>
+        <ul class="value-list">
+          <li>Câu trả lời <strong>XÂY THEO THỨ TỰ NÀO</strong> — giai đoạn, ước lượng, phụ thuộc</li>
+          <li>Hồ sơ quyết định phạm vi — ghi lại mọi cắt giảm phạm vi (chống mặc nhiên bỏ trường hợp biên)</li>
+          <li>Sơ đồ phụ thuộc JSON — AI agent đọc để biết spec nào build trước, phụ thuộc spec nào</li>
+          <li>Nguồn chân lý cho effort/thời lượng/timeline + định nghĩa Phạm vi/MVP</li>
+        </ul>
+      <h4>Mục chính</h4>
+      <p>Tổng quan · Hồ sơ quyết định phạm vi · Các giai đoạn · Spec theo giai đoạn · Sơ đồ phụ thuộc (JSON) · Ước lượng công sức · Rủi ro & giảm thiểu · Mốc thời gian.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">Spec-XXX</span><span class="id-pill">Phase-XXX</span><span class="id-pill">FR-XXX</span><span class="id-pill">WF-XXX</span></div>
+      <h4>Ai đọc</h4>
+      <p>PM, dev, AI agent chọn spec để execute.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> 18 spec × 9 giai đoạn × ~13 ngày; <code>Spec-auth</code> phụ thuộc <code>Spec-shared-foundations</code>; <code>Spec-paywall-display</code> phụ thuộc <code>Spec-subscription-management</code>.</div>
+    </div>
+
+    <div class="file-card" id="file-8">
+      <div class="file-head">
+        <span class="num">8.</span>
+        <span class="filename">_INDEX.md</span>
+        <span class="group-a">Cấp dự án</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Manifest cho cả bộ docs — agent đọc file này <strong>ĐẦU TIÊN</strong> để biết file nào tồn tại, thứ tự nào, quy ước ID, mỗi loại fact sống ở đâu.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Điểm vào duy nhất cho AI agent — không phải dò từng file</li>
+        <li>Bảng "Nguồn chân lý duy nhất" — biết scope sống ở Roadmap, screens sống ở Wireframes, AC sống ở FR, etc. — tránh trùng lặp</li>
+        <li>Phiên bản snapshot cho cả bộ — đảm bảo đồng nhất khi regenerate</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>File & Thứ tự đọc · Quy ước ID · Nguồn chân lý duy nhất · Cho coding agent (đường đọc).</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">tham chiếu mọi prefix</span></div>
+      <h4>Ai đọc</h4>
+      <p>AI agent (đọc đầu tiên), người mới onboard.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI):</strong> bảng "Nguồn chân lý duy nhất" → biết pricing chỉ ở PRD §11, screen chỉ ở Wireframes.md, AC chỉ ở FR.md → agent không cố tìm ở Use_Cases.</div>
+    </div>
+
+    <!-- GROUP B -->
+    <section>
+      <h2>Nhóm B — Tài liệu cấp tính năng</h2>
+      <p>Sinh bởi <code>/ios-spec &lt;feature&gt;</code>. Mỗi tính năng 1 thư mục <code>specs/[app]/[feature]/</code> chứa 3 file. Cổng chất lượng: <code>gate-requirements</code> → <code>gate-design</code> → <code>gate-tasks</code>.</p>
+    </section>
+
+    <div class="file-card" id="file-9">
+      <div class="file-head">
+        <span class="num">9.</span>
+        <span class="filename">spec-requirements.md</span>
+        <span class="group-b">Cấp tính năng</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Câu chuyện người dùng + tiêu chí chấp nhận EARS cho 1 tính năng — cầu nối giữa FR cấp dự án và Design cấp tính năng.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Mỗi AC có traceability ngược về FR-XXX + UC-XXX → biết requirement này phục vụ yêu cầu nào</li>
+        <li>Tham chiếu bằng chứng — chỉ ra dữ liệu thị trường, KPI liên quan từ PRD → đảm bảo yêu cầu không "trên trời"</li>
+        <li>Định dạng EARS (Cú pháp yêu cầu dễ tiếp cận) — WHEN/IF/THEN/WHERE — testable rõ ràng</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Tổng quan · Tham chiếu bằng chứng · Yêu cầu (mỗi yêu cầu: câu chuyện người dùng + ACs + nguồn + độ ưu tiên).</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">AC-XXX.Y</span><span class="id-pill">AF-XXX.Y</span><span class="id-pill">FR-XXX</span><span class="id-pill">UC-XXX</span></div>
+      <h4>Ai đọc</h4>
+      <p>Dev, QA, AI agent viết design/tasks.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI Spec-auth):</strong> Requirement "Đăng nhập bằng Apple" → AC-001.1 (happy) + AC-001.2 (user cancel) + AF-001.1 (lỗi mạng); nguồn FR-001, UC-001.</div>
+    </div>
+
+    <div class="file-card" id="file-10">
+      <div class="file-head">
+        <span class="num">10.</span>
+        <span class="filename">spec-design.md</span>
+        <span class="group-b">Cấp tính năng</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Kiến trúc chi tiết cho 1 tính năng — components, interfaces, data flow, AC coverage.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>"Xương" file SwiftUI — dev đọc xong biết cần tạo file nào, ViewModel nào, Service nào</li>
+        <li>Tóm tắt phủ AC — liệt kê AC nào được giải quyết, AC nào chưa → chống sót</li>
+        <li>4 trạng thái cho mỗi tính năng (Đang tải/Trống/Lỗi/Thành công) + Trợ năng & giao diện — UX sàn</li>
+        <li>Ranh giới module + luồng dữ liệu → biết module nào chạm vào đâu</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Tổng quan · Kiến trúc · Components và Interfaces · Mô hình dữ liệu · Luồng dữ liệu · Xử lý lỗi · Hành vi theo trạng thái (4 state + trợ năng) · Chiến lược kiểm thử.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">AC-XXX.Y</span><span class="id-pill">internal types</span></div>
+      <h4>Ai đọc</h4>
+      <p>Dev chính implement, tech lead review.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI Spec-auth):</strong> Components: <code>LoginView</code>, <code>LoginViewModel</code>, <code>AuthService</code>, <code>AppleAuthProvider</code>; AC-001.1 được cover bởi <code>LoginViewModel.loginWithApple()</code>.</div>
+    </div>
+
+    <div class="file-card" id="file-11">
+      <div class="file-head">
+        <span class="num">11.</span>
+        <span class="filename">spec-tasks.md</span>
+        <span class="group-b">Cấp tính năng</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Registry task máy có thể đọc + Phase gates — danh sách task cần làm, checkpoint để xác minh.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Mỗi task có <code>Refs AC</code> + <code>Refs Design</code> + <code>Files</code> + <code>Checkpoint</code> → AI agent viết code theo đúng task nào, xác minh bằng checkpoint nào</li>
+        <li>Phase Gates (Gate 2/3/4) — chạy <code>XcodeBuildMCP build_sim</code> + kiểm tra truy vết trước khi sang phase tiếp theo</li>
+        <li>PBT (Property-Based Testing) bắt buộc cho mỗi Tính chất đúng đắn — không phải tùy chọn</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Chế độ thực thi · Registry task (bảng) · Phase Gates · Checkpoints · Câu hỏi mở.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">Task-X.Y.Z</span><span class="id-pill">PBT-X</span><span class="id-pill">AC-XXX.Y</span></div>
+      <h4>Ai đọc</h4>
+      <p>AI agent execute (<code>/ios-execute</code>), dev review tiến độ.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI Spec-auth):</strong> Task 2.1.1 (Tạo <code>AuthService</code>) · Task 2.1.2 (PBT cho AuthService) · Task 2.2.1 (Tạo <code>LoginView</code>) · ...; Phase Gate 2 (cuối giai đoạn Shared) chạy <code>build_sim</code>.</div>
+    </div>
+
+    <!-- GROUP C -->
+    <section>
+      <h2>Nhóm C — Xác minh</h2>
+    </section>
+
+    <div class="file-card" id="file-12">
+      <div class="file-head">
+        <span class="num">12.</span>
+        <span class="filename">verification-report.md</span>
+        <span class="group-c">Xác minh</span>
+      </div>
+      <h4>Mục đích</h4>
+      <p>Ma trận ĐẠT / CẢNH_BÁO / TRƯỢT sau khi <code>/ios-execute &lt;feature&gt;</code> chạy xong — chứng minh tính năng đã đáp ứng yêu cầu.</p>
+      <h4>Giá trị</h4>
+      <ul class="value-list">
+        <li>Trạng thái tổng: ĐẠT / ĐẠT_CÓ_CẢNH_BÁO / TRƯỢT — quyết định phát hành hay không</li>
+        <li>Ma trận đầy đủ: Phủ yêu cầu / Hoàn thành task / File code — biết cái gì còn thiếu</li>
+        <li>Truy vết: FR → Code → Test — chứng minh không sót yêu cầu</li>
+        <li>Vấn đề nghiêm trọng + Cảnh báo + Ghi chú — hành động tiếp theo rõ ràng</li>
+      </ul>
+      <h4>Mục chính</h4>
+      <p>Tóm tắt điều hành · Độ đầy đủ · Truy vết · Kết quả Build & Test · Chỉ số chất lượng · Vấn đề · Khuyến nghị.</p>
+      <h4>IDs chính</h4>
+      <div class="ids"><span class="id-pill">Task-X.Y.Z</span><span class="id-pill">AC-XXX.Y</span><span class="id-pill">FR-XXX</span></div>
+      <h4>Ai đọc</h4>
+      <p>PO, dev, QA, stakeholder quyết định phát hành.</p>
+      <div class="example"><strong>Ví dụ (Calo-AI Spec-auth):</strong> Trạng thái ĐẠT_CÓ_CẢNH_BÁO (1 cảnh báo: màu dark mode chưa xác minh trên iPad); Độ đầy đủ 8/8 task xong, 5/5 FR phủ, 12/12 AC tests đạt.</div>
+    </div>
+
+    <!-- Tham chiếu chéo -->
+    <section id="cross-ref">
+      <h2>Tham chiếu chéo — Đọc gì khi nào</h2>
+      <table>
+        <thead><tr><th>Mục đích</th><th>Đọc file</th></tr></thead>
+        <tbody>
+          <tr><td>Hiểu sản phẩm là gì</td><td>PRD + Project_Overview</td></tr>
+          <tr><td>Hiểu 1 màn hình</td><td>Wireframes §3 (archetype) + UX_Flows</td></tr>
+          <tr><td>Hiểu 1 use case</td><td>Use_Cases §3 + §5 (luồng task)</td></tr>
+          <tr><td>Hiểu 1 requirement</td><td>Functional_Requirements §2 + spec-requirements (nếu có spec)</td></tr>
+          <tr><td>Bắt đầu code 1 tính năng</td><td>spec-design §3 (Components) + spec-tasks</td></tr>
+          <tr><td>Xác minh 1 tính năng xong</td><td>verification-report</td></tr>
+          <tr><td>Chọn tính năng làm tiếp</td><td>Project_Implementation_Roadmap + _INDEX</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SOT -->
+    <section id="sot">
+      <h2>Nguồn chân lý duy nhất — Mỗi loại fact sống ở đâu</h2>
+      <table>
+        <thead><tr><th>Loại fact</th><th>File duy nhất</th></tr></thead>
+        <tbody>
+          <tr><td>Phạm vi / MVP / chú giải độ ưu tiên</td><td><code>Project_Implementation_Roadmap.md</code> → Scope Decision Record</td></tr>
+          <tr><td>Effort / thời lượng / timeline</td><td><code>Project_Implementation_Roadmap.md</code></td></tr>
+          <tr><td>Pricing / monetization</td><td><code>PRD.md</code> §11</td></tr>
+          <tr><td>Giá trị mặc định cho câu hỏi mở (GIẢ ĐỊNH)</td><td><code>PRD.md</code> §14</td></tr>
+          <tr><td>Màn hình &amp; layout</td><td><code>Wireframes.md</code></td></tr>
+          <tr><td>Hành vi yêu cầu / AC</td><td><code>Functional_Requirements.md</code></td></tr>
+          <tr><td>Sơ đồ phụ thuộc (máy có thể đọc)</td><td><code>Project_Implementation_Roadmap.md</code></td></tr>
+          <tr><td>Persona &amp; hành trình người dùng</td><td><code>Use_Cases.md</code> §8</td></tr>
+          <tr><td>Tech stack &amp; kiến trúc</td><td><code>Project_Overview.md</code> §5–6</td></tr>
+        </tbody>
+      </table>
+      <div class="note">
+        <strong>Nguyên tắc:</strong> thông tin đã có ở file A thì KHÔNG lặp ở file B; tham chiếu ngược về A bằng số section.
+      </div>
+    </section>
+
+  </main>
+</div>
+
+</body>
+</html>

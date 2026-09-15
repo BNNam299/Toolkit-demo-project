@@ -1,0 +1,272 @@
+{
+  "meta": {
+    "name": "Functional Minimalism",
+    "version": "1.0",
+    "description": "Invisible design where the UI disappears and only content remains. Near-monochrome palette, hairline borders, no shadows, compact spacing. The typography IS the interface — every pixel of chrome is questioned. Ideal for reading, writing, and productivity apps where the tool should never distract from the work.",
+    "mood": ["clean", "invisible", "focused", "timeless"],
+    "visualWeight": "ultra-light",
+    "bestFor": ["writing", "note-taking", "reader", "code-editor", "task-manager", "minimalist-utility"]
+  },
+  "color": {
+    "palette": {
+      "background": "#FAFAFA",
+      "surface": "#FFFFFF",
+      "surfaceVariant": "#F5F5F5",
+      "surfaceElevated": "#FFFFFF",
+      "textPrimary": "#0F0F0F",
+      "textSecondary": "#6B6B6B",
+      "textTertiary": "#A3A3A3",
+      "textInverse": "#FAFAFA",
+      "accent": "#0F0F0F",
+      "accentVariant": "#2B2B2B",
+      "accentSubtle": "#F5F5F5",
+      "onAccent": "#FAFAFA"
+    },
+    "semantic": {
+      "success": { "color": "#15803D", "background": "#F0FDF4" },
+      "warning": { "color": "#A16207", "background": "#FEFCE8" },
+      "error": { "color": "#B91C1C", "background": "#FEF2F2" },
+      "info": { "color": "#0F0F0F", "background": "#F5F5F5" }
+    },
+    "gradient": []
+  },
+  "typography": {
+    "fonts": {
+      "primary": "SF Pro Text",
+      "secondary": "SF Pro Text",
+      "mono": "SF Mono"
+    },
+    "scale": {
+      "caption2": { "size": 11, "weight": 400, "lineHeight": 13, "letterSpacing": 0.07 },
+      "caption1": { "size": 12, "weight": 400, "lineHeight": 16, "letterSpacing": 0 },
+      "footnote": { "size": 13, "weight": 400, "lineHeight": 18, "letterSpacing": -0.08 },
+      "subhead": { "size": 14, "weight": 500, "lineHeight": 18, "letterSpacing": -0.15 },
+      "callout": { "size": 15, "weight": 400, "lineHeight": 20, "letterSpacing": -0.2 },
+      "body": { "size": 16, "weight": 400, "lineHeight": 22, "letterSpacing": -0.3 },
+      "headline": { "size": 16, "weight": 600, "lineHeight": 21, "letterSpacing": -0.3 },
+      "title3": { "size": 18, "weight": 600, "lineHeight": 23, "letterSpacing": -0.35 },
+      "title2": { "size": 20, "weight": 600, "lineHeight": 25, "letterSpacing": -0.4 },
+      "title1": { "size": 24, "weight": 700, "lineHeight": 30, "letterSpacing": -0.4 },
+      "largeTitle": { "size": 30, "weight": 700, "lineHeight": 36, "letterSpacing": -0.4 },
+      "hero": { "size": 36, "weight": 700, "lineHeight": 42, "letterSpacing": -0.4 }
+    }
+  },
+  "spacing": {
+    "grid": 4,
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 20,
+    "xl": 28,
+    "xxl": 40,
+    "pageMargin": 16,
+    "sectionGap": 20,
+    "cardPadding": 12,
+    "navBarHeight": 44
+  },
+  "border": {
+    "radius": {
+      "none": 0,
+      "sm": 2,
+      "md": 4,
+      "lg": 8,
+      "xl": 12,
+      "full": 9999
+    },
+    "width": 0.5,
+    "color": "#E5E5E5",
+    "style": "solid"
+  },
+  "shadow": {
+    "elevation": {
+      "0": { "color": "transparent", "offsetY": 0, "blur": 0, "spread": 0 }
+    }
+  },
+  "animation": {
+    "duration": { "instant": 80, "fast": 150, "normal": 200, "slow": 300, "entrance": 250 },
+    "easing": {
+      "default": [0.25, 0.1, 0.25, 1],
+      "easeIn": [0.42, 0, 1, 1],
+      "easeOut": [0, 0, 0.58, 1],
+      "easeInOut": [0.42, 0, 0.58, 1]
+    },
+    "spring": {
+      "gentle": { "response": 0.5, "dampingFraction": 0.85 },
+      "bouncy": { "response": 0.4, "dampingFraction": 0.8 },
+      "snappy": { "response": 0.3, "dampingFraction": 0.9 }
+    }
+  },
+  "component": {
+    "navBar": {
+      "height": 44,
+      "background": "rgba(250,250,250,0.92)",
+      "blur": 0,
+      "hasDivider": true,
+      "dividerColor": "#E5E5E5",
+      "backIcon": { "name": "chevron.left", "weight": "regular", "size": 18 },
+      "titleStyle": "headline",
+      "actionIconSize": 20,
+      "actionIconWeight": "regular",
+      "horizontalPadding": 16
+    },
+    "tabBar": {
+      "height": 49,
+      "background": "rgba(250,250,250,0.95)",
+      "blur": 0,
+      "hasDivider": true,
+      "dividerColor": "#E5E5E5",
+      "iconSize": 22,
+      "labelStyle": "caption2",
+      "activeColor": "#0F0F0F",
+      "inactiveColor": "#A3A3A3",
+      "badge": { "size": 14, "background": "#0F0F0F", "textColor": "#FAFAFA", "fontSize": 9 }
+    },
+    "button": {
+      "primary": {
+        "height": 44, "radius": 8, "paddingH": 20,
+        "background": "#0F0F0F", "textColor": "#FAFAFA",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "headline",
+        "disabled": { "background": "#E5E5E5", "textColor": "#A3A3A3" }
+      },
+      "secondary": {
+        "height": 44, "radius": 8, "paddingH": 20,
+        "background": "#F5F5F5", "textColor": "#0F0F0F",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "headline"
+      },
+      "tertiary": {
+        "height": 40, "radius": 6, "paddingH": 12,
+        "background": "transparent", "textColor": "#6B6B6B",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      },
+      "destructive": {
+        "height": 44, "radius": 8, "paddingH": 20,
+        "background": "#B91C1C", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "headline"
+      },
+      "ghost": {
+        "height": 40, "radius": 6, "paddingH": 10,
+        "background": "transparent", "textColor": "#6B6B6B",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      }
+    },
+    "card": {
+      "padding": 12,
+      "radius": 4,
+      "background": "#FFFFFF",
+      "border": { "width": 0.5, "color": "#E5E5E5" },
+      "shadow": "elevation-0",
+      "imageRatio": 0,
+      "gap": 12
+    },
+    "input": {
+      "height": 44,
+      "radius": 6,
+      "background": "#F5F5F5",
+      "border": { "width": 0, "color": "transparent" },
+      "focusBorder": { "width": 1, "color": "#0F0F0F" },
+      "placeholder": "#A3A3A3",
+      "textColor": "#0F0F0F",
+      "paddingH": 12,
+      "font": "body",
+      "error": { "border": { "width": 1, "color": "#B91C1C" }, "messageColor": "#B91C1C" }
+    },
+    "chip": {
+      "height": 28,
+      "radius": 6,
+      "paddingH": 10,
+      "background": "#F5F5F5",
+      "textColor": "#6B6B6B",
+      "font": "caption1",
+      "selected": { "background": "#0F0F0F", "textColor": "#FAFAFA" },
+      "border": { "width": 0, "color": "transparent" }
+    },
+    "badge": {
+      "size": 14,
+      "radius": 9999,
+      "background": "#0F0F0F",
+      "textColor": "#FAFAFA",
+      "font": "caption2",
+      "position": "topTrailing"
+    },
+    "avatar": {
+      "sm": { "size": 28, "radius": 4, "border": { "width": 0, "color": "transparent" } },
+      "md": { "size": 36, "radius": 6, "border": { "width": 0, "color": "transparent" } },
+      "lg": { "size": 48, "radius": 8, "border": { "width": 0, "color": "transparent" } },
+      "xl": { "size": 72, "radius": 12, "border": { "width": 0, "color": "transparent" } }
+    },
+    "divider": {
+      "height": 0.5,
+      "color": "#E5E5E5",
+      "inset": 16,
+      "style": "solid"
+    },
+    "toast": {
+      "paddingH": 16,
+      "paddingV": 12,
+      "radius": 8,
+      "background": "#0F0F0F",
+      "textColor": "#FAFAFA",
+      "font": "subhead",
+      "position": "bottom",
+      "duration": 2500
+    },
+    "sheet": {
+      "radius": 12,
+      "background": "#FFFFFF",
+      "handleColor": "#E5E5E5",
+      "handleWidth": 32,
+      "handleHeight": 4,
+      "padding": 16
+    }
+  },
+  "iconography": {
+    "style": "SF Symbols",
+    "defaultWeight": "regular",
+    "sizeMap": { "sm": 12, "md": 16, "lg": 20, "xl": 28, "nav": 20, "tab": 22, "button": 16 }
+  },
+  "composition": {
+    "discovery": {
+      "layoutDensity": "compact",
+      "heroStyle": "none",
+      "cardArrangement": "vertical-list-minimal",
+      "scrollBehavior": "standard-scroll",
+      "maxColumns": 1,
+      "sectionHeaderStyle": "footnote-uppercase"
+    },
+    "action": {
+      "formDensity": "compact",
+      "ctaPlacement": "inline-after-content",
+      "fieldGrouping": "flat-list",
+      "progressStyle": "none",
+      "keyboardHandling": "next-field-on-return"
+    },
+    "consumption": {
+      "mediaFill": "inline-in-text",
+      "chromeOpacity": "opaque-minimal",
+      "infoPlacement": "above-content-header",
+      "scrollEffect": "standard-scroll"
+    },
+    "management": {
+      "rowDensity": "compact",
+      "swipeStyle": "trailing-delete-only",
+      "sortPosition": "nav-bar-action",
+      "editModeTransition": "fade-in-out"
+    },
+    "social": {
+      "avatarProminence": "small",
+      "contentPadding": 12,
+      "reactionStyle": "minimal-count-only",
+      "composePosition": "nav-bar-button"
+    }
+  }
+}

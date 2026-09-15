@@ -1,0 +1,47 @@
+{
+  "feature": "confirmation-edit",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure", "shared-foundations", "camera-capture", "ai-recognition"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.1.2","2.2.1","2.2.2","3.1.1","3.2.1","3.3.1","3.3.2","3.3.3","3.3.4","3.3.5","3.3.6"],
+    "tasks_deferred": ["4.1.1","4.1.2","4.1.3","4.1.4","4.2.1"],
+    "deferred_reasons": {
+      "4.1.x": "Unit-test target not present (deferred by project-structure).",
+      "4.2.1": "Depends on 4.1.x."
+    },
+    "files_created": [
+      "calo-ai-test/Features/Confirmation/Models/ConfirmationDraft.swift",
+      "calo-ai-test/Features/Confirmation/Models/PortionValidation.swift",
+      "calo-ai-test/Features/Confirmation/Models/Ingredient+Confirmation.swift",
+      "calo-ai-test/Features/Confirmation/Services/MacroCalculationService.swift",
+      "calo-ai-test/Features/Confirmation/Services/IngredientSearchService.swift",
+      "calo-ai-test/Features/Confirmation/ViewModels/ConfirmationViewModel.swift",
+      "calo-ai-test/Features/Confirmation/Views/ConfirmationView.swift",
+      "calo-ai-test/Features/Confirmation/Views/IngredientRow.swift",
+      "calo-ai-test/Features/Confirmation/Views/PortionSelector.swift",
+      "calo-ai-test/Features/Confirmation/Views/MacroBar.swift",
+      "calo-ai-test/Features/Confirmation/Views/AddIngredientModal.swift"
+    ],
+    "files_modified": [
+      "calo-ai-test/Shared/Models/Ingredient.swift",
+      "calo-ai-test/Shared/Models/MealLog.swift",
+      "calo-ai-test/App/RootView.swift"
+    ],
+    "notes": "Phase 4 (confirmation-edit) implemented. ConfirmationView replaces the AI stub on ai-recognition success. Save → DataClient.insert + ScanQuotaService.increment() exactly once; navigation back to camera on success. Ingredient.Portion extended with .grams(Double) + multiplier; Macros/MealLog init + encode marked nonisolated for Swift 6 strict concurrency. MacroCalculationService is pure (no I/O)."
+  }
+}

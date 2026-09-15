@@ -1,0 +1,37 @@
+{
+  "feature": "project-structure",
+  "project": "carplay-ai",
+  "mode": "manual",
+  "stage": "draft_tasks",
+  "created": "2026-08-18",
+  "roadmap_ref": {
+    "phase": 1,
+    "priority": 1,
+    "type": "infra",
+    "depends_on": [],
+    "blocks": ["shared-foundations"],
+    "duration_days": 1
+  },
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "draft"
+  },
+  "decisions": {
+    "implementation_intent": "logic-first",
+    "implementation_intent_scope": "this spec only — re-ask per spec",
+    "requirements_source_mode": "infra-carve-out (NFR-XXX Source, roadmap covers empty)"
+  },
+  "approvals": {
+    "requirements": {
+      "date": "2026-08-18",
+      "gate": "gate-requirements PASS",
+      "notes": "gate widened for infra specs: doc-templates/spec-requirements.md manifest + validate_traceability.py + spec-creation-contract"
+    },
+    "design": {
+      "date": "2026-08-18",
+      "gate": "gate-design PASS · AC coverage 42/42 complete",
+      "notes": "3 open items surfaced and accepted: (1) roadmap Project Structure tree omits Services/ for Paywall, Settings, Diagnostics, CarPlayDashboard — must patch before Phase 8 or P1 fails; (2) App Group identifier kept as 4 literals guarded by a Verify App Group build phase instead of a shared constant, to avoid amending AC-002.3; (3) design adds 5 files absent from both roadmap file lists (3 CoreTests, 1 FeatureTests, Package.resolved)"
+    }
+  }
+}

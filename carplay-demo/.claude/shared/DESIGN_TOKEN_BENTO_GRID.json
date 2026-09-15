@@ -1,0 +1,271 @@
+{
+  "meta": {
+    "name": "Bento Grid",
+    "version": "1.0",
+    "source": "Giá trị màu, bán kính, spacing và font được TRÍCH TRỰC TIẾP từ .claude/design-token/template-bento.pen (77 biến, khối `variables` + `themes.Mode`). Phần iOS-specific (component sizes, animation, composition) được bổ sung theo schema DESIGN_SYSTEM_GUIDE.md §3 và ràng buộc của Functional_Requirements.md. Mọi giá trị suy luận đều đánh dấu `INFERRED`.",
+    "description": "Card trắng có cấu trúc trên nền xám ấm, bán kính 16pt, shadow rất nhẹ (5% đen), một màu nhấn cam #FF8400 duy nhất. Chữ dùng Geist cho nội dung và JetBrains Mono cho số — số monospace không nhảy chiều rộng khi counter đổi, điều quan trọng khi người dùng chỉ nhìn thoáng màn hình xe. Điềm đạm và có cấu trúc, phục vụ luận điểm 'app tử tế trong niche đầy app scam' của PRD §5.",
+    "mood": ["calm", "structured", "trustworthy"],
+    "visualWeight": "medium",
+    "bestFor": ["dashboard", "content discovery", "productivity", "automotive utility"],
+    "themes": ["light", "dark"],
+    "appliedTo": "Carbina: Car Dashboard & Widgets",
+    "carplayDeviation": "4 màn CarPlay (WF-016 → WF-019) dùng biến thể `composition.carplay`: shadow = none, tương phản cao hơn, chữ tối thiểu 16pt. Lý do KHÔNG phải thẩm mỹ — NFR-007 giới hạn widget extension ở ≤ 25MB và render shadow/blur ở đó là tiêu ngân sách bộ nhớ cho hiệu ứng người lái không có thời gian nhìn."
+  },
+
+  "color": {
+    "palette": {
+      "background":      { "light": "#F2F3F0", "dark": "#111111" },
+      "surface":         { "light": "#FFFFFF", "dark": "#1A1A1A" },
+      "surfaceVariant":  { "light": "#E7E8E5", "dark": "#2E2E2E" },
+      "surfaceElevated": { "light": "#FFFFFF", "dark": "#1A1A1A" },
+      "textPrimary":     { "light": "#111111", "dark": "#FFFFFF" },
+      "textSecondary":   { "light": "#666666", "dark": "#B8B9B6" },
+      "textTertiary":    { "light": "#9E9E9E", "dark": "#666666" },
+      "textInverse":     { "light": "#FFFFFF", "dark": "#111111" },
+      "accent":          { "light": "#FF8400", "dark": "#FF8400" },
+      "accentVariant":   { "light": "#E57700", "dark": "#FF9A2E", "_note": "INFERRED — .pen không có biến pressed/hover; dẫn xuất bằng cách tối đi 8% (light) và sáng lên 10% (dark) từ accent" },
+      "accentSubtle":    { "light": "#E9E3D8", "dark": "#291C0F" },
+      "onAccent":        { "light": "#111111", "dark": "#111111" },
+      "border":          { "light": "#CBCCC9", "dark": "#2E2E2E" },
+      "borderStrong":    { "light": "#666666", "dark": "#B8B9B6", "_note": "INFERRED — dùng cho viền vùng an toàn của widget và trạng thái focus; lấy từ --ring / --muted-foreground" },
+      "focusRing":       { "light": "#666666", "dark": "#666666" },
+      "inputBorder":     { "light": "#CBCCC9", "dark": "#2E2E2E" },
+      "black":           "#000000",
+      "white":           "#FFFFFF"
+    },
+    "semantic": {
+      "success": { "color": { "light": "#004D1A", "dark": "#B6FFCE" }, "background": { "light": "#DFE6E1", "dark": "#222924" } },
+      "warning": { "color": { "light": "#804200", "dark": "#FF8400" }, "background": { "light": "#E9E3D8", "dark": "#291C0F" } },
+      "error":   { "color": { "light": "#8C1C00", "dark": "#FF5C33" }, "background": { "light": "#E5DCDA", "dark": "#24100B" } },
+      "info":    { "color": { "light": "#000066", "dark": "#B2B2FF" }, "background": { "light": "#DFDFE6", "dark": "#222229" } },
+      "destructive": { "color": { "light": "#D93C15", "dark": "#FF5C33" }, "background": { "light": "#E5DCDA", "dark": "#24100B" } }
+    },
+    "_contrastNotes": {
+      "onAccent": "#111111 trên #FF8400 = tỉ lệ ~7,4:1 — vượt WCAG AA cho cả chữ nhỏ. Đây là lý do accent dùng chữ tối, không dùng chữ trắng.",
+      "carplayMinimum": "Trên bề mặt CarPlay, chữ trên ảnh widget phải đạt ≥ 4,5:1 ở CẢ hai mode (AC-NFR-014.4). Khi ảnh xe làm tương phản không đạt, áp lớp scrim `overlayScrim`."
+    },
+    "overlayScrim": { "light": "rgba(0,0,0,0.35)", "dark": "rgba(0,0,0,0.45)", "_note": "INFERRED — bắt buộc cho WF-017 khi chữ nằm trên ảnh xe, để giữ AC-NFR-014.4" }
+  },
+
+  "typography": {
+    "family": {
+      "primary": "Geist",
+      "mono": "JetBrains Mono",
+      "fallback": "SF Pro",
+      "_note": "Geist và JetBrains Mono phải được bundle vào app. Mọi SỐ (counter, số ngày trial, kích thước màn hình ở màn Chẩn Đoán, giá) dùng mono — chiều rộng ký tự ổn định nên số không nhảy khi giá trị đổi. Mọi chữ còn lại dùng Geist."
+    },
+    "scale": {
+      "h1":       { "family": "primary", "size": 34, "weight": 700, "lineHeight": 41 },
+      "h2":       { "family": "primary", "size": 28, "weight": 700, "lineHeight": 34 },
+      "h3":       { "family": "primary", "size": 22, "weight": 600, "lineHeight": 28 },
+      "headline": { "family": "primary", "size": 17, "weight": 600, "lineHeight": 22 },
+      "body":     { "family": "primary", "size": 17, "weight": 400, "lineHeight": 24 },
+      "callout":  { "family": "primary", "size": 16, "weight": 400, "lineHeight": 21 },
+      "caption":  { "family": "primary", "size": 13, "weight": 400, "lineHeight": 18 },
+      "footnote": { "family": "primary", "size": 11, "weight": 400, "lineHeight": 14 },
+      "button":   { "family": "primary", "size": 17, "weight": 600, "lineHeight": 22 },
+      "stat":     { "family": "mono", "size": 40, "weight": 700, "lineHeight": 44 },
+      "statSmall":{ "family": "mono", "size": 22, "weight": 600, "lineHeight": 28 },
+      "monoData": { "family": "mono", "size": 13, "weight": 400, "lineHeight": 18 },
+      "carplayTitle": { "family": "primary", "size": 22, "weight": 600, "lineHeight": 28 },
+      "carplayBody":  { "family": "primary", "size": 17, "weight": 500, "lineHeight": 22 },
+      "carplayMin":   { "family": "primary", "size": 16, "weight": 500, "lineHeight": 21, "_note": "Sàn tuyệt đối trên màn hình xe (BR-030.2). Nhỏ hơn mức này thì chữ không phục vụ mục đích gì khi đang lái." }
+    },
+    "dynamicType": {
+      "supported": true,
+      "iphoneMaxScale": 1.6,
+      "carplayMaxScale": 1.35,
+      "_note": "Trên CarPlay giới hạn scale thấp hơn iPhone: vượt 1,35 thì layout bắt đầu cần giảm cấp (FR-030) ở phần lớn kích thước trong test matrix."
+    }
+  },
+
+  "spacing": {
+    "xs": 4,
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "xxl": 32,
+    "xxxl": 48,
+    "_note": "xs → xl lấy nguyên từ .pen (space-xs 4 · space-sm 8 · space-md 12 · space-lg 16 · space-xl 24). Thang này TIGHT hơn thang 8pt mẫu ở DESIGN_SYSTEM_GUIDE.md §3.3 (md=16, lg=24). Giữ theo .pen vì đó là design system thật của project; xxl/xxxl là INFERRED để có bậc cho hero và section gap."
+  },
+
+  "border": {
+    "width": { "hairline": 1, "regular": 1, "strong": 2 },
+    "radius": { "none": 0, "sm": 4, "md": 8, "lg": 16, "xl": 20, "full": 100, "pill": 100 },
+    "_note": "radius.lg = 16 là bán kính đặc trưng của Bento (--radius-m trong .pen). Card mặc định dùng lg."
+  },
+
+  "shadow": {
+    "color": "#1A1A1A",
+    "elevation": {
+      "0": "none",
+      "1": { "x": 0, "y": 1, "blur": 3, "spread": 0, "opacity": 0.05, "_use": "card nội dung — mức mặc định của Bento" },
+      "2": { "x": 0, "y": 2, "blur": 6, "spread": 0, "opacity": 0.06, "_use": "phần tử nổi, thẻ được chọn" },
+      "3": { "x": 0, "y": 4, "blur": 12, "spread": 0, "opacity": 0.08, "_use": "sheet, modal" },
+      "4": { "x": 0, "y": 6, "blur": 16, "spread": 0, "opacity": 0.10, "_use": "sticky bar, toast" },
+      "5": { "x": 0, "y": 8, "blur": 24, "spread": 0, "opacity": 0.12, "_use": "alert" }
+    },
+    "_note": "Opacity gốc của .pen là `shadow: #0000000D` = 5% đen ⇒ elevation.1. Bốn bậc còn lại là INFERRED, tăng dần từ mốc đó. Bento cố tình dùng shadow rất nhẹ — shadow đậm thuộc ngôn ngữ của Neo Brutalism, không phải hệ này.",
+    "carplay": "none — MỌI phần tử trên bề mặt CarPlay dùng elevation.0. Xem meta.carplayDeviation."
+  },
+
+  "component": {
+    "navBar": {
+      "height": 44,
+      "largeTitleHeight": 96,
+      "background": { "light": "rgba(242,243,240,0.85)", "dark": "rgba(17,17,17,0.85)" },
+      "blur": 20,
+      "dividerColor": { "light": "#CBCCC9", "dark": "#2E2E2E" },
+      "titleStyle": "typography.scale.headline",
+      "iconSize": 20,
+      "iconWeight": "medium"
+    },
+    "tabBar": {
+      "height": 49,
+      "heightWithSafeArea": 83,
+      "background": { "light": "rgba(255,255,255,0.92)", "dark": "rgba(26,26,26,0.92)" },
+      "blur": 20,
+      "activeColor": "color.palette.accent",
+      "inactiveColor": "color.palette.textTertiary",
+      "iconSize": 24,
+      "labelStyle": "typography.scale.footnote",
+      "itemCount": 4,
+      "badgeStyle": { "size": 8, "color": "color.palette.accent", "_use": "chấm cảnh báo tương thích trên tab Home" }
+    },
+    "button": {
+      "primary":   { "height": 50, "radius": 16, "font": "typography.scale.button", "background": "color.palette.accent", "foreground": "color.palette.onAccent", "shadow": "shadow.elevation.0", "paddingH": 24 },
+      "secondary": { "height": 50, "radius": 16, "font": "typography.scale.button", "background": "color.palette.surface", "foreground": "color.palette.textPrimary", "borderWidth": 1, "borderColor": "color.palette.border", "paddingH": 24 },
+      "tertiary":  { "height": 44, "radius": 12, "font": "typography.scale.callout", "background": "transparent", "foreground": "color.palette.accent" },
+      "destructive": { "height": 50, "radius": 16, "font": "typography.scale.button", "background": "transparent", "foreground": "color.semantic.destructive.color", "borderWidth": 1, "borderColor": "color.semantic.destructive.color" },
+      "minTouchTarget": 44,
+      "_note": "primary KHÔNG có shadow — nút nổi bật bằng màu cam, không bằng độ cao. Đây là đặc trưng Bento."
+    },
+    "card": {
+      "radius": 16,
+      "padding": 16,
+      "gap": 12,
+      "background": "color.palette.surface",
+      "border": { "width": 1, "color": "color.palette.border" },
+      "shadow": "shadow.elevation.1",
+      "heroHeight": 200,
+      "compactHeight": 88,
+      "_note": "Card Bento có CẢ viền 1px và shadow nhẹ — viền giữ ranh giới rõ ở dark mode nơi shadow gần như vô hình."
+    },
+    "textField": {
+      "height": 50,
+      "radius": 12,
+      "background": "color.palette.surface",
+      "borderColor": "color.palette.inputBorder",
+      "focusColor": "color.palette.focusRing",
+      "errorColor": "color.semantic.error.color",
+      "font": "typography.scale.body",
+      "paddingH": 16
+    },
+    "row": {
+      "height": 50,
+      "heightWithSubtitle": 68,
+      "paddingH": 16,
+      "chevronSize": 14,
+      "dividerInset": 16,
+      "background": "color.palette.surface",
+      "_use": "dòng cài đặt, dòng preset sound, dòng lịch sử chẩn đoán"
+    },
+    "chip": { "height": 32, "radius": 100, "paddingH": 12, "font": "typography.scale.caption", "selectedBackground": "color.palette.accent", "selectedForeground": "color.palette.onAccent", "background": "color.palette.surfaceVariant" },
+    "segmentedControl": { "height": 36, "radius": 12, "background": "color.palette.surfaceVariant", "selectedBackground": "color.palette.surface", "font": "typography.scale.caption", "_use": "bộ chọn 3 sự kiện sound ở WF-007" },
+    "slider": { "trackHeight": 4, "thumbSize": 28, "activeColor": "color.palette.accent", "trackColor": "color.palette.surfaceVariant" },
+    "toggle": { "width": 51, "height": 31, "onColor": "color.palette.accent", "offColor": "color.palette.surfaceVariant" },
+    "divider": { "thickness": 1, "color": "color.palette.border", "inset": 16 },
+    "toast": { "minHeight": 50, "radius": 16, "font": "typography.scale.callout", "background": "color.palette.surfaceElevated", "shadow": "shadow.elevation.4", "durationDefault": 2000, "durationError": 4000, "paddingH": 16 },
+    "sheet": { "radius": 20, "dragIndicatorWidth": 36, "dragIndicatorHeight": 5, "overlayColor": "rgba(0,0,0,0.4)", "background": "color.palette.surfaceElevated", "shadow": "shadow.elevation.3", "detentMedium": "50%", "detentLarge": "90%" },
+    "alert": { "radius": 20, "maxWidth": 300, "padding": 20, "background": "color.palette.surfaceElevated", "shadow": "shadow.elevation.5", "titleStyle": "typography.scale.headline", "bodyStyle": "typography.scale.callout" },
+    "progressBar": { "height": 4, "radius": 100, "activeColor": "color.palette.accent", "trackColor": "color.palette.surfaceVariant", "_use": "thanh tiến trình onboarding 1/4 → 4/4" },
+    "statusBadge": { "height": 24, "radius": 100, "paddingH": 10, "font": "typography.scale.footnote", "_use": "badge gói hiện tại / Trial còn N ngày" },
+    "waveform": { "height": 40, "barWidth": 3, "barGap": 2, "activeColor": "color.palette.accent", "inactiveColor": "color.palette.textTertiary", "_use": "chỉ báo audio thật đang phát ở WF-004/WF-007/WF-020 — chạy theo tiến độ audio, không phải animation giả" },
+    "carplayCard": {
+      "radius": 16,
+      "padding": 16,
+      "background": "color.palette.surface",
+      "border": { "width": 1, "color": "color.palette.borderStrong" },
+      "shadow": "shadow.elevation.0",
+      "minTouchTarget": 44,
+      "minFontSize": 16,
+      "_note": "Biến thể CarPlay: KHÔNG shadow, viền dùng borderStrong (đậm hơn iPhone) để giữ ranh giới khi không có độ cao. Mọi kích thước ngoài radius/padding đều tính từ scene bounds tại runtime — xem BR-029.1."
+    },
+    "carplayWidget": {
+      "radius": 16,
+      "safeAreaInsetRatio": 0.06,
+      "shadow": "shadow.elevation.0",
+      "scrimRequired": true,
+      "minFontSize": 16,
+      "_note": "safeAreaInsetRatio là TỈ LỆ theo bounds, không phải giá trị pt cố định — đây là cách duy nhất tuân thủ BR-029.1 (cấm hằng số kích thước màn hình xe)."
+    }
+  },
+
+  "animation": {
+    "spring": {
+      "bouncy": { "duration": 0.5, "damping": 0.5 },
+      "smooth": { "duration": 0.4, "damping": 0.7 },
+      "stiff":  { "duration": 0.3, "damping": 0.9 }
+    },
+    "duration": { "fast": 0.15, "normal": 0.25, "slow": 0.4 },
+    "curve": "easeInOut",
+    "carplay": {
+      "allowed": ["crossfade"],
+      "forbidden": ["positional-move", "scale", "bounce", "blink"],
+      "crossfadeDuration": 0.4,
+      "reorderThrottleSeconds": 30,
+      "_note": "Ràng buộc an toàn, không phải thẩm mỹ: thẻ trượt qua nhau trên màn hình xe kéo mắt người lái khỏi đường (BR-040.3). Chỉ crossfade, và chậm hơn trên iPhone."
+    },
+    "haptics": { "light": "selection", "medium": "impactMedium", "heavy": "impactHeavy", "carplay": "none" }
+  },
+
+  "composition": {
+    "discovery": {
+      "defaults": ["pull-to-refresh", "skeleton-loading", "inline-audio-preview", "section-grouping"],
+      "zones": {
+        "A": { "name": "Hero", "height": "dynamic", "behavior": "static" },
+        "B": { "name": "Main List / Grid", "height": "fill", "behavior": "scroll" },
+        "C": { "name": "Discovery Sections", "height": "~140pt", "behavior": "horizontal-scroll" },
+        "D": { "name": "Chrome", "height": "44+49pt", "behavior": "nav+tab" }
+      }
+    },
+    "action": {
+      "defaults": ["inline-validation", "single-primary-cta", "escape-route-always-visible", "progress-indicator"],
+      "zones": {
+        "A": { "name": "Context / Summary", "height": "dynamic", "behavior": "static" },
+        "B": { "name": "Input Area + Primary CTA", "height": "fill", "behavior": "scroll-or-static" },
+        "C": { "name": "—", "height": "0", "behavior": "unused" },
+        "D": { "name": "Navigation", "height": "44pt", "behavior": "nav" }
+      }
+    },
+    "consumption": {
+      "defaults": ["full-bleed-media", "sticky-key-info", "no-modal", "scrim-for-text-over-image"],
+      "zones": {
+        "A": { "name": "Hero Media (full-bleed)", "height": "fill-or-dynamic", "behavior": "static" },
+        "B": { "name": "Key Info + CTA (sticky)", "height": "~72pt", "behavior": "sticky" },
+        "C": { "name": "Detailed Content", "height": "fill", "behavior": "scroll" },
+        "D": { "name": "—", "height": "0", "behavior": "unused" }
+      }
+    },
+    "management": {
+      "defaults": ["grouped-rows", "inline-status-on-row", "destructive-needs-confirm", "pull-to-refresh"],
+      "zones": {
+        "A": { "name": "—", "height": "0", "behavior": "unused" },
+        "B": { "name": "Actionable List", "height": "fill", "behavior": "scroll" },
+        "C": { "name": "—", "height": "0", "behavior": "unused" },
+        "D": { "name": "Navigation + Filter/Edit Bar", "height": "44+49pt", "behavior": "nav+tab" }
+      }
+    },
+    "carplay": {
+      "defaults": ["flat-no-shadow", "high-contrast", "min-16pt-text", "no-modal", "single-tap-only", "runtime-bounds-layout", "crossfade-only"],
+      "zones": {
+        "A": { "name": "Priority Card / Hero Media", "height": "ratio-of-bounds", "behavior": "static" },
+        "B": { "name": "Remaining Cards", "height": "ratio-of-bounds", "behavior": "static-grid" },
+        "C": { "name": "—", "height": "0", "behavior": "unused — cấm 'xem thêm' khi đang lái" },
+        "D": { "name": "Edge Status Line", "height": "~24pt-ratio", "behavior": "static, không chắn nội dung" }
+      },
+      "_note": "MỌI chiều cao ở đây là TỈ LỆ theo scene bounds, không phải pt cố định (BR-029.1). Zone C cố tình để trống — xem Use_Cases.md §4.16."
+    }
+  }
+}

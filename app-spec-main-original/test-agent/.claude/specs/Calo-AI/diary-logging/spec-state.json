@@ -1,0 +1,44 @@
+{
+  "feature": "diary-logging",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure", "shared-foundations", "confirmation-edit"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.1.2","2.2.1","2.2.2","3.1.1","3.1.2","3.2.1","3.2.2","3.2.3","3.2.4","3.2.5","3.2.6"],
+    "tasks_deferred": ["4.1.1","4.1.2","4.1.3","4.1.4","4.1.5","4.2.1"],
+    "deferred_reasons": {
+      "4.1.x": "Unit-test target not present.",
+      "4.2.1": "Depends on 4.1.x."
+    },
+    "files_created": [
+      "calo-ai-test/Features/Diary/Models/ColorTier.swift",
+      "calo-ai-test/Features/Diary/Models/DiaryEntry.swift",
+      "calo-ai-test/Features/Diary/Services/DiaryCalculationService.swift",
+      "calo-ai-test/Features/Diary/Services/WeeklySummaryCalculator.swift",
+      "calo-ai-test/Features/Diary/ViewModels/DiaryViewModel.swift",
+      "calo-ai-test/Features/Diary/Views/MealListItem.swift",
+      "calo-ai-test/Features/Diary/Views/EditMealModal.swift",
+      "calo-ai-test/Features/Diary/Views/DeleteConfirmationModal.swift",
+      "calo-ai-test/Features/Diary/Views/DiaryEmptyState.swift",
+      "calo-ai-test/Features/Diary/Views/DiaryView.swift"
+    ],
+    "files_modified": [
+      "calo-ai-test/App/RootView.swift"
+    ],
+    "notes": "Phase 4 (diary-logging) implemented. DiaryView replaces PlaceholderView on Diary tab. Color-coded ProgressBar (green/amber/red) + pull-to-refresh + Edit/Delete sheets + offline badge. Reuses MacroCalculationService from confirmation-edit via EditMealViewModel. weeklyToggle via segmented Picker."
+  }
+}

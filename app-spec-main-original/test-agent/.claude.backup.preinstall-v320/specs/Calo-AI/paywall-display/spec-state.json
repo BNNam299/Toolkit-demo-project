@@ -1,0 +1,34 @@
+{
+  "feature": "paywall-display",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure", "shared-foundations", "authentication"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.1.2","2.1.3","2.1.4","3.1.1","3.2.1","3.2.2","3.2.3","3.2.4","3.2.5","3.3.1","3.4.1"],
+    "tasks_deferred": ["4.1.1","4.1.2","4.1.3","4.1.4","4.1.5","4.2.1"],
+    "deferred_reasons": {
+      "4.1.x": "Unit-test target not present.",
+      "4.2.1": "Depends on 4.1.x."
+    },
+    "files_created": [
+      "calo-ai-test/Features/Paywall/Models/Plan.swift",
+      "calo-ai-test/Features/Paywall/ViewModels/PaywallViewModel.swift",
+      "calo-ai-test/Features/Paywall/Views/PaywallView.swift"
+    ],
+    "notes": "Phase 6 (paywall-display) implemented. Plan model + PaywallView with transparent pricing (weekly $2.99 / monthly $9.99 / annual $39.99, 7-day trial). Price + cycle + trial length visible BEFORE trial start (App Store Guideline 3.1.2c / 5.6 compliance). SubscriptionService protocol + StubSubscriptionService ready for RevenueCat integration in a later phase."
+  }
+}

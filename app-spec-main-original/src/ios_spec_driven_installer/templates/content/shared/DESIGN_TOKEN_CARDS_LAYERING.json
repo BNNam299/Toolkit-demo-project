@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "name": "Cards & Layering",
+    "version": "1.0",
+    "description": "Depth-rich interface built on the metaphor of physical cards stacked in z-space. Five distinct elevation levels create a clear visual hierarchy — surfaces float above backgrounds, modals float above surfaces. Generous card padding, subtle shadows that deepen with elevation, and warm neutral tones. Ideal for apps where information hierarchy and spatial organization are critical.",
+    "mood": ["depth-rich", "tactile", "organized", "warm"],
+    "visualWeight": "medium-heavy",
+    "bestFor": ["banking", "finance", "project-management", "dashboard", "file-manager", "settings"]
+  },
+  "color": {
+    "palette": {
+      "background": "#F0EFEA",
+      "surface": "#FFFFFF",
+      "surfaceVariant": "#F7F6F3",
+      "surfaceElevated": "#FFFFFF",
+      "textPrimary": "#1A1A1A",
+      "textSecondary": "#5C5C5C",
+      "textTertiary": "#999999",
+      "textInverse": "#FFFFFF",
+      "accent": "#2D6A4F",
+      "accentVariant": "#1B4332",
+      "accentSubtle": "#D8F3DC",
+      "onAccent": "#FFFFFF"
+    },
+    "semantic": {
+      "success": { "color": "#2D6A4F", "background": "#D8F3DC" },
+      "warning": { "color": "#B45309", "background": "#FEF3C7" },
+      "error": { "color": "#991B1B", "background": "#FEE2E2" },
+      "info": { "color": "#1E40AF", "background": "#DBEAFE" }
+    },
+    "gradient": [
+      { "name": "warmOverlay", "colors": ["rgba(240,239,234,0)", "rgba(240,239,234,0.9)"], "angle": 180 }
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "primary": "SF Pro Display",
+      "secondary": "SF Pro Text",
+      "mono": "SF Mono"
+    },
+    "scale": {
+      "caption2": { "size": 11, "weight": 400, "lineHeight": 13, "letterSpacing": 0.07 },
+      "caption1": { "size": 12, "weight": 500, "lineHeight": 16, "letterSpacing": 0 },
+      "footnote": { "size": 13, "weight": 500, "lineHeight": 18, "letterSpacing": -0.08 },
+      "subhead": { "size": 15, "weight": 500, "lineHeight": 20, "letterSpacing": -0.24 },
+      "callout": { "size": 16, "weight": 500, "lineHeight": 21, "letterSpacing": -0.32 },
+      "body": { "size": 17, "weight": 400, "lineHeight": 22, "letterSpacing": -0.41 },
+      "headline": { "size": 17, "weight": 600, "lineHeight": 22, "letterSpacing": -0.41 },
+      "title3": { "size": 20, "weight": 600, "lineHeight": 25, "letterSpacing": -0.45 },
+      "title2": { "size": 22, "weight": 600, "lineHeight": 28, "letterSpacing": -0.5 },
+      "title1": { "size": 28, "weight": 600, "lineHeight": 34, "letterSpacing": -0.5 },
+      "largeTitle": { "size": 34, "weight": 700, "lineHeight": 41, "letterSpacing": -0.5 },
+      "hero": { "size": 44, "weight": 700, "lineHeight": 50, "letterSpacing": -0.5 }
+    }
+  },
+  "spacing": {
+    "grid": 4,
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 32,
+    "xxl": 48,
+    "pageMargin": 20,
+    "sectionGap": 28,
+    "cardPadding": 24,
+    "navBarHeight": 52
+  },
+  "border": {
+    "radius": {
+      "none": 0,
+      "sm": 6,
+      "md": 12,
+      "lg": 16,
+      "xl": 20,
+      "full": 9999
+    },
+    "width": 1,
+    "color": "#E0DDD6",
+    "style": "solid"
+  },
+  "shadow": {
+    "elevation": {
+      "0": { "color": "transparent", "offsetY": 0, "blur": 0, "spread": 0 },
+      "1": { "color": "rgba(0,0,0,0.04)", "offsetY": 1, "blur": 4, "spread": 0 },
+      "2": { "color": "rgba(0,0,0,0.06)", "offsetY": 2, "blur": 8, "spread": 0 },
+      "3": { "color": "rgba(0,0,0,0.08)", "offsetY": 4, "blur": 16, "spread": -2 },
+      "4": { "color": "rgba(0,0,0,0.10)", "offsetY": 8, "blur": 24, "spread": -4 },
+      "5": { "color": "rgba(0,0,0,0.14)", "offsetY": 16, "blur": 40, "spread": -8 }
+    }
+  },
+  "animation": {
+    "duration": { "instant": 100, "fast": 200, "normal": 350, "slow": 500, "entrance": 400 },
+    "easing": {
+      "default": [0.4, 0, 0.2, 1],
+      "easeIn": [0.4, 0, 1, 1],
+      "easeOut": [0, 0, 0.2, 1],
+      "easeInOut": [0.4, 0, 0.2, 1]
+    },
+    "spring": {
+      "gentle": { "response": 0.6, "dampingFraction": 0.8 },
+      "bouncy": { "response": 0.55, "dampingFraction": 0.65 },
+      "snappy": { "response": 0.4, "dampingFraction": 0.82 }
+    }
+  },
+  "component": {
+    "navBar": {
+      "height": 52,
+      "background": "rgba(255,255,255,0.95)",
+      "blur": 10,
+      "hasDivider": true,
+      "dividerColor": "#E0DDD6",
+      "backIcon": { "name": "chevron.left", "weight": "semibold", "size": 20 },
+      "titleStyle": "title3",
+      "actionIconSize": 24,
+      "actionIconWeight": "semibold",
+      "horizontalPadding": 20
+    },
+    "tabBar": {
+      "height": 56,
+      "background": "rgba(255,255,255,0.95)",
+      "blur": 10,
+      "hasDivider": true,
+      "dividerColor": "#E0DDD6",
+      "iconSize": 22,
+      "labelStyle": "caption2",
+      "activeColor": "#2D6A4F",
+      "inactiveColor": "#999999",
+      "badge": { "size": 16, "background": "#991B1B", "textColor": "#FFFFFF", "fontSize": 10 }
+    },
+    "button": {
+      "primary": {
+        "height": 52, "radius": 14, "paddingH": 28,
+        "background": "#2D6A4F", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-2",
+        "font": "headline",
+        "disabled": { "background": "#D1D5DB", "textColor": "#999999" }
+      },
+      "secondary": {
+        "height": 52, "radius": 14, "paddingH": 28,
+        "background": "#F7F6F3", "textColor": "#2D6A4F",
+        "border": { "width": 1, "color": "#D8F3DC" },
+        "shadow": "elevation-1",
+        "font": "headline"
+      },
+      "tertiary": {
+        "height": 44, "radius": 12, "paddingH": 16,
+        "background": "transparent", "textColor": "#2D6A4F",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      },
+      "destructive": {
+        "height": 52, "radius": 14, "paddingH": 28,
+        "background": "#991B1B", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-1",
+        "font": "headline"
+      },
+      "ghost": {
+        "height": 44, "radius": 12, "paddingH": 12,
+        "background": "transparent", "textColor": "#5C5C5C",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      }
+    },
+    "card": {
+      "padding": 24,
+      "radius": 16,
+      "background": "#FFFFFF",
+      "border": { "width": 1, "color": "#F0EFEA" },
+      "shadow": "elevation-2",
+      "imageRatio": 1.5,
+      "gap": 20
+    },
+    "input": {
+      "height": 52,
+      "radius": 12,
+      "background": "#F7F6F3",
+      "border": { "width": 1, "color": "#E0DDD6" },
+      "focusBorder": { "width": 2, "color": "#2D6A4F" },
+      "placeholder": "#999999",
+      "textColor": "#1A1A1A",
+      "paddingH": 16,
+      "font": "body",
+      "error": { "border": { "width": 2, "color": "#991B1B" }, "messageColor": "#991B1B" }
+    },
+    "chip": {
+      "height": 36,
+      "radius": 10,
+      "paddingH": 14,
+      "background": "#F7F6F3",
+      "textColor": "#5C5C5C",
+      "font": "caption1",
+      "selected": { "background": "#D8F3DC", "textColor": "#1B4332" },
+      "border": { "width": 1, "color": "#E0DDD6" }
+    },
+    "badge": {
+      "size": 18,
+      "radius": 9999,
+      "background": "#991B1B",
+      "textColor": "#FFFFFF",
+      "font": "caption2",
+      "position": "topTrailing"
+    },
+    "avatar": {
+      "sm": { "size": 32, "radius": 10, "border": { "width": 2, "color": "#FFFFFF" } },
+      "md": { "size": 44, "radius": 12, "border": { "width": 2, "color": "#FFFFFF" } },
+      "lg": { "size": 60, "radius": 16, "border": { "width": 3, "color": "#FFFFFF" } },
+      "xl": { "size": 88, "radius": 20, "border": { "width": 3, "color": "#FFFFFF" } }
+    },
+    "divider": {
+      "height": 1,
+      "color": "#E0DDD6",
+      "inset": 24,
+      "style": "solid"
+    },
+    "toast": {
+      "paddingH": 20,
+      "paddingV": 16,
+      "radius": 14,
+      "background": "#1A1A1A",
+      "textColor": "#FFFFFF",
+      "font": "subhead",
+      "position": "bottom",
+      "duration": 3500
+    },
+    "sheet": {
+      "radius": 20,
+      "background": "#FFFFFF",
+      "handleColor": "#D1D5DB",
+      "handleWidth": 40,
+      "handleHeight": 5,
+      "padding": 24
+    }
+  },
+  "iconography": {
+    "style": "SF Symbols",
+    "defaultWeight": "semibold",
+    "sizeMap": { "sm": 14, "md": 20, "lg": 24, "xl": 32, "nav": 24, "tab": 22, "button": 18 }
+  },
+  "composition": {
+    "discovery": {
+      "layoutDensity": "medium",
+      "heroStyle": "featured-card-elevated",
+      "cardArrangement": "stacked-cards-vertical",
+      "scrollBehavior": "card-reveal-stagger",
+      "maxColumns": 1,
+      "sectionHeaderStyle": "title3-bold"
+    },
+    "action": {
+      "formDensity": "spacious",
+      "ctaPlacement": "fixed-bottom-floating",
+      "fieldGrouping": "card-grouped-sections",
+      "progressStyle": "card-progress-indicator",
+      "keyboardHandling": "scroll-to-field"
+    },
+    "consumption": {
+      "mediaFill": "card-contained-image",
+      "chromeOpacity": "opaque-white",
+      "infoPlacement": "below-media-card",
+      "scrollEffect": "card-stack-parallax"
+    },
+    "management": {
+      "rowDensity": "spacious",
+      "swipeStyle": "trailing-actions-reveal",
+      "sortPosition": "above-list-card",
+      "editModeTransition": "card-lift-scale"
+    },
+    "social": {
+      "avatarProminence": "large",
+      "contentPadding": 24,
+      "reactionStyle": "card-compact-bar",
+      "composePosition": "floating-button-bottom"
+    }
+  }
+}

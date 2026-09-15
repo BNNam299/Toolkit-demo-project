@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude:*)",
+      "Skill(project-docs-prd)",
+      "Skill(project-docs-prd:*)",
+      "WebSearch",
+      "Bash(curl -s -X POST http://127.0.0.1:10086/command -H 'Content-Type: application/json' -d '{\"action\":\"navigate\",\"args\":{\"url\":\"https://appstorespy.com/\",\"newTab\":true,\"group_title\":\"CarPlay Competitor Analysis\"},\"session\":\"carplay-research\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:10086/command -H 'Content-Type: application/json' -d '{\"action\":\"click\",\"args\":{\"selector\":\"@e20\"},\"session\":\"carplay-research\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:10086/command -H 'Content-Type: application/json' -d '{\"action\":\"screenshot\",\"args\":{},\"session\":\"carplay-research\"}')"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "XcodeBuildMCP",
+    "Framelink MCP for Figma",
+    "apple-docs"
+  ]
+}

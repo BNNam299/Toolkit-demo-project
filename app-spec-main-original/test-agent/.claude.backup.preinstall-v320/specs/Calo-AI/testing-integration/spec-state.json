@@ -1,0 +1,32 @@
+{
+  "feature": "testing-integration",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure","shared-foundations","camera-capture","ai-recognition","confirmation-edit","diary-logging","dashboard-view","paywall-display","subscription-management","authentication","onboarding-form","account-management","settings-management","subscription-settings"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.2.1","2.3.1","2.4.1","2.5.1","3.1.1","3.2.1","3.3.1","3.4.1","3.5.1","4.1.1"],
+    "tasks_deferred": ["4.1.2","4.1.3","4.1.4","4.1.5","4.1.6","4.2.1"],
+    "deferred_reasons": {
+      "4.1.x": "Unit + UI test targets not present (deferred by project-structure)."
+    },
+    "files_created": [
+      "calo-ai-test/Features/Tools/CrashMonitor.swift",
+      "calo-ai-test/Features/Tools/StoreMetadata.swift"
+    ],
+    "notes": "Phase 9 (testing-integration) implemented at the harness level: CrashMonitor counts sessions + crashes for crash-free ≥99% KPI; StoreMetadata emits App Store Privacy Nutrition Label categories + marketing copy for submission prep. Full XCTest + XCUITest targets deferred until calo-ai-testTests/calo-ai-testUITests/ are added in Xcode (project-structure task 4.x)."
+  }
+}

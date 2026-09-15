@@ -1,0 +1,285 @@
+{
+  "meta": {
+    "name": "Soft Skeuomorphism",
+    "version": "1.0",
+    "description": "A warm, familiar aesthetic that draws on physical-world textures and lighting. Buttons have subtle 3D highlights, surfaces feel pressed into the screen with inner shadows, and backgrounds carry a gentle paper or fabric-like warmth. Unlike the heavy skeuomorphism of iOS 6, this is light-touch — hints of depth without literal realism. Ideal for apps that want to feel human, comforting, and approachable.",
+    "mood": ["warm", "familiar", "crafted", "comforting"],
+    "visualWeight": "heavy",
+    "bestFor": ["wellness", "journaling", "recipe", "meditation", "creative-tools", "children"]
+  },
+  "color": {
+    "palette": {
+      "background": "#FFF8F0",
+      "surface": "#FFFFFF",
+      "surfaceVariant": "#FDF0E0",
+      "surfaceElevated": "#FFFBF7",
+      "textPrimary": "#3D2C1E",
+      "textSecondary": "#7A6B5D",
+      "textTertiary": "#B8A99A",
+      "textInverse": "#FFFFFF",
+      "accent": "#D4784C",
+      "accentVariant": "#A85A30",
+      "accentSubtle": "#FDE8D8",
+      "onAccent": "#FFFFFF"
+    },
+    "semantic": {
+      "success": { "color": "#5B8C5A", "background": "#E8F5E0" },
+      "warning": { "color": "#C4843D", "background": "#FDF0DB" },
+      "error": { "color": "#C4554D", "background": "#FDEAEA" },
+      "info": { "color": "#5B7F9A", "background": "#E5F0F8" }
+    },
+    "gradient": [
+      { "name": "warmSunlight", "colors": ["#FFF8F0", "#FDE8D8"], "angle": 135 },
+      { "name": "buttonHighlight", "colors": ["rgba(255,255,255,0.6)", "rgba(255,255,255,0)"], "angle": 180 }
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "primary": "New York",
+      "secondary": "SF Pro Text",
+      "mono": "SF Mono"
+    },
+    "scale": {
+      "caption2": { "size": 11, "weight": 400, "lineHeight": 13, "letterSpacing": 0.07 },
+      "caption1": { "size": 12, "weight": 400, "lineHeight": 16, "letterSpacing": 0.02 },
+      "footnote": { "size": 13, "weight": 400, "lineHeight": 18, "letterSpacing": -0.06 },
+      "subhead": { "size": 15, "weight": 500, "lineHeight": 20, "letterSpacing": -0.2 },
+      "callout": { "size": 16, "weight": 400, "lineHeight": 21, "letterSpacing": -0.25 },
+      "body": { "size": 17, "weight": 400, "lineHeight": 23, "letterSpacing": -0.35 },
+      "headline": { "size": 17, "weight": 600, "lineHeight": 22, "letterSpacing": -0.35 },
+      "title3": { "size": 20, "weight": 600, "lineHeight": 25, "letterSpacing": -0.4 },
+      "title2": { "size": 22, "weight": 600, "lineHeight": 28, "letterSpacing": -0.4 },
+      "title1": { "size": 28, "weight": 700, "lineHeight": 34, "letterSpacing": -0.4 },
+      "largeTitle": { "size": 34, "weight": 700, "lineHeight": 41, "letterSpacing": -0.4 },
+      "hero": { "size": 44, "weight": 700, "lineHeight": 50, "letterSpacing": -0.4 }
+    }
+  },
+  "spacing": {
+    "grid": 4,
+    "xs": 4,
+    "sm": 8,
+    "md": 16,
+    "lg": 24,
+    "xl": 36,
+    "xxl": 52,
+    "pageMargin": 20,
+    "sectionGap": 28,
+    "cardPadding": 24,
+    "navBarHeight": 48
+  },
+  "border": {
+    "radius": {
+      "none": 0,
+      "sm": 8,
+      "md": 16,
+      "lg": 20,
+      "xl": 28,
+      "full": 9999
+    },
+    "width": 1,
+    "color": "#E8D5C4",
+    "style": "solid"
+  },
+  "shadow": {
+    "elevation": {
+      "0": { "color": "transparent", "offsetY": 0, "blur": 0, "spread": 0 },
+      "1": { "color": "rgba(61,44,30,0.06)", "offsetY": 2, "blur": 8, "spread": 0 },
+      "2": { "color": "rgba(61,44,30,0.08)", "offsetY": 4, "blur": 12, "spread": -1 },
+      "3": { "color": "rgba(61,44,30,0.10)", "offsetY": 8, "blur": 20, "spread": -3 },
+      "4": { "color": "rgba(61,44,30,0.14)", "offsetY": 16, "blur": 32, "spread": -6 }
+    }
+  },
+  "animation": {
+    "duration": { "instant": 120, "fast": 250, "normal": 380, "slow": 600, "entrance": 450 },
+    "easing": {
+      "default": [0.34, 1.56, 0.64, 1],
+      "easeIn": [0.55, 0, 1, 0.45],
+      "easeOut": [0.25, 0.46, 0.45, 0.94],
+      "easeInOut": [0.45, 0, 0.55, 1]
+    },
+    "spring": {
+      "gentle": { "response": 0.65, "dampingFraction": 0.78 },
+      "bouncy": { "response": 0.6, "dampingFraction": 0.55 },
+      "snappy": { "response": 0.45, "dampingFraction": 0.8 }
+    }
+  },
+  "component": {
+    "navBar": {
+      "height": 48,
+      "background": "rgba(255,248,240,0.92)",
+      "blur": 20,
+      "hasDivider": false,
+      "dividerColor": "transparent",
+      "backIcon": { "name": "chevron.left", "weight": "medium", "size": 20 },
+      "titleStyle": "title3",
+      "actionIconSize": 24,
+      "actionIconWeight": "medium",
+      "horizontalPadding": 20,
+      "innerShadow": "inset 0 1px 0 rgba(255,255,255,0.8)"
+    },
+    "tabBar": {
+      "height": 56,
+      "background": "rgba(255,255,255,0.9)",
+      "blur": 20,
+      "hasDivider": true,
+      "dividerColor": "#E8D5C4",
+      "iconSize": 24,
+      "labelStyle": "caption2",
+      "activeColor": "#D4784C",
+      "inactiveColor": "#B8A99A",
+      "badge": { "size": 16, "background": "#C4554D", "textColor": "#FFFFFF", "fontSize": 10 },
+      "innerShadow": "inset 0 2px 4px rgba(61,44,30,0.04)"
+    },
+    "button": {
+      "primary": {
+        "height": 54, "radius": 18, "paddingH": 28,
+        "background": "#D4784C", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-2",
+        "font": "headline",
+        "disabled": { "background": "#E8D5C4", "textColor": "#B8A99A" },
+        "innerHighlight": "inset 0 1px 0 rgba(255,255,255,0.3)"
+      },
+      "secondary": {
+        "height": 54, "radius": 18, "paddingH": 28,
+        "background": "#FDE8D8", "textColor": "#A85A30",
+        "border": { "width": 1, "color": "#E8D5C4" },
+        "shadow": "elevation-1",
+        "font": "headline"
+      },
+      "tertiary": {
+        "height": 44, "radius": 14, "paddingH": 16,
+        "background": "transparent", "textColor": "#D4784C",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      },
+      "destructive": {
+        "height": 54, "radius": 18, "paddingH": 28,
+        "background": "#C4554D", "textColor": "#FFFFFF",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-1",
+        "font": "headline",
+        "innerHighlight": "inset 0 1px 0 rgba(255,255,255,0.25)"
+      },
+      "ghost": {
+        "height": 44, "radius": 14, "paddingH": 12,
+        "background": "transparent", "textColor": "#7A6B5D",
+        "border": { "width": 0, "color": "transparent" },
+        "shadow": "elevation-0",
+        "font": "subhead"
+      }
+    },
+    "card": {
+      "padding": 24,
+      "radius": 20,
+      "background": "#FFFFFF",
+      "border": { "width": 1, "color": "#FDF0E0" },
+      "shadow": "elevation-1",
+      "imageRatio": 1.25,
+      "gap": 20,
+      "innerShadow": "inset 0 1px 0 rgba(255,255,255,0.9)"
+    },
+    "input": {
+      "height": 52,
+      "radius": 14,
+      "background": "#FFFBF7",
+      "border": { "width": 1, "color": "#E8D5C4" },
+      "focusBorder": { "width": 2, "color": "#D4784C" },
+      "placeholder": "#B8A99A",
+      "textColor": "#3D2C1E",
+      "paddingH": 16,
+      "font": "body",
+      "error": { "border": { "width": 2, "color": "#C4554D" }, "messageColor": "#C4554D" },
+      "innerShadow": "inset 0 1px 3px rgba(61,44,30,0.04)"
+    },
+    "chip": {
+      "height": 36,
+      "radius": 14,
+      "paddingH": 16,
+      "background": "#FDF0E0",
+      "textColor": "#7A6B5D",
+      "font": "caption1",
+      "selected": { "background": "#FDE8D8", "textColor": "#A85A30" },
+      "border": { "width": 1, "color": "#E8D5C4" }
+    },
+    "badge": {
+      "size": 18,
+      "radius": 9999,
+      "background": "#C4554D",
+      "textColor": "#FFFFFF",
+      "font": "caption2",
+      "position": "topTrailing"
+    },
+    "avatar": {
+      "sm": { "size": 32, "radius": 9999, "border": { "width": 2, "color": "#FFF8F0" } },
+      "md": { "size": 44, "radius": 9999, "border": { "width": 2.5, "color": "#FFF8F0" } },
+      "lg": { "size": 64, "radius": 9999, "border": { "width": 3, "color": "#FFF8F0" } },
+      "xl": { "size": 96, "radius": 28, "border": { "width": 3, "color": "#FFF8F0" } }
+    },
+    "divider": {
+      "height": 1,
+      "color": "#E8D5C4",
+      "inset": 20,
+      "style": "dashed"
+    },
+    "toast": {
+      "paddingH": 20,
+      "paddingV": 14,
+      "radius": 16,
+      "background": "#3D2C1E",
+      "textColor": "#FFFFFF",
+      "font": "subhead",
+      "position": "bottom",
+      "duration": 3000
+    },
+    "sheet": {
+      "radius": 24,
+      "background": "#FFFBF7",
+      "handleColor": "#E8D5C4",
+      "handleWidth": 40,
+      "handleHeight": 5,
+      "padding": 24
+    }
+  },
+  "iconography": {
+    "style": "SF Symbols",
+    "defaultWeight": "medium",
+    "sizeMap": { "sm": 14, "md": 20, "lg": 24, "xl": 32, "nav": 24, "tab": 24, "button": 18 }
+  },
+  "composition": {
+    "discovery": {
+      "layoutDensity": "spacious-warm",
+      "heroStyle": "rounded-featured-card",
+      "cardArrangement": "masonry-like-staggered",
+      "scrollBehavior": "gentle-fade-in-cards",
+      "maxColumns": 2,
+      "sectionHeaderStyle": "serif-headline"
+    },
+    "action": {
+      "formDensity": "spacious",
+      "ctaPlacement": "fixed-bottom-raised",
+      "fieldGrouping": "warm-card-groups",
+      "progressStyle": "warm-dots-indicator",
+      "keyboardHandling": "smooth-scroll-to-field"
+    },
+    "consumption": {
+      "mediaFill": "rounded-contained-image",
+      "chromeOpacity": "creamy-opaque",
+      "infoPlacement": "below-image-card-warm",
+      "scrollEffect": "gentle-fade"
+    },
+    "management": {
+      "rowDensity": "spacious",
+      "swipeStyle": "soft-swipe-reveal",
+      "sortPosition": "section-header-button",
+      "editModeTransition": "warm-scale-fade"
+    },
+    "social": {
+      "avatarProminence": "large-warm",
+      "contentPadding": 24,
+      "reactionStyle": "pill-shaped-warm-chips",
+      "composePosition": "floating-raised-button"
+    }
+  }
+}

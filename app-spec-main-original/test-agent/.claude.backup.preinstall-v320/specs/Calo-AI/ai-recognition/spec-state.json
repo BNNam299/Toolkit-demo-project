@@ -1,0 +1,43 @@
+{
+  "feature": "ai-recognition",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure", "shared-foundations", "camera-capture"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1","2.1.2","2.1.3","2.1.4","3.1.1","3.2.1","3.2.2","3.3.1"],
+    "tasks_deferred": ["4.1.1","4.1.2","4.1.3","4.2.1"],
+    "deferred_reasons": {
+      "4.1.1": "Unit-test target not present.",
+      "4.1.2": "Depends on test target.",
+      "4.1.3": "Depends on test target.",
+      "4.2.1": "Depends on test target."
+    },
+    "files_created": [
+      "calo-ai-test/Features/AI/Models/MealDraft.swift",
+      "calo-ai-test/Features/AI/Services/VisionPromptBuilder.swift",
+      "calo-ai-test/Features/AI/Services/VisionResponseParser.swift",
+      "calo-ai-test/Features/AI/Services/VisionAPIService.swift",
+      "calo-ai-test/Features/AI/ViewModels/AIRecognitionViewModel.swift",
+      "calo-ai-test/Features/AI/Views/LoadingView.swift",
+      "calo-ai-test/Features/AI/Views/ErrorView.swift"
+    ],
+    "files_modified": [
+      "calo-ai-test/App/RootView.swift"
+    ],
+    "notes": "Phase 3 (ai-recognition) implemented. Camera → AI flow wired: CameraViewModel.onUseImage → AIRecognitionFlowView sheet → LoadingView → Confirmation stub (until confirmation-edit lands). Vision API call uses OpenAI chat completions / GPT-4o; HTTPS-only, 10s timeout, RetryPolicy ≤3/≤10s, key from AppConfiguration. Validation covers calories range, confidence range, macros ≥0, ≥1 ingredient, and macro↔calorie ±10% tolerance. onConfirm stub → confirmation-edit spec will replace."
+  }
+}

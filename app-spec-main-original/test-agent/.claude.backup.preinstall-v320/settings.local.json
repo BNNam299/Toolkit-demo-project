@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude:*)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "XcodeBuildMCP",
+    "Framelink MCP for Figma",
+    "apple-docs"
+  ],
+  "disabledMcpjsonServers": [
+    "MiniMax",
+    "pencil",
+    "exa"
+  ]
+}

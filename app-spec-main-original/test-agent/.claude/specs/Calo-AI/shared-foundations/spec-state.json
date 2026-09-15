@@ -1,0 +1,81 @@
+{
+  "feature": "shared-foundations",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "depends_on": ["project-structure"],
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3.1) simulator",
+    "scheme": "calo-ai-test",
+    "configuration": "Debug",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": [
+      "2.1.1",
+      "2.1.2",
+      "2.2.1",
+      "2.3.1",
+      "2.4.1",
+      "3.1.1",
+      "3.2.1",
+      "3.3.1",
+      "3.4.1",
+      "3.5.1",
+      "3.5.2",
+      "3.6.1",
+      "3.6.2"
+    ],
+    "tasks_deferred": [
+      "4.1.1",
+      "4.1.2",
+      "4.1.3",
+      "4.1.4",
+      "4.2.1",
+      "4.3.1"
+    ],
+    "deferred_reasons": {
+      "4.1.1": "Unit-test target `calo-ai-testTests` not present (deferred by `project-structure` spec).",
+      "4.1.2": "Depends on 4.1.1 — no test target yet.",
+      "4.1.3": "Depends on 4.1.1 — no test target yet.",
+      "4.1.4": "Depends on 4.1.1 — no test target yet.",
+      "4.2.1": "Depends on 4.1.1 — no test target yet.",
+      "4.3.1": "Coverage gate depends on test target (4.1.1)."
+    },
+    "files_created": [
+      "calo-ai-test/Shared/Utils/AppError.swift",
+      "calo-ai-test/Shared/Utils/RetryPolicy.swift",
+      "calo-ai-test/Shared/Utils/KeychainStore.swift",
+      "calo-ai-test/Shared/Utils/Reachability.swift",
+      "calo-ai-test/Shared/Utils/ReachabilityForwarder.swift",
+      "calo-ai-test/Shared/Utils/WeakBox.swift",
+      "calo-ai-test/Shared/Utils/MockData.swift",
+      "calo-ai-test/Shared/Models/User.swift",
+      "calo-ai-test/Shared/Models/MealLog.swift",
+      "calo-ai-test/Shared/Models/Ingredient.swift",
+      "calo-ai-test/Shared/Services/AuthService.swift",
+      "calo-ai-test/Shared/Services/DataClient.swift",
+      "calo-ai-test/Shared/Services/OfflineSyncService.swift",
+      "calo-ai-test/Shared/Services/ErrorHandler.swift",
+      "calo-ai-test/Shared/Services/InMemoryServices.swift",
+      "calo-ai-test/Shared/Components/Button/CaloButton.swift",
+      "calo-ai-test/Shared/Components/ProgressBar/ProgressBar.swift",
+      "calo-ai-test/Shared/Components/Feedback/ErrorBannerOverlay.swift"
+    ],
+    "files_modified": [
+      "calo-ai-test/Shared/Services/InMemoryServices.swift",
+      "calo-ai-test/App/AppEnvironment.swift",
+      "calo-ai-test/App/AppBootstrap.swift",
+      "calo-ai-test/App/CaloApp.swift",
+      "calo-ai-test/App/RootView.swift"
+    ],
+    "notes": "Phase 2 (Shared, 5 tasks) and Phase 3 (Feature, 8 tasks) complete with zero errors and zero warnings under `SWIFT_TREAT_WARNINGS_AS_ERRORS = YES`. Build passes on iPhone 16 Pro (iOS 18.3.1) simulator for scheme `calo-ai-test`, Debug configuration. All 32 acceptance criteria in `requirements.md` are covered by at least one done task — see updated Traceability Matrix in `tasks.md`. The Supabase Swift SDK / Firebase / RevenueCat SPM packages are intentionally deferred (project-structure 2.3.1); the `SupabaseRESTClient` uses `URLSession` against PostgREST/GoTrue endpoints over HTTPS, with the same surface that a future SPM-backed implementation would expose, so the swap is an internal detail behind the `DataClienting` protocol. Also shipped `Shared/Utils/MockData.swift` (4 demo users, 30+ ingredient templates, 25 meal templates generating 14-day realistic meal history), `App/MockEnvironmentFactory.swift` (auto-seeds in-memory services), and updated `CaloApp.init()` to use the factory in DEBUG builds so the app launches with populated Camera / Diary / Dashboard / Settings / Paywall without a backend (set `CALO_DISABLE_MOCKS=1` in env to use the live services)."
+  }
+}

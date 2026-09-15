@@ -1,0 +1,31 @@
+{
+  "feature": "project-structure",
+  "project": "Calo-AI",
+  "mode": "manual",
+  "stage": "executing",
+  "created": "2026-07-21",
+  "artifacts": {
+    "requirements": "approved",
+    "design": "approved",
+    "tasks": "approved"
+  },
+  "execution": {
+    "started": "2026-07-21",
+    "build_gate": "passed",
+    "build_target": "iPhone 16 Pro (iOS 18.3) simulator",
+    "warnings": 0,
+    "errors": 0,
+    "tasks_done": ["2.1.1", "2.1.2", "2.2.1", "2.2.2", "2.4.1", "2.5.1", "2.6.1", "3.1.1", "3.1.2", "3.2.1", "3.2.2", "3.3.1", "3.3.2"],
+    "tasks_partial": ["2.5.2", "4.3.1", "4.3.2"],
+    "tasks_deferred": ["2.3.1", "4.1.1", "4.1.2", "4.2.1"],
+    "deferred_reasons": {
+      "2.3.1": "SPM package refs need pbxproj UUID surgery + network resolution; importing SDKs would break build until resolved — add in Xcode then commit Package.resolved",
+      "2.5.2": "xcconfig files created but baseConfigurationReference wiring deferred; effective values in target build settings",
+      "4.1.1": "no unit-test target exists",
+      "4.1.2": "no unit-test target exists",
+      "4.2.1": "no UI-test target exists",
+      "4.3.2": "0 warnings verified; cold-launch <2.0s timing not yet measured"
+    },
+    "notes": "Target kept as calo-ai-test (not renamed to Calo-AI); Display Name = Calo AI. Xcode 26 file-system-synchronized group. Generated Info.plist. pbxproj backed up to project.pbxproj.bak."
+  }
+}
