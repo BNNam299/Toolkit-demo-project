@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "figma-agent": {
+      "command": "node",
+      "args": [
+        "dist/server.mjs"
+      ],
+      "directTools": true
+    },
+    "gemini-image-mcp": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:nguyennamkkb/gemini-image-mcp"
+      ],
+      "env": {
+        "AI_STUDIO_ALLOW_CANVAS": "true",
+        "AI_STUDIO_TOKEN": "aistudio-1-1-7f2c9d41b8e35a60"
+      },
+      "directTools": true
+    }
+  }
+}

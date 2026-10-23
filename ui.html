@@ -1,0 +1,1095 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<style>
+  :root {
+    /* Zoom / density. 1rem === 12px * --scale, so every size below is rem and
+       the whole panel scales together. */
+    --scale: 1;
+    /* Accent comes from design/carplay-widget.tokens.json (cyan/400 + navy/950).
+       It is only used for focus rings, the spinner, active states and dots —
+       never as body text on a light background. */
+    --accent: #3DD6F5;
+    --accent-fg: #070B16;
+    --bg: var(--figma-color-bg, #ffffff);
+    --bg2: var(--figma-color-bg-secondary, #f5f5f5);
+    --fg: var(--figma-color-text, #1e1e1e);
+    --muted: var(--figma-color-text-secondary, #6b6b6b);
+    --border: var(--figma-color-border, #e6e6e6);
+    --brand: var(--figma-color-bg-brand, #0d99ff);
+    --on-brand: var(--figma-color-text-onbrand, #ffffff);
+    --ok: var(--figma-color-text-success, #14ae5c);
+    --err: var(--figma-color-text-danger, #f24822);
+    --warn: var(--figma-color-text-warning, #b86200);
+  }
+  * { box-sizing: border-box; }
+  html { font-size: calc(12px * var(--scale)); }
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    font: 1rem/1.4 Inter, -apple-system, system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button {
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    cursor: pointer;
+    background: var(--bg2);
+    color: var(--fg);
+    white-space: nowrap;
+  }
+  button:hover { background: var(--bg2); }
+  button.primary { background: var(--brand); color: var(--on-brand); border-color: transparent; }
+  button.icon { padding: 0.25rem 0.4rem; line-height: 1; }
+  button[aria-pressed="true"], button.active { border-color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  input, select, textarea {
+    width: 100%;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.5rem;
+  }
+  input:focus-visible, select:focus-visible, textarea:focus-visible { border-color: var(--accent); }
+  textarea { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  /* ---------- header ---------- */
+  #header {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+    position: sticky;
+    top: 0;
+    z-index: 3;
+  }
+  #status { display: flex; align-items: center; gap: 0.35rem; min-width: 0; flex: 0 1 auto; }
+  #status .dot {
+    width: 0.55rem; height: 0.55rem; border-radius: 50%;
+    background: var(--muted); flex: none;
+  }
+  #status.ok .dot { background: var(--accent); }
+  #status.err .dot { background: var(--err); }
+  #status.wait .dot { background: var(--warn); }
+  #state { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  #file-info {
+    display: flex; align-items: baseline; gap: 0.3rem;
+    min-width: 0; flex: 1 1 auto;
+    padding: 0;
+  }
+  #file-info::before { content: '·'; color: var(--muted); flex: none; }
+  #file-name { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  #version {
+    flex: none; color: var(--muted); font-size: 0.75rem;
+    font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  #version:empty { display: none; }
+  .zoom { display: flex; align-items: center; gap: 0.1rem; flex: none; }
+  #zoom-value { font-variant-numeric: tabular-nums; min-width: 2.8rem; padding: 0.25rem 0.2rem; }
+
+  /* ---------- toolbar ---------- */
+  #toolbar {
+    display: flex; align-items: center; gap: 0.3rem;
+    padding: 0.35rem 0.6rem;
+    border-top: 1px solid var(--border);
+  }
+  #toolbar[hidden] { display: none; }
+  #toolbar .spacer { flex: 1 1 auto; }
+  #filter { width: auto; padding: 0.25rem 0.3rem; }
+
+  /* ---------- hint line (status detail, e.g. "Không tìm thấy MCP server") ---------- */
+  #hint {
+    padding: 0.3rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  #hint[hidden] { display: none; }
+  #hint.err { color: var(--err); }
+  #hint.wait { color: var(--warn); }
+
+  /* ---------- activity list ---------- */
+  #log { flex: 1 1 auto; min-height: 0; overflow-y: auto; overflow-x: hidden; }
+  .entry { border-bottom: 1px solid var(--border); }
+  .entry-head {
+    display: flex; align-items: center; gap: 0.4rem;
+    width: 100%; padding: 0.35rem 0.6rem;
+    background: none; border: 0; border-radius: 0; text-align: left;
+  }
+  .entry-head:hover { background: var(--bg2); }
+  .entry-icon { width: 1rem; text-align: center; flex: none; }
+  .entry-icon.running { color: var(--accent); animation: spin 1.1s linear infinite; display: inline-block; }
+  .entry-icon.queued { color: var(--muted); }
+  .entry-icon.done { color: var(--ok); }
+  .entry-icon.failed { color: var(--err); }
+  .entry-cmd { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85rem; flex: none; }
+  .entry-badge {
+    font-size: 0.7rem; border: 1px solid var(--border); border-radius: 0.4rem;
+    padding: 0 0.25rem; color: var(--muted); flex: none;
+  }
+  .entry-meta { color: var(--muted); font-size: 0.8rem; flex: none; font-variant-numeric: tabular-nums; }
+  .entry-sum {
+    color: var(--muted); font-size: 0.8rem; flex: 1 1 auto; min-width: 0;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .entry-chevron { color: var(--muted); flex: none; }
+  .entry-detail { padding: 0 0.6rem 0.5rem 2rem; }
+  .entry-detail pre {
+    margin: 0 0 0.35rem; padding: 0.4rem; max-height: 200px; overflow: auto;
+    background: var(--bg2); border: 1px solid var(--border); border-radius: 0.5rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.8rem;
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .empty { padding: 0.8rem 0.6rem; color: var(--muted); }
+
+  /* ---------- footer / dev ---------- */
+  #footer { border-top: 1px solid var(--border); padding: 0.35rem 0.6rem; }
+  #footer[hidden] { display: none; }
+  #dev summary { cursor: pointer; color: var(--muted); }
+  #dev[hidden] { display: none; }
+  #dev textarea { margin-top: 0.4rem; height: 7rem; resize: vertical; }
+  #dev .row { display: flex; gap: 0.4rem; margin-top: 0.4rem; }
+
+  /* ---------- panels (menu / token) ----------
+     Everything lives in the normal flow: a panel pushes the log down instead
+     of floating over it, so two blocks can never overlap. */
+  .panel {
+    /* flex: 0 0 auto — the panel keeps its natural height (capped at
+       max-height) instead of being squeezed by the log below it. */
+    flex: 0 0 auto;
+    padding: 0.5rem 0.6rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    max-height: 60%;
+    overflow-y: auto;
+  }
+  .panel[hidden] { display: none; }
+  .panel h3 {
+    margin: 0 0 0.4rem; font-size: 0.85rem; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  .panel .row { display: flex; gap: 0.3rem; margin-top: 0.4rem; align-items: center; }
+  .panel .row > * { flex: 1 1 auto; }
+  .panel .row > .fixed { flex: 0 0 auto; }
+  .panel .field { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; }
+  .panel .field > label, .panel .field > .lbl { flex: 0 0 6rem; color: var(--muted); }
+  .panel .field > *:not(label):not(.lbl) { flex: 1 1 auto; min-width: 0; }
+  .panel .check { margin-top: 0.5rem; }
+  .panel details { margin-top: 0.5rem; }
+  .panel summary { cursor: pointer; color: var(--muted); }
+  .panel label { display: block; color: var(--muted); margin-bottom: 0.2rem; }
+  .panel .hint { color: var(--muted); font-size: 0.8rem; margin: 0.4rem 0 0; }
+  .panel .kv { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 0.5rem; margin: 0; font-size: 0.85rem; }
+  .panel .kv dt { color: var(--muted); }
+  .panel .kv dd { margin: 0; overflow-wrap: anywhere; }
+  .panel .check { display: flex; align-items: center; gap: 0.4rem; color: var(--fg); }
+  .panel .check input { width: auto; }
+  .panel hr { border: 0; border-top: 1px solid var(--border); margin: 0.5rem 0 0.2rem; }
+  #token-state { font-size: 0.8rem; color: var(--muted); align-self: center; }
+  #size { display: flex; gap: 0.2rem; }
+  #size button { flex: 1 1 auto; }
+
+  #toast {
+    margin: 0 0.6rem 0.35rem;
+    padding: 0.35rem 0.6rem;
+    background: var(--bg2); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 0.5rem; font-size: 0.85rem;
+  }
+  #toast[hidden] { display: none; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) {
+    .entry-icon.running { animation: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div id="status" role="status" aria-live="polite">
+      <span class="dot" aria-hidden="true"></span>
+      <span id="state">Chưa kết nối</span>
+    </div>
+    <div id="file-info">
+      <span id="file-name">—</span>
+    </div>
+    <span id="version"></span>
+    <button id="menu-btn" class="icon" aria-haspopup="dialog" aria-expanded="false" aria-label="Menu" title="Menu">⋯</button>
+  </header>
+
+  <div id="hint" hidden></div>
+
+  <section id="token-panel" class="panel" role="dialog" aria-label="Token kết nối" hidden>
+    <h3>Token kết nối</h3>
+    <label for="token">Token (<code>~/.figma-agent/token</code>)</label>
+    <div class="row">
+      <input id="token" type="password" placeholder="token" autocomplete="off" spellcheck="false" />
+      <button id="token-eye" class="icon fixed" aria-label="Hiện hoặc ẩn token" aria-pressed="false">👁</button>
+    </div>
+    <div class="row">
+      <button id="token-copy">Sao chép</button>
+      <button id="token-paste">Dán</button>
+      <span id="token-state" class="fixed"></span>
+    </div>
+    <div class="row"><button id="connect" class="primary">Kết nối</button></div>
+    <p class="hint">Lấy token: <code>pbcopy &lt; ~/.figma-agent/token</code></p>
+    <p class="hint" id="token-msg"></p>
+  </section>
+
+  <section id="menu" class="panel" role="dialog" aria-label="Menu" hidden>
+    <button id="menu-token" style="width:100%">Token kết nối…</button>
+    <div class="field">
+      <span class="lbl">Thu phóng</span>
+      <span id="zoom" class="zoom" role="group" aria-label="Mức thu phóng">
+        <button id="zoom-out" class="icon" aria-label="Thu nhỏ">−</button>
+        <button id="zoom-value" aria-label="Đặt lại thu phóng 100%">100%</button>
+        <button id="zoom-in" class="icon" aria-label="Phóng to">+</button>
+      </span>
+    </div>
+    <div class="field">
+      <span class="lbl">Kích thước</span>
+      <span id="size" role="group" aria-label="Kích thước panel">
+        <button data-size="0">S</button>
+        <button data-size="1">M</button>
+        <button data-size="2">L</button>
+      </span>
+    </div>
+    <div class="field">
+      <label for="files">File đích</label>
+      <select id="files"></select>
+    </div>
+    <label class="check"><input type="checkbox" id="dev-mode" /> Developer mode</label>
+    <details id="more">
+      <summary>Chi tiết kết nối</summary>
+      <dl class="kv">
+        <dt>Port</dt><dd id="d-port">—</dd>
+        <dt>Trang</dt><dd id="d-page">—</dd>
+        <dt>User</dt><dd id="d-user">—</dd>
+        <dt>Plugin</dt><dd id="d-version">—</dd>
+        <dt>File key</dt><dd id="d-filekey">—</dd>
+        <dt>Kết nối lúc</dt><dd id="d-since">—</dd>
+        <dt>Số lệnh</dt><dd id="d-count">0</dd>
+      </dl>
+    </details>
+  </section>
+
+  <div id="log" role="log" aria-label="Nhật ký lệnh"></div>
+
+  <div id="toast" role="alert" hidden></div>
+
+  <div id="toolbar" hidden>
+    <select id="filter" aria-label="Lọc nhật ký">
+      <option value="all">Tất cả</option>
+      <option value="errors">Chỉ lỗi</option>
+    </select>
+    <span class="spacer"></span>
+    <button id="clear-btn" class="icon" aria-label="Xoá nhật ký" title="Xoá nhật ký">🗑</button>
+    <button id="copy-log-btn" class="icon" aria-label="Sao chép toàn bộ nhật ký" title="Sao chép nhật ký">⧉</button>
+  </div>
+
+  <footer id="footer" hidden>
+    <details id="dev" hidden>
+      <summary>⚙ Test render_tree locally</summary>
+      <textarea id="tree" spellcheck="false">{
+  "type": "frame", "name": "Card", "layout": "VERTICAL", "width": 320,
+  "padding": 20, "gap": 8, "radius": 16, "fill": "#FFFFFF", "effects": "md",
+  "children": [
+    { "type": "text", "text": "Hello from figma-agent", "fontSize": 18, "fontWeight": 700, "color": "#0F172A", "widthMode": "FILL" },
+    { "type": "text", "text": "Auto layout, wrapping text and shadows rendered from JSON.", "fontSize": 13, "color": "#64748B", "widthMode": "FILL" }
+  ]
+}</textarea>
+      <div class="row"><button id="render" class="primary">Render</button></div>
+    </details>
+  </footer>
+
+<script>
+/* @ports-start */const PORTS = [3055,3056,3057,3058,3059,3060,3061,3062,3063,3064,3065,3066,3067,3068,3069,3070,3071,3072,3073,3074,3075];/* @ports-end */
+const $ = (id) => document.getElementById(id);
+const PORT_TIMEOUT = 1000;
+const SCALE_MIN = 0.8;
+const SCALE_MAX = 1.5;
+const SCALE_STEP = 0.1;
+const LOG_MAX = 40;
+const SIZES = [
+  { label: 'S', width: 240, height: 240 },
+  { label: 'M', width: 300, height: 300 },
+  { label: 'L', width: 420, height: 560 },
+];
+const DEFAULT_SIZE = 1;
+
+let ws = null;
+let info = null;
+let settings = {};
+let retry = 0;
+let retryTimer = null;
+let scanId = 0;
+let manualClose = false;
+let connectedPort = null;
+let connectedAt = null;
+let commandCount = 0;
+let lastFilesKey = '';
+let pendingSize = null;
+let appliedSize = null;
+const entries = [];
+
+/* ---------------- settings ---------------- */
+
+function clampNumber(value, min, max, fallback) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return fallback;
+  return Math.min(max, Math.max(min, Math.round(n)));
+}
+
+function clampScale(value) {
+  const n = Number(value);
+  if (!Number.isFinite(n)) return 1;
+  return Math.min(SCALE_MAX, Math.max(SCALE_MIN, Math.round(n * 100) / 100));
+}
+
+/** A stored scale outside 0.8–1.5 (or NaN) is invalid: fall back to 100%. */
+function storedScaleIn(ui) {
+  const raw = ui ? ui.scale : undefined;
+  const n = Number(raw);
+  if (raw === undefined || !Number.isFinite(n) || n < SCALE_MIN || n > SCALE_MAX) return 1;
+  return Math.round(n * 100) / 100;
+}
+
+function storedScale() {
+  return storedScaleIn(settings.ui);
+}
+
+function currentScale() {
+  return storedScale();
+}
+
+function currentSize() {
+  const ui = settings.ui && typeof settings.ui === 'object' ? settings.ui : {};
+  const width = clampNumber(ui.w, 70, 2000, SIZES[DEFAULT_SIZE].width);
+  const height = clampNumber(ui.h, 0, 4000, SIZES[DEFAULT_SIZE].height);
+  return { width, height };
+}
+
+function saveSettings() {
+  toPlugin({ type: 'save-settings', settings });
+}
+
+/**
+ * The panel owns the settings shape: { token, ui: { w, h, scale },
+ * preferredFileKey, devMode }. Anything the plugin stored from an older build
+ * is kept, but the known keys always exist.
+ */
+function normalizeSettings(raw) {
+  const ui = raw.ui && typeof raw.ui === 'object' ? raw.ui : {};
+  return Object.assign({}, raw, {
+    ui: {
+      w: ui.w !== undefined ? ui.w : SIZES[DEFAULT_SIZE].width,
+      h: ui.h !== undefined ? ui.h : SIZES[DEFAULT_SIZE].height,
+      scale: storedScaleIn(ui),
+    },
+    preferredFileKey: typeof raw.preferredFileKey === 'string' ? raw.preferredFileKey : null,
+    devMode: !!raw.devMode,
+  });
+}
+
+/* ---------------- zoom / size ---------------- */
+
+function applyScale(value, persist) {
+  const scale = clampScale(value);
+  document.documentElement.style.setProperty('--scale', String(scale));
+  $('zoom-value').textContent = Math.round(scale * 100) + '%';
+  settings.ui = Object.assign({}, settings.ui, { scale });
+  if (persist !== false) saveSettings();
+}
+
+function stepScale(delta) {
+  applyScale(Math.round((currentScale() + delta) * 100) / 100);
+}
+
+function applySize(width, height) {
+  const w = clampNumber(width, 70, 2000, SIZES[DEFAULT_SIZE].width);
+  const h = clampNumber(height, 0, 4000, SIZES[DEFAULT_SIZE].height);
+  settings.ui = Object.assign({}, settings.ui, { w, h });
+  saveSettings();
+  toPlugin({ type: 'resize', width: w, height: h });
+  pendingSize = { width: w, height: h };
+  markPreset();
+}
+
+/** Called when Figma accepted the size: it becomes the one we fall back to. */
+function confirmSize(width, height) {
+  appliedSize = { width, height };
+  pendingSize = null;
+}
+
+/** Applies one of the S / M / L presets. */
+function usePreset(index) {
+  const preset = SIZES[index];
+  if (!preset) return;
+  applySize(preset.width, preset.height);
+  toast('Kích thước panel: ' + preset.label + ' (' + preset.width + '×' + preset.height + ')');
+}
+
+/** Marks the preset that matches the current size. */
+function markPreset() {
+  const ui = settings.ui || {};
+  const buttons = $('size').querySelectorAll('button');
+  for (const button of buttons) {
+    const preset = SIZES[Number(button.getAttribute('data-size'))];
+    const on = !!preset && preset.width === ui.w && preset.height === ui.h;
+    button.classList.toggle('active', on);
+    button.setAttribute('aria-pressed', String(on));
+  }
+}
+
+/* ---------------- status / toast ---------------- */
+
+function setState(kind, state, detail) {
+  $('status').className = kind || '';
+  $('state').textContent = state;
+  const hint = $('hint');
+  hint.className = kind || '';
+  hint.textContent = detail || '';
+  hint.hidden = !detail;
+  // The same text is useful inside the token popover, where the user is
+  // usually looking when a connection fails.
+  $('token-msg').textContent = detail || '';
+}
+
+let toastTimer = null;
+function toast(message) {
+  const el = $('toast');
+  el.textContent = message;
+  el.hidden = false;
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { el.hidden = true; }, 2500);
+}
+
+/* ---------------- activity log ---------------- */
+
+function summarize(result) {
+  if (result === null || result === undefined) return '';
+  if (typeof result === 'string') return result;
+  if (typeof result !== 'object') return String(result);
+  if (Array.isArray(result)) return result.length + ' items';
+  // A render_tree-ish result: "<n> frames · <m> nodes" reads better than raw JSON.
+  const frames = result.frames;
+  const nodes = result.nodes;
+  if (Array.isArray(frames) && Array.isArray(nodes)) {
+    return frames.length + ' frames · ' + nodes.length + ' nodes';
+  }
+  if (Array.isArray(nodes)) return nodes.length + ' nodes';
+  if (typeof result.created === 'number') return result.created + ' created';
+  return Object.keys(result).length + ' keys';
+}
+
+function byteSize(value) {
+  try {
+    const text = typeof value === 'string' ? value : JSON.stringify(value);
+    if (!text) return '';
+    if (text.length < 1024) return text.length + 'B';
+    return (text.length / 1024).toFixed(1) + 'k';
+  } catch (_e) {
+    return '';
+  }
+}
+
+function findEntry(id) {
+  for (const entry of entries) if (entry.id === id) return entry;
+  return null;
+}
+
+function upsertEntry(id, command) {
+  let entry = findEntry(id);
+  if (!entry) {
+    entry = {
+      id: id,
+      command: command || 'unknown',
+      state: 'running',
+      ms: null,
+      summary: '',
+      detail: '',
+      size: '',
+      local: String(id).startsWith('local-'),
+    };
+    entries.unshift(entry);
+    if (entries.length > LOG_MAX) entries.length = LOG_MAX;
+  }
+  return entry;
+}
+
+function renderLog() {
+  const box = $('log');
+  box.textContent = '';
+  const onlyErrors = $('filter').value === 'errors';
+  const shown = entries.filter((e) => !onlyErrors || e.state === 'failed');
+  // The toolbar only earns its space once there is something to filter.
+  $('toolbar').hidden = entries.length === 0;
+  if (!shown.length) {
+    const empty = document.createElement('div');
+    empty.className = 'empty';
+    empty.textContent = entries.length ? 'Không có lỗi nào.' : 'Chưa có lệnh nào.';
+    box.appendChild(empty);
+    return;
+  }
+  for (const entry of shown) box.appendChild(renderEntry(entry));
+}
+
+function renderEntry(entry) {
+  const wrap = document.createElement('div');
+  wrap.className = 'entry';
+
+  const head = document.createElement('button');
+  head.className = 'entry-head';
+  head.setAttribute('aria-expanded', 'false');
+
+  const icon = document.createElement('span');
+  icon.className = 'entry-icon ' + entry.state;
+  icon.setAttribute('aria-hidden', 'true');
+  icon.textContent = entry.state === 'done' ? '✓' : entry.state === 'failed' ? '✗' : '⟳';
+
+  const cmd = document.createElement('span');
+  cmd.className = 'entry-cmd';
+  cmd.textContent = entry.command;
+
+  head.appendChild(icon);
+  head.appendChild(cmd);
+  if (entry.local) {
+    const badge = document.createElement('span');
+    badge.className = 'entry-badge';
+    badge.textContent = '(local)';
+    head.appendChild(badge);
+  }
+  const meta = document.createElement('span');
+  meta.className = 'entry-meta';
+  meta.textContent = [entry.ms === null ? '' : entry.ms + 'ms', entry.size].filter(Boolean).join(' · ');
+  head.appendChild(meta);
+
+  const sum = document.createElement('span');
+  sum.className = 'entry-sum';
+  sum.textContent = entry.summary ||
+    (entry.state === 'running' ? 'đang chạy…' : entry.state === 'queued' ? 'đang chờ…' : '');
+  sum.title = entry.detail || entry.summary || '';
+  head.appendChild(sum);
+
+  const chevron = document.createElement('span');
+  chevron.className = 'entry-chevron';
+  chevron.setAttribute('aria-hidden', 'true');
+  chevron.textContent = '▸';
+  head.appendChild(chevron);
+
+  const detail = document.createElement('div');
+  detail.className = 'entry-detail';
+  detail.hidden = true;
+  const pre = document.createElement('pre');
+  pre.textContent = entry.detail || '(không có dữ liệu)';
+  const copy = document.createElement('button');
+  copy.textContent = '⧉ Copy JSON';
+  copy.onclick = () => copyText(entry.detail, 'Đã sao chép JSON');
+  detail.appendChild(pre);
+  detail.appendChild(copy);
+
+  head.onclick = () => {
+    const open = detail.hidden;
+    detail.hidden = !open;
+    head.setAttribute('aria-expanded', String(open));
+    chevron.textContent = open ? '▾' : '▸';
+  };
+
+  wrap.appendChild(head);
+  wrap.appendChild(detail);
+  return wrap;
+}
+
+function logText() {
+  return entries.map((e) => {
+    const state = e.state === 'done' ? '✓' : e.state === 'failed' ? '✗' : e.state === 'queued' ? '⋯' : '⟳';
+    return [state, e.command, e.ms === null ? '' : e.ms + 'ms', e.summary || e.detail || '']
+      .filter(Boolean).join('  ');
+  }).join('\n');
+}
+
+/* ---------------- clipboard ---------------- */
+
+async function copyText(text, okMessage) {
+  const value = text === undefined || text === null ? '' : String(text);
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(value);
+      toast(okMessage || 'Đã sao chép');
+      return;
+    }
+  } catch (_e) { /* fall through to the legacy path */ }
+  try {
+    const area = document.createElement('textarea');
+    area.value = value;
+    area.style.position = 'fixed';
+    area.style.opacity = '0';
+    document.body.appendChild(area);
+    area.select();
+    document.execCommand('copy');
+    document.body.removeChild(area);
+    toast(okMessage || 'Đã sao chép');
+  } catch (_e) {
+    toast('Không sao chép được — hãy chọn và copy thủ công');
+  }
+}
+
+async function pasteText(input) {
+  try {
+    if (navigator.clipboard && navigator.clipboard.readText) {
+      const text = await navigator.clipboard.readText();
+      if (text) {
+        input.value = text.trim();
+        $('token-msg').textContent = '';
+        return true;
+      }
+    }
+  } catch (_e) { /* permission denied */ }
+  $('token-msg').textContent = 'Trình duyệt chặn đọc clipboard — bấm ⌘V (Ctrl+V) vào ô token.';
+  return false;
+}
+
+/* ---------------- connection ---------------- */
+
+function portLabel(order) {
+  if (order && order.length <= 2) return order.join(', ');
+  return PORTS[0] + '–' + PORTS[PORTS.length - 1];
+}
+
+/**
+ * Every agent now shares one hub on the first port, so the remembered port and
+ * the first one are normally all there is to try. The whole range is probed
+ * only when asked (Connect button, plugin start, every few retries) for
+ * servers that still run one port each: every empty port is a failed
+ * WebSocket, and Chromium slows down new ones after many failures.
+ */
+function portOrder(wide) {
+  // The hub port always comes first: a port remembered from a pre-hub server
+  // (3057…) would otherwise keep the panel on that server while every agent
+  // talks to the hub, and the hub would see no file.
+  const remembered = Number(settings.port);
+  const order = [PORTS[0]];
+  if (Number.isInteger(remembered) && PORTS.indexOf(remembered) >= 0 && order.indexOf(remembered) < 0) {
+    order.push(remembered);
+  }
+  if (wide) for (const port of PORTS) if (order.indexOf(port) < 0) order.push(port);
+  return order;
+}
+
+function openPort(port, token, id) {
+  return new Promise((resolve) => {
+    let sock;
+    try {
+      sock = new WebSocket('ws://localhost:' + port + '/?token=' + encodeURIComponent(token));
+    } catch (_e) {
+      resolve(null);
+      return;
+    }
+    let settled = false;
+    // On timeout the scan moves on, but the socket keeps connecting: Chromium
+    // throttles WebSocket handshakes after repeated failures (the empty ports
+    // of earlier scans), and closing a socket that is merely delayed counts as
+    // one more failure, so every later attempt is delayed even longer and the
+    // panel never reaches a live server.
+    const timer = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      resolve(null);
+    }, PORT_TIMEOUT);
+    sock.onopen = () => {
+      clearTimeout(timer);
+      if (!settled) {
+        settled = true;
+        resolve(sock);
+        return;
+      }
+      // Opened after its scan gave up on it: adopt it if nothing newer did.
+      if (id === scanId && !ws) adopt(sock, port);
+      else { try { sock.close(); } catch (_e) { /* ignore */ } }
+    };
+    sock.onerror = () => {
+      if (settled) return;
+      settled = true;
+      clearTimeout(timer);
+      try { sock.close(); } catch (_e) { /* ignore */ }
+      resolve(null);
+    };
+  });
+}
+
+/**
+ * Arms the next connection attempt. Used both after a connection drops and
+ * after the first probe found no server at all — without the second case the
+ * panel would give up for good and the user would have to press "Kết nối"
+ * by hand every time the server started after the plugin.
+ */
+function scheduleRetry() {
+  const delay = Math.min(10000, 1000 * Math.pow(2, retry++));
+  const wide = retry % 5 === 0;
+  retryTimer = setTimeout(() => connect(wide), delay);
+  return delay;
+}
+
+async function connect(wide) {
+  clearTimeout(retryTimer);
+  const token = String($('token').value || '').trim();
+  if (!token) {
+    setState('err', 'Chưa có token', 'Dán token rồi bấm Kết nối.');
+    openPanel('token-panel');
+    return;
+  }
+  if (ws) {
+    manualClose = true;
+    try { ws.close(); } catch (_e) { /* ignore */ }
+    ws = null;
+  }
+  manualClose = false;
+  // focus, visibilitychange, the retry timer and the button can all start a
+  // scan. Only the newest one may report or adopt: a stale scan that began
+  // while the server was down would otherwise finish later, show "no server"
+  // over a live connection and arm a retry that tears it down again.
+  const id = ++scanId;
+  const order = portOrder(wide === true);
+  setState('wait', 'Đang tìm server…', 'Thử cổng ' + portLabel(order) + '.');
+  for (const port of order) {
+    const sock = await openPort(port, token, id);
+    if (id !== scanId || ws) {
+      if (sock) { try { sock.close(); } catch (_e) { /* ignore */ } }
+      return;
+    }
+    if (!sock) continue;
+    adopt(sock, port);
+    return;
+  }
+  // No server on any port: keep retrying on our own.
+  const delay = scheduleRetry();
+  setState('err', 'Không tìm thấy MCP server',
+    'Không có server ở cổng ' + portLabel(order) + '. Tự thử lại sau ' + Math.round(delay / 1000) + 's.');
+}
+
+function adopt(sock, port) {
+  // A late socket can open after the scan already armed a retry; that retry
+  // would close this connection.
+  clearTimeout(retryTimer);
+  ws = sock;
+  connectedPort = port;
+  connectedAt = new Date();
+  commandCount = 0;
+  retry = 0;
+  settings.port = port;
+  saveSettings();
+  setState('ok', 'Đã kết nối', '');
+  updateDetails();
+  // Connected: the token form is no longer needed, so it gets out of the way.
+  closePanels();
+  markPreset();
+
+  sock.onmessage = (ev) => {
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch (_e) { return; }
+    if (msg.type === 'request') {
+      // Show the command right away; the plugin confirms with an "activity"
+      // message once it actually starts.
+      const entry = upsertEntry(msg.id, msg.command);
+      entry.state = 'running';
+      entry.summary = '';
+      renderLog();
+      toPlugin(msg);
+    } else if (msg.type === 'notice') {
+      applyFiles(msg.files);
+      toPlugin(msg);
+    }
+  };
+  sock.onclose = (ev) => {
+    if (ws !== sock) return;
+    ws = null;
+    connectedPort = null;
+    if (ev.code === 4001) {
+      setState('err', 'Token sai', 'Kiểm tra ~/.figma-agent/token rồi bấm Kết nối.');
+      openPanel('token-panel');
+      return;
+    }
+    if (manualClose) {
+      setState('', 'Đã ngắt kết nối', '');
+      return;
+    }
+    const delay = scheduleRetry();
+    setState('wait', 'Chờ MCP server…', 'Thử lại sau ' + Math.round(delay / 1000) + 's');
+  };
+  sock.onerror = () => { /* the close handler takes over */ };
+
+  sendHello();
+}
+
+function sendHello() {
+  if (!ws || ws.readyState !== 1 || !info) return;
+  const payload = Object.assign({}, info, { preferredFileKey: settings.preferredFileKey || null });
+  try { ws.send(JSON.stringify({ type: 'hello', info: payload })); } catch (_e) { /* ignore */ }
+}
+function toPlugin(msg) {
+  parent.postMessage({ pluginMessage: msg }, '*');
+}
+
+/* ---------------- files ---------------- */
+
+function applyFiles(files) {
+  const list = Array.isArray(files) ? files : [];
+  const key = JSON.stringify(list);
+  if (key === lastFilesKey) return;
+  lastFilesKey = key;
+  const select = $('files');
+  select.textContent = '';
+  const names = list.map((f) => f.fileName);
+  for (const file of list) {
+    const option = document.createElement('option');
+    option.value = file.fileKey || file.fileName;
+    let label = file.fileName + ' · ' + (file.currentPage || '');
+    if (names.indexOf(file.fileName) !== names.lastIndexOf(file.fileName)) {
+      label += ' · ' + (file.fileKey || 'no key');
+    }
+    option.textContent = label;
+    select.appendChild(option);
+  }
+  if (!list.length) {
+    const option = document.createElement('option');
+    option.value = '';
+    option.textContent = 'Không có file nào';
+    select.appendChild(option);
+  }
+  if (settings.preferredFileKey) select.value = settings.preferredFileKey;
+  select.onchange = () => {
+    settings.preferredFileKey = select.value || null;
+    saveSettings();
+    sendHello();
+    const selected = select.selectedOptions[0];
+    toast('Đã ghim file: ' + (selected ? selected.textContent : ''));
+  };
+}
+
+/* ---------------- details ---------------- */
+
+function updateDetails() {
+  $('d-port').textContent = connectedPort === null ? '—' : String(connectedPort);
+  $('d-page').textContent = info && info.currentPage ? info.currentPage.name : '—';
+  $('d-user').textContent = info && info.user ? info.user : '—';
+  $('d-version').textContent = info && info.version ? info.version : '—';
+  // "1.2.0 (7c81ced+dirty)" → "v1.2.0" in the header; the build is in the
+  // tooltip and in the connection details.
+  const version = info && info.version ? info.version : '';
+  $('version').textContent = version ? 'v' + version.split(' ')[0] : '';
+  $('version').title = version ? 'Plugin ' + version : '';
+  $('d-filekey').textContent = info && info.fileKey ? info.fileKey : '—';
+  $('d-since').textContent = connectedAt ? connectedAt.toLocaleTimeString() : '—';
+  $('d-count').textContent = String(commandCount);
+}
+
+function updateFileHeader() {
+  $('file-name').textContent = info && info.fileName ? info.fileName : '—';
+}
+
+/* ---------------- panels ----------------
+   Only one panel is open at a time, and every panel sits in the normal flow
+   (no absolute positioning), so nothing can ever overlap anything else. */
+
+const PANELS = ['token-panel', 'menu'];
+const PANEL_TRIGGER = { 'token-panel': 'menu-token', menu: 'menu-btn' };
+
+function openPanel(id) {
+  for (const panel of PANELS) $(panel).hidden = panel !== id;
+  const trigger = PANEL_TRIGGER[id];
+  if (trigger) $(trigger).setAttribute('aria-expanded', 'true');
+  if (id === 'token-panel') $('token-state').textContent = settings.token ? 'đã lưu ✓' : '';
+  if (id === 'menu') { updateDetails(); markPreset(); }
+}
+
+function closePanels() {
+  for (const panel of PANELS) $(panel).hidden = true;
+  for (const trigger of Object.keys(PANEL_TRIGGER)) $(trigger).setAttribute('aria-expanded', 'false');
+}
+
+function isPanelOpen(id) {
+  return !$(id).hidden;
+}
+
+/* ---------------- events ---------------- */
+
+function togglePanel(id, event) {
+  if (event) event.stopPropagation();
+  const open = $(id).hidden;
+  closePanels();
+  if (open) openPanel(id);
+}
+
+$('menu-token').onclick = (e) => togglePanel('token-panel', e);
+$('menu-btn').onclick = (e) => togglePanel('menu', e);
+for (const button of $('size').querySelectorAll('button')) {
+  button.onclick = () => usePreset(Number(button.getAttribute('data-size')));
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest || !e.target.closest('.panel')) closePanels();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePanels();
+});
+
+$('zoom-in').onclick = () => stepScale(SCALE_STEP);
+$('zoom-out').onclick = () => stepScale(-SCALE_STEP);
+$('zoom-value').onclick = () => applyScale(1);
+
+$('filter').onchange = renderLog;
+$('clear-btn').onclick = () => {
+  entries.length = 0;
+  renderLog();
+};
+$('copy-log-btn').onclick = () => copyText(logText(), 'Đã sao chép nhật ký');
+
+$('token-eye').onclick = () => {
+  const input = $('token');
+  const shown = input.type === 'text';
+  input.type = shown ? 'password' : 'text';
+  $('token-eye').setAttribute('aria-pressed', String(!shown));
+};
+$('token-copy').onclick = () => {
+  const token = settings.token || String($('token').value || '').trim();
+  if (!token) { toast('Chưa có token để sao chép'); return; }
+  copyText(token, 'Đã sao chép token');
+};
+$('token-paste').onclick = () => pasteText($('token'));
+$('token').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('connect').click(); });
+$('connect').onclick = () => {
+  const token = String($('token').value || '').trim();
+  if (!token) { setState('err', 'Chưa có token', 'Dán token rồi bấm Kết nối.'); return; }
+  settings.token = token;
+  saveSettings();
+  $('token-state').textContent = 'đã lưu ✓';
+  retry = 0;
+  connect(true);
+};
+
+// Chromium throttles timers in a panel that is not in front. When the user
+// comes back to Figma, try again right away instead of waiting for the
+// throttled backoff to fire.
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden && !ws) { retry = 0; connect(); }
+});
+window.addEventListener('focus', () => {
+  if (!ws) { retry = 0; connect(); }
+});
+
+$('dev-mode').onchange = (e) => {
+  settings.devMode = !!e.target.checked;
+  saveSettings();
+  $('dev').hidden = !settings.devMode;
+  $('footer').hidden = !settings.devMode;
+};
+
+$('render').onclick = () => {
+  let tree;
+  try { tree = JSON.parse($('tree').value); }
+  catch (e) { toast('JSON không hợp lệ: ' + e.message); return; }
+  toPlugin({ type: 'request', id: 'local-' + Date.now(), command: 'render_tree', params: { tree, select: true } });
+};
+
+/* ---------------- plugin messages ---------------- */
+
+window.onmessage = (ev) => {
+  const msg = ev.data && ev.data.pluginMessage;
+  if (!msg) return;
+  if (msg.type === 'init') {
+    info = msg.info;
+    settings = normalizeSettings(msg.settings || {});
+    const size = currentSize();
+    // Render the stored zoom without writing it back; only the first change
+    // persists it.
+    applyScale(storedScale(), false);
+    $('token').value = settings.token || '';
+    $('token-state').textContent = settings.token ? 'đã lưu ✓' : '';
+    $('dev-mode').checked = !!settings.devMode;
+    $('dev').hidden = !settings.devMode;
+    $('footer').hidden = !settings.devMode;
+    updateFileHeader();
+    updateDetails();
+    // Restore the panel size the user left it at.
+    if (settings.ui && settings.ui.w !== undefined && settings.ui.h !== undefined) {
+      applySize(size.width, size.height);
+      appliedSize = { width: size.width, height: size.height };
+    }
+    if (settings.token) connect(true);
+    // No token yet: the token form is the only thing worth showing.
+    else openPanel('token-panel');
+    // The socket may have opened before "init" arrived; make sure the server
+    // still learns who we are.
+    sendHello();
+  } else if (msg.type === 'activity') {
+    const entry = upsertEntry(msg.requestId, msg.command);
+    entry.state = msg.state;
+    if (msg.ms !== undefined && msg.ms !== null) entry.ms = msg.ms;
+    if (entry.state === 'running' || entry.state === 'queued') entry.summary = '';
+    renderLog();
+  } else if (msg.type === 'response') {
+    commandCount += 1;
+    const entry = upsertEntry(msg.id, msg.command);
+    entry.state = msg.ok ? 'done' : 'failed';
+    if (msg.ms !== undefined && msg.ms !== null) entry.ms = msg.ms;
+    if (msg.ok) {
+      entry.summary = summarize(msg.result);
+      entry.detail = JSON.stringify(msg.result, null, 2);
+      entry.size = byteSize(msg.result);
+    } else {
+      entry.summary = String(msg.error || 'Lỗi');
+      entry.detail = String(msg.error || 'Lỗi');
+      entry.size = '';
+    }
+    renderLog();
+    updateDetails();
+    if (!entry.local && ws && ws.readyState === 1) {
+      const wire = { type: 'response', id: msg.id, ok: msg.ok };
+      if (msg.ok) wire.result = msg.result;
+      else {
+        wire.error = msg.error;
+        wire.safeToRetryWithoutCanvasRead = !!msg.safeToRetryWithoutCanvasRead;
+      }
+      try { ws.send(JSON.stringify(wire)); } catch (_e) { /* ignore */ }
+    }
+  } else if (msg.type === 'event') {
+    info = msg.info;
+    updateFileHeader();
+    updateDetails();
+    if (ws && ws.readyState === 1) {
+      const wire = { type: 'event', event: msg.event, info: msg.info };
+      if (msg.selection) wire.selection = msg.selection;
+      try { ws.send(JSON.stringify(wire)); } catch (_e) { /* ignore */ }
+    }
+  } else if (msg.type === 'notice') {
+    applyFiles(msg.files);
+  } else if (msg.type === 'resize-ok') {
+    confirmSize(msg.width, msg.height);
+  } else if (msg.type === 'resize-error') {
+    // Figma refused the new size: keep the last accepted one and say so.
+    toast('Không đổi được kích thước: ' + (msg.message || 'lỗi không rõ'));
+    if (pendingSize && appliedSize) {
+      settings.ui = Object.assign({}, settings.ui, { w: appliedSize.width, h: appliedSize.height });
+      saveSettings();
+      toPlugin({ type: 'resize', width: appliedSize.width, height: appliedSize.height });
+    }
+    pendingSize = null;
+  }
+};
+
+renderLog();
+toPlugin({ type: 'ready' });
+</script>
+</body>
+</html>

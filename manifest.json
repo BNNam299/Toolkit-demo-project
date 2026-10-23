@@ -1,0 +1,39 @@
+{
+  "name": "figma-agent-UI",
+  "id": "1694007584311760769",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "documentAccess": "dynamic-page",
+  "editorType": ["figma"],
+  "permissions": ["currentuser", "teamlibrary"],
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "devAllowedDomains": [
+      "ws://localhost:3055",
+      "ws://localhost:3056",
+      "ws://localhost:3057",
+      "ws://localhost:3058",
+      "ws://localhost:3059",
+      "ws://localhost:3060",
+      "ws://localhost:3061",
+      "ws://localhost:3062",
+      "ws://localhost:3063",
+      "ws://localhost:3064",
+      "ws://localhost:3065",
+      "ws://localhost:3066",
+      "ws://localhost:3067",
+      "ws://localhost:3068",
+      "ws://localhost:3069",
+      "ws://localhost:3070",
+      "ws://localhost:3071",
+      "ws://localhost:3072",
+      "ws://localhost:3073",
+      "ws://localhost:3074",
+      "ws://localhost:3075"
+    ],
+    "reasoning": "Connects to the local figma-agent MCP server so an AI agent running on this machine can read and edit the design."
+  }
+}

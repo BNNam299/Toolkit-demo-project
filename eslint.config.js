@@ -1,0 +1,44 @@
+const eslint = require('@eslint/js')
+const tseslint = require('typescript-eslint')
+const figmaPlugin = require('@figma/eslint-plugin-figma-plugins')
+
+module.exports = tseslint.config(
+  eslint.configs.recommended,
+  // @typescript-eslint/recommended-type-checked is too aggressive for
+  // widget code...it doesn't seem to like JSX element return values or
+  // unbundling the `widget` object for use* hooks. So we'll use
+  // tseslint.configs.recommended instead.
+  tseslint.configs.recommended,
+  {
+    languageOptions: {
+      parserOptions: {
+        // The Figma rules need type information.
+        project: ['./tsconfig.json', './tsconfig.server.json'],
+        tsconfigRootDir: __dirname,
+      },
+    },
+    rules: {
+      // allow underscore-prefixing of unused variables
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/plugin/**/*.ts'],
+    plugins: {
+      '@figma/figma-plugins': figmaPlugin,
+    },
+    rules: {
+      ...figmaPlugin.configs.recommended.rules,
+    },
+  },
+  {
+    ignores: ['code.js', 'dist', 'out', 'eslint.config.js', 'node_modules', 'vitest.config.ts', '.skill-eval/**', 'scripts/**'],
+  },
+)
