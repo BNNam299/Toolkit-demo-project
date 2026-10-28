@@ -1,12 +1,12 @@
 # Screen frame standards (designer's frame, safe area, platforms, build checklist)
 
-> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/screen-frame.md (all) + modules/ui-draft.md (cluster grouping, draft frame size, draft root) @ 3c0e291 — translated, complete
+> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/screen-frame.md (all) + modules/ui-draft.md (cluster grouping, draft frame size) @ 3c0e291 — translated, complete. Overrides the toolkit's draft root (vertical auto layout): the designer decided drafts use the same `NONE` root and that the layers inside are not limited to three.
 
 Applies to **wireframes and UI** alike. The tool demo's generic frame sizes and grids live in `../figma-ui-flow/references/file-standards.md` §4; this file is the team's (designer's) standard and **wins** where they differ (§11 lists the differences).
 
 ## Contents
-1. Two frames: draft frame vs locked (designer's) frame
-2. The rule: the root is a plain frame
+1. One frame structure for drafts and locked screens
+2. The rule: the screen frame has no auto layout; the layers inside are not fixed in advance
 3. Why, and the evidence
 4. The designer's template screen
 5. Safe area is a spacer component — never draw the status bar
@@ -22,29 +22,32 @@ Applies to **wireframes and UI** alike. The tool demo's generic frame sizes and 
 
 ---
 
-## 1. Two frames: draft frame vs locked (designer's) frame
+## 1. One frame structure for drafts and locked screens
 
-The team uses **two** frame conventions, one per rhythm (`draft-and-option-rhythm.md`, `lock-phase.md`). Both are correct in their place — do not mix them.
+Drafts, options, clones and locked screens use **the same structure** (the designer's decision: *"draft or real, both need the auto-layout structure"*): the screen frame has **no auto layout** (§2), everything inside it is built with auto layout. Locking a screen therefore never restructures it — it only binds values and swaps in components.
 
-| | **Draft / option / clone draft** (before the designer says *"lock screen …"* — *"chốt màn …"*) | **Locked screen** (designer's standard) |
+| | **Draft / option / clone** (before the designer says *"lock screen …"* — *"chốt màn …"*) | **Locked screen** |
 |---|---|---|
-| Region grouping | **By visual cluster, no fixed region count.** For each region ask: *"what sits on the same background? what scrolls together? what is one idea?"* — same answer → **one region**, named by function (`Header`, `Categories`, `Plan list`, `Tab bar`…). A coloured background with cards / a character on it → that region contains them. Floating bars (tab bar, CTA stuck to the bottom) → `absolute` in the root. | **Three containers**: `Top container` · `Content` · `Bottom container` (+ floating layers), with the clusters placed *inside* them, never split (§7). |
-| Frame size | **Clone → the reference's size** (measured 375×812 → build 375×812). Option / draft → the project's screen size; none → the platform size. | Project's screen size from the project settings (e.g. 393×852, designer's iPhone 402×874) — fixed. |
-| Root | May be vertical auto layout; no Safe-Area instance needed. | **Plain frame, `layoutMode = NONE`** (§2); Safe-Area instances (§5). |
-| Values | Hex, no variables, no components (`draft-and-option-rhythm.md` §4). | Bound to the system (`lock-phase.md`). |
+| Structure | Same as locked: root `NONE`, layer frames placed in it (§2), auto layout inside. Read the clusters first (§7). | Same. |
+| Frame size | **Clone → the reference's size** (measured 375×812 → build 375×812). Option / draft → the project's screen size; none → the platform size. | **New project: 402×874** (the designer's iPhone, Safe-Area 62 / 34). **Existing project: the size of the screens already designed in that file** — keep their aspect ratio so new screens line up with the old ones. Recorded in the project settings, fixed. |
+| Safe area | `Safe-Area` instance when the file has the set; otherwise a placeholder frame at the device inset, swapped at the lock. | `Safe-Area` instances (§5). |
+| Values | Hex, no variables, no components (`draft-and-option-rhythm.md` §4). | Bound to the system, components built (`lock-phase.md`). |
 
-Locking a screen converts the draft frame into the designer's frame: the clusters keep their content and move into the three containers.
+## 2. The rule: the screen frame has no auto layout; the layers inside are not fixed in advance
 
-## 2. The rule: the root is a plain frame
+**The root frame that wraps a screen is always a plain frame** — `layoutMode = "NONE"`. Inside it sit **layer frames**, each placed at its position and stacked bottom → top; **everything inside a layer frame uses auto layout** (free positioning only for deliberate geometry and visuals — `visual_…`, absolute overlaps inside a cluster).
 
-**The root frame that wraps a screen is always a plain frame** — `layoutMode = "NONE"`. **Only the child frames inside it** use auto layout.
+The usual skeleton is `Content` → `Bottom Container` → `Top Container`, but **the set of layers is not limited to these three**. Whatever has to sit **on top of** something else — a floating button, a tab bar, a sticker or badge over a card, a character overlapping two regions, a `visual_` background cluster, a scrim, a sheet, a popup, a toast — gets **its own frame in the root**, at the layer order it needs. What a screen needs cannot be predicted: read the screen (§7 and `screen-building-lessons.md` §4) and add the layer frames it calls for, rather than forcing everything into three boxes.
 
 ```
-Add-Photo-Detail Meal_Result      FRAME · layoutMode NONE · size from the project settings (e.g. 393×852), fixed
-├─ Top container                    auto layout · top safe area
+Add-Photo-Detail Meal_Result      FRAME · layoutMode NONE · size from the project settings, fixed
+├─ Background/<name>                instance · bottom-most layer (if any)
+├─ visual_Header                    background cluster with the content on it (if any)
 ├─ Content                          auto layout · scrolls
-├─ Bottom container                 auto layout · bottom safe area
-└─ Tab bar / FAB / Sheet / Scrim    placed absolutely on the root frame
+├─ Bottom Container                 auto layout · bottom safe area
+├─ Top Container                    auto layout · top safe area
+├─ FAB / sticker / overlapping art  own frame, auto layout inside, placed over what it covers
+└─ Scrim / Sheet / Popup / Toast    own frames, top-most
 ```
 
 A **component** root is the opposite — it is auto layout (`lock-phase.md` §5). Do not confuse the two rules.
@@ -64,19 +67,19 @@ A **component** root is the opposite — it is auto layout (`lock-phase.md` §5)
 
 ## 4. The designer's template screen
 
-**The template screen comes first.** The designer places one (or a few) standard screens their own way — often **copied from another file** they designed. **Analyse the template before building any screen**: read its skeleton (`get_node{ids:[template], depth: 3}` — which blocks, which auto layout, which sizing, instances of which components), describe it back in words for the designer to confirm, then record **a pointer** to it in the project settings (screen template = frame name / id). The structure stays in Figma, not copied into a file — re-read the template every session (Figma is the source of truth).
+**The template screen comes first.** The designer places one (or a few) standard screens their own way — often **copied from another file** they designed. **Analyse the template before building any screen**: run `../design-system-audit/scripts/detect.js` with `TEMPLATE` set (or `get_node{ids:[template], depth: 3}`) and read its skeleton — which blocks, which auto layout, which sizing, instances of which components, describe it back in words for the designer to confirm, then record **a pointer** to it in the project settings (screen template = frame name / id). The structure stays in Figma, not copied into a file — re-read the template every session (Figma is the source of truth).
 
-**Learn structure, not values.** A screen copied from another file carries that file's variables, text styles, colours and components — count them (bound variables / styles / components whose key is not local) before learning. So:
+**Learn structure, not values.** A screen copied from another file carries that file's variables, text styles, colours and components — `detect.js` counts them (bound variables / styles / components whose key is not local) and says so in its template note. So:
 - **Learn:** block hierarchy · auto layout and sizing · child order · which component stands where · how the safe area is built
 - **Do not learn:** colours, text, variables, styles, specific measurements — values always come from **this file's system** (`../design-system-audit/references/system-binding.md`)
 - Component from the other file → match it with the **atom with the same role in this file** by name; none found → ask, do not create one
-- The template **is not a project screen**: do not audit it, bind it, or count it in progress (exclude it from `audit_design`, `bind_variables` runs)
+- The template **is not a project screen**: do not audit it, bind it, or count it in progress (list it in `TEMPLATE_FRAMES` of `../ux-review-handoff/scripts/audit.js` and `../design-system-audit/scripts/bind.js`; skip it in `audit_design`, `bind_variables` runs)
 
 The template is **tier 1** for structure: its structure beats this toolkit's default structure. If the template breaks a core rule (e.g. its root is auto layout) → say so once, with the risk, and let the designer decide.
 
 ## 5. Safe area is a spacer component — never draw the status bar
 
-**The safe area is an empty-space component; never draw a status bar or home indicator** — not even when cloning from an image that shows one. A layer that is not an instance named *Status bar* / *Home indicator* but draws one is a defect (check with `find_nodes{name: "Status"}` / `get_node`; `audit_design` does not catch it). Standard build when the project's safe-area setting is `spacer-component`:
+**The safe area is an empty-space component; never draw a status bar or home indicator** — not even when cloning from an image that shows one. A layer that is not an instance named *Status bar* / *Home indicator* but draws one is a defect — `audit.js` › `handDrawnStatusBar` catches it (`audit_design` does not; without the script, `find_nodes{name: "Status"}` / `get_node`). Standard build when the project's safe-area setting is `spacer-component`:
 
 ```
 Settings_Result                   FRAME · layoutMode NONE · 393×852 · no fill of its own
@@ -97,7 +100,7 @@ Settings_Result                   FRAME · layoutMode NONE · 393×852 · no fil
 - A screen with nothing at the bottom still keeps `Safe area/Bottom` if the project convention requires it — ask when the template does not make it clear.
 - Wireframes use the **same** two components (they are just empty space, no colour) — wireframe and UI structure match from the start.
 
-**Why:** a single source for the safe-area height. **Evidence:** *"status bar wrong height spread across 23 screens"* — a safe area drawn by hand on each screen is wrong everywhere once it is wrong in one place and cloned. With instances there is only one place to be wrong, and a check can find screens that hand-draw it, detach it, or use the wrong component (safe-area check: instance of the right component, first child of the top block / last child of the bottom block, not hand-drawn, not detached).
+**Why:** a single source for the safe-area height. **Evidence:** *"status bar wrong height spread across 23 screens"* — a safe area drawn by hand on each screen is wrong everywhere once it is wrong in one place and cloned. With instances there is only one place to be wrong, and `audit.js` › `safeArea` finds screens that hand-draw it, detach it, or use the wrong component (instance of the right component, first child of the top block / last child of the bottom block, not hand-drawn, not detached).
 
 Project declares the safe area as `none`, or has no component → follow §2: the top and bottom containers reserve the safe area with **padding** taken from the project's platform settings. (The designer's own measured standard, §8, always uses the `Safe-Area` instance, never padding.)
 
@@ -115,7 +118,7 @@ Every design file has **one** set **`Safe-Area`** with two variant properties **
 
 **Where it goes**
 - **Horizontal bars** (iPhone, iPad, Duo Inner Portrait): Top is the first layer of `Top Container`, Bottom is the last layer of `Bottom Container`. **Duo Inner Portrait: the top block is `Toolbar - Top - iPhone Duo` (system bar 84) — no Safe-Area Top**; an extra one is a defect.
-- **Vertical bars** (Duo Inner Landscape, Duo Outer, Split…): **no Safe-Area frame**. Use the **padding** of the pane and the blocks inside it instead: **left ≥ 20 · top ≥ 24 · bottom ≥ 24**. **The edge touching the vertical bar = 0** — content always sits flush against `Pane controls`; the spacing on that side comes from `Pane controls`' own padding (12). Split Left (bar on the left) → mirror the sides. Padding 0 on an outer edge only for deliberate full-bleed backgrounds / media. Defects to check: an extra Safe-Area, Duo margins below Apple's, a non-zero margin on the bar side.
+- **Vertical bars** (Duo Inner Landscape, Duo Outer, Split…): **no Safe-Area frame**. Use the **padding** of the pane and the blocks inside it instead: **left ≥ 20 · top ≥ 24 · bottom ≥ 24**. **The edge touching the vertical bar = 0** — content always sits flush against `Pane controls`; the spacing on that side comes from `Pane controls`' own padding (12). Split Left (bar on the left) → mirror the sides. Padding 0 on an outer edge only for deliberate full-bleed backgrounds / media. `audit.js` reports `safeArea` (an extra Safe-Area), `duoMarginBelowApple`, `duoPaddingNextToBar`.
 - **Left margin, inner edge of a pane:** **padding, not Safe-Area** — there is no system on the left (asymmetric safe area; RTL does not mirror the vertical bar). **At least 20 on Duo** (Apple's margin) — the designer may choose more per block. Split View: the app on the left also only needs margins.
 - iPhone frames other than 402 × 874 (e.g. 375 × 812): **PENDING** — 44 / 34 from existing knowledge, needs verifying.
 - Numbers in the designer's component that **differ from Apple** (e.g. iPhone Top 60 vs 62) → `safearea.js` reports them; fix to Apple when the designer agrees (`FIX_TO_APPLE`). Apple numbers win where Apple has one.
@@ -125,18 +128,18 @@ Every design file has **one** set **`Safe-Area`** with two variant properties **
 - `MODE: "check"` (read only) first → report to the designer → `MODE: "apply"`, `DRY_RUN: false` when the designer agrees.
 - No set → creates the full set in its own section (`Components — agent`). Set exists (e.g. only `Position`) → adds the `Device` property (old variants become `Device = iPhone`) + the missing variants. **Never changes the height of an existing variant** — a mismatch is reported (`heightMismatch`), fixed only with `FIX_TO_APPLE` and only for Apple-sourced cells. Variants of vertical-bar devices that already exist are reported (`noLongerUsed`), never deleted — the designer decides. A set from an external library → the script stops: edit it in the library file.
 
-**Which variant a screen uses** — the variant **for the screen's device** (name suffix → Device: `_Inner Landscape` → Duo Inner Landscape, `_Inner` → Duo Inner Portrait, `_Outer` → Duo Outer, `_iPad` → iPad; no suffix → by frame size — iPad size → iPad, otherwise iPhone). Also check for a **status bar of the wrong device** (e.g. an iPad screen using the iPhone status bar) and **Duo pane margins under 20**. The height is the component's job, not the screen's.
+**Which variant a screen uses** — the variant **for the screen's device** (name suffix → Device: `_Inner Landscape` → Duo Inner Landscape, `_Inner` → Duo Inner Portrait, `_Outer` → Duo Outer, `_iPad` → iPad; no suffix → by frame size — iPad size → iPad, otherwise iPhone). `audit.js` also reports a **status bar of the wrong device** (`statusBarWrongDevice`, e.g. an iPad screen using the iPhone status bar) and **Duo pane margins under 20**. The height is the component's job, not the screen's.
 
 ## 7. Background clusters and full-bleed visuals
 
-**Images / backgrounds that run up under the status bar** (full-bleed hero, cover photo, gradient strip at the top of the screen): the `visual_<name>` layer is **a child of the root frame, below the Top container** (lower in layer order), any size and position. **Do not** make the hero the first layer of the Top container or of Content to push it up to the top edge — the Top container still starts with the Safe-Area. Fixed navigation buttons on top of the hero (close, back) belong to the Top container as usual. A `visual_` layer is not counted as the top block in the safe-area check. **Content that sits on the background** (cards, speech bubbles, characters) → the background cluster below, not pushed into Content.
+**Images / backgrounds that run up under the status bar** (full-bleed hero, cover photo, gradient strip at the top of the screen): the `visual_<name>` layer is **a child of the root frame, below the Top container** (lower in layer order), any size and position. **Do not** make the hero the first layer of the Top container or of Content to push it up to the top edge — the Top container still starts with the Safe-Area. Fixed navigation buttons on top of the hero (close, back) belong to the Top container as usual. A `visual_` layer is not counted as the top block in the safe-area check (`audit.js` › `safeArea`; a clone that made the hero the first layer was reported as "Safe-Area not first"). **Content that sits on the background** (cards, speech bubbles, characters) → the background cluster below, not pushed into Content.
 
 **Background cluster** — *"it needs thinking"*, not a hard rule. A region that has **its own background** (a colour block, image, pattern) **with content sitting on it** is **one cluster** → one frame `visual_<name>` that **contains** that content:
 - images that overlap / peek out (character, bubble, decoration) are placed **absolutely** inside the cluster;
 - content blocks (card, text rows) follow the cluster's auto layout (usually aligned to the bottom);
 - the block right after the cluster (Content) starts at the cluster's bottom edge.
 
-Read the clusters **before** placing anything into the three containers (`screen-building-lessons.md` §4 *Read the clusters*). Do not apply it mechanically: a cluster that scrolls with Content lives inside Content; a static background behind scrolling content is separate — answer the questions, do not guess from position.
+Read the clusters **before** placing anything into the layer frames (`screen-building-lessons.md` §4 *Read the clusters*). Do not apply it mechanically: a cluster that scrolls with Content lives inside Content; a static background behind scrolling content is separate — answer the questions, do not guess from position.
 
 Example the designer demonstrated (a clone of Home) — **just one case**:
 
@@ -192,7 +195,7 @@ Frame size and safe area are **not hardcoded** — they come from the project's 
 | Safe area | notch + home indicator | status + gesture bar | none |
 | Icons | SF Symbols as text | Material Symbols | SVG |
 | Navigation | bottom tab bar | bottom nav / drawer | header |
-| Frame size | 393×852 | 360×800 | breakpoints |
+| Frame size | new project 402×874 · existing project: its designed screens | 360×800 | breakpoints |
 
 The icon-protection rule (glyph icons) keeps the same logic on every platform; only the character ranges and font names change (`lock-phase.md` §6). App-type-specific patterns: `../mobile-ui-master/references/screen-structure.md`.
 
@@ -200,13 +203,14 @@ The icon-protection rule (glyph icons) keeps the same logic on every platform; o
 
 ## 11. Differences from the tool demo
 
+The tool demo already follows the designer's root (`NONE`, layered `Content` → `Bottom Container` → `Top Container`) and frame size (new project 402×874, existing project = the size of its designed screens) — `../figma-ui-flow/SKILL.md` rule 2, `../figma-ui-flow/references/file-standards.md` §4. What remains different:
+
 | Topic | Tool demo (`figma-ui-flow`, `figma-agent-tools`) | Team standard (this file) |
 |---|---|---|
-| Screen root | Vertical auto-layout root (`build-loop.md` §11, `render-tree-dsl.md` §5) | Locked screens: plain frame `NONE`, containers placed absolutely. Drafts may use the vertical auto-layout root. |
-| Safe area | Header/footer padding (`[54, 24, 8, 24]`, `[12, 24, 34, 24]`) | `Safe-Area` instance as first / last child; padding only for vertical-bar Duo frames or projects without the component |
-| iPhone frame | 390×844 / 393×852 | Project setting; designer's iPhone 402×874 (Safe-Area 62 / 34) |
+| Safe area | a `Safe Area` placeholder frame (62 / 34) that becomes an instance in Pass 2 (`render-tree-dsl.md` §5) | `Safe-Area` set instance (`Position` × `Device`) as first / last child from the start of the lock; padding only for vertical-bar Duo frames or projects without the component; never a hand-made frame left in place |
 | Free graphics naming | `decor/…`, `image/…` | `visual_<name>` for free graphics / background clusters; `image_<name>`, `illustration_<name>`, `logo_<name>` for image placeholders |
-| Region model | Header / Content / Footer regions | Draft: clusters, any count. Locked: three containers with clusters inside |
+| Layers in the root | `Content` → `Bottom Container` → `Top Container` → `Scrim` → sheet | the same as the usual skeleton, but **not limited to it**: any element that must sit over others gets its own layer frame (§2) — in drafts and locked screens alike |
+| Background | root fill | `Background/<name>` instance at the bottom-most layer when the file has one (§5) |
 
 ## 12. How to build it (code and `render_tree`)
 
@@ -266,7 +270,7 @@ When cloning an existing screen (`clone_node`): **check the root and set it back
 const bad = screens.filter(f => f.layoutMode !== "NONE");   // must be empty
 ```
 
-Run it over the locked screens (via `execute_code`, or read `layout` from `get_node`). Draft screens and the template are excluded.
+`audit.js` runs this check (`rootAutoLayout`) over the locked screens; without the script, read `layout` from `get_node`. Draft screens and the template are excluded.
 
 ## 14. Screen build checklist
 
@@ -276,7 +280,7 @@ Used for wireframes and locked UI. Items marked **[UI]** only apply to locked UI
 - [ ] The screen is in the flow list (`design/flows.md`) — correct semantic name (`references/naming.md`)
 - [ ] It maps to a functional requirement and use case (the flow list's "serves / answers" fields)
 - [ ] It is not on the PRD's *Forbidden* list
-- [ ] Frame size matches the rest · safe area matches the project standard — project uses the component: instance of the right component, first child of the top block / last child of the bottom block (§5)
+- [ ] Frame size matches the rest · safe area matches the project standard — project uses the component: instance of the right component, first child of the top block / last child of the bottom block (§5 · `audit.js` › `safeArea`)
 - [ ] Root frame `layoutMode = NONE` — only the children inside use auto layout
 - [ ] Free graphics are wrapped in a plain `visual_…` frame (`../design-system-audit/references/system-binding.md` §6)
 - [ ] No cluster is split — the background and the content on it are in the same frame (§7) · no redundant nesting (a frame with one child and no padding / fill / stroke / auto layout of its own)

@@ -39,7 +39,7 @@ a flow. A thinking lens, not a procedure: the team review job and its scoring ar
 ### 1.4 Visual
 - [ ] Hierarchy is clear at a glance.
 - [ ] Spacing uses tokens, no random values (designer exception: raw spacing on screen layout frames —
-  `../../mobile-ui-master/references/screen-structure.md` §8).
+  `../mobile-ui-master/references/screen-structure.md` §8).
 - [ ] Light/dark/high contrast all correct.
 - [ ] Icons from one family with matching optical weight.
 - [ ] Text isn't cut with real data and long translations.
@@ -104,7 +104,7 @@ a flow. A thinking lens, not a procedure: the team review job and its scoring ar
 11. Visual regression tests?
 12. Migration/versioning?
 
-(Component system audit: `../../design-system-audit/SKILL.md`.)
+(Component system audit: `../design-system-audit/SKILL.md`.)
 
 ### 3.2 Reviewing a screen
 - **Goal** — what does the user come here to do?

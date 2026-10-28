@@ -1,6 +1,6 @@
 # Team rules — how the agent works in the team's design files
 
-> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/rules.md @ 3c0e291 — translated, complete (toolkit machinery dropped: loading layers, session/checkpoint protocol, toolkit version freezing, multi-agent rotation, knowledge-routing tickets, script inventory). Where rules.md only pointed to the shared rulebook (`shared-core/rules.md` §1–5, §6, §9, §11, §14–16), the rule text is brought in from there so it reads on its own.
+> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/rules.md @ 3c0e291 — translated, complete (toolkit machinery dropped: loading layers, session/checkpoint protocol, toolkit version freezing, multi-agent rotation, knowledge-routing tickets; the script inventory moved to `SKILL.md` › Team scripts). Where rules.md only pointed to the shared rulebook (`shared-core/rules.md` §1–5, §6, §9, §11, §14–16), the rule text is brought in from there so it reads on its own.
 
 Every rule comes with a **reason** and, where the team has one, **evidence from a real project**. Understanding why lets you apply a rule correctly in a situation nobody foresaw. These rules apply on top of `figma-ui-flow` whenever you work in the team's Figma files; where they differ from it, the team rule wins in team files.
 
@@ -52,12 +52,12 @@ Higher beats lower:
 |---|---|---|
 | 1 | **What the designer just said or just edited** | instructions in the session · edits on Figma (§12) · **business pushback** — the designer's intent is often clearer than the PRD |
 | 2 | **Project lessons** | `design/lessons.md` › *Active* |
-| 3 | **The designer's standard** — decides **structure** (`../../mobile-ui-master/references/screen-structure.md`) · **monetization screens**: screen forms, anatomy, triggers, paywall variants (`../../mobile-ui-master/references/monetization-screens.md`) | screen skeleton and frame wrapping · template screens · how the safe area is used · naming convention — **system numbers follow Apple** (below) |
+| 3 | **The designer's standard** — decides **structure** (`../mobile-ui-master/references/screen-structure.md`) · **monetization screens**: screen forms, anatomy, triggers, paywall variants (`../mobile-ui-master/references/monetization-screens.md`) | screen skeleton and frame wrapping · template screens · how the safe area is used · naming convention — **system numbers follow Apple** (below) |
 | 4 | **Current state of the file and the documents** — decides **appearance and content** | tokens, styles, components · copy and voice (`design/voice.md`) · flows · business rules |
 | 5 | **Team defaults** | these references and `figma-ui-flow` when nothing above speaks |
 | 6 | **Knowledge** | design knowledge skills (HIG, Material, UX) — only a lens, never beats any source |
 
-- **Apple's system numbers beat the designer's numbers.** Wherever Apple publishes a number — safe area, status bar, home indicator, system bar sizes, reserved regions, minimum margins, touch areas, Dynamic Type sizes — **follow Apple**, even if the designer currently uses another number. Sources for Apple numbers: `../../apple-design-iphone/references/ios-platform.md`, the `apple-hig` skill, `iphone-duo-adaptive` for iOS 27 / iPhone Duo. The designer still decides **packaging, construction** and **design choices above Apple's minimum** (e.g. Content padding 24 ≥ the 16 margin). Apple has no number → the designer's number → team default. **Community** numbers never beat Apple numbers. A designer number that deviates from Apple → report it and propose the Apple value.
+- **Apple's system numbers beat the designer's numbers.** Wherever Apple publishes a number — safe area, status bar, home indicator, system bar sizes, reserved regions, minimum margins, touch areas, Dynamic Type sizes — **follow Apple**, even if the designer currently uses another number. Sources for Apple numbers: `../apple-design-iphone/references/ios-platform.md`, the `apple-hig` skill, `iphone-duo-adaptive` for iOS 27 / iPhone Duo. The designer still decides **packaging, construction** and **design choices above Apple's minimum** (e.g. Content padding 24 ≥ the 16 margin). Apple has no number → the designer's number → team default. **Community** numbers never beat Apple numbers. A designer number that deviates from Apple → report it and propose the Apple value.
 - **Structure from the designer, appearance from the file.** In a maintenance project, screens the agent builds **look** like the existing screens (same tokens, components, voice) but are **wrapped** the designer's way — even if the old project wrapped them differently.
 - File and documents both at level 4 but disagreeing → **nobody wins**: quote both, record it in `design/analysis.md` › *Contradictions*, ask.
 - Designer pushes back on business logic (*"the Edit screen when locked must look like this"*) → follow it, update `design/flows.md`, log a decision with the verbatim exchange. **Never cite the PRD to argue** — say it **once** only if the new idea breaks something the PRD forbids.
@@ -73,7 +73,7 @@ Higher beats lower:
 | **Scope** | a screen that is not in `design/flows.md` · a feature forbidden in `design/prd.md` (*Forbidden* list) |
 | **System** | hand-drawing something that already exists as a component · hard-coding any property the file's system already has (colour, text, padding/gap, radius, stroke width, fixed sizes, effects, grids → variable first, then style, otherwise **report** — never invent a value) |
 | **Data** | content that cannot be traced back to a document |
-| **Verification** | copy that claims something the app cannot measure — see `../../ux-writing/references/principles.md` |
+| **Verification** | copy that claims something the app cannot measure — see `../ux-writing/references/principles.md` |
 
 **Four-step loop for every job:** read the whole scope → cross-check → run one sample first → report numbers.
 
@@ -103,9 +103,9 @@ Lean towards the work where the agent is clearly better than a person:
 | **A · Concluding before reading** | the biggest source of rework | §1: scan the **whole scope** before concluding something is missing; re-read after the designer edits | §1 evidence |
 | **B · Inventing data** | invented content looks right, slips through review and spreads by copy-paste | every number, proper name and price **traces to a document or source**, otherwise leave a labelled blank · check the forbidden list before naming anything brand-related · **a wireframe holds states, not values** | travel times for a feature with no map data; presets named after car brands; nature-sound names in a car app |
 | **C · Not following the documents, not cross-checking** | reading only when reminded, not before working | before building check: is it in `flows.md`, which FR/UC does it map to, is it in `prd.md` › *Forbidden* · two documents contradict → **stop and report** (§6) · intentional deviation → decision-log entry | built a feature the documents said *"not used"* (Drive Mode); built an area on the forbidden list; wrong price; a paywall where three documents forbid it |
-| **D · Repeated technical errors** | Figma API traps (see `../../figma-agent-tools/references/troubleshooting.md`) | read the schema before concluding a tool can't do something · run one sample before the whole batch · destructive scripts and creating scripts never share one run | twice concluded *"the tool doesn't support it"* only because a property name was guessed wrong |
+| **D · Repeated technical errors** | Figma API traps (see `../figma-agent-tools/references/troubleshooting.md`) | read the schema before concluding a tool can't do something · run one sample before the whole batch · destructive scripts and creating scripts never share one run | twice concluded *"the tool doesn't support it"* only because a property name was guessed wrong |
 | **E · Breaking the design system** | the agent optimises for *"this screen is done"* instead of *"the system stays consistent"* | the System gate (§4) · icon and component-generation rules in `screen-building-lessons.md` | a hand-drawn slider when a component existed; a wrong status-bar height spread to 23 screens; **889 raw frames vs 59 instances**; 193 icons turned into empty boxes because a text style was applied to them |
-| **F · UX writing wrong at the core** | copy treated as decoration | `../../ux-writing/references/principles.md` | — |
+| **F · UX writing wrong at the core** | copy treated as decoration | `../ux-writing/references/principles.md` | — |
 
 ## 6. Say it — don't silently comply
 
@@ -115,7 +115,7 @@ A document and the user's request disagree → quote the document, state the ris
 
 ### 6.2 Always warn about
 General: a feature not tied to a user problem · long onboarding before value · **paywall before value is proven** · flows with too many steps · gamification unrelated to the core behaviour · **copy that makes a false promise** · MVP scope creep · dark patterns (misleading CTA, hard-to-find opt-out, fake urgency, hidden fees).
-Design anti-patterns (full list in `../../ux-review-handoff/references/acceptance-checklist.md`): **several CTAs with equal emphasis** · modal on modal, dialogs holding long forms · **a disabled button that doesn't say its condition** · a toast for an important error that then vanishes · confirmations for every action (warning blindness) · **clearing form data on a network error** · a hamburger hiding primary navigation when there are only a few destinations · a home-made picker or share sheet worse than the system one · designing only the happy path · dark patterns.
+Design anti-patterns (full list in `../ux-review-handoff/references/acceptance-checklist.md`): **several CTAs with equal emphasis** · modal on modal, dialogs holding long forms · **a disabled button that doesn't say its condition** · a toast for an important error that then vanishes · confirmations for every action (warning blindness) · **clearing form data on a network error** · a hamburger hiding primary navigation when there are only a few destinations · a home-made picker or share sheet worse than the system one · designing only the happy path · dark patterns.
 
 **How to push back:** problem → risk → alternative → how to verify.
 
@@ -154,7 +154,7 @@ design/
   style-parts/      cropped parts of style images + index.md — NEVER written into sources/
   competitor-parts/ cropped function blocks from competitor screens + index.md — NEVER written into sources/
   kit.md, kit/      which base kit, review, locks, scope, what changed (before → after ledger)
-  toolkit-queue.md  queue of general lessons for the next version of the team standard (§12.7)
+  toolkit-queue.md  queue of general lessons for the next version of the team standard (§12.6)
   work/notes.md     working notes: draft decisions · open questions · one-off taste · knowledge notes
   assets/, work/    files the agent exports (measurements, comparison images, clone crops) — inside the project, never inside the skills
 ```
@@ -201,7 +201,7 @@ DEC-012 · 2026-09-15 · locked · [design] Drop the widget-diagnosis screen —
 - **Why:** without this log the next round proposes exactly what was rejected. It happened: the document said *"don't use Drive Mode"*, nobody repeated it, the agent built it. Record the rejected option too.
 
 ### 8.6 Rules in the standard, configuration in the project
-Never hard-code frame size, token names, type scale, screen list or page names. They live in `design/project.yaml` — the agent **detects** them from the file (pages, frame size, safe-area component, token collections, suffixes), the user **confirms**. Pages can change between sessions — **re-detect page positions every session**. Traceability and assumption tables live inside `flows.md`, not as separate files.
+Never hard-code frame size, token names, type scale, screen list or page names. They live in `design/project.yaml` — the agent **detects** them from the file (pages, frame size, safe-area component, token collections, suffixes), the user **confirms**. Pages can change between sessions — **re-detect page positions every session**. Traceability and assumption tables live inside `flows.md`, not as separate files. Template and the meaning of every field: `../figma-project-maintain/assets/project.template.yaml`; detection: `../design-system-audit/scripts/detect.js`.
 
 ## 9. Reporting to the designer
 
@@ -237,7 +237,7 @@ Real design **applies thinking**; it doesn't march *step this, then that*. Use k
 3. **Brand expression** — colour, shape, type, illustration, own motion — **must not break the two layers above**.
 
 ### 10.2 Load on demand — and one layout for iOS and Android
-- Mobile apps always consult **both `apple-hig` and `material-design-3`**, whether the project is iOS-only or both. HIG is the main base; Material is a complementary lens — when Material has a better solution for a layout problem (dense lists, filters, sheets, primary action, empty states…), combine it in, expressed in the project's design language. Choosing between a HIG and a Material solution → use `../../material-design-3/references/cross-platform-decisions.md` to compare with criteria. AI products add AI-product knowledge; web adds `web-design`.
+- Mobile apps always consult **both `apple-hig` and `material-design-3`**, whether the project is iOS-only or both. HIG is the main base; Material is a complementary lens — when Material has a better solution for a layout problem (dense lists, filters, sheets, primary action, empty states…), combine it in, expressed in the project's design language. Choosing between a HIG and a Material solution → use `../material-design-3/references/cross-platform-decisions.md` to compare with criteria. AI products add AI-product knowledge; web adds `web-design`.
 - **Multi-device / adaptive** (targets include iPhone Duo, iPad, resizable apps; adaptive level not `none`) → load the `iphone-duo-adaptive` skill in full. iOS 27 and iPhone Duo are newer than the agent's built-in knowledge — take them from that skill, not from memory.
 - The glossary (`glossary.md`) is looked up only when needed — an unfamiliar term.
 - **One layout for iOS and Android.** A design made for iOS **applies unchanged to Android**: screen skeleton, frame wrapping, action placement, navigation, the project's components, type — shared. **Only the system's own UI follows each platform** — the parts the OS draws, not the app:
@@ -294,12 +294,12 @@ Real design **applies thinking**; it doesn't march *step this, then that*. Use k
 
 ## 11. Working in Figma
 
-- Write **Plugin API code** that runs the same through any Figma MCP; in the tool demo it runs through `execute_code` (`../../figma-agent-tools/SKILL.md` §6). Before the first batch of a session read `../../figma-agent-tools/references/troubleshooting.md`.
-- **Every build or edit of a screen** follows the build loop (`../../figma-ui-flow/references/build-loop.md`) plus the team additions in `screen-building-lessons.md`: build in passes (frame → fill region by region → lock with audit + stress test), numbers after every write, one screenshot per pass, everything vector.
+- Write **Plugin API code** that runs the same through any Figma MCP; in the tool demo it runs through `execute_code` (`../figma-agent-tools/SKILL.md` §6). Before the first batch of a session read `../figma-agent-tools/references/troubleshooting.md`.
+- **Every build or edit of a screen** follows the build loop (`../figma-ui-flow/references/build-loop.md`) plus the team additions in `screen-building-lessons.md`: build in passes (frame → fill region by region → lock with audit + stress test), numbers after every write, one screenshot per pass, everything vector.
 - Files the agent exports (measurement images, comparison images, clone crops) go into the **project** — `design/assets/`, `design/work/` — never into the skills folder.
 - Scripts that change things in bulk default to a **dry run**: run dry, report before → after and counts, wait for *"chạy thật"* ("run it for real"). Read-only checks (audit, inspection, impact) can run any time.
 - **One agent writes to the Figma file at a time.** `design/` files and the Figma file are not locked, so two writers collide. Re-read (§1) is all the more mandatory when another agent may have just worked.
-- Team scripts in this skill set: `../scripts/safearea.js` (standard Safe-Area component), `../scripts/clone_measure.py` (measure a clone reference image), `../../figma-project-maintain/scripts/flowmap.js` (flows and prototype links from screen layout), `../../figma-project-maintain/scripts/readscreen.js` (screen outline), `../../screen-background/scripts/palette.py` (OKLCH palette).
+- Team scripts — which skill holds each one and when to read / run it: the table in `../bnnam-standards/SKILL.md` (*Team scripts*). Run them as described there: read the script, set the config at its top, send the whole file as `code` to `execute_code`.
 
 ## 12. Working with the designer — designer edits win, and the agent learns from them
 
@@ -310,28 +310,28 @@ Real design **applies thinking**; it doesn't march *step this, then that*. Use k
 | Way | Designer | Agent |
 |---|---|---|
 | **Agent works on command** | gives commands: *"tạo màn …"* (create screen …), *"sửa màn …"* (fix screen …) · compares · locks | new screen: build it new · editing an existing screen: always on a copy **`<screen name>_Fix AI`**, never on the original |
-| **Designer edits alone** | edits a copy **`<screen name>_Fix`** · tells the agent | compares, asks why, draws lessons (12.6) |
+| **Designer edits alone** | edits a copy **`<screen name>_Fix`** · tells the agent | compares, asks why, draws lessons (12.5) |
 | **Side by side** | works on Figma and gives commands at the same time | **re-read exactly the assigned area right before every command** · touch only the frames/nodes named in the command · never touch the designer's `_Fix` copies · the spot you meant to touch was just changed by the designer → stop, ask · after each command report one line |
 
 All three can open with a brainstorm (§13) — the designer picks an option, then the way of working.
 
-**Locking a fixed copy** (`_Fix` or `_Fix AI`): the designer says *"chốt"* (lock it) → **before anything is deleted**, list the **prototype links still pointing at the old copy** (which screen, which layer) — **the designer reconnects them**, the agent doesn't edit links → the old copy is deleted (the designer deletes; the agent deletes only when the designer says clearly *"xoá bản cũ"* — "delete the old one") → the new copy gets its **official name per `naming.md`** → `flows.md` updated (old name → new name if it changed).
+**Locking a fixed copy** (`_Fix` or `_Fix AI`): the designer says *"chốt"* (lock it) → **before anything is deleted**, run `../figma-project-maintain/scripts/flowmap.js` and list the **prototype links still pointing at the old copy** (which screen, which layer) — **the designer reconnects them**, the agent doesn't edit links → the old copy is deleted (the designer deletes; the agent deletes only when the designer says clearly *"xoá bản cũ"* — "delete the old one") → the new copy gets its **official name per `naming.md`** → `flows.md` updated (old name → new name if it changed).
 
 ### 12.2 New work lives in its own section — hard rule
 **Evidence:** in the first maintenance project the agent built a "Create new group" section on top of the "Focus" section.
 - **Everything the agent creates** — new screens, `_Fix AI`, `_Variant`, prototype flows — sits in a **section the agent created**. Never put it in a designer's section, **never enlarge** a designer's section, never put it in the original section that holds the source screen.
 - **Move into the original only when the designer is sure** — they say *"chốt"* / *"lắp vào section …"* ("put it into section …").
-- **Clone safely, never a bare `clone()`** — a bare clone duplicates every main component that sits inside the screen. After cloning, any main component inside the copy must become an instance of the original.
-- **Check for overlap after every placement** — a new section must not cover any section or top-level frame; move it if it does.
-- **Screens sit inside the section frame.** Coordinates of a screen inside a section are **relative** to the section. Built outside and moved in → use a move that keeps the canvas position (`move_nodes`) or recompute x/y relative to the section, then grow the section to fit. Check: zero screens lying outside their section.
+- **Clone with `../figma-project-maintain/scripts/clone.js`, never a bare `clone()`** — a bare clone duplicates every main component that sits inside the screen. The script turns any main component inside the copy into an instance of the original.
+- **Check for overlap after every placement** — a new section must not cover any section or top-level frame; move it if it does (`clone.js` and `../figma-prototype-flow/scripts/prototype.js` move it themselves).
+- **Screens sit inside the section frame.** Coordinates of a screen inside a section are **relative** to the section. Built outside and moved in → use a move that keeps the canvas position (`move_nodes`) or recompute x/y relative to the section, then grow the section to fit. Check: `../ux-review-handoff/scripts/audit.js` › `outsideSection` = 0.
 - **The title frame names the right section.** When copying the file's section title frame, **change its text** to the new section name — never leave the source section's name.
-- **A new section gets a number + name title frame** copied from the file's style, placed next to the original section, with the next number (`3.2` → `3.2.1`); then place the screens in it with the safe clone.
+- **A new section gets a number + name title frame** copied from the file's style, placed next to the original section, with the next number (`3.2` → `3.2.1`) — create it with `../figma-project-maintain/scripts/section.js`; then place the screens in it with `clone.js`.
 
 ### 12.3 Designer edits win
 - The designer's edits on Figma are **intentional**, even when they break a team rule. The agent **does not overwrite or "correct" them** — it asks.
-- **The designer edits on `_Fix`, the agent edits on `_Fix AI`** (suffixes declared in `project.yaml › collab.editSuffix`, `agentSuffix`) — the name tells whose copy it is. Designer: duplicate the screen → rename the copy **`<screen name>_Fix`** → edit → tell the agent. The agent compares the pair **by name**, not by position, so the copy can sit on either side. After locking, **the designer** deletes the old one and drops the suffix — the agent doesn't delete.
-- A screen with a **`_Fix`** copy = being edited by the designer: the agent **doesn't build, bind or audit** that screen until the learning loop (12.6) is done. A **`_Fix AI`** copy is the agent's: build, bind, audit normally, then hand it to the designer to compare.
-- Layers the designer edited are excluded from every bulk operation (e.g. bulk binding skips their ids) until the designer says to merge them in.
+- **The designer edits on `_Fix`, the agent edits on `_Fix AI`** (suffixes declared in `project.yaml › collab.editSuffix`, `agentSuffix`) — the name tells whose copy it is. Designer: duplicate the screen → rename the copy **`<screen name>_Fix`** → edit → tell the agent. The agent compares the pair with `../figma-project-maintain/scripts/compare.js` — **by name**, not by position, so the copy can sit on either side. After locking, **the designer** deletes the old one and drops the suffix — the agent doesn't delete.
+- A screen with a **`_Fix`** copy = being edited by the designer: the agent **doesn't build, bind or audit** that screen (the team scripts skip it on their own) until the learning loop (12.5) is done. A **`_Fix AI`** copy is the agent's: build, bind, audit normally, then hand it to the designer to compare.
+- Layers the designer edited are excluded from every bulk operation (`../design-system-audit/scripts/bind.js` › `DESIGNER_EDITED_IDS`) until the designer says to merge them in.
 - An edit that breaks a hard rule (10.3 — contrast…) → keep it, but **say it once** with the risk (§6); the designer decides. Kept → decision-log entry.
 
 **Why duplicate instead of the agent saving its own snapshot:** original and edit both live in Figma, so the agent reads only **the differences** — no need to save the whole screen to a file after every build and paste it back for every comparison. Far fewer reads, and the designer sees the two side by side.
@@ -341,19 +341,19 @@ All three can open with a brainstorm (§13) — the designer picks an option, th
 - **Main components stay apart and the agent doesn't edit them.** Screens use **instances** only. Don't edit, add variants to, or change properties of an existing main component — including system atoms (safe area, button…) and components the agent built after they were approved.
 - Need something different → **override on the instance** if the component allows; otherwise **propose** a change and the designer edits the main.
 - **Never detach** an instance to edit faster.
-- **Before any edit to a main component** — by the designer, by the agent under exception 2 or 3, or replacing a component — run an **impact check**: instance count, affected screens, other components that contain it, existing overrides. Report to the designer before editing.
-- The designer edits a main component → all instances follow. No `_Fix` comparison needed: the designer says *"I changed component …"* → read that component, ask why as with a screen (12.6), then check the screens using it for broken layouts.
+- **Before any edit to a main component** — by the designer, by the agent under exception 2 or 3, or replacing a component — run `../design-system-audit/scripts/impact.js`: instance count, affected screens, other components that contain it, existing overrides. Report to the designer before editing.
+- The designer edits a main component → all instances follow. No `_Fix` comparison needed: the designer says *"I changed component …"* → read that component, ask why as with a screen (12.5), then check the screens using it for broken layouts.
 
 Things that are **not** editing the main:
 - **Adding a variant to a background component** — do it on a **copy** in your own section; only when the designer locks does it go into the main.
-- **A broken component set** (Figma reports *"has existing errors"*, e.g. two variants with the same name): conventions detection skips that set and reports its name. If the screen you're building **needs** it → duplicate it into **your own section** named `<set name> — bản sửa AI` ("AI-fixed copy"), **fix only that error** (no change of shape, size or other properties), draft screens use instances of the copy, one line in `notes.md`. At the **lock rhythm** (`lock-phase.md`) put it on the proposal list: the designer fixes the main → the agent switches instances back to the main and deletes the copy · or the designer adopts the copy as official. Never keep both past the lock. Screen doesn't need the set → just report its name.
-- **Componentising a repeated block:** a block the agent built (Top / Content / Bottom Container…) that repeats with **identical structure** on a second screen → *(at lock time)* create a **new** component from the first screen's block, place it in your own section, replace the blocks on the screens with instances. A block inside a designer's screen → ask first. From creation on, that component is a main — this section applies.
-- **Standardising the `Safe-Area` component**: add the `Device` property and the missing variants per the standard table (`frame-standards.md`, `../scripts/safearea.js`) after the designer agrees. **Never change the height of an existing variant.**
+- **A broken component set** (Figma reports *"has existing errors"*, e.g. two variants with the same name): `../design-system-audit/scripts/detect.js` skips that set and reports its name (`brokenSets`). If the screen you're building **needs** it → duplicate it into **your own section** named `<set name> — bản sửa AI` ("AI-fixed copy"), **fix only that error** (no change of shape, size or other properties), draft screens use instances of the copy, one line in `notes.md`. At the **lock rhythm** (`lock-phase.md`) put it on the proposal list: the designer fixes the main → the agent switches instances back to the main and deletes the copy · or the designer adopts the copy as official. Never keep both past the lock. Screen doesn't need the set → just report its name.
+- **Componentising a repeated block:** a block the agent built (Top / Content / Bottom Container…) that repeats with **identical structure** on a second screen → *(at lock time)* `../design-system-audit/scripts/componentize.js` creates a **new** component from the first screen's block, place it in your own section, replace the blocks on the screens with instances. A block inside a designer's screen → ask first. From creation on, that component is a main — this section applies.
+- **Standardising the `Safe-Area` component**: add the `Device` property and the missing variants per the standard table (`frame-standards.md` §6, `../bnnam-standards/scripts/safearea.js`) after the designer agrees. **Never change the height of an existing variant.**
 
 **Three exceptions, and no fourth:**
 1. A **new** component in an approved `components.md` — the agent builds it for the first time. Once built and accepted by the designer it is a main component under the rules above.
-2. **The designer orders a refinement** of one main component to match the style reference (the designer has no time to edit it). The agent edits **exactly that component, exactly the changes recorded** in `style.md` › *Atoms off-style*: dry run first (before → after, instance count, affected screens) → the designer says *"chạy thật"* → change → audit and visually check those screens → decision entry. The order is valid for that one time; anything more → propose again and wait for a new order.
-3. **Kit setup** — the base kit the designer duplicated into the project gets its **variables and atoms refined** after the first screen's direction is locked: **always a draft first** (proposal table + before/after swatches · draft atoms next to the originals) → the designer approves group by group → dry run → *"chạy thật"* → write the before → after ledger (`design/kit/`) → decision entry. Anything the designer locked (`design/kit.md` › *Locked*) is untouched. Outside this job the rules above stand.
+2. **The designer orders a refinement** of one main component to match the style reference (the designer has no time to edit it). The agent edits **exactly that component, exactly the changes recorded** in `style.md` › *Atoms off-style*, with `../design-system-audit/scripts/restyle.js`: dry run first (before → after, instance count, affected screens) → the designer says *"chạy thật"* → change → audit and visually check those screens → decision entry. The order is valid for that one time; anything more → propose again and wait for a new order.
+3. **Kit setup** — the base kit the designer duplicated into the project gets its **variables and atoms refined** after the first screen's direction is locked: **always a draft first** (proposal table + before/after swatches · draft atoms next to the originals) → the designer approves group by group → dry run (`../design-system-audit/scripts/kit-apply.js`, `restyle.js`) → *"chạy thật"* → write the before → after ledger (`design/kit/ledger.json`) → decision entry. Anything the designer locked (`design/kit.md` › *Locked*) is untouched. Outside this job the rules above stand.
 
 ### 12.5 The learning loop — told · compare · ask why · record · apply
 ```
@@ -371,7 +371,7 @@ designer edits → tells the agent → agent sees what changed → asks why, by 
    3. Removed the "— fold" line on Home_Result — the screen no longer scrolls, or just the line removed?
    ```
    Put groups **likely to repeat** first — that's where lessons are worth most. More than three → ask three, park the rest in `design/work/notes.md` › *Open questions*. **Never guess for the designer** — unanswered → record *"reason unclear"*, derive no rule. The designer says *"don't ask about this kind again"* → record it as a lesson (*"position tweaks under 4px: don't ask"*).
-4. **Record — each thing in exactly one place** (12.7). A lesson must be written as a **testable rule** — *"content card: side padding = token `spacing/20`"*, not *"cards need more air"*. Can't write it testably → ask one more question or record *"no rule derived yet"*. A lesson that adds a gate (*"without X you may not do Y"*) changes the process → **confirm with the designer before recording**; an opinion is not yet a locked rule. Editing an approved `design/` file from an answer → §8.4.
+4. **Record — each thing in exactly one place** (12.6). A lesson must be written as a **testable rule** — *"content card: side padding = token `spacing/20`"*, not *"cards need more air"*. Can't write it testably → ask one more question or record *"no rule derived yet"*. A lesson that adds a gate (*"without X you may not do Y"*) changes the process → **confirm with the designer before recording**; an opinion is not yet a locked rule. Editing an approved `design/` file from an answer → §8.4.
 5. **Fix other places with the same mistake.** A new *Active* lesson → find every **already built** screen with the same mistake (audit or read). Report the list; **the designer chooses**: fix all · fix some · leave.
 6. **Lock — the designer deletes the old copy.** Tell the designer *"recorded — delete the old copy and drop the `Fix` suffix when you lock"*. The agent doesn't delete (irreversible, and which copy survives is the designer's call). Layers the designer edited but hasn't merged into the system (e.g. a raw colour kept on purpose) → exclude their ids from bulk binding.
 
@@ -407,7 +407,7 @@ Not a separate job — usable at **any stage**, including when a layout or flow 
 3. **Put them side by side, with every state** of the changed part — On **and** Off, empty **and** filled, normal **and** error. Build only one state and the designer will ask what the other looks like — build it up front.
 4. **Need to tap through to decide** → propose a prototype flow per option (`figma-prototype-flow` skill).
 5. **Draft on Figma when it has to be seen to be decided** — name them `<screen>_Variant A` · `_Variant B` (`naming.md`), cloned safely into **your own section** (12.2), never replacing the existing screen.
-6. **Compare on the same criteria:** feasible (documents, technical, `prd.md` › *Forbidden*) · the end user wants it · sustainable with the system. Many criteria → a decision matrix (`../../material-design-3/references/cross-platform-decisions.md` for HIG vs Material).
+6. **Compare on the same criteria:** feasible (documents, technical, `prd.md` › *Forbidden*) · the end user wants it · sustainable with the system. Many criteria → a decision matrix (`../material-design-3/references/cross-platform-decisions.md` for HIG vs Material).
 7. **The designer picks, mixes or rejects** — the agent doesn't choose. Record the decision: chosen, dropped, why. **A rejected option is never proposed again.**
 8. Delete the unchosen drafts once the designer agrees.
 

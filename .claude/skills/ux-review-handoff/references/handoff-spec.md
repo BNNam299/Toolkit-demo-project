@@ -4,7 +4,7 @@
 
 Part A is the team's dev-note job on the Figma file (optional). Part B is what a handoff must specify. Part C is what developers
 constrain. Part D is system integration and advanced situations a spec has to cover. Tool-demo mechanics for Dev Mode, annotations,
-measurements, asset export and token mapping live in `../../figma-ui-flow/references/handoff-qa.md` §4–6 — not repeated here.
+measurements, asset export and token mapping live in `../figma-ui-flow/references/handoff-qa.md` §4–6 — not repeated here.
 
 ## Contents
 - **A. Dev notes on Figma** — 1. When · 2. Modes · 3. Note convention · 4. Identifying a dev note · 5. Note content · 6. Adaptive
@@ -43,7 +43,7 @@ never write new specification.
 |---|---|
 | **Notes on Figma** | places dev notes + arrows next to the screen, following the convention found in the file |
 | **Skip** | nothing — the user writes notes by hand |
-| **Dev Mode** *(optional)* | tool-demo tools: `annotate` (behaviour, states, motion, accessibility labels) · `set_dev_status` *Ready for dev* on approved sections · `export_assets` / `export_tokens` into `design/assets/` — see `../../figma-ui-flow/references/handoff-qa.md` §4 and `../../figma-agent-tools/SKILL.md` |
+| **Dev Mode** *(optional)* | tool-demo tools: `annotate` (behaviour, states, motion, accessibility labels) · `set_dev_status` *Ready for dev* on approved sections · `export_assets` / `export_tokens` into `design/assets/` — see `../figma-ui-flow/references/handoff-qa.md` §4 and `../figma-agent-tools/SKILL.md` |
 
 Default: **ask first**.
 
@@ -59,14 +59,14 @@ A real reference (one project's UI page):
 
 That is **one** project. **Detect the existing note component and arrow style** in the current file and use instances — never draw a
 new note, never hard-code the yellow. Other projects may use other colours, sizes, shapes. The file has no note component → say so and
-propose creating a `Dev Note` component (component spec: `../../design-system-audit/SKILL.md`).
+propose creating a `Dev Note` component (component spec: `../design-system-audit/SKILL.md`).
 
 **Placing notes outside the screen frame matters:** a note inside a screen ends up in exported images and is counted as a UI element by
 the audit (`../scripts/audit.js` reports `devNoteInScreen`).
 
 ## 4. Identifying a dev note — two conditions at once
 
-The dev-note component is named **`Dev Note`** (`../../bnnam-standards/references/naming.md`). When scanning, a dev note is a node
+The dev-note component is named **`Dev Note`** (`../bnnam-standards/references/naming.md`). When scanning, a dev note is a node
 that is **both** an instance of `Dev Note` **and** outside any screen frame. Never count by the name `Note` — a real UI card can also be
 called `Note`.
 
@@ -83,7 +83,7 @@ called `Note`.
 
 Write in the **dev-note language** declared in `voice.md`. A note that needs information not in `design/` reveals a **gap in an earlier
 stage** — report it back, never fill it in yourself. Read each screen with the six questions
-(`../../mobile-ui-master/references/reading-screens.md`): question 4 (where it leads) and question 6 (what is unclear) are usually the
+(`../mobile-ui-master/references/reading-screens.md`): question 4 (where it leads) and question 6 (what is unclear) are usually the
 note content.
 
 ## 6. Adaptive projects (iOS 27 · iPhone Duo · iPad)
@@ -91,13 +91,13 @@ note content.
 When the project is adaptive, don't hand off artboards alone — attach a **behaviour spec** per screen (what stays at every size ·
 reveal / collapse / reflow / overflow · state kept across resize · reaction to fold, camera, side bar · item priority · keyboard, PiP,
 sheet, multitasking) and the **Device Hub test matrix**. Never hard-code model, orientation or screen bounds. Include the **layout
-decision table**, which tokens may / may not be handed off, and the events to log during QA. Details: `../../iphone-duo-adaptive/SKILL.md`.
+decision table**, which tokens may / may not be handed off, and the events to log during QA. Details: `../iphone-duo-adaptive/SKILL.md`.
 
 ## 7. Backgrounds
 
 `Background/*` is a visual region — **the developer exports it as an image**. No dev notes about how the background is built.
 Exception: **Live Activity and widget** backgrounds are a single colour the developer **builds in code**, not an exported image
-(`../../apple-design-widget/SKILL.md`). (Backgrounds: `../../screen-background/SKILL.md`.)
+(`../apple-design-widget/SKILL.md`). (Backgrounds: `../screen-background/SKILL.md`.)
 
 ## 8. Stop points, self-check, report
 
@@ -153,7 +153,7 @@ A screen isn't complete with only a happy-state mockup. A handoff needs:
 - Empty/error/offline/permission text.
 - Localization notes and RTL.
 
-(Per-string handoff fields: `../../ux-writing/references/handbook-process.md` §2 step 6.)
+(Per-string handoff fields: `../ux-writing/references/handbook-process.md` §2 step 6.)
 
 ---
 
@@ -169,7 +169,7 @@ A screen isn't complete with only a happy-state mockup. A handoff needs:
 - **Clear design-to-code documentation**; an interactive prototype helps developers understand behaviour.
 - **Data-driven design** — A/B tests, analytics.
 
-For iOS 27 / iPhone Duo, developers also need these concepts to spec correctly (details in `../../iphone-duo-adaptive/SKILL.md`):
+For iOS 27 / iPhone Duo, developers also need these concepts to spec correctly (details in `../iphone-duo-adaptive/SKILL.md`):
 geometry per scene instead of the main screen; layout by size/trait, not idiom/orientation · the reserved-region API is dynamic data ·
 `NavigationSplitView` / `UISplitViewController` · `ArrangementView` / `UIArrangementViewController` · toolbar groups, visibility
 priority, axis behaviour · camera direction per view/display · three compatibility levels by SDK 26 / 27 / 27.1.
@@ -333,7 +333,7 @@ Principles:
 - High-risk content needs a disclaimer and a path to an expert, but a disclaimer never replaces safety design.
 
 ## 30. iOS 27 / iPhone Duo pointers
-Covered in `../../iphone-duo-adaptive/SKILL.md`: outer/inner camera region and the side bar shared with the Dynamic Island · multiple
+Covered in `../iphone-duo-adaptive/SKILL.md`: outer/inner camera region and the side bar shared with the Dynamic Island · multiple
 scenes, several instances of the same app, scene accessories · PiP, keyboard and Split View overlapping · Device Hub test matrix,
 10 continuity scenarios and reproducible bug reports · camera UX, Camera Control by pose and the camera lifecycle · privacy across
 several displays and system surfaces.

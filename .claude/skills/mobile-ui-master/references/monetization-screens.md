@@ -26,7 +26,7 @@ which items are real errors).
 **What not to learn from the old files:** their frame structure and layer names do not follow the current standard. Learn the **screen type,
 anatomy, content and style**; build the frame with the standard structure — `screen-structure.md` §1–6 and the Paywall row of §7b.
 
-**Store policies are reference only.** `../../app-store-policies/SKILL.md` holds Apple / Google text verbatim, but this skill **does not apply,
+**Store policies are reference only.** `../app-store-policies/SKILL.md` holds Apple / Google text verbatim, but this skill **does not apply,
 block or warn** on them. Read them only when the designer / PO asks for a comparison; read ad rules only when the screen has ads (IAA).
 Store-review risk belongs to release / PO, not to the design pass.
 
@@ -228,7 +228,7 @@ and records the outcome in the project's decision log.
 - **"Android" project drawn on iPhone frames** (Home AI F2: Dynamic Island status bar, no Material, no navigation bar) — when maintaining
   for Android, ask again which frame standard to use.
 - **Monetization screens are rarely componentized** — only plan cards in 2 projects; banners, countdowns, footers are loose frames. When
-  building new ones, propose components (`../../design-system-audit/SKILL.md`).
+  building new ones, propose components (`../design-system-audit/SKILL.md`).
 
 ## 10. The sample set
 

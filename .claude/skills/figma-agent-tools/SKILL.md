@@ -61,7 +61,7 @@ Pass 3  audit_design{rootId} → stress_test{id: rootId} → update_nodes fixes 
 ```
 
 - `render_tree` with `parentId` appends into that frame (`index` to insert at a position). The new subtree's `ids` keys start at the subtree root, not the screen.
-- Give regions their final sizing in Pass 1: `widthMode: "FILL"` inside the vertical root, `heightMode: "FILL"` for the scrolling content, `HUG` for header/footer. Placeholder blocks get a fixed size, a temporary tint (`#FF00001A`) and, if they will hold children, their final `layout`/`gap`/`padding`.
+- Give regions their final sizing in Pass 1: on the layered `NONE` root each region gets `x`/`y` and the screen width (`widthMode: "FIXED"`), a fixed height for the scrolling `Content`, `heightMode: "HUG"` for `Top Container`/`Bottom Container`. Placeholder blocks get a fixed size, a temporary tint (`#FF00001A`) and, if they will hold children, their final `layout`/`gap`/`padding`.
 - A frame given a `width` inside auto layout must also get `widthMode: "FIXED"`, otherwise it hugs its content and clips absolute children (same for height).
 - One write may fill several neighbouring placeholders: wrap them in the region's call, or send consecutive calls without screenshots in between.
 - A placeholder's fixed height was an estimate: set `heightMode: "HUG"` once real content defines it.

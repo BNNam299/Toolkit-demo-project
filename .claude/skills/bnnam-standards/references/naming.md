@@ -2,7 +2,7 @@
 
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/naming.md @ 3c0e291 — translated, complete
 
-Applies to wireframe screens, UI screens, components, and screen headings in `design/flows.md`. Screen names are **born in `flows.md`** — everywhere else only reuses them, never invents new ones (`team-rules.md` §8.1). In the team's files this convention **replaces** the naming in `../../figma-ui-flow/references/file-standards.md` §2 where they differ (§8 below).
+Applies to wireframe screens, UI screens, components, and screen headings in `design/flows.md`. Screen names are **born in `flows.md`** — everywhere else only reuses them, never invents new ones (`team-rules.md` §8.1). In the team's files this convention **replaces** the naming in `../figma-ui-flow/references/file-standards.md` §2 where they differ (§8 below).
 
 ## Contents
 1. Semantic names, no codes
@@ -64,7 +64,7 @@ Real example: the Calories AI file, page `5. UI Design`, uses `Add-Photo-Detail 
 - Extended states come from the state scan and the two-axis state matrix of the UX-flow work (`prd-to-ux-flow` skill).
 - **Suffixes come from the table, never abbreviated.** `IAP_1` → `IAP_Step 1`. `Daily Insight_fail` → `Daily Insight_Error`.
 - **Project-specific suffixes:** the table is the default. A project needing more (`Disabled`, `Off`…) declares them in `design/project.yaml › naming.extraSuffixes`, and the audit then accepts them like standard suffixes. Adding a suffix is the **designer's** decision — the agent proposes, never declares it itself.
-- **Automatic check** (audit every screen name) — report a name that has: `.` `·` `/` · spaces around `-` or `_` · two separators in a row · a suffix not in the table (or in `extraSuffixes`).
+- **Automatic check** — `../ux-review-handoff/scripts/audit.js` checks every screen name (`screenName`) and reports a name that has: `.` `·` `/` · spaces around `-` or `_` · two separators in a row · a suffix not in the table (or in `extraSuffixes`).
 
 ## 4. Wireframe and UI share the name — 1:1 mapping
 
@@ -104,7 +104,7 @@ The agent and the audit recognise these **by name**, never by guessing from shap
 |---|---|---|
 | `— section label` | title block at the top of a section (like `Icon · 14591×112`) — filtered out when inventorying screens | this file |
 | `— fold` | fold line at device height when a frame is extended to illustrate scrolling | wireframe work (`frame-standards.md`) |
-| `visual_…` | frame for a free visual area: `visual_hero gradient` | `screen-building-lessons.md` (two build zones: system UI vs free visual) |
+| `visual_…` | frame for a free visual area: `visual_hero gradient` | `../design-system-audit/references/system-binding.md` §6 (two build zones: system UI vs free visual) |
 | `Wireframe/…` | prefix of wireframe-kit components: `Wireframe/Button`, `Wireframe/List Row` | wireframe work |
 | `Dev Note` | developer handoff note component — deliberately unlike any UI element name | `ux-review-handoff` skill |
 | `<screen name>_Fix` | copy the **designer** duplicated to edit — `project.yaml › collab.editSuffix` · temporary | `team-rules.md` §12.3, §12.5 |
@@ -113,8 +113,8 @@ The agent and the audit recognise these **by name**, never by guessing from shap
 | `<Flow name> Flow_Step <n>` · section `Flow — <flow name>` | copies inside a tap-through prototype flow — the designer's convention; not project screens | `figma-prototype-flow` skill |
 | `Background/<name>` · set `Background` (`Style=…`) | background component — same size as the frame it backs (screen, card, Live Activity), instance in the bottom-most layer | `screen-background` skill |
 | section `Background — <name>` · `Fix AI — …` | the agent's own sections — with a number + name title frame | `team-rules.md` §12.2 |
-| `image_<description>` | name of an image placeholder frame: `image_ảnh xe từ bên hông` ("photo of the car from the side") | `../../ux-writing/references/principles.md` (placeholder images) |
-| `icon_<symbol name>` | name of an icon glyph layer: `icon_chevron right` — never leave the raw glyph character as the name; dots in the symbol name become spaces | `screen-building-lessons.md` (icon rules) |
+| `image_<description>` | name of an image placeholder frame: `image_ảnh xe từ bên hông` ("photo of the car from the side") | `../ux-writing/references/principles.md` (placeholder images) |
+| `icon_<symbol name>` | name of an icon glyph layer: `icon_chevron right` — never leave the raw glyph character as the name; dots in the symbol name become spaces | `lock-phase.md` §6 (icon rules) |
 
 - **Locking a fixed copy** → the surviving copy gets its **official name per this convention**, even when the original screen in a maintenance project was named differently (`team-rules.md` §12.1).
 - **No frame keeps a default name** (`Frame 123456`) — the audit counts them.
@@ -123,7 +123,7 @@ The agent and the audit recognise these **by name**, never by guessing from shap
 
 ## 8. Differences from figma-ui-flow (team files follow this file)
 
-`../../figma-ui-flow/references/file-standards.md` §1–2 describes a generic file. In the team's files the team convention applies:
+`../figma-ui-flow/references/file-standards.md` §1–2 describes a generic file. In the team's files the team convention applies:
 
 | Topic | figma-ui-flow | Team standard |
 |---|---|---|
