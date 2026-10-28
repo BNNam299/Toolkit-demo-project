@@ -37,6 +37,10 @@ the kit file when you need a number or a component name.
 - Layout margin **16 pt** (iPhone); readable-content guide per kit. Backgrounds and media may run edge to edge; text and controls stay inside the safe area.
 - Decide layout by **size class**, not device or orientation; keep functionality identical when the size class changes (`layout.md`).
 - Never hard-code coordinates per device model — the system reports safe areas at runtime; kit numbers are a mockup template.
+- **Team sizes override HIG minimums** when building the team's screens: CTA **56**, toolbar **76**, `Top Container` / `Content` /
+  `Bottom Container`, gaps by relationship (`../mobile-ui-master/SKILL.md` §1–2, `../bnnam-standards/references/frame-standards.md`).
+  Kit sizes (50 pt button…) are not the team's sizes. A visible control under 44 pt is allowed — the dev note asks for a larger hit area
+  (`../ux-review-handoff/SKILL.md` rule 9).
 
 ### 2. Two layers: content and Liquid Glass
 - Navigation and controls (tab bar, toolbars, sidebars, sheets' bars) float in the **Liquid Glass** layer above content. **No Liquid

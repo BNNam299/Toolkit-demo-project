@@ -51,8 +51,9 @@ Do not read everything at once. Each workflow step below names the file it needs
    Satisfaction is never self-scored — it goes to *Needs testing with users*.
 4. **One scale, 0–4, where 0 is worst:** 0 must fix (unusable) · 1 very serious, fix soon · 2 fairly serious, fix in a batch · 3 not
    great, backlog · 4 fine → *What works well*. Score by frequency × impact × persistence, by impact on the user, never by ease of fixing.
-   Two independent lenses catching the same problem → one point lower. No 0–100 total. Other published scales run the other way — read
-   the mapping before quoting them.
+   Two independent lenses catching the same problem → one point lower. **No 0–100 total, even when the user asks for one** — say why
+   (a single number hides which fixes matter and invents a precision the method doesn't have) and give the count per severity and per
+   component instead. Other published scales run the other way — read the mapping before quoting them.
 5. **Honest scope.** Score only screens actually read; never invent usage data; every problem names the standard that caught it; always
    record what works well. Things a static design can't show (screen reader, real text scaling) → *check in build*.
 6. **Plain words first.** Each entry's title and proposal say what the user will experience (*"users tapping All will expect more

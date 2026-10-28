@@ -50,9 +50,19 @@ then the reference for whichever item fails. Reading a project → `reading-scre
 - Primary CTA lives in `Bottom Container`, pinned to the bottom; it is never floated mid-content to fill space.
 
 ### 2. Spacing rhythm
-- `Content` padding **24** all round, or **16** horizontal on dense screens; **48** between sections; **24 / 16 / 8** inside a section (larger
-  for looser relationships, smaller for tighter ones). Toolbar **76** high (pad 16), CTA **56**, list icon tile **36** with a 20 icon.
-- Space expresses grouping: the gap *between* groups is clearly larger than the gap *inside* a group. If every gap is the same, the screen has no structure.
+- **No fixed gap — designer standard.** A screen has several kinds of space; choose each by the relationship it expresses and the content's
+  density, never by one number for the whole screen:
+  | Gap | Separates | Usual range |
+  |---|---|---|
+  | Title → its content | a section title and the block it names | tight (≈ 6–12) — the title must read as belonging to its body, never closer to the block above |
+  | Element → element | rows, chips, fields, cards of one group | **6 / 8 / 10 / 12** — equal inside the group |
+  | Group → group | two sections / blocks | usually **20–24** — clearly larger than any gap inside either group; **48 is too big for mobile** |
+  | Content padding | screen edge → content | follows the screen type: **24** all round, or **8 / 16** · **16** horizontal on dense list screens |
+- The ranges are where to start, not quotas. Measured files (`references/screen-structure.md` §3–4) also show 16 between titled groups on
+  settings lists and 48 on a few deliberately airy screens (onboarding question, Duo panes) — copy those only when the screen really is that
+  type and the project file uses them. Project's own template or tokens → they win.
+- Test: the gap *between* groups is clearly larger than the gap *inside* a group. If every gap is the same, the screen has no structure.
+- Fixed sizes: toolbar **76** high (pad 16), CTA **56**, list icon tile **36** with a 20 icon.
 - Padding and gap on the container, not margins on each child; `leading/trailing`, not `left/right`.
 
 ### 3. Information density — no card stacks
@@ -67,7 +77,7 @@ then the reference for whichever item fails. Reading a project → `reading-scre
 ### 4. Emptiness — meaningful vs meaningless
 - Large empty space is meaningful only when it **focuses**: a full-screen screen with no navigation (shield, barrier: no Top Container, centred
   content, gap 98), a Welcome hero visual, a celebration over a scrim.
-- Everywhere else empty space must separate groups (48 between sections), not float. Short content hugs from the top; the CTA stays pinned in
+- Everywhere else empty space must separate groups (§2), not float. Short content hugs from the top; the CTA stays pinned in
   `Bottom Container` — never stretch cards or spacers to "fill" the screen.
 - An empty *state* is not an empty *screen*: it carries an explanation and an action (`../mobile-ux-fundamentals/SKILL.md`).
 
@@ -104,11 +114,11 @@ Use this at the end of each build pass (`../figma-ui-flow/references/build-loop.
 1. **Read the screen** — screenshot + outline, answer the six questions (`references/reading-screens.md` §3). Question 2 (what is seen first) drives the review.
 2. **Skeleton** — if a template screen or an approved sibling exists, run `scripts/skeleton.js` against it. Fix differences or state why they are intentional.
 3. **Walk the checklist** below; for each failing item open the reference named in it.
-4. **Report** findings grouped by severity (scale in `../ux-review-handoff/references/heuristics-evaluation.md`): what is wrong, where (node name/id), the fix with numbers ("gap 16 → 48 between Stats and History").
+4. **Report** findings grouped by severity (scale in `../ux-review-handoff/references/heuristics-evaluation.md`): what is wrong, where (node name/id), the fix with numbers ("Stats → History gap 16 equals the row gap inside Stats → widen to 24 so the sections separate").
 
 Checklist:
 - [ ] Regions and layer order per core rule 1; safe area is a component instance (`screen-structure.md` §1–2).
-- [ ] Gap between groups > gap inside groups; values from the 48 / 24 / 16 / 8 rhythm (`screen-structure.md` §3).
+- [ ] Each gap chosen by its relationship (§2): title tight to its body, between groups > inside groups; values from the measured set for that screen type (`screen-structure.md` §3–4).
 - [ ] No stack of same-kind cards; lists grouped in one container (`screen-structure.md` §4).
 - [ ] No meaningless emptiness; CTA pinned at the bottom (`screen-structure.md` §5, §7b shield row).
 - [ ] One primary action; two-button arrangement correct (`screen-structure.md` §7b).
@@ -143,7 +153,7 @@ old. The only thing an existing project keeps is its frame size (rule 1). `figma
 ## Common pitfalls
 
 - **Card for everything** — each setting, stat or row in its own rounded card with shadow. Group same-kind rows; reserve cards for units.
-- **Even spacing everywhere** — 16 between every element hides the grouping. Use 48 between sections, 8–16 inside.
+- **Even spacing everywhere** — 16 between every element hides the grouping. Choose each gap by relationship (§2); between groups clearly larger than inside.
 - **Filling the screen** — stretching cards, adding spacers or decorative blocks so a short screen "looks full". Let content hug; pin the CTA.
 - **Several "primary" buttons** or tinted glass on every control — nothing stands out.
 - **Judging from the screenshot alone** — misses small text and hidden actions; read the outline too (`reading-screens.md`).

@@ -162,7 +162,7 @@ The designer named *Screentime Control* as **the screen structure standard**; it
 - root `NONE`, corner radius following the device corners, root fill is a surface token;
 - **layers bottom → top:** `Background/*` (if any) → **Content** → **Bottom Container** → **Top Container** → `Scrim` → sheet / popup. The Top Container sits **above** Content so scrolling content slides under the top bar;
 - the three main blocks are **frames by default**; a block repeated **identically** on a second screen → turn the first screen's block into a component and replace both with instances (`lock-phase.md` §4) · the safe area is **always** a `Safe-Area` instance — never reserved with padding · padding / gap on layout frames are raw numbers on purpose;
-- Top Container = `Safe Area` 60 + `Toolbar_Top` 76 (IAP / paywall: toolbar 48) · Content vertical, padding 24 or 8/16, 48 between sections · Bottom Container = CTA 56 + bottom 44 (or `Safe area_bottom` 34) · sheet = `Scrim` + `Bottom sheet` (sheet toolbar 76, bottom padding 34);
+- Top Container = `Safe Area` 60 + `Toolbar_Top` 76 (IAP / paywall: toolbar 48) · Content vertical, padding 24 or 8/16, gaps chosen by relationship — title ↔ body, inside a group, between groups (`../mobile-ui-master/SKILL.md` §2) · Bottom Container = CTA 56 + bottom 44 (or `Safe area_bottom` 34) · sheet = `Scrim` + `Bottom sheet` (sheet toolbar 76, bottom padding 34);
 - templates per screen type (welcome, onboarding, IAP, popup, sheet, settings) come from the designer's screen-structure notes.
 
 (The measured `Safe Area` 60 is the designer's component; Apple's number is 62 — §6, `FIX_TO_APPLE` only with the designer's agreement.)

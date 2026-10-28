@@ -83,7 +83,9 @@ one place and every screen follows.
 ## 3. Content
 
 - VERTICAL · width FILL · **common padding**: `24` on all four sides (13 screens) · `8, 16` (10) · `24, 16` (8) · `16, 24` (5) · `0, 24` (4) — written as (vertical, horizontal); a single number = all four sides.
-- **Gap between sections: 48** (24 screens) · inside a section **24 / 16 / 8**.
+- Measured in this file: **gap between sections 48** (24 screens) · inside a section **24 / 16 / 8**. These are one file's values, not the rule —
+  the designer's standard is gaps chosen by relationship: sections usually **20–24** (48 is too big for mobile), elements / cards **6–12**
+  (`../SKILL.md` §2). Grouped lists use smaller gaps between titled groups (§4, Settings g16).
 - Usually opens with the **`Headline + Subheadline`** component, followed by containers named by role: `Selections Container`, `Categories Card`,
   `Icon State Container`, `Section 1 / 2 / 3`.
 - Each content block = **header (title `Headline/xs-emphasized` + chevron) + body** — e.g. `Summary Container`, `Group Container`.
@@ -199,7 +201,7 @@ are the compact versions.
 
 - **New project without a template screen** → build per §1–6. Project with its own template screen → the template wins (project-level standard).
 - **By screen type** → template in §7; compare the built screen with the template of the same type using `scripts/skeleton.js`.
-- Specific values (pad 24, gap 48, toolbar 76, CTA 56) are the **designer's defaults** when the file has no other convention — if the project
+- Specific values (pad 24, toolbar 76, CTA 56; gaps by relationship — sections 20–24, elements 6–12, `../SKILL.md` §2) are the **designer's defaults** when the file has no other convention — if the project
   file has its own tokens / components, appearance follows the file.
 
 ## 11. iPhone Duo frame packaging — designer standard
