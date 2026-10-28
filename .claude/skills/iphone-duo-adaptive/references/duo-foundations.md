@@ -78,7 +78,7 @@ A size change **may** reveal more hierarchy, change the pane split, move control
 | **Adaptive** | most of the app benefits from the large canvas | split / pane / grid / vertical controls / overflow are designed |
 | **Duo-enhanced** | product has media, camera, productivity or hands-free use cases | arrangement, posture-specific enhancement, multi-scene / display accessory **with fallback** |
 
-Do not force every project to Duo-enhanced. The right level depends on value to the user, not on a wish to "use all the hardware". Record the chosen level in the project brief (see `duo-rule-map.md` §3).
+Do not force every project to Duo-enhanced. The right level depends on value to the user, not on a wish to "use all the hardware". Record the chosen level in the project brief (see `duo-adapt-workflow.md` §3).
 
 ## 6. Glossary and plain-language pose names `[T]`
 
