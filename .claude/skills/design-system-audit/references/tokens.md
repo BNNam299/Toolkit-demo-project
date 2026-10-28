@@ -2,7 +2,7 @@
 
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/tokens.md @ 3c0e291 — translated, complete
 
-Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-team-standards/SKILL.md`) differs, the team rule wins.
+Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-standards/SKILL.md`) differs, the team rule wins.
 
 ## Contents
 1. Token tiers, context, groups, component governance

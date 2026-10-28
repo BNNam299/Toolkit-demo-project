@@ -18,7 +18,7 @@ const CONFIG = {
   GLYPH_RANGES: [[0xE000, 0xF8FF], [0xF0000, 0x10FFFF]],
   WHAT: { fill: true, stroke: true, text: true, spacing: true, radius: true, strokeWeight: true, effect: true },
   // layers the designer edited by hand — from the designer-edit comparison (figma-project-maintain). Left alone unless the designer says to
-  // bind them too (bnnam-team-standards team-rules §12 — designer edits win)
+  // bind them too (bnnam-standards team-rules §12 — designer edits win)
   DESIGNER_EDITED_IDS: [],
   EDIT_SUFFIX: "Fix",                    // project settings › edit suffix
   TEMPLATE_FRAMES: [],                   // project settings › template screen — never bound

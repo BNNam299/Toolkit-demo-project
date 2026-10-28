@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/core/system-binding.md @ 3c0e291 — translated, complete
 
 When building UI, **every property that has a matching entry in the file's system must use that entry**. Never hard-code a value the
-system already has. This is the **System** gate (`../bnnam-team-standards/references/team-rules.md` §4).
+system already has. This is the **System** gate (`../bnnam-standards/references/team-rules.md` §4).
 
 **Why:** an agent optimises for *"finish this screen"* instead of *"keep the system consistent"*. One component adds one stray value;
 after ten components the system is rubbish. Evidence: **889 raw frames vs 59 instances**; a wrong status bar height spread to 23 screens.
@@ -165,7 +165,7 @@ bg.constraints = { horizontal: "STRETCH", vertical: "STRETCH" };  // stays cover
 card.insertChild(0, bg);
 ```
 
-**A background cluster holding content** (`../bnnam-team-standards/references/frame-standards.md` §7) — a background area with a card
+**A background cluster holding content** (`../bnnam-standards/references/frame-standards.md` §7) — a background area with a card
 and a character on top:
 ```
 visual_Header                 frame · vertical auto layout, bottom-aligned · background

@@ -1,4 +1,4 @@
-// componentize.js — REPEATED BLOCK → COMPONENT (designer standard, mobile-ui-master screen-structure §1 · bnnam-team-standards team-rules §12.4 exception 3).
+// componentize.js — REPEATED BLOCK → COMPONENT (designer standard, mobile-ui-master screen-structure §1 · bnnam-standards team-rules §12.4 exception 3).
 // Main blocks (Top Container, Content, Bottom Container, …) are FRAMES by default. When the second screen's block has EXACTLY THE SAME STRUCTURE
 // as the first screen's → turn the first screen's block into a component and replace the block on every listed screen with an INSTANCE.
 // Text that differs between screens is kept as OVERRIDES. Only blocks the agent built (new screens, _Fix AI, the agent's sections). Blocks in

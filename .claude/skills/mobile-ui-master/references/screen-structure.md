@@ -69,14 +69,14 @@ Measured on 117 Screentime screens, consistent across every case:
 | Part | Measured |
 |---|---|
 | **`Top Container` component** | VERTICAL · gap 0 · pad 0 · HUG · 402 × 136–158 |
-| `Safe Area` | **60 high** in the Screentime file — instance of the `Safe-Area` component (`Position = Top / Bottom`) · **new builds use Apple's number: 62** for a 402 × 874 frame (`../bnnam-team-standards/references/frame-standards.md`) |
+| `Safe Area` | **60 high** in the Screentime file — instance of the `Safe-Area` component (`Position = Top / Bottom`) · **new builds use Apple's number: 62** for a 402 × 874 frame (`../bnnam-standards/references/frame-standards.md`) |
 | `Toolbar_Top` | **76 high** · HORIZONTAL · pad `$spacing/2*8` (16) on all four sides · variants `Styles = L IC Button - Cen Title - R IC Button / … - R Button` · title absolutely centred (`Label/lg-emphasized`, `$content/primary`) · icon buttons 44 × 44 (`Icon Button` Size M, Fill, `r $border radius/round`; left Tertiary `$surface/overlay_dim_2`, right Primary `$surface/action_default`) · many boolean / instance-swap properties (Show icon 1–3, Leading / Trailing icon) |
 | `Pagination` (optional) | 22 high · pad 8, 36 — onboarding page dots |
 | inside a sheet | `Toolbar_Sheet_Top` 76 high, pad 16 |
 | IAP screen | `Safe area_top` 60 + `Toolbar` **48 high**, horizontal pad 16: *Restore Purchase* (Caption 12) + round close button 28 (`$Color/Filled/White 10%`, r24) |
 
 **The safe area is ALWAYS an instance of the `Safe-Area` component** — never reserve it with padding-top (the old way, seen in the Calories file).
-The standard component in **every file** is `Position × Device` (`../bnnam-team-standards/references/frame-standards.md`; the designer's main
+The standard component in **every file** is `Position × Device` (`../bnnam-standards/references/frame-standards.md`; the designer's main
 component: AR Drawing `17393:103911`). Reason: the `Safe-Area` component **will gain more variants** (today `Position = Top / Bottom`) — change it in
 one place and every screen follows.
 
@@ -193,7 +193,7 @@ are the compact versions.
   `../figma-project-maintain/scripts/flowmap.js`.
 - Local components live inside the section (`Table row Container`, `Button`, `Headline + Subheadline`); when cloning a screen, the main component
   stays in that screen / section.
-- Screen name `Flow-path_State` (`Home-Group Detail-Open Limit_Partial`, `Set Passcode Flow_Step 5`) — per `../bnnam-team-standards/references/naming.md`.
+- Screen name `Flow-path_State` (`Home-Group Detail-Open Limit_Partial`, `Set Passcode Flow_Step 5`) — per `../bnnam-standards/references/naming.md`.
 
 ## 10. Applying the standard
 
@@ -207,7 +207,7 @@ are the compact versions.
 Source file: *AR Drawing F1 iOS*, section "Update: Drawing Flow - iphone Duo" (31 Duo screens + 8 iPhone screens). The designer notes they do not
 yet know the exact safe area for some positions and adjusted by hand, **but top and bottom safe areas are still required** in principle.
 
-Each screen has **four versions side by side in one section**, named by variant suffix (`../bnnam-team-standards/references/naming.md`):
+Each screen has **four versions side by side in one section**, named by variant suffix (`../bnnam-standards/references/naming.md`):
 `<screen>` (iPhone 375 × 812) · `<screen>_Outer` (466 × 678) · `<screen>_Inner` (669 × 951) · `<screen>_Inner Landscape` (951 × 669).
 The packaging is **consistent across all 31 screens**:
 

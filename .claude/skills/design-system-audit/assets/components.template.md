@@ -9,7 +9,7 @@ level: —                           # light | standard | full — scale of the 
 ---
 # Components — <Project name>
 
-<!-- How: references/component-spec.md. Names by domain (bnnam-team-standards naming §6), states are variants.
+<!-- How: references/component-spec.md. Names by domain (bnnam-standards naming §6), states are variants.
      Build order: atoms → molecules → organisms. -->
 
 ## Coverage

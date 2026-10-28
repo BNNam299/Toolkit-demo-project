@@ -369,7 +369,7 @@ for (const screen of screens) {
     if (bad.length) add("screenName", screen, screen, { error: bad.join(" · ") });
     else {
       const [, ...suf] = nm.split("_");
-      if (!suf.length) add("nameMissingSuffix", screen, screen, { hint: "add _<state> — bnnam-team-standards naming" });
+      if (!suf.length) add("nameMissingSuffix", screen, screen, { hint: "add _<state> — bnnam-standards naming" });
       const odd = suf.filter(x => !CONFIG.SUFFIXES.includes(x) && !CONFIG.EXTRA_SUFFIXES.includes(x) && !/^Step \d+$/.test(x) && !/^Variant [A-Z]$/.test(x));
       if (odd.length) add("unknownSuffix", screen, screen, { suffix: odd.join(", "), hint: "a new state from the flow file? add it to the suffix table, or rename" });
     }

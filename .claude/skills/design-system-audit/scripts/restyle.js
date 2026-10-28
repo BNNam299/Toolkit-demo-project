@@ -1,5 +1,5 @@
 // restyle.js — REFINES A MAIN COMPONENT to match the style ref. Run ONLY on the designer's explicit order (choice a2 —
-// references/style-read.md §9 · bnnam-team-standards team-rules §12.4). Exactly ONE component, exactly the changes recorded in style.md › Atoms off-style.
+// references/style-read.md §9 · bnnam-standards team-rules §12.4). Exactly ONE component, exactly the changes recorded in style.md › Atoms off-style.
 //
 // DRY_RUN = true (default): changes nothing — reports before → after values, instance count and the screens that will change.
 // The designer reviews and says "run it for real" → DRY_RUN = false.

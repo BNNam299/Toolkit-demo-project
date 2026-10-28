@@ -19,10 +19,10 @@ Let `SKILL_DIR` be the directory containing this file.
 | Build, start, check a click-through flow | `scripts/prototype.js` (this file explains it below) |
 | The flow's screen order and where each tap leads | the project's `design/flows.md` (`leads to`), or ask the designer — `../prd-to-ux-flow/references/ux-flow.md` |
 | Find the right layer to tap on each screen | `../mobile-ui-master/references/reading-screens.md` |
-| Screen names | `../bnnam-team-standards/references/naming.md` |
+| Screen names | `../bnnam-standards/references/naming.md` |
 | Choosing a transition, sheets vs dialogs, navigation patterns | `../mobile-ux-fundamentals/references/interaction-patterns.md` |
 | What a prototype should answer (fidelity by question) | `../prd-to-ux-flow/references/structure.md` §7.10 |
-| Presenting two options and brainstorming with the designer | `../bnnam-team-standards/references/team-rules.md` §13 |
+| Presenting two options and brainstorming with the designer | `../bnnam-standards/references/team-rules.md` §13 |
 | Adaptive projects (iPhone Duo, iPad) | `../iphone-duo-adaptive/SKILL.md` and §Adaptive below |
 | Tool mechanics of `execute_code` | `../figma-agent-tools/SKILL.md` |
 

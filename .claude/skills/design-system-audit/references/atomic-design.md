@@ -8,8 +8,8 @@ file; don't reopen the sources.
 
 Knowledge is a lens, not a procedure. **The designer's standard wins where it differs:** the draft / lock rhythm
 (`../figma-project-maintain/references/processes.md` §1 rules 2–3, 7), the screen frame and Safe-Area
-(`../bnnam-team-standards/references/frame-standards.md` §5), main components are never edited without approval
-(`../bnnam-team-standards/references/team-rules.md` §12.4). Where a source says otherwise, the item is marked **Designer standard**.
+(`../bnnam-standards/references/frame-standards.md` §5), main components are never edited without approval
+(`../bnnam-standards/references/team-rules.md` §12.4). Where a source says otherwise, the item is marked **Designer standard**.
 
 Conventions: text in quotation marks is a short verbatim quote from the source; **(synthesis)** marks what was inferred / combined from
 several sources, not a source's words. Source abbreviations: **AD1–AD5** = Brad Frost, *Atomic Design*, chapters 1–5; **AWD** = the
@@ -111,7 +111,7 @@ original "Atomic Web Design" blog post; **F-xxx** = Figma documentation (§10).
 - Mobile examples **(synthesis)**: a screen frame with status bar + nav bar + scrolling content area + tab bar; a paywall frame (hero,
   benefits, plan selector, CTA); a detail frame; a list frame. Content is constrained placeholders (image 16:9, title ≤ 2 lines).
   **Designer standard:** status bar and home indicator are never drawn — the frame uses Safe-Area spacer components
-  (`../bnnam-team-standards/references/frame-standards.md` §5).
+  (`../bnnam-standards/references/frame-standards.md` §5).
 
 ### 2.5 Page
 - Source: "specific instances of templates that show what a UI looks like with real representative content in place" (AD2). "The page
@@ -182,7 +182,7 @@ kit atoms / molecules → the old component switches to instances of the sub-par
 - [ ] Basic text field, checkbox, radio, switch, slider.
 - [ ] Avatar, badge / dot, divider, progress (bar / ring), spinner, thumbnail / image with a fixed ratio.
 - [ ] Top / bottom Safe-Area — **spacer** components the designer has prebuilt in the kit. **Designer standard:** never draw the status
-  bar or home indicator (`../bnnam-team-standards/references/frame-standards.md` §5) — Figma's suggestion to nest a status bar instance
+  bar or home indicator (`../bnnam-standards/references/frame-standards.md` §5) — Figma's suggestion to nest a status bar instance
   (F-nesting) does not apply. A keyboard only when the screen needs it (system kit).
 
 ### 4.3 Basic molecules
@@ -309,7 +309,7 @@ kit atoms / molecules → the old component switches to instances of the sub-par
   carousel"; "card", not "product card"; tip: blur the content and name by structure (AD5).
 - Per-level convention **(synthesis):** page / group prefix by level or by type (e.g. page "Atoms", frame "Buttons", component
   "Button"), consistent across the library; property / value names match the code prop names. Team naming rules:
-  `../bnnam-team-standards/references/naming.md` §6.
+  `../bnnam-standards/references/naming.md` §6.
 
 ### 6.5 Pages / sections by level
 - Figma recommends **pages and frames** as the main organisation: page names become top-level headings, frame names collapsible

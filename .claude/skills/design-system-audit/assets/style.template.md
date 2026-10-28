@@ -54,7 +54,7 @@ level: —                           # light | standard | full — scale of the 
 ## Atoms off-style
 
 <!-- references/style-read.md §9 — existing atoms whose shape differs from the ref. The agent does NOT edit the main component
-     (bnnam-team-standards team-rules §12.4). -->
+     (bnnam-standards team-rules §12.4). -->
 
 ### <Atom name — e.g. Button/Primary>
 - currently: —                      # from scripts/inspect.js: radius 8 · drop shadow 12 · solid fill

@@ -12,7 +12,7 @@ iPhone skill says about type, colour, Liquid Glass, bars, sheets and accessibili
 - **How to build a screen:** `../figma-ui-flow/SKILL.md` · **Figma tools:** `../figma-agent-tools/SKILL.md`.
 - **Verbatim Apple pages** (Apple wins over this summary): `../apple-hig/references/<page>.md`.
 - Neighbours: iPhone Duo, fold postures, adapting one screen to many geometries → `../iphone-duo-adaptive/SKILL.md` · team frame
-  standards (Safe-Area set, frame suffixes) → `../bnnam-team-standards/references/frame-standards.md` · Android tablets →
+  standards (Safe-Area set, frame suffixes) → `../bnnam-standards/references/frame-standards.md` · Android tablets →
   `../material-design-3/SKILL.md`.
 
 ## Need → Read
@@ -27,7 +27,7 @@ iPhone skill says about type, colour, Liquid Glass, bars, sheets and accessibili
 | Sheets, popovers, action sheets on iPad | `../apple-hig/references/sheets.md`, `popovers.md`, `action-sheets.md`, `activity-views.md` |
 | Trackpad / mouse, keyboard, Apple Pencil | `../apple-hig/references/pointing-devices.md`, `keyboards.md`, `apple-pencil-and-scribble.md`, `drag-and-drop.md` |
 | iPad frame sizes, Dimensions (iPad mode), iPad components | `../apple-design-iphone/references/ios27-figma-kit.md` §2, §4.2, §6 |
-| Team Safe-Area values, frame suffix `_iPad`, wireframe scope | `../bnnam-team-standards/references/frame-standards.md`, `naming.md` |
+| Team Safe-Area values, frame suffix `_iPad`, wireframe scope | `../bnnam-standards/references/frame-standards.md`, `naming.md` |
 | Layout transformations when width changes (reflow, split, reveal…) | `../iphone-duo-adaptive/SKILL.md` |
 
 Do not read everything at once: the core rules below cover most iPad screens; open the Apple page for the component you are judging.

@@ -1,5 +1,5 @@
 // impact.js — READ ONLY. If this component changes, what changes with it? Run BEFORE every edit to a main component —
-// by the designer, under a1 / a2 (restyle.js), or a new component replacing an old one. bnnam-team-standards team-rules §12.4.
+// by the designer, under a1 / a2 (restyle.js), or a new component replacing an old one. bnnam-standards team-rules §12.4.
 // Body of an async function: top-level `await` and `return`. Run through execute_code{code, timeoutMs} — set CONFIG, send the whole file.
 const CONFIG = {
   COMPONENTS: [],                  // required — component or component set names

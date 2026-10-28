@@ -66,7 +66,7 @@ the audit (`../scripts/audit.js` reports `devNoteInScreen`).
 
 ## 4. Identifying a dev note — two conditions at once
 
-The dev-note component is named **`Dev Note`** (`../../bnnam-team-standards/references/naming.md`). When scanning, a dev note is a node
+The dev-note component is named **`Dev Note`** (`../../bnnam-standards/references/naming.md`). When scanning, a dev note is a node
 that is **both** an instance of `Dev Note` **and** outside any screen frame. Never count by the name `Note` — a real UI card can also be
 called `Note`.
 

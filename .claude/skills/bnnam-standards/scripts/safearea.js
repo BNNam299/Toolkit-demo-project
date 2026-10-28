@@ -80,7 +80,7 @@ if (!set) {
     sec.appendChild(c); comps.push(c); made.push(c.name);
   }
   set = figma.combineAsVariants(comps, sec); set.name = CONFIG.SET_NAME; set.x = CONFIG.GAP; set.y = CONFIG.GAP * 2;
-  set.description = "Standard safe area — Position × Device. Empty frame; place instances FILL horizontally. bnnam-team-standards references/frame-standards.md §6";
+  set.description = "Standard safe area — Position × Device. Empty frame; place instances FILL horizontally. bnnam-standards references/frame-standards.md §6";
   let y = 0; for (const c of set.children) { c.x = CONFIG.GAP; c.y = y + CONFIG.GAP; y += c.height + CONFIG.GAP; }
   set.resizeWithoutConstraints(CONFIG.WIDTH + CONFIG.GAP * 2, y + CONFIG.GAP);
   sec.resizeWithoutConstraints(Math.max(sec.width, set.width + CONFIG.GAP * 2), Math.max(sec.height, set.height + CONFIG.GAP * 4));

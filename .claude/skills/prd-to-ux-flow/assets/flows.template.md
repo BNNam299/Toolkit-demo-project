@@ -10,7 +10,7 @@ ui_approved: —                      # write <date> when every batch is accepte
 # Flows — <Project name>
 
 <!-- THE SINGLE SOURCE OF SCREEN NAMES. Adding a screen = add it here first, then build it.
-     Screen names: ../bnnam-team-standards/references/naming.md. How, trace, assumptions: references/ux-flow.md. -->
+     Screen names: ../bnnam-standards/references/naming.md. How, trace, assumptions: references/ux-flow.md. -->
 
 <!-- Large projects or maintenance in rounds: group by FEATURE — one heading "## Feature — <name>" per feature, keeping exactly
      "### <Flow>" and "### <Screen>" inside. Status reports count per feature. -->

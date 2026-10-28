@@ -44,10 +44,10 @@ made — that is `learn.md`.
 
 | Take from **the project** — so the product stays itself | Take from **the designer's standard** — not the old project's way |
 |---|---|
-| flows, content, current copy, terminology | screen skeleton: root frame with layout `NONE`, top block / content / bottom block (`../bnnam-team-standards/references/frame-standards.md`) |
+| flows, content, current copy, terminology | screen skeleton: root frame with layout `NONE`, top block / content / bottom block (`../bnnam-standards/references/frame-standards.md`) |
 | the file's tokens, text styles, effect styles | safe area built with spacer components (same reference) |
 | existing components — use instances, never edit the originals (§3) | the designer's template screen (`project.yaml › screen.template`) |
-| documents: features, business rules | naming convention for **new** screens (`../bnnam-team-standards/references/naming.md`) |
+| documents: features, business rules | naming convention for **new** screens (`../bnnam-standards/references/naming.md`) |
 
 The old project builds layout differently (auto-layout root, a drawn status bar, safe area as padding…) → **any screen the agent
 builds or edits still follows the designer's standard**: it looks like the old screens, but is packaged the designer's way. When the
@@ -89,7 +89,7 @@ with `clone.js` in an own section. The designer picks an option, then picks whet
 |---|---|
 | access to the project's Figma file | ask the designer for the file link |
 | project documents in `product/sources/prd/` (if any) | does not block — build the overview from Figma, note *"not checked against documents"* |
-| the designer's template screen and two safe-area components **in this file** — the designer always places them | remind the designer (`prepare-file.md` §2) — the agent never creates atoms itself. Missing → §B stops, §A can still run |
+| the designer's template screen and two safe-area components **in this file** — the designer always places them | remind the designer (`../bnnam-standards/references/frame-standards.md`) — the agent never creates atoms itself. Missing → §B stops, §A can still run |
 
 | Reads | Writes |
 |---|---|
@@ -107,11 +107,12 @@ Goal: **understand the flows, know where things lead, capture the voice, see wha
 no competitor analysis, no reading style from images — the project already exists in Figma. The voice is **extracted from the copy
 that exists**, not defined anew.
 
-1. **Detect conventions** (`get_document_info`, `get_design_system`, `find_nodes`, screenshots — `prepare-file.md` §1 lists what to
-   look for): pages, frame size, tokens, atoms, how the project builds its safe area, **background components `Background/*`** and how
-   they are blurred, the state language (how states are shown: fill · stroke · opacity · mixed), `process.case: maintain` (or
-   `redesign` when the designer says so — `processes.md` §0). Submit a draft `project.yaml` (`assets/project.template.yaml`), the
-   designer confirms. Also record `screen.template` and the safe area **of the designer** (not of the old project).
+1. **Detect conventions** with `../design-system-audit/scripts/detect.js` (plus `get_document_info` / `get_design_system` and
+   screenshots when you need more): pages, frame size, tokens, atoms, how the project builds its safe area, **background components
+   `Background/*`** and how they are blurred, the state language (how states are shown: background · border · opacity · shadow ·
+   mixed), `process.case: maintain` (or `redesign` when the designer says so — `processes.md` §0). Submit a draft `project.yaml`
+   (detect.js returns `projectYamlDraft`; full format `assets/project.template.yaml`), the designer confirms. Also record
+   `screen.template` and the safe area **of the designer** (not of the old project).
 2. **Read every screen, one by one, in detail** — section → row → left to right; for each screen look at the image (`screenshot`) and
    read the outline (`scripts/readscreen.js`), and answer all six questions:
 
@@ -138,15 +139,14 @@ that exists**, not defined anew.
    never rename old screens. Every flow records the chain `<Screen> → <Screen>` from the map, field `source: current state`.
    - **Normalise identifiers:** each screen gets `screen type` and `main components` — detected with `scripts/situations.js`
      (labels such as `M-PAYWALL` = screen type *paywall*, `T-TAB-BAR` = component *tab bar*, `S-EMPTY` = state *empty*,
-     `P-IPHONE` = frame *iPhone*), confirmed by the designer. A frame name that deviates from the naming convention (duplicate names,
+     `P-IPHONE` = frame *iPhone*; write them in `flows.md` as plain words), confirmed by the designer. A frame name that deviates from the naming convention (duplicate names,
      missing suffix, typos) → record a **`standard name`** as a mapping in `flows.md`. **Never rename the designer's frames in
      Figma** — the name may be the creator's intent; the agent **only renames frames it created itself** (`_Fix AI`, drafts in its own
      section). The list of deviating screens goes into the overview report.
-5. **Capture tone of voice and UX writing** — so copy on new screens is **consistent** with the old screens. Read the text on every
-   screen (the `text` / `actions` / `inputs` fields of `readscreen.js`, or a dedicated `execute_code` read) and tally it by role
-   (button, title, subtitle, label, input, error, notice, body): average word count, capitalisation, end punctuation, form of
-   address, emoji — with sample sentences. Read the samples, write `voice.md` with `from: maintain`, using the voice format of
-   `../ux-writing/SKILL.md`:
+5. **Capture tone of voice and UX writing** — so copy on new screens is **consistent** with the old screens.
+   `../ux-writing/scripts/textdump.js` reads the text on every screen and tallies it by role (button, title, subtitle, label, input,
+   error, notice, body): average word count, capitalisation, end punctuation, form of address, emoji — with sample sentences. Read the
+   samples, write `voice.md` with `from: maintain`, using the voice format `../ux-writing/assets/voice.template.md`:
    - **Product voice** extracted from real copy: 3–4 attributes, position on the four tone axes, form of address — each attribute
      backed by a **sample sentence** that proves it
    - **Tone per situation** only for situations the project **already has** (error, empty state, success…) — with real sentences
@@ -158,7 +158,7 @@ that exists**, not defined anew.
    The designer approves `voice.md` before the agent writes copy for a new screen.
 6. **Find what needs adding** → `analysis.md › Gaps`:
    - screens with no way out (no button, no tab, no back) · screens with no way in (no button on another screen leads to it)
-   - missing states: sweep the state table (`../prd-to-ux-flow/SKILL.md`) over the main flows — screens with data but no `Empty`,
+   - missing states: sweep the state table (`../prd-to-ux-flow/references/ux-flow.md` §8) over the main flows — screens with data but no `Empty`,
      `Loading`, `Error`…
    - features the documents have that the UI does not, and the reverse
 
@@ -203,13 +203,14 @@ Next steps
 2. On the `_Fix` copy: **rebuild the skeleton to the designer's standard** (root frame, blocks, safe area, following the template
    screen) — keeping the project's content, tokens and components unchanged — then apply exactly the requested change.
 3. The old screen has raw values (colours, spacing not bound) → in the `_Fix` copy bind them to the file's system
-   (`bind_variables`, dry run first — `../design-system-audit/SKILL.md`); a value with no matching token is **reported**, never turned
-   into a new token on your own.
-4. `audit_design` on the `_Fix AI` copy (always audit the agent's copy) · check by eye with both copies side by side.
+   (`bind_variables` or `../design-system-audit/scripts/bind.js`, dry run first — `../design-system-audit/references/system-binding.md`);
+   a value with no matching token is **reported**, never turned into a new token on your own.
+4. `../ux-review-handoff/scripts/audit.js` (set `SCREEN_NAMES` to the `_Fix AI` copy) and the tool demo's `audit_design` on it — always
+   audit the agent's copy · check by eye with both copies side by side.
 5. Report to the designer: changes as requested · skeleton changes (not requested, caused by moving to the standard) · remaining
    deviations.
 6. The designer compares → more tweaks either by working in parallel and giving orders, or by editing the `_Fix AI` copy directly and
-   telling you — then ask why (`learn.md` §3); do **not** compare with `compare.js`, because the original has a different skeleton.
+   telling you — then ask why (`learn.md` §5); do **not** compare with `compare.js`, because the original has a different skeleton.
 7. **Lock:** before anything is deleted, run `scripts/flowmap.js` and **report every prototype link that points at the old screen**
    (which screen, which layer) — the designer re-wires them, the agent does not edit links. Then the old copy is deleted (the designer
    deletes it; the agent deletes only when the designer says explicitly *"xoá bản cũ"* — delete the old one) · the new copy gets an
@@ -229,9 +230,9 @@ first, before → after and affected screens reported, then audit and check thos
    the designer approve that sentence, then add it to `voice.md`.
 3. **Wireframe only when the designer asks.** A screen of an existing family (adding `Error` to a screen that has `Result`) → build UI
    directly, using the sibling as the proportion template (figma-ui-flow's *From template* mode). A new layout the designer did not ask
-   to wireframe → **5 UI options** (step 4).
+   to wireframe → **2–3 UI options** (step 4).
 4. **A part that does not exist yet → no component yet:** build the UI normally with the **system's tokens, text styles and
-   components** for what exists, and the new part as plain frames in the same visual language · new layout / new parts → **5 options**
+   components** for what exists, and the new part as plain frames in the same visual language · new layout / new parts → **2–3 options**
    (`processes.md` §1) · references the designer gives → cut them into parts to follow their **function**, while the form follows the
    existing system · the designer **locks one option** → component spec mode 2 for those new parts (same family, same variables —
    `../design-system-audit/SKILL.md`) → approve → build → re-assemble the screen with instances.
@@ -247,20 +248,20 @@ parts. Each stage is approved separately for the new part (`processes.md` §3).
 ## 11. §C Redesign — reshape the style
 
 §A first (flows, voice and screen names stay) → `processes.md` §4: style read mode 1 with the new moodboard, compare with the old system
-family by family (keep · replace · drop, record a DEC) → first screen 5 options → lock the direction → new components in a new set →
+family by family (keep · replace · drop, record a DEC) → first screen 2–3 options → lock the direction → new components in a new set →
 rebuild by screen group. Old variables and components are not deleted, and originals are not edited, without an order.
 
 ## 12. Approval per request, not per file
 
 A maintained project does not use whole-file flags (`wireframe_approved` / `ui_approved`). Every screen in `flows.md` has an
-`approved` field — the date the designer locked that screen. The status report counts by this field (`design-status.md` §3).
+`approved` field — the date the designer locked that screen. The status report counts by this field (`design-status.md` §4).
 
 ## 13. Stop-and-ask points · self-check · report
 
 **Stop and ask:** the designer confirms the inferred flows and the extracted voice (§A) · approval **per request, per screen** (§12).
 
-**Self-check:** `audit_design` on the `_Fix AI` copy + check by eye with both copies side by side (§B1) · audit only new screens and
-`_Fix AI` copies.
+**Self-check:** `audit.js` / `audit_design` on the `_Fix AI` copy + check by eye with both copies side by side (§B1) · audit only new
+screens and `_Fix AI` copies.
 
 **Report:** §A — the overview report (§7). §B — add: number of screens edited / added · number of skeleton changes · number of raw
 values bound / with no token · number of new copy lines and the ones written outside `voice.md`. Never say "done" without numbers;

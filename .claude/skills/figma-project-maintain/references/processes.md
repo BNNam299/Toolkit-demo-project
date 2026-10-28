@@ -37,10 +37,10 @@ part only (record it in `process.scope`).
 
 ## 1. Rules for every case
 
-1. **A screen with a new direction → 5 quick option sketches** (first screen of a new project · first screen of a redesign · a
-   maintenance screen whose layout or components do not exist in the system yet): 5 fast sketches that are genuinely different →
-   the designer picks 1–2 → develop them properly → **lock the direction**. *(Differs from figma-ui-flow Stage 4, which asks for
-   2–3 directions; for these cases use 5 sketches.)*
+1. **A screen with a new direction → 2–3 quick option sketches** (first screen of a new project · first screen of a redesign · a
+   maintenance screen whose layout or components do not exist in the system yet): 2–3 fast sketches that are genuinely different →
+   the designer picks 1–2 → develop them properly → **lock the direction**. *(Same count as figma-ui-flow Stage 4 — 2–3
+   directions; the source toolkit asked for 5, reduced to save time.)*
 2. **Not locked → no components.** Options and drafts are plain frames. New parts too: build the UI normally, develop it, lock one
    option, **then** create components.
 3. **Direction locked → generate components**: the list comes from the locked screen + cut-out reference parts + `flows.md` + spec →
@@ -70,7 +70,7 @@ part only (record it in `process.scope`).
 | 3b | Base kit §1 — the duplicated base kit: review + snapshot, **read only** | `kit.md` · `kit/kit-goc.json` (base-kit snapshot) | locked |
 | 4 | UX flow · voice (in parallel) | `flows.md` (flows, screen list, screen cases) · `voice.md` | ⛔ |
 | 5 | Wireframe — **only when asked** | grey frames for the flows | ⛔ |
-| 6 | UI build — **first screen: 5 options** (ask first: build with the kit or a fresh draft) → pick 1–2 → develop | template screen in Figma | ⛔ *lock direction* |
+| 6 | UI build — **first screen: 2–3 options** (ask first: build with the kit or a fresh draft) → pick 1–2 → develop | template screen in Figma | ⛔ *lock direction* |
 | 6b | Base kit §2–§4 — tune variables to the locked screen + moodboard · atoms that deviate / are missing: draft next to the original → approve → edit the original | `kit.md` · `kit/ledger.json` · kit in Figma | ⛔ per group |
 | 7 | Component spec — generate **every** component the app needs → build → re-assemble the template screen | `components.md` · components in Figma | ⛔ |
 | 8 | UI build by **screen group** (flows in `flows.md`) — draft → refine → lock each group · a new block with a different role → draft, lock an option, only then add a component | screens in Figma · `flows.md › ui:` | ⛔ each group |
@@ -83,12 +83,12 @@ and the PRD / spec for whatever changes.
 
 | # | Stage | Output | Approve |
 |---|---|---|---|
-| 1 | Project overview (`references/maintain.md` §A) — once, or scoped to one feature: flows, voice, system | `project.yaml` · `flows.md` `from: maintain` · `voice.md` | ⛔ |
+| 1 | Project overview (`references/maintain.md` §A) — once, or scoped to one feature: flows, voice, system (`../design-system-audit/scripts/detect.js`, `inspect.js`) | `project.yaml` · `flows.md` `from: maintain` · `voice.md` | ⛔ |
 | 2 | Read the PRD — only the changed part | `prd.md` (new section) | ⛔ |
 | 3 | References (if the designer gives any): competitor → cut by function · style reference screen → **mode 2**: cut parts, write the signature **in the system's tokens and components**, not in the reference's style | `competitor-parts/` · `style-parts/` | — |
 | 4 | UX flow — add screens and screen cases to `flows.md` (`source: added <date>`) | `flows.md` | ⛔ |
 | 5 | Wireframe — only when asked | | ⛔ |
-| 6 | Edits (`references/maintain.md` §B) → UI build: an edit → a `_Fix AI` copy · a new screen built with the existing system · new layout / parts → **5 options** (§1.1) | screens in Figma | ⛔ lock option |
+| 6 | Edits (`references/maintain.md` §B) → UI build: an edit → a `_Fix AI` copy · a new screen built with the existing system · new layout / parts → **2–3 options** (§1.1) | screens in Figma | ⛔ lock option |
 | 7 | New parts that were locked → component spec **mode 2** (follow the existing system, same family, same variables) → re-assemble | `components.md` | ⛔ |
 | 8 | UX review of the changed part | `review.md` | ⛔ |
 
@@ -104,7 +104,7 @@ product needs to keep.
 | 3 | Style read **mode 1** with the new moodboard + compare with the old system: each token / component family → **keep · replace · drop**, record a DEC | `style.md` · `style-parts/` | ⛔ *approve style* |
 | 4 | Competitor cut by function, if there are competitor images | `competitor-parts/` | ⛔ |
 | 5 | UX flow — keep existing screen names (`flows.md` records screens changed / added / dropped) · voice keeps the voice unless the spec changes it | `flows.md` | ⛔ |
-| 6–9 | As `new` 5–9 — first screen 5 options, lock direction, base kit (a new kit for the new style, or the duplicated base kit), generate new components, screen groups, review | | ⛔ |
+| 6–9 | As `new` 5–9 — first screen 2–3 options, lock direction, base kit (a new kit for the new style, or the duplicated base kit), generate new components, screen groups, review | | ⛔ |
 
 Variables and components of the old system that get replaced → **do not delete them, do not edit the originals** without an
 explicit instruction: new components go into a new set, screens switch over group by group as they are locked; the *replace / drop*
@@ -113,7 +113,7 @@ list waits for the designer to order the clean-up.
 ## 5. Dependency graph (read by the status report, per `process.case`)
 
 ```text
-new       prd ⛔ → competitors ⛔ ─┬→ ux-flow ⛔ ─┬→ [wireframe ⛔] → first screen (5 options) ⛔ → base kit ⛔ → components ⛔ → screen groups ⛔ → ux-review ⛔
+new       prd ⛔ → competitors ⛔ ─┬→ ux-flow ⛔ ─┬→ [wireframe ⛔] → first screen (2–3 options) ⛔ → base kit ⛔ → components ⛔ → screen groups ⛔ → ux-review ⛔
                                   ├→ voice ⛔ ───┘
                     style-read ⛔ ┘   (base kit §1 review — read only — right after duplicating)
 maintain  overview ⛔ → prd (new part) ⛔ → [refs: competitor cut · style mode 2] → ux-flow ⛔ → [wireframe ⛔] →
@@ -131,7 +131,7 @@ A stage you *can do next* = a stage not finished whose every prerequisite (for t
 | Voice, UX writing | `../ux-writing/SKILL.md` |
 | Style read, base kit, system audit, component spec | `../design-system-audit/SKILL.md` |
 | Wireframe, UI build — the three-pass build loop | `../figma-ui-flow/references/build-loop.md` |
-| Screen frame, naming, team rules | `../bnnam-team-standards/SKILL.md` |
+| Screen frame, naming, team rules | `../bnnam-standards/SKILL.md` |
 | Click-through prototype | `../figma-prototype-flow/SKILL.md` |
 | UX review, handoff | `../ux-review-handoff/SKILL.md` |
-| Overview, edits on a running project, status, learning from fixes, preparing the file | this skill |
+| Overview, edits on a running project (`maintain.md`), status (`design-status.md`), learning from designer edits (`learn.md`) | this skill |

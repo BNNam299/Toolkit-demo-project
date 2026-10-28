@@ -1,0 +1,119 @@
+# design/project.yaml — the project declaration
+# The Figma part is DETECTED by ../design-system-audit/scripts/detect.js (its `projectYamlDraft`), CONFIRMED by the user, and only then written.
+# The process / docs part is created the first time the PRD is read (or at the maintenance overview). Pages can change between
+# sessions — detect again every session. Values below are examples; replace them with what the file actually has.
+
+# ── Status block (same seven fields as every design/ file — ../bnnam-standards/references/team-rules.md §8.4) ──
+status:     draft                  # draft | approved — approved once the user confirms the detected values
+approved:   —
+from:       detect                 # detect.js (Figma part) · prd-read (process, docs) · maintain (overview)
+based_on:   figma@<detection date>
+by:         claude-code            # claude-code | codex | …
+version:    —
+level:      —
+
+process:                           # references/processes.md — new | maintain | redesign | single
+  case:         new                # redesign when the designer says so
+  wireframe:    false              # true when the designer asks for wireframes — after the UX flow, before UI
+  scope:        —                  # redesign / maintain of one part only: feature name, section
+
+platform:
+  os:           ios                # ios | android | web | ios+android — touch targets, which platform knowledge to load
+  frame:        402 × 874          # new project: the designer's iPhone frame · existing project: the size / ratio already designed
+  safeTop:      62
+  safeBottom:   34
+  minSidePad:   16
+  # ── adapting to several devices — ../iphone-duo-adaptive/SKILL.md
+  targets:       [iphone]          # iphone | iphone-duo | ipad | iphone-resizable — devices / contexts the app must run well on
+  adaptiveLevel: none              # none | compatible | adaptive | duo-enhanced — the designer decides
+  poses:         []                # postures with their own value: [Book, Tabletop, Tent] — only when they create value
+  rotates:       true              # the outer screen rotates to landscape
+  multiScene:    false             # several windows / instances of the same app
+  sceneAccessory: false            # secondary UI on the other display
+  camera:        false             # has a camera experience
+  systemKit:     U16qUqwvYEgBuYpGBjQOep   # Apple Design Resources iOS & iPadOS 27 — ../apple-design-iphone/references/ios27-figma-kit.md
+  referenceKits: [3ZoxuuWeqQMn2lP2sXGxZ6] # iPhone Duo · iOS 27 UI Kit (community) — real-app samples
+
+tokens:
+  collections:  primitive → alias → mapped
+  colorPrefix:  surface/* · content/* · border/*
+  modes:        Light · Dark
+  bindTarget:   mapped
+  # the existing system for each kind — detect, never assume (../design-system-audit/references/system-binding.md)
+  spacing:      responsive/spacing/*      # or: none
+  radius:       alias/border-radius/*     # or: none
+  strokeWidth:  alias/border-width/*      # or: none
+  sizing:       responsive/sizing/*       # or: none
+  effects:      effect styles             # or: none
+  grids:        none                      # grid styles | none
+  valuesFilled: true                      # variables have a value in every mode
+
+typography:
+  scale:        10 12 14 16 20 24 28 32 36 45 57
+
+onMismatch:     report             # applies to EVERY kind of property · report | snap-nearest
+
+icons:
+  strategy:     symbol-font + vector
+  glyphRanges:  U+E000-F8FF, U+F0000+
+  font:         SF Pro
+
+screen:                            # ../bnnam-standards/references/frame-standards.md
+  template:     page "5. UI Design" · frame "<template screen>"   # often copied from another file — learn the STRUCTURE only · — if none yet
+  templates:                      # template screens PER TYPE — ../mobile-ui-master/scripts/skeleton.js compares a new screen with the template of its type
+    list: —
+    detail: —
+    sheet: —
+    settings: —
+    onboarding: —
+    welcome: —
+    paywall: —
+    popup: —
+  safeArea:     spacer-component   # spacer-component | none
+  safeAreaSet:  Safe-Area          # standard component Position × Device — ../bnnam-standards/scripts/safearea.js
+  safeTop:      component "Safe area/Top"      # atom the designer prebuilt — empty space platform.safeTop high, FILL wide
+  safeBottom:   component "Safe area/Bottom"   # atom the designer prebuilt — empty space platform.safeBottom high
+
+textRoles:                         # text role from the layer name / parent instance — shared by textdump.js, readscreen.js, flowmap.js
+  # adjust to the file's conventions if layers are named differently; each line is one case-insensitive expression
+  # (Vietnamese alternatives match Vietnamese layer names)
+  title:     "title|heading|headline|nav ?bar|header|display|tiêu đề"
+  subtitle:  "subtitle|caption|sub|mô tả ngắn"
+  button:    "button|btn|cta|nút|link"
+  tab:       "tab ?bar|tab|bottom ?nav|segment"
+  input:     "input|field|textfield|search|placeholder|ô nhập"
+  selection: "toggle|switch|checkbox|radio|chip|select"
+  back:      "back|chevron.?left|arrow.?left|close|quay lại|đóng"
+  error:     "error|warning|alert|lỗi|cảnh báo"
+  notice:    "toast|snackbar|banner|notification|dialog|modal|popup"
+  label:     "label|chip|badge|tag|nhãn"
+
+naming:                            # ../bnnam-standards/references/naming.md
+  extraSuffixes: []                # the project's own suffixes, e.g. [Disabled, Off] — declared by the designer
+
+visual:
+  background: —                    # Background/* components and how they are blurred — detect.js › backgrounds · ../screen-background/SKILL.md
+
+stateLanguage:  background         # how states are shown: background | border | opacity | shadow | mixed
+                                   # detect.js detects it · the designer confirms · audit.js › STATE_LANGUAGE reads it
+
+collab:                            # ../bnnam-standards/references/team-rules.md §12
+  editSuffix:   Fix                # the DESIGNER's edited copy: "<screen name>_Fix"
+  agentSuffix:  Fix AI             # the AGENT's copy for the designer to compare: "<screen name>_Fix AI" · lock → delete the old copy, give the official name
+
+components:
+  atomicLocation:   page "Components"
+  projectPrefix:    "XX/"
+  namingConvention: —              # the existing system's own naming, e.g. Button/Primary/Default
+
+docs:
+  prd:          product/sources/prd/PRD.docx            # original format, not converted
+  idPattern:    "FR-### · UC-### · DEC-###"     # screens use semantic paths, not codes
+
+references:
+  competitors:  page "Draft" · format: image    # structure — competitor analysis
+  style:        page "Moodboard" · format: image # style — style read
+
+pages:
+  wireframe:    "3. Wireframe"
+  ui:           "5. UI Design"

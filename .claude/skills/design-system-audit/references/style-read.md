@@ -111,7 +111,7 @@ In mode 2, every style value falls into one of three branches:
 
 Contrast uses the WCAG formula — the same function and thresholds as the screen audit (`../ux-review-handoff/scripts/audit.js`): text per
 `../mobile-ux-fundamentals/references/accessibility.md` · **surface vs background ~1.2**. Measuring tool for screenshots:
-`../bnnam-team-standards/scripts/clone_measure.py`.
+`../bnnam-standards/scripts/clone_measure.py`.
 
 ## 7. Palette for backgrounds
 
@@ -161,7 +161,7 @@ branch §5), never a raw number.
 
 - **a1 — the designer edits:** the designer follows the proposal and says *"done"* → the agent re-reads with `scripts/inspect.js` and
   confirms the match.
-- **a2 — the agent edits on the designer's order** (exception 2 of `../bnnam-team-standards/references/team-rules.md` §12.4):
+- **a2 — the agent edits on the designer's order** (exception 2 of `../bnnam-standards/references/team-rules.md` §12.4):
   `scripts/restyle.js` dry run → report before → after, instance count, screens that will change → the designer says *"run it for
   real"* → change → audit those screens, check text overflow and broken layouts caused by the new sizes → log a decision.
 - **b, c** → record in `style.md` and the decision log — the component spec reads it from there.
@@ -182,13 +182,13 @@ a reference image is cut out separately, saved once, and reopened in later sessi
 
 1. **Source** — images in `design/sources/style/` (especially `man-hinh-hay/`, `thanh-phan/`) · images inside Figma → the designer sends a
    section link → `export_assets` the frames (3x) to `design/style-parts/_src/<section name>/`. **Never write into `sources/`**
-   (`../bnnam-team-standards/references/team-rules.md` §8).
+   (`../bnnam-standards/references/team-rules.md` §8).
 2. **Measure** — `clone_measure.py prep <image> --pt-width <screen width of the image> --out design/style-parts/_work --name <source>` →
    read the 8pt grid, block edges, color table.
 3. **Cut** — one image per part: `clone_measure.py crop design/style-parts/_work/<source> X Y W H --out
    design/style-parts/<family>/<source>-<n>.png` (units in pt, original resolution kept, 4pt padding). Several states of one family
    (selected / unselected, primary / secondary) → one image per state. Families are named per
-   `../bnnam-team-standards/references/naming.md` — button, input, card, chip, tab bar, top bar, list row, toggle, badge, sheet, empty
+   `../bnnam-standards/references/naming.md` — button, input, card, chip, tab bar, top bar, list row, toggle, badge, sheet, empty
    state, illustration, icon…
 4. **Index** `design/style-parts/index.md` — one line per image:
    `image · family · role (e.g. plan card) · state · source screen type (e.g. home, paywall) · source image · notes` · the signature
@@ -216,7 +216,7 @@ values in the visual area* (`system-binding.md` §6.5).
 ## 12. Write to Figma — only after approval
 
 **Never write straight into variable collections.** Proposals live in `style.md`. The user says *"approve style"* (*"duyệt style"*) → only
-then write to Figma, in the order **primitive → alias → mapped**. This touches layer 1 (`../bnnam-team-standards/references/team-rules.md`
+then write to Figma, in the order **primitive → alias → mapped**. This touches layer 1 (`../bnnam-standards/references/team-rules.md`
 §2). Tools: the tool demo's `create_variables` / `import_tokens` / `create_styles` (`../figma-agent-tools/SKILL.md`) — primitives with
 empty scopes, semantic variables with role scopes (`system-binding.md` §3). Afterwards refresh the project's token setup with
 `scripts/detect.js`.
@@ -240,7 +240,7 @@ writing to Figma (§12) · the *Proposed components* list from the cut-outs — 
 - every family under *Component signatures* has cut-outs or says *"not in ref"* · every image in `design/style-parts/` has a line in
   `index.md` · no image written into `sources/` (§10)
 
-**Report** (team format — `../bnnam-team-standards/references/team-rules.md` §9), plus: mode · counts of USE / PROPOSE / REPORT · contrast
+**Report** (team format — `../bnnam-standards/references/team-rules.md` §9), plus: mode · counts of USE / PROPOSE / REPORT · contrast
 pairs below threshold · number of families with a signature · **number of off-style atoms waiting for the designer's a / b / c** · cut-outs
 per family · number of proposed components.
 

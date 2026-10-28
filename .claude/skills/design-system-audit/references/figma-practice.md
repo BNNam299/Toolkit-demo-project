@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/figma-practice.md @ 3c0e291 — translated, complete (the section
 > "Designer — background with shape + blur" lives in `../screen-background/references/technique.md`)
 
-Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-team-standards/SKILL.md`) or the tool demo's file
+Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-standards/SKILL.md`) or the tool demo's file
 standard (`../figma-ui-flow/references/file-standards.md`) is more specific, it wins.
 
 ## Contents

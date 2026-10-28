@@ -67,7 +67,7 @@ Worked example and scenario cards: `structure.md` §3.
 - **Object model:** which objects the user handles → their attributes → their relations.
 - **Pick an architecture:** tree · linear · category · hub · tab. Mobile favours **linear** and **tab** (`structure.md` §2).
 - Each box in the diagram = one screen → **countable**, and the box name is the screen name
-  (`../bnnam-team-standards/references/naming.md`).
+  (`../bnnam-standards/references/naming.md`).
 
 ## 6. Step 3 — Flows: eight rules
 
@@ -169,7 +169,7 @@ change the screen, record a `DEC`.
 ## 13. Step 10 — Writing `flows.md`
 
 Template: `assets/flows.template.md`. One entry per flow under `## Flows` (field `sequence`, `ui: not built`); one entry per screen
-under `## Screens` — the heading is the full semantic name with its suffix (`../bnnam-team-standards/references/naming.md` §2–3).
+under `## Screens` — the heading is the full semantic name with its suffix (`../bnnam-standards/references/naming.md` §2–3).
 
 ## 14. Step 11 — Cross-check before asking for approval
 

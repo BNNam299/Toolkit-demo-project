@@ -2,7 +2,7 @@
 
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/components.md @ 3c0e291 — translated, complete
 
-Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-team-standards/SKILL.md`) differs, the team rule wins.
+Knowledge is a lens for thinking, not a procedure. Where a team rule (`../bnnam-standards/SKILL.md`) differs, the team rule wins.
 How components are assembled from atoms (levels, variants, properties, slots): `atomic-design.md`. Which components to build for a
 project: `component-spec.md`.
 

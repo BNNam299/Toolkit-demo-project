@@ -17,7 +17,7 @@ This skill owns **the design system inside the user's Figma file** — variables
 
 What lives elsewhere: building screens and the outside-in build loop (`figma-ui-flow`); tool mechanics and `execute_code`
 (`figma-agent-tools`); the per-screen audit (`../ux-review-handoff/scripts/audit.js`, tool `audit_design`); backgrounds
-(`screen-background`); team naming, frame and main-component rules (`bnnam-team-standards`); which case a project is in
+(`screen-background`); team naming, frame and main-component rules (`bnnam-standards`); which case a project is in
 (`../figma-project-maintain/references/processes.md`).
 
 ## Need → Read
@@ -35,9 +35,9 @@ What lives elsewhere: building screens and the outside-in build loop (`figma-ui-
 | Figma file / auto layout / variables practice, AI in Figma, audit checklists | `references/figma-practice.md` |
 | Templates for `style.md`, `components.md`, `kit.md` | `assets/*.template.md` |
 | OKLCH ramps, sibling ramps, mirrored dark steps, contrast of a pair | `../screen-background/scripts/palette.py` |
-| Measuring a screenshot / cutting reference parts | `../bnnam-team-standards/scripts/clone_measure.py` |
+| Measuring a screenshot / cutting reference parts | `../bnnam-standards/scripts/clone_measure.py` |
 | Writing variables / styles / component sets; library search | `../figma-agent-tools/SKILL.md` (`create_variables`, `import_tokens`, `create_styles`, `create_component_set`, `search_design_system`) |
-| Main components hands-off, the three exceptions; designer edits win | `../bnnam-team-standards/references/team-rules.md` §12 |
+| Main components hands-off, the three exceptions; designer edits win | `../bnnam-standards/references/team-rules.md` §12 |
 | Exact Apple / Material scales and component pages | `../apple-hig/SKILL.md`, `../material-design-3/SKILL.md` |
 
 Do not read everything at once. Each workflow below names the file it needs.

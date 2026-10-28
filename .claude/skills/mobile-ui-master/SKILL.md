@@ -31,7 +31,7 @@ Let `SKILL_DIR` be the directory containing this file.
 | Paywalls, sales, ad gates, banners — screen types, anatomy, risk checklist R1–R15 | `references/monetization-screens.md` |
 | Wireframes of the 102 real Amobear monetization samples (by ID `CAL-1`, `TV-3`… or file name) | `references/monetization-wireframes.md` — open only the sample a rule cites |
 | Heuristics, severity scale, cognitive principles for a review | `../ux-review-handoff/references/heuristics-evaluation.md` |
-| Team frame size and safe-area standard | `../bnnam-team-standards/references/frame-standards.md` |
+| Team frame size and safe-area standard | `../bnnam-standards/references/frame-standards.md` |
 | Touch, states, gestures, sheets/dialogs | `../mobile-ux-fundamentals/SKILL.md` |
 | The build passes this review plugs into | `../figma-ui-flow/references/build-loop.md` |
 

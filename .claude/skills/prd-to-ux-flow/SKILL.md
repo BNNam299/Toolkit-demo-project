@@ -19,7 +19,7 @@ Four jobs, in order — each writes one file in the project's `design/` folder a
 | 4 Wireframe (only when the designer asks) | grey frames by flow in Figma | `references/wireframe.md` |
 
 What lives elsewhere: building UI screens and the three-pass build loop (`figma-ui-flow`); frame structure, regions and naming
-(`mobile-ui-master`, `bnnam-team-standards`); voice and real copy (`ux-writing`); prototype wiring (`figma-prototype-flow`); adaptive
+(`mobile-ui-master`, `bnnam-standards`); voice and real copy (`ux-writing`); prototype wiring (`figma-prototype-flow`); adaptive
 layouts (`iphone-duo-adaptive`); maintenance projects that start from an existing Figma file (`figma-project-maintain`).
 
 ## Need → Read
@@ -28,7 +28,7 @@ layouts (`iphone-duo-adaptive`); maintenance projects that start from an existin
 | Read a PRD in its native format, five layers, coverage report | `references/prd-read.md` |
 | Extract a `.docx` PRD with locations, merged cells, comments, embedded Excel | `scripts/docx_extract.py` |
 | Contradictions `C-##`, gaps `G-##`, competitor scan in three tiers, cropping competitor parts by function | `references/analyze.md` |
-| Measure and crop competitor screenshots | `../bnnam-team-standards/scripts/clone_measure.py` |
+| Measure and crop competitor screenshots | `../bnnam-standards/scripts/clone_measure.py` |
 | Task analysis, IA, eight flow rules, counting screens, 15-state sweep, state matrix, assumptions, `trace` | `references/ux-flow.md` |
 | Wireframe kit, three-row layout by flow, notes outside the frame, fold line, acceptance | `references/wireframe.md` |
 | Templates for the three files | `assets/prd.template.md`, `assets/analysis.template.md`, `assets/flows.template.md` |
@@ -36,10 +36,10 @@ layouts (`iphone-duo-adaptive`); maintenance projects that start from an existin
 | Thin PRD: five requirement types, six user groups, persona quality, journey maps, checking with users and data | `references/requirements.md` |
 | Choosing between options: How Might We, 5 Whys, JTBD, three selection angles | `references/ideation.md` |
 | Three layers of knowledge, HIG's eight principles, task modelling, usability criteria, product pillars, UI foundations | `references/foundations.md` |
-| Screen names and suffixes | `../bnnam-team-standards/references/naming.md` |
+| Screen names and suffixes | `../bnnam-standards/references/naming.md` |
 | Read the flows of an existing Figma file (maintenance) | `../figma-project-maintain/scripts/flowmap.js`, `../figma-project-maintain/references/maintain.md` |
 | Detect screen type and main components of existing screens | `../figma-project-maintain/scripts/situations.js` |
-| Frame structure for wireframes | `../mobile-ui-master/references/screen-structure.md`, `../bnnam-team-standards/references/frame-standards.md` |
+| Frame structure for wireframes | `../mobile-ui-master/references/screen-structure.md`, `../bnnam-standards/references/frame-standards.md` |
 | Paywall, sale, ad-gate screens in the flow | `../mobile-ui-master/references/monetization-screens.md` §8 |
 | Adaptive projects (iOS 27, iPhone Duo, iPad) | `../iphone-duo-adaptive/SKILL.md` |
 

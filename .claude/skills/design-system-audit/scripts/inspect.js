@@ -1,6 +1,6 @@
 // inspect.js — READ ONLY. Reads the "shape signature" of existing components: radius, fill, border, shadow, height, padding, type.
 // Use when: style reading compares existing atoms with the style ref (references/style-read.md §9) · the component spec's inventory (§1).
-// Never edits a component — main components are not touched (bnnam-team-standards team-rules §12.4).
+// Never edits a component — main components are not touched (bnnam-standards team-rules §12.4).
 // Body of an async function: top-level `await` and `return`. Run through execute_code{code, timeoutMs} — set CONFIG, send the whole file.
 const CONFIG = {
   PAGE: "Components",              // project settings › atom location (scripts/detect.js › components.atomicLocation)

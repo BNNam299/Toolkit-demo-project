@@ -65,7 +65,7 @@ Terms: base kit · snapshot · ramp · step · OKLCH · scope · primitive / ali
 2. Run `scripts/kit-snapshot.js` → save its result as `design/kit/kit-goc.json` — the baseline to compare against later.
 3. Write `design/kit.md` (`../assets/kit.template.md`): which base kit version / date duplicated · audit summary · **Locked** — variables
    and atoms the designer doesn't want the agent to touch (one question; default: Safe-Area, foundation black / white).
-4. **Change nothing.** The first screen will be built as 5 options — before that the agent asks *"build with the kit, or a fresh
+4. **Change nothing.** The first screen will be built as 2–3 options — before that the agent asks *"build with the kit, or a fresh
    draft?"* (`../figma-project-maintain/references/processes.md` §2 step 6).
 
 ## 5. §2 Scope — before proposing
@@ -76,7 +76,7 @@ into rebuilding the whole kit (that is Figma's `figma-generate-library` job). Th
 
 ## 6. §3 Refine variables — propose → approve → write
 
-1. **Values with evidence** — measured from the locked screen (`../bnnam-team-standards/scripts/clone_measure.py` on the screen image) +
+1. **Values with evidence** — measured from the locked screen (`../bnnam-standards/scripts/clone_measure.py` on the screen image) +
    the moodboard (`style.md`); if the option screens were built as drafts (way *b*), the draft values are the proposal.
 2. **Generate scales per `tokens.md` §2:** color → `../screen-background/scripts/palette.py ramp <source color> --steps <kit steps>` (keep
    the kit's exact step set; sibling ramps with `palette.py match`), dark mode by mirrored steps (`palette.py dark`); spacing, radius, type
@@ -100,7 +100,7 @@ contains.
    draft · record draft id ↔ main id in `ledger.json` (`drafts`). **Check before creating** — if a draft with that name exists, edit it;
    don't create another.
 2. **Missing atoms** (from `style-parts/`, `competitor-parts/`, `flows.md` — `atomic-design.md` §4): build a **draft frame** following the
-   kit's conventions (name, properties, variants — `../bnnam-team-standards/references/naming.md`), in the same section.
+   kit's conventions (name, properties, variants — `../bnnam-standards/references/naming.md`), in the same section.
 3. `scripts/impact.js` for every atom to be edited: instance count, screens, other components containing it → report with the draft.
 4. The designer approves → **edit the main component**: off-style → `scripts/restyle.js` (dry run → *"run it for real"*) · missing →
    `scripts/componentize.js` turns the draft into a new component on the kit's component page (a set with variants when there are several
@@ -131,7 +131,7 @@ agent's when the designer gives an explicit order on the base kit file.
   areas untouched
 - drafts deleted by id · `system-audit.js` re-run after fixing · token-pair contrast passes in every mode · `kit.md` updated
 
-**Report** (team format — `../bnnam-team-standards/references/team-rules.md` §9), plus: groups done · variables changed / created · atoms
+**Report** (team format — `../bnnam-standards/references/team-rules.md` §9), plus: groups done · variables changed / created · atoms
 adjusted / added · contrast pairs before → after · items still awaiting approval · paths of the snapshots and the diff.
 
 ```

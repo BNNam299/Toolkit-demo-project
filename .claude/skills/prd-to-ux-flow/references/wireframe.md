@@ -31,7 +31,7 @@ reworks in an earlier project would have been stopped by a wireframe approval st
   `flows.md`.
 - `flows.md` and `voice.md` are approved and the layout needs approval before components are made.
 - Adding wireframes for new screens already in `flows.md`.
-- The UI produced a new state → add it back into the wireframe (`../bnnam-team-standards/references/naming.md` §4).
+- The UI produced a new state → add it back into the wireframe (`../bnnam-standards/references/naming.md` §4).
 
 **Not for** color, images, style or real components — those are the style, component and UI build jobs
 (`../design-system-audit/SKILL.md`, `../figma-ui-flow/SKILL.md`).
@@ -43,15 +43,15 @@ reworks in an earlier project would have been stopped by a wireframe approval st
 | `design/flows.md` `approved` | run `ux-flow.md` |
 | `design/voice.md` `approved` | set the voice (`../ux-writing/references/voice-and-tone.md`) — wireframes use real copy |
 | The project file knows the Figma setup (platform, pages) | run `../design-system-audit/scripts/detect.js` and give the detection to the user to confirm |
-| The designer's template screen is pointed to and analysed (if the designer has one) | run `detect.js` with `TEMPLATE`, describe its skeleton back for the designer to confirm (`../bnnam-team-standards/references/frame-standards.md` §4) |
-| The screen about to be touched has **no** `<screen name>_Fix` copy | it has one → the designer is editing: learn from the designer's edit first (`../bnnam-team-standards/references/team-rules.md` §12) |
+| The designer's template screen is pointed to and analysed (if the designer has one) | run `detect.js` with `TEMPLATE`, describe its skeleton back for the designer to confirm (`../bnnam-standards/references/frame-standards.md` §4) |
+| The screen about to be touched has **no** `<screen name>_Fix` copy | it has one → the designer is editing: learn from the designer's edit first (`../bnnam-standards/references/team-rules.md` §12) |
 
 | Reads | Writes |
 |---|---|
 | the lessons the team currently applies · `flows.md` · `voice.md` · `prd.md` (bans) · the project settings · the wireframe page in Figma | frames on the wireframe page · `flows.md` (new assumptions; `wireframe_approved` when the user approves) |
 
 Before the first batch: read the Figma API traps (`../figma-agent-tools/references/troubleshooting.md`). Before and after every screen:
-the screen build checklist (`../bnnam-team-standards/references/frame-standards.md` §14).
+the screen build checklist (`../bnnam-standards/references/frame-standards.md` §14).
 
 ## 3. Step 1 — Prototypes of each interaction type, not every screen
 
@@ -73,7 +73,7 @@ App-type-specific prototypes: commerce has cart and checkout; content has feed a
 - **No measurements written in the wireframe** — no pt, no px, no radius labels on the canvas. The placeholder blocks still have **real
   sizes**: the wireframe is Pass 1 of the build loop (`../figma-ui-flow/references/build-loop.md`) — build the root frame with
   `layoutMode NONE` + Safe-Area + the three containers + sized blocks, then Pass 2 drops in wireframe-kit instances and real copy region
-  by region (frame rules: `../mobile-ui-master/references/screen-structure.md` §1, `../bnnam-team-standards/references/frame-standards.md`).
+  by region (frame rules: `../mobile-ui-master/references/screen-structure.md` §1, `../bnnam-standards/references/frame-standards.md`).
 - Two pieces of behaviour information **do** belong in a wireframe: **content order** and **what is visible without scrolling**.
 - Image placeholder: a crossed box, no text, described in the layer name (`../ux-writing/references/principles.md` §2).
 - Phone screens (compact) only — unless the project is adaptive (§12).
@@ -87,7 +87,7 @@ radio · checkbox · search · segmented · slider · chip · list row (+value, 
 progress · skeleton · image box · avatar box · icon box.
 
 **Safe area is not in the kit** — wireframes use the two safe-area components the designer places in every project directly
-(`../bnnam-team-standards/references/frame-standards.md` §5–6): they are empty space, no color, so wireframe and UI share one structure
+(`../bnnam-standards/references/frame-standards.md` §5–6): they are empty space, no color, so wireframe and UI share one structure
 from the start.
 
 **Not in the kit** — the parts that need thinking: project-specific cards · how the screen is arranged · how content is grouped · how
@@ -98,7 +98,7 @@ space is shared. That is the value of the wireframe step.
 - **Three constraints:** the kit is visually flat · **the agent never adds to the kit by itself** (missing → report it) · the kit takes
   real text.
 - **A hand-drawn grey box is a component candidate**, not junk — give it a descriptive name
-  (`../bnnam-team-standards/references/naming.md` §6). At the end of the session hand in the list with repeat counts.
+  (`../bnnam-standards/references/naming.md` §6). At the end of the session hand in the list with repeat counts.
 
 Tokens: use the kit's tokens if the kit has them; if not, raw greys are allowed in wireframes.
 

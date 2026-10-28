@@ -27,7 +27,7 @@ inconsistent, and proposes merges · deletions · renames · scopes. **It never 
 - After a big batch (many new components, style changes) — audit again.
 
 **Not for** auditing single screens (that's the screen audit, `../ux-review-handoff/scripts/audit.js`, and the tool demo's
-`audit_design`), nor for editing main components (`../bnnam-team-standards/references/team-rules.md` §12.4).
+`audit_design`), nor for editing main components (`../bnnam-standards/references/team-rules.md` §12.4).
 
 ## 2. Inputs and outputs
 
@@ -71,7 +71,7 @@ refuses otherwise). Output groups (`variables.*`, `styles.*`, `components.*`):
 | broken aliases (`brokenAliases`) | alias points to a variable that no longer exists | re-point or delete |
 | "all scopes" (`allScopes`) | color / number variable left at `ALL_SCOPES` | set scopes: background `FRAME_FILL` `SHAPE_FILL` · text `TEXT_FILL` · spacing `GAP` · radius `CORNER_RADIUS` |
 | missing mode values (`missingModeValues`) | a variable has no value in one mode | fill it |
-| inconsistent naming (`namingInconsistent`) | grouping differs from the majority, stray spaces | rename per `../bnnam-team-standards/references/naming.md` |
+| inconsistent naming (`namingInconsistent`) | grouping differs from the majority, stray spaces | rename per `../bnnam-standards/references/naming.md` |
 | primitive on screens (`primitiveBoundOnScreens`) | a color on a screen bound straight to a primitive | switch to the mapped variable (`scripts/bind.js`, `BIND_TARGET: "mapped"`) |
 | primitive with scopes (`primitiveWithScopes`) | a primitive has scopes (usually `ALL_SCOPES`) — shows in pickers | empty scopes (designer rule — `system-binding.md` §3) |
 | scope vs role (`scopeRoleMismatch`) | a semantic variable's scopes don't match its name (`text/*` without `TEXT_FILL`) | set scopes by role |
@@ -85,7 +85,7 @@ refuses otherwise). Output groups (`variables.*`, `styles.*`, `components.*`):
 | component without instances (`components.noInstances`) | within the audited scope | ask: still used? |
 | inconsistent variant property names (`variantPropertyNameClash`, `variantValueCaseClash`) | `State` / `States`, `Type` / `Types`; `Default` / `default` | the designer fixes the main component |
 | detached instances (`detached`, or `framesNamedLikeComponent_maybeDetached`) | frames with `detachedInfo` (Figma's official property — guessing by name only when the API lacks it) | the designer reviews, replaces with instances |
-| inside components (`components.inside`) | fill / stroke / radius / padding / gap not bound (gap in *space-between* and fully rounded pills excluded) · text without a text style (character icons excluded) · missing auto layout · text without a TEXT property · hand-typed opacity · default layer names `Frame 12` | bind variables / styles, add properties — the designer fixes the main component or orders the fix (`../bnnam-team-standards/references/team-rules.md` §12.4) |
+| inside components (`components.inside`) | fill / stroke / radius / padding / gap not bound (gap in *space-between* and fully rounded pills excluded) · text without a text style (character icons excluded) · missing auto layout · text without a TEXT property · hand-typed opacity · default layer names `Frame 12` | bind variables / styles, add properties — the designer fixes the main component or orders the fix (`../bnnam-standards/references/team-rules.md` §12.4) |
 | variants (`components.variants`) | default names (`Property 1`) · variants stacked at the same coordinates · variant count differs from the matrix (missing / extra combinations) · > 30 variants · an icon set as variants instead of instance swap · missing descriptions | fix in the main component (`atomic-design.md` §5) |
 
 Also returned: `proposals` (one line per group with numbers) and `caveats` (limits of this run, e.g. instance counts capped by
@@ -102,7 +102,7 @@ keep)"*.
 Only four kinds of variable fix, all reversible by hand: `scope` · `rename` · `delete` (only while it still has 0 uses) · `merge` (rebind
 every use to the target variable, then delete the old one). Fill `APPLY`, run with `DRY_RUN: true` → tell the designer what would change
 → the designer says *"run it for real"* (*"chạy thật"*) → `DRY_RUN: false` → re-run Step 1 to confirm the numbers dropped → log a
-decision. Styles and components: **report only**, the designer fixes them (`../bnnam-team-standards/references/team-rules.md` §12.4).
+decision. Styles and components: **report only**, the designer fixes them (`../bnnam-standards/references/team-rules.md` §12.4).
 
 ## 7. Stop points, self-check, report
 
@@ -114,7 +114,7 @@ for developers / modes not built yet — ask before deleting.
   are back to 0
 - no style or main component edited · every fixed group has a decision-log entry
 
-**Report** (team format — `../bnnam-team-standards/references/team-rules.md` §9), plus: number of variables · count per group before →
+**Report** (team format — `../bnnam-standards/references/team-rules.md` §9), plus: number of variables · count per group before →
 after · groups waiting for the designer · audit time (a 40k-layer file ~17 s).
 
 ```

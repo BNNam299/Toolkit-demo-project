@@ -41,7 +41,7 @@ changes a screen's layout.
 ## 1. Inventory the whole file first
 
 **Every page, not just the open one.** `scripts/detect.js` returns the atom set (`atoms`) — name, page, variants of each component set.
-An empty query is a suspect query (`../bnnam-team-standards/references/team-rules.md` §1). The tool demo's `search_design_system` gives
+An empty query is a suspect query (`../bnnam-standards/references/team-rules.md` §1). The tool demo's `search_design_system` gives
 a ranked second view.
 
 Record the **existing system's naming convention** in the project settings — e.g. `Button/Primary/Default`,
@@ -84,7 +84,7 @@ in `flows.md`** (screen suffixes), not only names.
 - **New structure:** existing tokens only (`system-binding.md` §1). If it needs a value the system lacks → report (`system-binding.md`
   §4).
 - **Atom extension:** touches a main component — layer 1 — the agent **doesn't edit**, only proposes; the designer edits
-  (`../bnnam-team-standards/references/team-rules.md` §12.4).
+  (`../bnnam-standards/references/team-rules.md` §12.4).
 
 **Test for every element:** an atom exists → instance is mandatory · a small variation → instance + override, or propose a variant ·
 genuinely new → draw it, and record why.
@@ -117,7 +117,7 @@ language**: same shape, same shadow style. If they differ and it isn't choice (c
 
 ## 7. Spec each component
 
-Template: `../assets/components.template.md`. Names by domain (`../bnnam-team-standards/references/naming.md` §6), states are variants.
+Template: `../assets/components.template.md`. Names by domain (`../bnnam-standards/references/naming.md` §6), states are variants.
 - **Used in** takes the **exact screen names** in `flows.md`.
 - **Reference** records the **structural** pattern taken from a competitor (`analysis.md`) — the next pass needn't rescan.
 - **Properties** recorded up front for every component property — editable text, icon on/off, swappable icon, size — so none is forgotten
@@ -128,7 +128,7 @@ Template: `../assets/components.template.md`. Names by domain (`../bnnam-team-st
   swappable — record under `notes`.
 
 **Build order:** atoms → molecules → organisms. Never build a card before the badge it contains. Safe area is an **atom the designer has
-prebuilt** (`../bnnam-team-standards/references/frame-standards.md` §5) — list it in the coverage table as *exists*, don't spec it again.
+prebuilt** (`../bnnam-standards/references/frame-standards.md` §5) — list it in the coverage table as *exists*, don't spec it again.
 Can't find it → ask the designer.
 
 ---
@@ -148,7 +148,7 @@ iPhone Duo versions. Detailed contract — invariant anatomy, representation per
 
 **Self-check:** §1 the whole file inventoried first · §3 criteria for making a component applied · §4 coverage table complete.
 
-**Report** (team format — `../bnnam-team-standards/references/team-rules.md` §9), plus: the three coverage numbers · components by kind ·
+**Report** (team format — `../bnnam-standards/references/team-rules.md` §9), plus: the three coverage numbers · components by kind ·
 atoms inventoried.
 
 ```
