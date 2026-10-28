@@ -302,7 +302,7 @@ if (CONFIG.COMPONENT_SCAN) {
             && !(k === "cornerRadius" && n[k] >= Math.min(n.width, n.height) / 2)) {                                    // fully rounded (pill) — no variable needed
           inside.unboundValues.push(`${label} › ${n.name} (${k} ${n[k]})`); break;
         }
-        const glyph = n.type === "TEXT" && /^[-\u{F0000}-\u{10FFFF}\s]+$/u.test(n.characters || "");   // SF Symbols icon typed as a character — no text style / property needed
+        const glyph = n.type === "TEXT" && /^[\uE000-\uF8FF\u{F0000}-\u{10FFFF}\s]+$/u.test(n.characters || "");   // SF Symbols icon typed as a character — no text style / property needed
         if (n.type === "TEXT" && !glyph) {
           if (!n.textStyleId) inside.textWithoutStyle.push(`${label} › ${n.name}`);
           if (!(n.componentPropertyReferences && n.componentPropertyReferences.characters)) inside.textWithoutProperty.push(`${label} › ${n.name}`);

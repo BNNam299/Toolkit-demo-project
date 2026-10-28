@@ -168,7 +168,7 @@ const pool = r => { const t = top(floatPools[r], 1); return t.length ? t[0][0] :
 const frameTop = top(frameSizes, 3);
 const totalScreens = [...frameSizes.values()].reduce((a, b) => a + b, 0);
 const mainFrame = frameTop[0] ? frameTop[0][0] : null;
-const styleMode = designColl && textStyles.length ? 2 : 1;          // references/style-read.md §3
+const styleMode = designColl && textStyles.length ? 2 : 1;          // references/style-read.md §5
 
 const needConfirm = [];
 if (frameTop.length > 1) for (const [k, n] of frameTop.slice(1)) needConfirm.push(`${n} screens sized ${k} — legacy or intentional?`);
