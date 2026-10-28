@@ -132,8 +132,8 @@ tinted neutrals deliberate; when a surface needs a hint of brand, use a defined 
 
 **Letter spacing = font size × 2.5%** (designer's rule; e.g. 16 pt → 0.4 pt).
 
-> Difference from the tool demo: `../figma-ui-flow/references/design-system.md` §2.3 suggests slightly negative tracking for large sizes and slightly
-> positive for small all-caps text. When working in a file by this designer, use the 2.5% rule; otherwise the file's own text styles win.
+> Overrides the tool demo: `../figma-ui-flow/references/design-system.md` §2.3 suggests slightly negative tracking for large sizes and slightly
+> positive for small all-caps text. Do not follow that — always use the 2.5% rule.
 
 ## 13. Adaptive layout for iOS 27 and iPhone Duo — where to look
 

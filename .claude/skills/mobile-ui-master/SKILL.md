@@ -1,6 +1,6 @@
 ---
 name: mobile-ui-master
-description: Visual-design knowledge for mobile app screens — layout and spacing rhythm, information density, visual hierarchy, typography, colour, iconography — plus the measured structure of real designer screens (Top Container / Content / Bottom Container, paddings, gaps, toolbar, CTA and sheet sizes, templates per screen type), a six-question method for reading screens, and a script that compares a built screen's skeleton with a reference screen. Use whenever you lay out, critique or visually review a mobile screen — choosing regions and spacing, fixing a cluttered or empty-looking screen, replacing stacks of identical cards, picking type/colour/icon treatment, reading an existing Figma project screen by screen — even if the user only says "bố cục màn này thế nào", "màn này trông rối", "dàn trang lại giúp tôi", "khoảng cách bao nhiêu", "soát giao diện", "màn trống trải quá". For the screen build loop use figma-ui-flow; touch, states, gestures use mobile-ux-fundamentals; heuristic UX review use ux-review-handoff.
+description: Visual-design knowledge for mobile app screens — layout and spacing rhythm, density, hierarchy, type, colour, icons — plus the measured structure of real designer screens (Top Container / Content / Bottom Container, paddings, gaps, toolbar, CTA and sheet sizes, templates per screen type), monetization screens (paywall, sale, ad gate, banner: anatomy, 102 real samples as wireframes, risk checklist), a six-question method for reading screens, and a script comparing a built screen's skeleton with a reference. Use whenever you lay out, critique or review a mobile screen — regions and spacing, cluttered or empty screens, card stacks, a paywall or sale screen, reading a Figma project screen by screen — even if the user only says "bố cục màn này thế nào", "màn này trông rối", "khoảng cách bao nhiêu", "soát giao diện", "vẽ màn paywall", "làm màn sale". For the screen build loop use figma-ui-flow; touch, states, gestures use mobile-ux-fundamentals; heuristic UX review use ux-review-handoff.
 ---
 
 # mobile-ui-master — layout, density and visual review for mobile screens
@@ -28,7 +28,8 @@ Let `SKILL_DIR` be the directory containing this file.
 | Typography, semantic colour, Liquid Glass, elevation, near-black backgrounds, icons, app icon, images | `references/visual-foundations.md` |
 | Reading an existing screen / section / project (six questions, `flows.md`) | `references/reading-screens.md` |
 | Compare a built screen's skeleton with a reference screen | `scripts/skeleton.js` (see "Running the script") |
-| Paywalls, offers, real Amobear app samples | `references/monetization-screens.md` |
+| Paywalls, sales, ad gates, banners — screen types, anatomy, risk checklist R1–R15 | `references/monetization-screens.md` |
+| Wireframes of the 102 real Amobear monetization samples (by ID `CAL-1`, `TV-3`… or file name) | `references/monetization-wireframes.md` — open only the sample a rule cites |
 | Heuristics, severity scale, cognitive principles for a review | `../ux-review-handoff/references/heuristics-evaluation.md` |
 | Team frame size and safe-area standard | `../bnnam-team-standards/references/frame-standards.md` |
 | Touch, states, gestures, sheets/dialogs | `../mobile-ux-fundamentals/SKILL.md` |
@@ -40,8 +41,9 @@ then the reference for whichever item fails. Reading a project → `reading-scre
 ## Core rules (apply them even without opening a reference)
 
 ### 1. Frame and regions
-- Default iPhone frame **402 × 874**, root radius **44**, root fill = a surface token. Long scrolling screens grow taller (402 × 1444…). Older
-  projects keep their size (390 × 844, 393 × 852) — size follows the project, structure follows the standard.
+- **New project:** iPhone frame **402 × 874**, root radius **44**, root fill = a surface token. Long scrolling screens grow taller (402 × 1444…).
+  **Existing project:** use the size of the screens already designed in that file (390 × 844, 393 × 852…) and keep their aspect ratio, so new
+  screens line up with the old ones — size follows the project, structure follows the standard.
 - Layers bottom → top: `Background/<name>` instance (only if there is a visual background) → `Content` → `Bottom Container` → `Top Container`
   (above Content so content scrolls under it) → `Scrim` → `Bottom sheet / Popup`.
 - Top safe area **62** for a new 402 × 874 build (60 in older files), bottom **34**, always as a `Safe-Area` component instance, never as padding.
@@ -82,7 +84,7 @@ then the reference for whichever item fails. Reading a project → `reading-scre
 ### 7. Typography
 - System fonts and text styles by role (iOS: Dynamic Type styles; M3: Display / Headline / Title / Body / Label × L/M/S). No ALL CAPS paragraphs,
   no thin weights at small sizes, no important text inside images, no clipped or height-locked text.
-- Letter spacing = size × 2.5% in this designer's files. Test Vietnamese diacritics and long translations.
+- Letter spacing = size × 2.5%. Test Vietnamese diacritics and long translations.
 
 ### 8. Colour
 - Semantic roles, never `blue500` at component level; check every `on…` colour against its container; body contrast ≥ 4.5:1, large text/UI ≥ 3:1.
@@ -124,14 +126,15 @@ screen, `REFERENCE_PAGE` if different, `TARGETS` = screens just built, `DEPTH` d
 `differences` (`missing` / `extra` blocks, or `differs` on type, layout, sizing, absolute position, instance component) and `required` notes
 (background instance, safe-area component). It compares structure only — never text or colour.
 
-## Designer standard vs tool-demo defaults
+## Designer standard overrides tool-demo defaults
 
-When working in a file that follows this designer's standard, these differ from `figma-ui-flow` defaults; follow the designer standard and say so in the report:
+The designer standard is the standard. Where `figma-ui-flow` or other tool-demo skills say otherwise, follow this table — in every file, new or
+old. The only thing an existing project keeps is its frame size (rule 1). `figma-ui-flow` and `figma-agent-tools` have been updated to match.
 
-| Topic | Designer standard (this skill) | Tool demo |
+| Topic | Designer standard — follow this | Tool-demo default — do not follow |
 |---|---|---|
 | Screen root | `layoutMode NONE`, three regions layered; regions themselves are auto layout | "Auto Layout on every frame that holds content" |
-| iPhone frame | 402 × 874, r44, top safe area 62 | 393 × 852 |
+| iPhone frame | new project 402 × 874, r44, top safe area 62 · existing project: size and aspect ratio of its designed screens | 393 × 852 |
 | Region names | `Top Container` / `Content` / `Bottom Container` | `Header` / `Content` / `Footer` in examples |
 | Spacing on screen layout frames | raw numbers on purpose; tokens inside components | any unbound spacing is a defect |
 | When to componentize | at the second screen with an identical block | blocks repeated ≥ 3 times |
@@ -153,4 +156,4 @@ When working in a file that follows this designer's standard, these differ from 
 - Skeleton compared with a reference when one exists; intentional differences stated.
 - Every finding names the node and gives the fix in numbers; severity from the heuristics scale.
 - Spacing rhythm, density, emptiness, hierarchy, radius, type, colour and icons each checked — not just "looks fine".
-- Conflicts with tool-demo defaults (table above) stated, not silently applied.
+- Designer standard applied wherever it overrides a tool-demo default (table above).

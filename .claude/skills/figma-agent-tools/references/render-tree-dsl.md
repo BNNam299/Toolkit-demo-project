@@ -87,21 +87,25 @@ The build loop in figma-ui-flow locks the layout first, then fills it:
 
 ```jsonc
 // Pass 1 — frame + regions + sized placeholder blocks (1 call)
-{ "tree": { "type": "frame", "name": "Paywall / Timeline", "width": 390, "height": 844,
-  "layout": "VERTICAL", "fill": { "var": "color/bg/default" }, "layoutGrids": { "preset": "mobile" },
+// Designer standard: root layout NONE, regions layered bottom → top (Content → Bottom Container → Top Container)
+{ "tree": { "type": "frame", "name": "Paywall / Timeline", "width": 402, "height": 874, "radius": 44,
+  "layout": "NONE", "fill": { "var": "color/bg/default" }, "layoutGrids": { "preset": "mobile" },
   "children": [
-    { "type": "frame", "name": "Header",  "layout": "HORIZONTAL", "widthMode": "FILL", "padding": [54, 24, 8, 24], "justify": "SPACE_BETWEEN", "align": "CENTER" },
-    { "type": "frame", "name": "Content", "layout": "VERTICAL",   "widthMode": "FILL", "heightMode": "FILL", "padding": [0, 24], "gap": 24, "children": [
+    { "type": "frame", "name": "Content", "x": 0, "y": 106, "width": 402, "height": 560, "layout": "VERTICAL", "padding": [24, 24], "gap": 24, "children": [
       { "type": "frame", "name": "Hero",     "widthMode": "FILL", "height": 208, "fill": "#FF00001A" },
       { "type": "frame", "name": "Timeline", "widthMode": "FILL", "height": 216, "layout": "VERTICAL", "gap": 16, "fill": "#FF00001A" } ] },
-    { "type": "frame", "name": "Footer",  "layout": "VERTICAL",   "widthMode": "FILL", "padding": [12, 24, 34, 24], "gap": 8, "children": [
-      { "type": "frame", "name": "CTA", "widthMode": "FILL", "height": 56, "fill": "#FF00001A" } ] }
+    { "type": "frame", "name": "Bottom Container", "x": 0, "y": 764, "width": 402, "layout": "VERTICAL", "heightMode": "HUG", "padding": [12, 24, 0, 24], "gap": 8, "children": [
+      { "type": "frame", "name": "CTA", "widthMode": "FILL", "height": 56, "fill": "#FF00001A" },
+      { "type": "frame", "name": "Safe Area", "widthMode": "FILL", "height": 34, "fill": "#FF00001A" } ] },
+    { "type": "frame", "name": "Top Container", "x": 0, "y": 0, "width": 402, "layout": "VERTICAL", "heightMode": "HUG", "children": [
+      { "type": "frame", "name": "Safe Area", "widthMode": "FILL", "height": 62, "fill": "#FF00001A" },
+      { "type": "frame", "name": "Toolbar", "layout": "HORIZONTAL", "widthMode": "FILL", "height": 44, "padding": [0, 16], "justify": "SPACE_BETWEEN", "align": "CENTER" } ] }
   ] } }
 
 // Pass 2 — fill a placeholder in place (it already has its layout) …
 { "parentId": "<Timeline id>", "tree": { "type": "instance", "component": "Timeline step", "widthMode": "FILL" } }
 // … or replace one: delete_nodes the placeholder, then insert at its index
-{ "parentId": "<Footer id>", "index": 0, "tree": { "type": "instance", "component": "Button", "variant": { "Variant": "Primary" }, "widthMode": "FILL" } }
+{ "parentId": "<Bottom Container id>", "index": 0, "tree": { "type": "instance", "component": "Button", "variant": { "Variant": "Primary" }, "widthMode": "FILL" } }
 ```
 
 - Placeholder tints show the layout in the Pass 1 screenshot; clear them (`update_nodes` fill → token, or `[]`) when filling.

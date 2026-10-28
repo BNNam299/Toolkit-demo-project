@@ -41,7 +41,7 @@ estimated**. How to apply it:
 Measured on 117 Screentime screens, consistent across every case:
 
 - **Screen root `layoutMode NONE` — 117 / 117.** No auto layout at the root — **except** Duo variants with a vertical bar (Outer, Inner Landscape): root is HORIZONTAL (§11).
-- **Size:** 402 × 874 (114 screens — iPhone 17 Pro) · long scrolling screens stretch the frame taller (402 × 1444, 402 × 1685). Older projects: 390 × 844, 393 × 852.
+- **Size:** 402 × 874 (114 screens — iPhone 17 Pro) · long scrolling screens stretch the frame taller (402 × 1444, 402 × 1685). Existing projects (390 × 844, 393 × 852…): build new screens at the size of the screens already designed in that file, keeping their aspect ratio.
 - **Root radius 44** (device corner) · **root fill is a surface token** (`surface/container_secondary` 65 screens · `surface/background_secondary` 24 · `surface/background` 22) — never a raw colour.
 - **Layer order, bottom → top:**
 
@@ -183,8 +183,8 @@ are the compact versions.
   them (raw spacing in a screen layout frame), not report them as errors, and must not auto-bind them.
 - **Corner radius:** `$border radius/round` (pill) · 21 (list cards) · 28 (cards in a sheet, summary cards) · 36 (large cards) · 44 (screen root).
 
-> Difference from the tool demo: `figma-ui-flow` core rule 1 treats any unbound spacing as a defect. In files that follow this designer standard,
-> raw padding/gap on screen-level layout frames is intended; component internals still bind `$spacing/…`.
+> Overrides the tool demo: `figma-ui-flow` core rule 1 treats any unbound spacing as a defect. Do not follow that — raw padding/gap on
+> screen-level layout frames is intended; component internals still bind `$spacing/…`.
 
 ## 9. Sections, names, where other things go
 

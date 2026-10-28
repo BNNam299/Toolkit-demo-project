@@ -58,7 +58,7 @@ Agent: you can use `generate_figma_design` to capture a live reference interface
 Pick 2–3 different pole combinations → each combination is one direction.
 
 ### 4.2 Techniques
-- **Crazy 8s:** 8 layout options for one screen in 8 minutes (low-fi 393×852 frames in a grid).
+- **Crazy 8s:** 8 layout options for one screen in 8 minutes (low-fi frames at the project's frame size — 402×874 for a new project — in a grid).
 - **Inversion:** "What if this screen couldn't have a list?"
 - **Exaggeration:** push one attribute to the extreme (96px type, a single color) and then pull back.
 - **Borrow from other fields:** magazine layout for a finance app; game UI for a learning app.

@@ -66,7 +66,7 @@ Suggested scale (mobile); each step is a text style with a role name:
 - iOS: follow the Dynamic Type text styles (Large Title, Title 1–3, Headline, Body, Callout, Subheadline, Footnote, Caption 1–2) so dev can map 1-to-1.
 - Android: follow the Material 3 scale (Display / Headline / Title / Body / Label × L/M/S).
 - Web: 16px body, scale ratio 1.2–1.25.
-- Line-height in multiples of 4 where possible. Slightly negative letter-spacing for large sizes, slightly positive for small all-caps text.
+- Line-height in multiples of 4 where possible. Letter spacing = font size × 2.5 % for every size (designer standard; e.g. 16 → 0.4).
 - Font family, weight and size can be variables (string/number) to switch by brand or density.
 
 ### 2.4 Numbers

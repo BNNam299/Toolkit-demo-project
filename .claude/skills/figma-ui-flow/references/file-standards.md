@@ -54,7 +54,8 @@ Add a platform suffix for multi-platform work: `… / iOS`, `… / Android`.
 ### 2.3 Inner layers
 | Type | Name | Example |
 |---|---|---|
-| Layout region | functional noun | `header`, `content`, `footer`, `actions` |
+| Screen region | fixed names (designer standard) | `Top Container`, `Content`, `Bottom Container` |
+| Layout block inside a region | functional noun | `actions`, `Summary Container`, `Group List` |
 | Text | role | `title`, `subtitle`, `body`, `label`, `caption` |
 | Icon | `icon/<name>` | `icon/chevron-right` |
 | Image | `image/<content>` | `image/avatar` |
@@ -99,7 +100,7 @@ Stretch the screen width 320 → 430 (mobile) or 1280 → 1920 (web): no overlap
 ### 4.1 Mobile
 | Platform | Main design frame | Also test | Suggested grid |
 |---|---|---|---|
-| iOS | 393 × 852 (standard iPhone) | 375 (small), 440 (Pro Max) | 4 columns, margin 16, gutter 8–16 |
+| iOS | **New project: 402 × 874**, r44, top safe area 62 / bottom 34. **Existing project: the size of the screens already designed in that file** — keep their aspect ratio so new screens line up with the old ones | 375 (small), 440 (Pro Max) | 4 columns, margin 16, gutter 8–16 |
 | Android | 360 × 800 or 412 × 915 | 600+ (foldable/tablet) | 4 columns, margin 16, gutter 8–16 |
 
 Respect safe areas: status bar, Dynamic Island, home indicator (iOS); status bar, gesture bar (Android). Use device frames/safe-area frames as reference layers and don't draw content over them.
