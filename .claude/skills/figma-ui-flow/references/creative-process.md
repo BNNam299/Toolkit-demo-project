@@ -72,6 +72,13 @@ One Section per direction in Explore:
 - 1–2 key screens + a mini color/type palette.
 - Strengths, risks, who it suits.
 
+### 4.4 Color while exploring (first screens, brand not chosen yet)
+The first screens of a product are where the brand is decided, so the system cannot dictate it yet — but it can still carry everything that is not brand.
+- **Free:** brand and accent colors. Use hex directly; add accent colors if a direction needs them (a second accent, a highlight). Keep them near the system's lightness/saturation range so they can be promoted without redrawing.
+- **From the system:** neutrals/greyscale (background, surface, text, border, divider) and semantic colors (success, warning, error, info). Bind them as usual — they rarely change with the direction, and binding them now keeps contrast and dark mode honest.
+- **Palette on the section:** each direction lists its brand/accent hex next to its name, so the comparison and the later promotion read from one place.
+- **After the gate:** the chosen direction's brand/accent hex become Primitive variables, mapped to Semantic roles (`color/brand/primary`, `color/accent/…`); bind every layer and update components. Rejected directions keep their hex in Archive.
+
 ## 5. Critique and convergence
 
 ### 5.1 Critique framework (for people and agents)

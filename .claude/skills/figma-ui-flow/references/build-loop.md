@@ -95,7 +95,7 @@ When unsure, use **New build** for the first screen of a set and **From template
 1. **Outside-in order is fixed:** structure (Pass 1) is locked before content (Pass 2). Don't adjust the root frame once it is full.
 2. **Numbers every write, eyes per pass** (§3). A screenshot after every small block is waste; finishing a pass without one is negligence.
 3. **Auto Layout on every frame that holds content.** Free positioning only for decoration, background images, overlays and deliberately geometric blocks (dials, charts), named `decor/…` or explained in the report.
-4. **Tokens first, hex later.** Bind existing variables/styles while building. No system yet → note the raw values for the Pass 3 report, or go back to Stage 2.
+4. **Tokens first, hex later.** Bind existing variables/styles while building. No system yet → note the raw values for the Pass 3 report, or go back to Stage 2. Stage 4 directions (brand not chosen yet): brand/accent colors are free hex, neutrals and semantic colors are bound to the system (`creative-process.md` §4.4).
 5. **At most 3 fix rounds on the same problem.** Still off → stop, tell the user the problem and the proposed approach.
 6. **One screen at a time** in New build and From template. Sketch may lay out several screens side by side, Pass 1 for all first.
 

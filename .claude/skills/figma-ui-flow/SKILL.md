@@ -41,7 +41,7 @@ Do not read everything at once. Each stage below states which file it needs.
 
 ## 11 core rules (they override any personal habit)
 
-1. **No raw values.** Color, font size, spacing, radius, and shadow are always bound to a variable or style. A hand-typed hex code in a layer is a defect.
+1. **No raw values.** Color, font size, spacing, radius, and shadow are always bound to a variable or style. A hand-typed hex code in a layer is a defect. **One exception — Stage 4 directions before the brand is chosen:** brand and accent colors are free hex (you may add accent colors to explore); neutrals/greyscale and semantic colors (success, warning, error, info) still come from the system. Once a direction is chosen, promote its brand/accent colors into variables and bind everything (`references/creative-process.md` §4.4).
 2. **Auto Layout by default.** Every frame that holds content uses Auto Layout; free positioning is only for decoration, background images, and overlays — and those are clearly named `decor/…`.
 3. **Search before you create.** Before drawing an element, search the library (agent: `search_design_system`). Create something new only when you are sure it does not exist.
 4. **Meaningful names, no default names.** No `Frame 12`, `Rectangle 4`, `Group 7` in anything handed off.
@@ -107,10 +107,10 @@ Read `references/design-system.md` sections 5–8.
 Read `references/creative-process.md`.
 
 1. Gather references and build a moodboard annotated with "what to take from this".
-2. Diverge: create **2–3 genuinely different directions** (different in concept, not just color), each applied to the same 1–2 "key" screens.
+2. Diverge: create **2–3 genuinely different directions** (different in concept, not just color), each applied to the same 1–2 "key" screens. Brand/accent colors are free hex here; neutrals and semantic colors come from the system (`references/creative-process.md` §4.4).
 3. Each direction comes with: a name, a one-sentence idea, strengths, risks, who it suits.
 4. **Gate:** stop for the user to choose or mix. This is the most expensive decision to get wrong — do not choose on their behalf.
-5. Converge: turn the chosen direction into rules (update tokens and components), and only then polish.
+5. Converge: turn the chosen direction into rules — promote its brand/accent hex into Primitive + Semantic variables, bind every layer, update components — and only then polish.
 
 ### Stage 5 — Build screens (the outside-in loop)
 
@@ -158,7 +158,7 @@ Read `references/handoff-qa.md` sections 4–6.
 ## Self-check before reporting done
 
 - No default-named layers remain in the scope worked on.
-- No hand-typed colors/font sizes/spacing outside the primitive level.
+- No hand-typed colors/font sizes/spacing outside the primitive level (Stage 4 directions: only brand/accent hex, listed in the direction's palette).
 - Content frames all use Auto Layout; test resizing doesn't break them.
 - All states and dark mode are present (if the project has modes).
 - Body text contrast ≥ 4.5:1, large text and UI elements ≥ 3:1.
