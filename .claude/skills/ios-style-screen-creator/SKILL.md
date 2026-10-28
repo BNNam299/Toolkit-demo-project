@@ -1,6 +1,6 @@
 ---
 name: ios-style-screen-creator
-description: Create mobile screen designs in a named style, from a reference image, or freely: decode the style's DNA, offer 3 directions, then systematize into tokens and screens.
+description: Create mobile screen designs in a named style, from a reference image, or freely — decode the style's DNA, offer 3 directions, then systematize into tokens and screens.
 ---
 
 # Style Screen Creator

@@ -1,6 +1,6 @@
 ---
 name: apple-design-iphone
-description: Apple HIG standard for designing and reviewing iPhone screens — exact iOS 27 frame sizes, safe areas, status bar/home indicator, navigation bar (top toolbar), tab bar, bottom toolbar, sheets and detents, alerts/action sheets, SF Pro type scale with Dynamic Type up to AX5, 44×44 pt touch targets, system colors (light/dark hex from the official iOS 27 Figma kit), Liquid Glass and materials, Dark Mode, plus the full HIG foundations/patterns/components digest and the Apple Design Resources kit (component names, variables). Use whenever a screen targets iPhone or must "look native iOS" — designing, building in Figma, or reviewing — even if the user only says "make an app screen", including Vietnamese requests such as "vẽ màn iPhone", "thiết kế theo chuẩn iOS", "màn này có đúng HIG không", "tab bar iOS bao nhiêu tab", "cỡ khung iPhone là bao nhiêu". For the screen build loop use figma-ui-flow; for iPad use apple-design-ipad; for widgets/Live Activities use apple-design-widget; for iPhone Duo use iphone-duo-adaptive.
+description: Apple HIG standard for designing and reviewing iPhone screens — exact iOS 27 frame sizes, safe areas, status bar/home indicator, navigation bar (top toolbar), tab bar, bottom toolbar, sheets and detents, alerts/action sheets, SF Pro type scale with Dynamic Type up to AX5, 44×44 pt touch targets, system colors (light/dark hex from the official iOS 27 Figma kit), Liquid Glass and materials, Dark Mode, plus the full HIG foundations/patterns/components digest and the Apple Design Resources kit (components, variables). Use whenever a screen targets iPhone or must "look native iOS" — designing, building in Figma, or reviewing — even if the user only says "make an app screen", including Vietnamese requests such as "vẽ màn iPhone", "thiết kế theo chuẩn iOS", "màn này có đúng HIG không", "tab bar iOS bao nhiêu tab", "cỡ khung iPhone là bao nhiêu". For the screen build loop use figma-ui-flow; for iPad use apple-design-ipad; for widgets/Live Activities use apple-design-widget; for iPhone Duo use iphone-duo-adaptive.
 ---
 
 # apple-design-iphone — iPhone screens per Apple HIG (iOS 27)
@@ -29,9 +29,9 @@ the kit file when you need a number or a component name.
 ## Core rules (apply even without opening a reference)
 
 ### 1. Frame and safe areas
-- **Main design frame: 402 × 874 pt** (iPhone 17 / 17 Pro / 18 Pro, iOS 27 kit). Also check **440 × 956** (Pro Max) and
-  **420 × 912** (Air); for small-screen stress, stretch to 375 width. *(The tool demo's file-standards use 393 × 852 as the standard
-  iPhone; this skill follows the current kit. If the project has already locked 393 × 852, keep the project's choice.)*
+- **Main design frame: 402 × 874 pt** (iPhone 17 / 17 Pro / 18 Pro, iOS 27 kit) for a new project. Also check **440 × 956** (Pro Max)
+  and **420 × 912** (Air); for small-screen stress, stretch to 375 width. **An existing project keeps the size / aspect ratio of the
+  screens already designed in the file**, so new screens match the old ones (`../figma-ui-flow/references/file-standards.md`).
 - Status bar **62 pt** high (includes the Dynamic Island). Home indicator 144 × 5 (portrait) / 226 × 5 (landscape) — keep its zone clear of
   controls; read the bottom inset from the kit's `Safe Areas and Margins` overlay instead of guessing.
 - Layout margin **16 pt** (iPhone); readable-content guide per kit. Backgrounds and media may run edge to edge; text and controls stay inside the safe area.
@@ -110,7 +110,8 @@ the kit file when you need a number or a component name.
 
 ## Workflow (reviewing or designing an iPhone screen)
 1. Confirm the target: iPhone only, or also iPad / iPhone Duo (load those skills too). Note the project's frame choice.
-2. Build with figma-ui-flow's loop. Pass 1: frame 402 × 874, status bar 62, margins 16, tab bar/toolbar regions from kit instances.
+2. Build with figma-ui-flow's loop. Pass 1: frame per §1 (new project 402 × 874), status bar 62, margins 16, root regions
+   `Top Container` / `Content` / `Bottom Container` (`../mobile-ui-master/references/screen-structure.md` §1), tab bar/toolbar from kit instances.
 3. Pass 2: fill with kit components and semantic colour/type tokens. Pass 3: stress — AX5 text, Dark Mode, long Vietnamese strings,
    no-data states.
 4. Review against the self-check below; cite the HIG page for any violation.
