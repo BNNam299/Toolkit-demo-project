@@ -28,7 +28,7 @@ blocking gate**. The reviewer never fixes anything — it produces a list and th
 - The user asks to *"review"*, *"soát lại UX"* *(re-check the UX)*, *"chấm usability"* *(score usability)*.
 
 **Don't run** before the wireframes are approved, and **don't run** after each batch. Checking individual strings while building belongs
-to `../../ux-writing/SKILL.md` (meta-text scan) and the screen audit (`../scripts/audit.js`), not to this review.
+to `../ux-writing/SKILL.md` (meta-text scan) and the screen audit (`../scripts/audit.js`), not to this review.
 
 Role: designer.
 
@@ -43,7 +43,7 @@ Role: designer.
 |---|---|
 | `prd.md` · `flows.md` · `voice.md` · the design decision log · the UI page in Figma (read-only, screenshots) | `design/review.md` (`status: draft`, `based_on: flows.md@…`) from `../assets/review.template.md` |
 
-(Flow and PRD files: `../../prd-to-ux-flow/SKILL.md`. Voice file: `../../ux-writing/references/voice-and-tone.md`.)
+(Flow and PRD files: `../prd-to-ux-flow/SKILL.md`. Voice file: `../ux-writing/references/voice-and-tone.md`.)
 
 ---
 
@@ -53,7 +53,7 @@ Role: designer.
    taken from `prd.md`. Add **PACT context** when it changes the judgement — who the people are, frequent or rare activity, where it's used
    (one hand, outdoors, wearing gloves), which device. A flow that fails for someone at a desk may be right for someone riding a motorbike.
 2. **Walk each flow along the scenario** like a real user — read every screen in the order the user meets it, with the six screen-reading
-   questions (`../../mobile-ui-master/references/reading-screens.md`); never review screens in isolation.
+   questions (`../mobile-ui-master/references/reading-screens.md`); never review screens in isolation.
 3. **Three lenses, overlapping on purpose:**
    - **Five usability components** — the main pass. Score **learnability · efficiency · memorability · errors** with the **sub-criteria**
      (§4): predictability, recognisability · navigation, control, feedback, smart system · familiarity, consistency · three error levels
@@ -77,7 +77,7 @@ Role: designer.
    Not checkable on a static design → write *"check in build"*.
 6. **Check copy consistency across the whole set** against `voice.md` — is the voice right, does the tone fit the moment (the part machines
    can't check). **Error messages** are scored separately with the 12-question rubric (3 groups × 4 questions, scale 1–4) in
-   `../../ux-writing/references/handbook-patterns.md` §2.3 — payment, data and safety flows get a higher bar.
+   `../ux-writing/references/handbook-patterns.md` §2.3 — payment, data and safety flows get a higher bar.
 7. **Honesty** (§9): score only screens you read · never invent usage data · every problem names the standard that caught it · record
    what works well too.
 
@@ -85,7 +85,7 @@ Role: designer.
 answers exactly that (decided by the user).
 
 When the screen is a **monetization screen** (paywall, sale, ad gate, plan-selling banner): read
-`../../mobile-ui-master/references/monetization-screens.md` — its risk checklist first — and `../../app-store-policies/SKILL.md`.
+`../mobile-ui-master/references/monetization-screens.md` — its risk checklist first — and `../app-store-policies/SKILL.md`.
 
 ---
 
@@ -171,7 +171,7 @@ code (`handoff-spec.md` §2.4) — the audit's tap check is off by default. The 
 - **Colour as the only signal** — states told apart only by colour → add text, an icon or a shape.
 - **Motion** — onboarding that forces watching an animation · information only conveyed by motion · Reduce Motion not respected.
 
-(Full accessibility rules: `../../mobile-ux-fundamentals/references/accessibility.md`.)
+(Full accessibility rules: `../mobile-ux-fundamentals/references/accessibility.md`.)
 
 ## 9. Honesty
 
@@ -212,7 +212,7 @@ Only list, under `## Needs testing with users`, the low-score entries the agent 
 ## 11. Adaptive projects (iOS 27 · iPhone Duo · iPad)
 
 When the project supports adaptive layouts (adaptive level other than none): add an **adaptive pass** using the iPhone Duo knowledge
-(`../../iphone-duo-adaptive/SKILL.md`): the adaptive checklists, anti-patterns, states and conditions, the deep-dive checklist
+(`../iphone-duo-adaptive/SKILL.md`): the adaptive checklists, anti-patterns, states and conditions, the deep-dive checklist
 (structure · geometry · content · controls · continuity · verification), the starter-kit checklist, the eight output questions and the
 10 continuity scenarios walked on the frames; plus the adaptive-variant scan (missing variants, actions that differ between variants).
 Record it in `review.md › Adaptive`. Each problem states the **combination of conditions** that causes it (e.g. *outer landscape +

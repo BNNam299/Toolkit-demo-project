@@ -2,8 +2,8 @@
 
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/ai-product.md (Telos 12) @ 3c0e291 — translated, complete
 
-Platform pages: `../../apple-hig/references/generative-ai.md`, `../../apple-hig/references/machine-learning.md`.
-Copy for AI states and errors: `../../ux-writing/references/principles.md`.
+Platform pages: `../apple-hig/references/generative-ai.md`, `../apple-hig/references/machine-learning.md`.
+Copy for AI states and errors: `../ux-writing/references/principles.md`.
 
 ## Contents
 1. AI products differ from deterministic software
@@ -79,7 +79,7 @@ Measure task success and quality, not just "nice-looking responses". Evaluation 
 
 Machine-readable tokens/components, usage rules, content schemas and examples help AI generate consistent output. The design system needs
 patterns for prompt, source, generation status, approval and error. AI consumers need deeper constraints and documentation than component
-pictures. (Token/component structure: `../../figma-ui-flow/references/design-system.md`.)
+pictures. (Token/component structure: `../figma-ui-flow/references/design-system.md`.)
 
 ## 10. The designer's role
 

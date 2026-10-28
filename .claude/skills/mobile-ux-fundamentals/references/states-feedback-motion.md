@@ -34,7 +34,7 @@ If an animation only slows the task down or repeats in a distracting way, remove
 - **No haptic for every tap.**
 - Respect **Reduce Motion**: replace large motion with a dissolve, highlight or gentle transition **while keeping the information**.
 
-Platform: `../../apple-hig/references/motion.md`, `../../apple-hig/references/playing-haptics.md`.
+Platform: `../apple-hig/references/motion.md`, `../apple-hig/references/playing-haptics.md`.
 
 ## 3. Material 3 motion physics
 
@@ -48,7 +48,7 @@ M3 Expressive moves the focus from fixed duration/easing to **spring physics**:
 
 Keep one motion scheme across the product. Override only at moments with a clear reason.
 
-Platform: `../../material-design-3/references/styles__motion__overview.md`, `styles__motion__easing-and-duration.md`, `styles__motion__transitions.md`.
+Platform: `../material-design-3/references/styles__motion__overview.md`, `styles__motion__easing-and-duration.md`, `styles__motion__transitions.md`.
 
 ## 4. Performance
 
@@ -80,10 +80,10 @@ Initial load (skeleton/progress) · refresh (keep old content) · pagination · 
 no search results, filtered, permission-blocked, offline/no cache) · inline / full-page / blocking error · offline (what works, what queues,
 when it syncs) · slow network / timeout + retry (keep input) · partial failure / stale data · permission denied/restricted · session expired
 (keep drafts) · success (return to context) · undo · destructive confirmation · plus long content, largest text size and dark mode for each
-screen (`../../figma-ui-flow/SKILL.md` rule 7).
+screen (`../figma-ui-flow/SKILL.md` rule 7).
 
 Skeleton loaders hint where content will appear and stabilise layout while loading (M3 `styles__motion__transitions.md`). HIG: show
-something as soon as possible; determinate progress when the duration is known, indeterminate when not (`../../apple-hig/references/loading.md`).
+something as soon as possible; determinate progress when the duration is known, indeterminate when not (`../apple-hig/references/loading.md`).
 
 ## 6. Quick reference — feedback channels
 
@@ -103,7 +103,7 @@ carried out and why (HIG `feedback.md`).
 
 ## 7. Quick reference — durations and haptic rules
 
-**M3 easing & duration (legacy system, still used for transitions)** — `../../material-design-3/references/styles__motion__easing-and-duration.md`
+**M3 easing & duration (legacy system, still used for transitions)** — `../material-design-3/references/styles__motion__easing-and-duration.md`
 
 | Easing | Duration | Use |
 |---|---|---|
@@ -121,12 +121,12 @@ area ≈ 500 ms; exit shorter than enter. The Standard set is the fallback for i
 haptic intensity/sharpness to the animation; prefer short haptics for discrete events; let people turn haptics off; do not disturb camera,
 gyroscope or microphone use.
 
-**Flashing:** nothing flashes more than 3 times per second (`../../figma-ui-flow/references/handoff-qa.md`).
+**Flashing:** nothing flashes more than 3 times per second (`../figma-ui-flow/references/handoff-qa.md`).
 
 ---
 
 ## 8. iOS 27 / iPhone Duo additions (pointers)
 
-In the `iphone-duo-adaptive` skill (`../../iphone-duo-adaptive/SKILL.md`):
+In the `iphone-duo-adaptive` skill (`../iphone-duo-adaptive/SKILL.md`):
 - Motion and transitions when the posture changes, opening / folding.
 - Visual, audio and haptic feedback (feedback matrix, haptic rules, avoiding duplicate feedback).

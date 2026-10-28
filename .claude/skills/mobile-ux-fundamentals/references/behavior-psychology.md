@@ -2,9 +2,9 @@
 
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/behavior.md @ 3c0e291 — translated, complete
 
-Use when wireframing onboarding, CTAs and engagement loops, and when writing UX copy (`../../ux-writing/references/principles.md`).
+Use when wireframing onboarding, CTAs and engagement loops, and when writing UX copy (`../ux-writing/references/principles.md`).
 Ethics line: these models explain behavior; never use them to build dark patterns (see `ai-product.md` §3 Governors and
-`../../ux-review-handoff/references/acceptance-checklist.md` anti-patterns).
+`../ux-review-handoff/references/acceptance-checklist.md` anti-patterns).
 
 ## 1. UX = perception and response
 

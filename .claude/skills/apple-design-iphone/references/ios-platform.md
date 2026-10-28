@@ -1,9 +1,9 @@
 # iOS platform knowledge — Apple HIG foundations, patterns and components for design and review
 
-> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/platform-hig.md §14, §23, §24, §25, "System surface limits" @ 3c0e291 — translated, complete (iPad-only parts → `../../apple-design-ipad/references/ipados-platform.md`; widgets, Live Activities and surface limits → `../../apple-design-widget/SKILL.md`; iPhone Duo → `../../iphone-duo-adaptive/SKILL.md`)
+> Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/platform-hig.md §14, §23, §24, §25, "System surface limits" @ 3c0e291 — translated, complete (iPad-only parts → `../apple-design-ipad/SKILL.md`; widgets, Live Activities and surface limits → `../apple-design-widget/SKILL.md`; iPhone Duo → `../iphone-duo-adaptive/SKILL.md`)
 
 This file is a fast-reading English digest of the HIG for iOS (most of it applies to iPadOS too). It is a thinking lens for
-design and review, not a process. **The verbatim Apple pages in `../../apple-hig/references/` are the source of truth: when this
+design and review, not a process. **The verbatim Apple pages in `../apple-hig/references/` are the source of truth: when this
 digest and an Apple page differ, the Apple page wins.** Each section names the verbatim page to open for exact rules.
 
 ## Contents
@@ -19,7 +19,7 @@ digest and an Apple page differ, the Apple page wins.** Each section names the v
 
 ## 1. iOS device traits and what "feels like iOS"
 
-Verbatim: `../../apple-hig/references/designing-for-ios.md`.
+Verbatim: `../apple-hig/references/designing-for-ios.md`.
 
 ### 1.1 Device traits and behaviour
 - High-resolution, medium-size screen; viewing distance is usually close (no more than a foot or two).
@@ -50,7 +50,7 @@ Keep titles meaningful. A large title suits landing/list screens but is not requ
 
 ## 3. HIG components that touch UI/UX directly; special inputs
 
-### 3.1 Component families (verbatim page per item in `../../apple-hig/references/`)
+### 3.1 Component families (verbatim page per item in `../apple-hig/references/`)
 | Family | Components |
 |---|---|
 | Layout / organization | collection, list/table, disclosure, split view, tab view |
@@ -73,7 +73,7 @@ real value; always provide a fallback, and never make a special input method the
 Rules usable in design and review. Mainly iOS/iPadOS, many apply across Apple platforms.
 
 ### 4.1 Accessibility — `accessibility.md`, `voiceover.md`
-Accessibility belongs in the definition of done of every component and flow (general rules: `../../mobile-ux-fundamentals/references/accessibility.md`). Check four layers:
+Accessibility belongs in the definition of done of every component and flow (general rules: `../mobile-ux-fundamentals/references/accessibility.md`). Check four layers:
 
 **Perception**
 - Text, icons and controls keep contrast on static **and** moving backgrounds.
@@ -251,7 +251,7 @@ Beyond Dynamic Type:
 
 Exact sizes: `../SKILL.md` core rules and `ios27-figma-kit.md` §4.3.
 
-### 4.17 Writing — `writing.md` (full guidance: `../../ux-writing/references/principles.md`)
+### 4.17 Writing — `writing.md` (full guidance: `../ux-writing/references/principles.md`)
 Apple favours clear, direct, people-centred language.
 - Say what people can do; avoid long descriptions of the system.
 - Buttons use verbs; menu items describe the result.
@@ -580,6 +580,6 @@ keyboard/VoiceOver support.
 **Notifications** (`notifications.md`) — timely content, sensible categories/actions, correct deep link, no badge abuse.
 
 **Live Activities and widgets** — rules, exact sizes and surface limits (no blur, Dynamic Island always black):
-`../../apple-design-widget/SKILL.md`.
+`../apple-design-widget/SKILL.md`.
 
-**Home Screen quick actions** — `../../apple-design-widget/SKILL.md` §Quick actions.
+**Home Screen quick actions** — `../apple-design-widget/SKILL.md` §Quick actions.

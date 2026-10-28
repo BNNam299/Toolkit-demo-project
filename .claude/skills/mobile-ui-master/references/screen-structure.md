@@ -204,6 +204,8 @@ are the compact versions.
 
 ## 11. iPhone Duo frame packaging — designer standard
 
+The rules distilled from these measurements: `../bnnam-standards/references/frame-standards.md` §9. This section keeps the measured detail.
+
 Source file: *AR Drawing F1 iOS*, section "Update: Drawing Flow - iphone Duo" (31 Duo screens + 8 iPhone screens). The designer notes they do not
 yet know the exact safe area for some positions and adjusted by hand, **but top and bottom safe areas are still required** in principle.
 

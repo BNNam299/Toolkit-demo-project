@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/ios-27-iphone-duo-ux-ui-knowledge.md §3, §20.11, §25.2 (visual) @ 3c0e291 — translated, complete
 
 Labels: `[A]` Apple rule · `[C]` design consequence · `[T]` toolkit proposal (see `duo-foundations.md`).
-Verbatim Apple pages: [materials](../../apple-hig/references/materials.md), [branding](../../apple-hig/references/branding.md), [color](../../apple-hig/references/color.md), [typography](../../apple-hig/references/typography.md), [sf-symbols](../../apple-hig/references/sf-symbols.md), [app-icons](../../apple-hig/references/app-icons.md), [motion](../../apple-hig/references/motion.md), [dark-mode](../../apple-hig/references/dark-mode.md). Readability/accessibility of glass: `duo-accessibility-localization.md` §2.
+Verbatim Apple pages: [materials](../apple-hig/references/materials.md), [branding](../apple-hig/references/branding.md), [color](../apple-hig/references/color.md), [typography](../apple-hig/references/typography.md), [sf-symbols](../apple-hig/references/sf-symbols.md), [app-icons](../apple-hig/references/app-icons.md), [motion](../apple-hig/references/motion.md), [dark-mode](../apple-hig/references/dark-mode.md). Readability/accessibility of glass: `duo-accessibility-localization.md` §2.
 
 ## Contents
 1. Liquid Glass in iOS 27

@@ -13,6 +13,7 @@ This skill is about **mechanics**: which tool, which parameters, what comes back
 | Full `render_tree` / `update_nodes` vocabulary, building in passes | `references/render-tree-dsl.md` |
 | `execute_code` recipes (variables, binding, auto layout, text, components) | `references/plugin-api-recipes.md` |
 | An error message, a stuck plugin, version mismatch, plan limits | `references/troubleshooting.md` |
+| Ready-made `execute_code` scripts (audit, detect, bind, clone, flow map, background, prototype…) and the skill that owns each | `../bnnam-standards/SKILL.md` › Team scripts |
 
 ## 1. Connect and check the version
 

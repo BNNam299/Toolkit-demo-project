@@ -120,7 +120,7 @@ for (const t of root.findAll(n => n.type === "TEXT" && n.visible !== false)) {
 return { scanned, hits };
 ```
 
-For a whole page, `../../ux-review-handoff/scripts/audit.js` runs the same META patterns plus forbidden words, glossary terms
+For a whole page, `../ux-review-handoff/scripts/audit.js` runs the same META patterns plus forbidden words, glossary terms
 (`TERMS`), length limits (`LIMITS`) and capitalization (`CASE`) from `voice.md` — see `metaText`, `placeholderText`, `forbiddenWord`,
 `termMismatch`, `length`, `caseCheck` in its result.
 
@@ -153,7 +153,7 @@ failure in a rarely seen tooltip is **low**. A string that breaks several princi
 
 - **Claim only what the app can measure.** If it can't be measured, switch from a *warning* to an *entry point to instructions*:
   `Not added yet` → `How to add widgets`. Every sentence of the form *"not done yet"*, *"running"*, *"failed"* is a technical
-  assumption: it goes into the assumptions table of the flow document (`design/flows.md`, see `../../prd-to-ux-flow/SKILL.md`) before
+  assumption: it goes into the assumptions table of the flow document (`design/flows.md`, see `../prd-to-ux-flow/SKILL.md`) before
   the UI is built.
 - **A chevron is a promise that there is a destination.** No destination → remove the chevron.
 - Avoid empty marketing language · one button, one job.
@@ -195,7 +195,7 @@ Primary action (verb + object) · Alternative action · Consequence/risk · Tone
 - Destructive actions name the **object and the count**: *Xoá 12 tệp* *(Delete 12 files)*.
 - Do not use a marketing feature name in place of a familiar command.
 - A non-universal icon → a **visible label** or tooltip; an accessibility label cannot make up for sighted users not being able to guess.
-- **A placeholder does not replace a label** — an input always has a visible label (`../../mobile-ux-fundamentals/SKILL.md`).
+- **A placeholder does not replace a label** — an input always has a visible label (`../mobile-ux-fundamentals/SKILL.md`).
 
 **Action pairs in a dialog** — the title is a specific question, the two buttons are two specific actions:
 
@@ -241,7 +241,7 @@ Need a reference code for support → put it in a secondary area and make it cop
 
 ## 10. Copy review procedure
 
-Use it when writing wireframes, when reviewing a whole set (`../../ux-review-handoff/SKILL.md`), and whenever the user asks for a copy review.
+Use it when writing wireframes, when reviewing a whole set (`../ux-review-handoff/SKILL.md`), and whenever the user asks for a copy review.
 
 1. **Inventory the copy** per screen and per kind (title · body · button · label · error · empty · help), **in reading order** — to
    expose repetition and drift between screens.

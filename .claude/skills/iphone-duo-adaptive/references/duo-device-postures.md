@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/ios-27-iphone-duo-ux-ui-knowledge.md §2 (fig. 1–2), §4, §5.1, §10, §11.5, §23.1 (02:46–03:56, 06:06–09:11), §23.3 (00:27–02:25, 06:39–08:38), §23.4 (00:49–02:34), §23.6 (00:28–03:41, 03:42–05:06, 06:33–07:33) @ 3c0e291 — translated, complete
 
 Labels: `[A]` Apple rule · `[C]` design consequence · `[T]` toolkit proposal (see `duo-foundations.md`).
-Verbatim Apple pages: [designing-for-iphone-duo](../../apple-hig/references/designing-for-iphone-duo.md), [layout](../../apple-hig/references/layout.md).
+Verbatim Apple pages: [designing-for-iphone-duo](../apple-hig/references/designing-for-iphone-duo.md), [layout](../apple-hig/references/layout.md).
 
 ## Contents
 1. Anatomy: two displays, two cameras, one continuum

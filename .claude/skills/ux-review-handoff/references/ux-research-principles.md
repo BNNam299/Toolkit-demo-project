@@ -455,7 +455,7 @@ Symmetry audit:
 - Can users edit/reverse the decision?
 - Do growth metrics have guardrails for trust, complaints, refunds and retention?
 
-(Monetization screens: `../../mobile-ui-master/references/monetization-screens.md` and `../../app-store-policies/SKILL.md`.)
+(Monetization screens: `../mobile-ui-master/references/monetization-screens.md` and `../app-store-policies/SKILL.md`.)
 
 ## 15. Accessibility and inclusive UX beyond compliance
 
@@ -486,7 +486,7 @@ this is a branch of usability and a mindset, not just a procedure/checklist.
 - Offer several ways to receive information where appropriate.
 
 Accessibility testing needs real users with their own assistive technology. Automated scans catch only part of the problems and don't
-evaluate task usability. (Accessibility rules and checklist: `../../mobile-ux-fundamentals/references/accessibility.md`.)
+evaluate task usability. (Accessibility rules and checklist: `../mobile-ux-fundamentals/references/accessibility.md`.)
 
 ## 16. AI UX: from novelty to verifiable value
 
@@ -540,7 +540,7 @@ Design by autonomy level:
 5. Execute within policy — act alone within clear limits.
 
 Each level needs scope, permissions, logs, undo/compensation and escalation. The agent says what it is doing, which data it uses, which
-part failed and how to take back control. (AI product patterns: `../../mobile-ux-fundamentals/references/ai-product.md`.)
+part failed and how to take back control. (AI product patterns: `../mobile-ux-fundamentals/references/ai-product.md`.)
 
 ## 17. From research insight to product decision
 

@@ -9,7 +9,7 @@ and never hard-code coordinates per device model (the system reports the real re
 - **File:** <https://www.figma.com/design/U16qUqwvYEgBuYpGBjQOep/iOS-and-iPadOS-27--Community-> · fileKey `U16qUqwvYEgBuYpGBjQOep`
 - **How to use:** reference for geometry, component names and variable names when building iOS 27 / iPhone Duo / iPad mockups. When
   the project uses the component kit, **enable the library** (or duplicate the file) and use instances — **do not redraw system
-  controls**. With figma-agent, find kit components with `search_design_system` before drawing anything (`../../figma-agent-tools/SKILL.md`).
+  controls**. With figma-agent, find kit components with `search_design_system` before drawing anything (`../figma-agent-tools/SKILL.md`).
 - **Prerequisite:** install the latest SF Symbols before using the kit (page *Getting Started*). The kit is under the Apple Design Resources licence.
 
 ## Contents
@@ -62,7 +62,7 @@ Kit variants are named by property: `Screen = Outer | Inner | Inner (Folded)` ·
 ## 3. iPhone Duo geometry — page `Safe Areas and Margins`
 
 *Kit measurements only. How to adapt layouts across Duo displays and postures (vertical control bar, reserved regions, continuity) is
-owned by `../../iphone-duo-adaptive/SKILL.md`.*
+owned by `../iphone-duo-adaptive/SKILL.md`.*
 
 Apple **annotates** safe regions with the `_Layout Overlays` set — `Type = Layout Margin | Safe Area Inset | Reserved Region` — placed in
 a `Layout Guides and Safe Areas` frame over the screen. This is an **annotation layer for mockups, not a UI element**.
@@ -140,7 +140,7 @@ Reserved regions are **dynamic**: the inner camera region exists only while the 
 | Miscellaneous/Keyboards/Emoji + Mic | #000000 | #FFFFFF |
 
 Kit 27.0.0 **removed the Increase Contrast mode** from the Colors collection (change log) — check Increase Contrast on a device or in
-Device Hub (Increased-contrast values: `../../apple-hig/references/color.md` §Specifications).
+Device Hub (Increased-contrast values: `../apple-hig/references/color.md` §Specifications).
 
 ### 4.2 `Dimensions` — iPhone | iPad (25 variables)
 
@@ -182,7 +182,7 @@ read the overlay of each configuration; don't take one number for every device.
 | Caption 2 | 11 | 11 | 11 | 11 | 13 | 15 | 17 | 20 | 24 | 29 | 34 | 40 |
 
 Leading for each size points to the `Text Leading` collection (modes Default | Loose | Tight, 132 variables) — *its values were not
-read* (call limit, §8); Large-size leading is in `../../apple-hig/references/typography.md` §Specifications. **Designs must hold up to AX5.**
+read* (call limit, §8); Large-size leading is in `../apple-hig/references/typography.md` §Specifications. **Designs must hold up to AX5.**
 
 ### 4.4 `Kit` — Liquid Glass and type parameters
 

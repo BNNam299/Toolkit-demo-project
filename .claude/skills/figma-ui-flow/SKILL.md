@@ -1,6 +1,6 @@
 ---
 name: figma-ui-flow
-description: Tool-agnostic, "master"-level workflow and knowledge for building UI in Figma — 11 core rules, an 8-stage process with approval gates (brief → foundations/tokens → components → explore 2–3 directions → build screens → prototype → QA → handoff), and a mandatory OUTSIDE-IN screen build loop in three passes (layout with sized placeholders → fill with components and content → lock with audit/stress), numeric checks after every write and one screenshot per pass, three modes (Sketch / From template / New build), one screen finished before starting another. Use when the user wants to design/draw/build screens or UI flows, create a design system or component library, explore creative directions, clean up or standardize a file, review/QA, prepare a developer handoff, or assess Figma skill level — even when they only say "draw this screen for me", "design a paywall", "create an app UI", "this Figma file is a mess", including Vietnamese requests such as "vẽ giúp tôi màn hình này", "thiết kế paywall", "tạo UI app", "file Figma lộn xộn quá". Concrete tool operations live in the figma-agent-tools skill.
+description: Tool-agnostic, "master"-level workflow and knowledge for building UI in Figma — 11 core rules, an 8-stage process with approval gates (brief → tokens → components → 2–3 directions → screens → prototype → QA → handoff), and a mandatory OUTSIDE-IN screen build loop in three passes (layout with sized placeholders → fill → lock with audit/stress), three modes (Sketch / From template / New build), one screen finished before starting another, a table routing each stage to the other design skills. Use when the user wants to design/draw/build screens or UI flows, create a design system or component library, explore creative directions, clean up or standardize a file, run QA, prepare a developer handoff, or assess Figma skill level — even when they only say "draw this screen for me", "design a paywall", "create an app UI", "this Figma file is a mess", including Vietnamese requests such as "vẽ giúp tôi màn hình này", "thiết kế paywall", "tạo UI app", "file Figma lộn xộn quá". Tool mechanics live in figma-agent-tools.
 ---
 
 # figma-ui-flow — Workflow and knowledge for building UI in Figma
@@ -30,14 +30,28 @@ Let `SKILL_DIR` be the directory containing this file.
 
 Do not read everything at once. Each stage below states which file it needs.
 
-**Platform knowledge in other skills** — load it when the screen belongs to that platform; do not copy it here:
+**Knowledge and steps in other skills** — load the one the current stage needs; do not copy it here. In the team's (designer's) files, load `bnnam-standards` first: where it differs from this skill, the team standard wins.
 
 | Need | Skill |
 |---|---|
+| Team standard: designer's frame (root `NONE`, Safe-Area, 402×874 for new projects), screen naming, draft and option rhythm, lock phase, `_Fix` copies, team scripts | `bnnam-standards` |
+| PRD or requirements doc → screen list, flows, wireframes before any UI | `prd-to-ux-flow` |
+| A project already in Figma: take it over, rework a screen, add screens or states, flow map, gaps, status | `figma-project-maintain` |
+| The file's design system: detect conventions, audit and fix variables/styles/components, moodboard → tokens, base kit | `design-system-audit` |
 | Touch targets, states, feedback, sheet/dialog/snackbar, thumb zone, gestures | `mobile-ux-fundamentals` |
-| Layout, information density, avoiding card stacks/meaningless emptiness, visual review | `mobile-ui-master` |
+| Layout, information density, avoiding card stacks/meaningless emptiness, visual review; measured designer screen structure; paywall, sale, ad gate, banner | `mobile-ui-master` |
+| Copy inside the screen: real text, buttons, errors, empty/permission states, voice and tone | `ux-writing` |
 | iPhone / iPad / Watch / Widget per HIG | `apple-design-iphone`, `apple-design-ipad`, `apple-design-watch`, `apple-design-widget` |
+| Apple's exact wording for a component or pattern (verbatim HIG) | `apple-hig` |
+| iOS 27 adaptive layouts: iPhone Duo (foldable), iPad, Split View, resizable windows | `iphone-duo-adaptive` |
+| Android, Material 3, iOS vs Android decisions | `material-design-3` |
+| Websites (marketing site or web product) | `web-design` |
+| Store approval of paywalls, subscriptions, ads, permissions, privacy | `app-store-policies` |
+| Color-blend screen background (`Background/<name>`) | `screen-background` |
 | Prompts for illustrations, hero images, backgrounds | `generating-oneshot-image-prompts` |
+| One generated asset with a transparent background (icon, mascot, sticker) | `app-asset-generator` |
+| Click-through flow for choosing between options | `figma-prototype-flow` |
+| Usability review (heuristics, severity, review list) and developer handoff spec | `ux-review-handoff` |
 
 ## 11 core rules (they override any personal habit)
 
@@ -65,27 +79,29 @@ Not every task runs all 8. Determine the entry point in Stage 0, then run from t
 | Request | Start at |
 |---|---|
 | New project from scratch | Stage 1 |
-| "Clean up / standardize this file" | Stage 7 (audit) → back to Stages 2–3 to fix |
+| New project from a PRD / requirements doc | `prd-to-ux-flow` (screen list, flows) → Stage 1 |
+| "Clean up / standardize this file" | Stage 7 (audit; design system: `design-system-audit`) → back to Stages 2–3 to fix |
 | Create a design system / library | Stage 2 → 3 |
+| Take over, rework or extend an app already in Figma | `figma-project-maintain` → Stage 5 |
 | Draw a new screen in a file that already has a system | Stage 5 |
 | "Find ideas / make it prettier / more creative" | Stage 4 |
 | Prototype, animation | Stage 6 |
 | Developer handoff | Stage 7 → 8 |
 | Skill assessment / learning Figma | `references/skill-ladder.md` |
 
-3. Agent: read the file structure first (pages, top-level frames, existing design system) to know what the file contains. Do not guess.
+3. Agent: read the file structure first (pages, top-level frames, existing design system) to know what the file contains. Do not guess. In the team's files, follow `bnnam-standards` (read first, gates, consent) from here on.
 
 ### Stage 1 — Brief and file foundation → *gate*
 
 Read `references/file-standards.md` and `assets/brief.template.md`.
 
-1. Lock a minimal brief: product, users, platform (iOS / Android / Web / cross-platform), business goal, constraints (existing brand, deadline, accessibility), success criteria. Ask about anything missing — at most 3–4 questions, batched in one message.
+1. Lock a minimal brief: product, users, platform (iOS / Android / Web / cross-platform), business goal, constraints (existing brand, deadline, accessibility), success criteria. Ask about anything missing — at most 3–4 questions, batched in one message. A PRD exists → its screen list and flows come from `prd-to-ux-flow`. The platform decides which platform skill to load (table above).
 2. Set up the file skeleton using the standard pages (Cover, Brief, Explore, Foundations, Components, Screens, Prototype, Ready, Archive).
 3. **Gate:** present a one-page brief + the file skeleton. Wait for the user's confirmation before continuing.
 
 ### Stage 2 — Foundations
 
-Read `references/design-system.md` sections 1–4.
+Read `references/design-system.md` sections 1–4. The file already has a system, or tokens must come from a moodboard or base kit → `design-system-audit` (detect, audit, kit setup).
 
 1. Variables in 3 levels: **Primitives** (raw palette, number scales) → **Semantic** (roles, with Light/Dark… modes) → **Component** (only when truly needed).
 2. Typography scale, spacing scale (4/8 grid), radius, elevation, motion tokens.
@@ -108,7 +124,7 @@ Read `references/creative-process.md`.
 
 1. Gather references and build a moodboard annotated with "what to take from this".
 2. Diverge: create **2–3 genuinely different directions** (different in concept, not just color), each applied to the same 1–2 "key" screens. Brand/accent colors are free hex here; neutrals and semantic colors come from the system (`references/creative-process.md` §4.4).
-3. Each direction comes with: a name, a one-sentence idea, strengths, risks, who it suits.
+3. Each direction comes with: a name, a one-sentence idea, strengths, risks, who it suits. A color-blend background → `screen-background`; to let the user tap through the directions → `figma-prototype-flow`.
 4. **Gate:** stop for the user to choose or mix. This is the most expensive decision to get wrong — do not choose on their behalf.
 5. Converge: turn the chosen direction into rules — promote its brand/accent hex into Primitive + Semantic variables, bind every layer, update components — and only then polish.
 
@@ -117,7 +133,7 @@ Read `references/creative-process.md`.
 Read `references/build-loop.md` — **mandatory** for every screen.
 
 1. **Pick the mode:** **Sketch** (quick idea, Stage 4), **From template** (a similar screen exists: clone and edit what differs), **New build** (complex, no template). First screen of a set = New build, the rest = From template.
-2. **Pass 0 Prepare:** screen goal, one primary CTA, real content, a region map down to block sizes, which blocks repeat or match an earlier screen (→ components), images generated up front.
+2. **Pass 0 Prepare:** screen goal, one primary CTA, real content, a region map down to block sizes, which blocks repeat or match an earlier screen (→ components), images generated up front (`generating-oneshot-image-prompts`, `app-asset-generator`). Real content follows `ux-writing`; a paywall or sale screen follows `mobile-ui-master` (monetization) and `app-store-policies`.
 3. **Pass 1 Layout (1–2 writes):** root frame at the project's frame size (`file-standards.md` section 4) + named regions (`Top Container` / `Content` / `Bottom Container`) + **sized placeholder blocks** carrying their final Auto Layout. Numeric check, then one screenshot: the screen should already read as the final layout in grey boxes.
 4. **Pass 2 Fill:** components first for standard elements (button, list row, key, chip) and for any block identical to one on a screen already built — componentize from the **second** screen (Stage 3), then fill placeholders **by cluster** (several blocks per write) and add real text, icons, images in batches. Numeric check after each write; one screenshot at the end of the pass, extra ones only for unusual blocks.
 5. **Pass 3 Lock:** audit + stress + one final screenshot, fix until it meets the **Definition of Done** (skipped in Sketch).
@@ -128,13 +144,13 @@ Read `references/build-loop.md` — **mandatory** for every screen.
 
 Read `references/creative-process.md` sections 7–8.
 
-1. Prototype the main flow first, secondary branches later. Use interactive components for micro-interactions (toggle, tab, accordion) so you don't have to wire every screen.
+1. Prototype the main flow first, secondary branches later. A flow for deciding between options, built on copies so the originals stay untouched → `figma-prototype-flow`. Use interactive components for micro-interactions (toggle, tab, accordion) so you don't have to wire every screen.
 2. Use variables + conditional logic when the prototype needs state (cart, login, counter).
 3. Motion (Smart Animate / Figma Motion): every animation has a reason — guidance, feedback, or spatial continuity. Duration and easing come from motion tokens. Always provide a Reduce Motion alternative.
 
 ### Stage 7 — QA → *gate*
 
-Read `references/handoff-qa.md` sections 1–3, use `assets/qa-report.template.md`.
+Read `references/handoff-qa.md` sections 1–3, use `assets/qa-report.template.md`. A usability review of the flows (heuristics, severity, a review list the user picks fixes from) → `ux-review-handoff`.
 
 1. Run the 6-group QA checklist: structure, tokens, layout, states, accessibility, content.
 2. Log issues by severity: **Blocker** (must be fixed before handoff), **Should fix**, **Nice to have**.
@@ -143,7 +159,7 @@ Read `references/handoff-qa.md` sections 1–3, use `assets/qa-report.template.m
 
 ### Stage 8 — Handoff
 
-Read `references/handoff-qa.md` sections 4–6.
+Read `references/handoff-qa.md` sections 4–6; the full handoff spec is `../ux-review-handoff/references/handoff-spec.md`.
 
 1. Mark Ready for dev per Section, write annotations for behavior that isn't visible (logic, edge cases, animation, accessibility).
 2. Map tokens to code (Swift/Kotlin/CSS) using the table in `handoff-qa.md`. If Code Connect is available, connect components to the real code.

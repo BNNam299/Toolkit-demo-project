@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/interaction.md, knowledge/patterns.md (§13, §27, Telos 11) @ 3c0e291 — translated, complete
 
 Knowledge here is a lens for thinking, not a procedure. Platform pages with the exact component rules are linked per section
-(`../../apple-hig/references/…`, `../../material-design-3/references/…`).
+(`../apple-hig/references/`, `../material-design-3/references/`).
 
 ## Contents
 1. Interaction styles (WYSIWYG, menus, forms, gestures)
@@ -39,8 +39,8 @@ Used when wireframing and building UI.
 - **Group logically** · aesthetic presentation · **consistent terminology and abbreviations** · whitespace and outlines for input fields.
 - **Allow going back to edit** · **prevent input errors** · **warn when something is wrong**.
 
-Platform detail: `../../apple-hig/references/gestures.md`, `../../material-design-3/references/foundations__interaction__gestures.md`,
-`../../apple-hig/references/menus.md`, `../../material-design-3/references/components__menus.md`, `../../apple-hig/references/entering-data.md`.
+Platform detail: `../apple-hig/references/gestures.md`, `../material-design-3/references/foundations__interaction__gestures.md`,
+`../apple-hig/references/menus.md`, `../material-design-3/references/components__menus.md`, `../apple-hig/references/entering-data.md`.
 
 ---
 
@@ -53,7 +53,7 @@ Platform detail: `../../apple-hig/references/gestures.md`, `../../material-desig
 - Do not ask for many permissions on first launch.
 - If an account is needed, explain the benefit and consider a guest mode.
 
-Platform: `../../apple-hig/references/onboarding.md`.
+Platform: `../apple-hig/references/onboarding.md`.
 
 ### 2.2 Permission
 1. Ask only when the feature is about to need it.
@@ -62,7 +62,7 @@ Platform: `../../apple-hig/references/onboarding.md`.
 4. If denied, offer a degraded experience and a path to Settings when really needed.
 5. Do not pressure or repeat the prompt continually.
 
-Platform: `../../apple-hig/references/privacy.md`.
+Platform: `../apple-hig/references/privacy.md`.
 
 ### 2.3 Loading, empty and offline
 - Distinguish **initial loading, refresh, pagination and background sync** — each looks different.
@@ -71,8 +71,8 @@ Platform: `../../apple-hig/references/privacy.md`.
 - An offline state says which data is still usable, which actions will be queued and when it will sync.
 - A timeout must offer retry and must not lose entered data.
 
-Platform: `../../apple-hig/references/loading.md`, `../../apple-hig/references/progress-indicators.md`,
-`../../material-design-3/references/components__progress-indicators.md`, `../../material-design-3/references/components__loading-indicator.md`.
+Platform: `../apple-hig/references/loading.md`, `../apple-hig/references/progress-indicators.md`,
+`../material-design-3/references/components__progress-indicators.md`, `../material-design-3/references/components__loading-indicator.md`.
 
 ### 2.4 Form
 - Ask only for data that is needed.
@@ -82,7 +82,7 @@ Platform: `../../apple-hig/references/loading.md`, `../../apple-hig/references/p
 - Keep data when going back or when the app is interrupted.
 - A submit error must point to the field, plus a summary if there are several errors.
 
-Platform: `../../apple-hig/references/text-fields.md`, `../../material-design-3/references/components__text-fields.md`. Error copy: `../../ux-writing/references/principles.md`.
+Platform: `../apple-hig/references/text-fields.md`, `../material-design-3/references/components__text-fields.md`. Error copy: `../ux-writing/references/principles.md`.
 
 ### 2.5 Destructive action and undo
 - Prefer soft delete / undo when possible.
@@ -90,8 +90,8 @@ Platform: `../../apple-hig/references/text-fields.md`, `../../material-design-3/
 - Name the object: *"Xóa 3 ảnh"* ("Delete 3 photos") is better than *"Bạn có chắc không?"* ("Are you sure?").
 - Primary/secondary placement follows each platform's convention; do not force them to be identical.
 
-Platform: `../../apple-hig/references/alerts.md`, `../../apple-hig/references/action-sheets.md`, `../../apple-hig/references/undo-and-redo.md`,
-`../../material-design-3/references/components__dialogs.md`, `../../material-design-3/references/components__snackbar.md` (Undo action).
+Platform: `../apple-hig/references/alerts.md`, `../apple-hig/references/action-sheets.md`, `../apple-hig/references/undo-and-redo.md`,
+`../material-design-3/references/components__dialogs.md`, `../material-design-3/references/components__snackbar.md` (Undo action).
 
 ### 2.6 Notification
 - Send only timely, valuable content the user expects.
@@ -100,8 +100,8 @@ Platform: `../../apple-hig/references/alerts.md`, `../../apple-hig/references/ac
 - Tapping a notification opens the right context.
 - Actions inside a notification are short, safe and give feedback.
 
-Platform: `../../apple-hig/references/notifications.md`, `../../apple-hig/references/managing-notifications.md`,
-`../../material-design-3/references/foundations__content-design__notifications.md`.
+Platform: `../apple-hig/references/notifications.md`, `../apple-hig/references/managing-notifications.md`,
+`../material-design-3/references/foundations__content-design__notifications.md`.
 
 ### 2.7 Settings
 - Put frequently used settings close to where they take effect.
@@ -116,7 +116,7 @@ Platform: `../../apple-hig/references/notifications.md`, `../../apple-hig/refere
 - Logout, delete account and export data are easy to find in proportion to the risk/legal requirement.
 - Do not use biometrics as the only proof for an action that needs deliberate confirmation in a risky context.
 
-Platform: `../../apple-hig/references/managing-accounts.md`, `../../apple-hig/references/sign-in-with-apple.md`.
+Platform: `../apple-hig/references/managing-accounts.md`, `../apple-hig/references/sign-in-with-apple.md`.
 
 ### 2.9 Data visualization
 - Choose the chart by the question, not by looks.
@@ -125,7 +125,7 @@ Platform: `../../apple-hig/references/managing-accounts.md`, `../../apple-hig/re
 - Give screen readers a summary and alternative data.
 - Avoid 3D charts that distort perception.
 
-Platform: `../../apple-hig/references/charting-data.md`, `../../apple-hig/references/charts.md`.
+Platform: `../apple-hig/references/charting-data.md`, `../apple-hig/references/charts.md`.
 
 ---
 
@@ -188,7 +188,7 @@ Never force odd password rules, never block paste, never clear the email when th
 - Avoid changing the price after the confirmation step without notice.
 - Idempotency prevents duplicate payment.
 - While pending, do not say "failed"; explain the state and how to check.
-- Apple Pay / Google Pay use the official component and flow (`../../apple-hig/references/apple-pay.md`).
+- Apple Pay / Google Pay use the official component and flow (`../apple-hig/references/apple-pay.md`).
 
 ### 3.6 Settings
 - Search if there are many groups.
@@ -251,7 +251,7 @@ Distinguish the six kinds (each gets its own copy and CTA):
 | Permission-blocked | Explain + path to grant / Settings |
 | Offline / no cached data | Retry; say what will appear when online |
 
-Copy: `../../ux-writing/references/principles.md`.
+Copy: `../ux-writing/references/principles.md`.
 
 ### 3.13 Error state template
 - **Inline error** for local errors.
@@ -280,7 +280,7 @@ Small screens, touch, interruptions, permissions, network and platform rules cre
 Choose navigation by the number of areas and their frequency: **bottom tab for 3–5 main destinations**, navigation stack for drill-down,
 drawer is lower priority on modern mobile. Users need to know where they are, the way back, and the effect of system back/gesture.
 Deep links, push notifications and widgets create entry points outside home; flows must handle expired session, permission and missing context.
-Platform: `../../apple-hig/references/tab-bars.md`, `../../material-design-3/references/components__navigation-bar.md`.
+Platform: `../apple-hig/references/tab-bars.md`, `../material-design-3/references/components__navigation-bar.md`.
 
 ### 4.4 Touch and ergonomics
 Touch targets large enough, spacing that prevents mis-taps, primary action easy to reach but not covering content. Gestures need an
@@ -290,7 +290,7 @@ for visual/audio. Numbers: SKILL.md core rules 1 and 6.
 ### 4.5 Form and keyboard
 Choose the right keyboard type, autofill, input mask and validation timing. With the keyboard open, field/error/CTA stay visible; support
 Next/Done. Reduce input with defaults, scanning, pickers or existing data, but be transparent about permissions.
-Platform: `../../apple-hig/references/keyboards.md`, `../../apple-hig/references/virtual-keyboards.md`.
+Platform: `../apple-hig/references/keyboards.md`, `../apple-hig/references/virtual-keyboards.md`.
 
 ### 4.6 State and resilience
 Design each of these:
@@ -307,11 +307,11 @@ Optimistic UI increases perceived speed but needs rollback and a clear sync stat
 ### 4.7 iOS and Android
 Respect the Human Interface Guidelines and Material Design on navigation, components, typography, permission, back behaviour and platform
 convention. The brand can be unified, but interaction need not be pixel-identical. Native conventions lower the learning cost and improve
-accessibility. See `../../material-design-3/references/cross-platform-decisions.md`.
+accessibility. See `../material-design-3/references/cross-platform-decisions.md`.
 
 ### 4.8 Responsive and adaptive
 Mobile is not one size. Check small phone, large phone, landscape, tablet/foldable, Dynamic Type and safe area. An adaptive layout may
-change columns, navigation or panels. Never lock heights to one sample device. Layout detail: `../../mobile-ui-master/SKILL.md`.
+change columns, navigation or panels. Never lock heights to one sample device. Layout detail: `../mobile-ui-master/SKILL.md`.
 
 ### 4.9 Accessibility
 Dynamic text, contrast, touch target, screen-reader label/order, Switch Control, Voice Control, reduced motion and captions. Check focus when
@@ -324,7 +324,7 @@ preview. With a coded prototype, test permission, camera, sensors or complex ani
 ### 4.11 Handoff
 Hand over breakpoint/device rules, components/states, asset density/vector, icons, animation, haptics, permission copy, keyboard behaviour,
 safe area and accessibility. Agree on native/cross-platform constraints. Design QA on real OS/devices, checking dark mode and localization.
-Process: `../../figma-ui-flow/references/handoff-qa.md`, `../../ux-review-handoff/references/acceptance-checklist.md`.
+Process: `../figma-ui-flow/references/handoff-qa.md`, `../ux-review-handoff/references/acceptance-checklist.md`.
 
 ### 4.12 Release checklist
 - [ ] Onboarding teaches only what is needed before doing.
@@ -343,7 +343,7 @@ design; mobile app learning path; prototyping in Figma for beginners.
 
 ## 5. iOS 27 / iPhone Duo additions (pointers)
 
-The foldable deep-dive lives in the `iphone-duo-adaptive` skill (`../../iphone-duo-adaptive/SKILL.md`). Topics relevant here:
+The foldable deep-dive lives in the `iphone-duo-adaptive` skill (`../iphone-duo-adaptive/SKILL.md`). Topics relevant here:
 - Input system and action equivalence — touch, keyboard, pointer, Camera Control.
 - Camera Control per pose.
 - Visual / audio / haptic feedback matrix.

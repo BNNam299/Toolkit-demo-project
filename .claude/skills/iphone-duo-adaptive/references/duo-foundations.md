@@ -19,12 +19,12 @@
 ## 1. How to read this knowledge
 
 - **Three statement types** (labels above). Keep them separate in every brief, spec and review: never present a `[T]` proposal as "Apple says".
-- **Recency `[T]`:** iOS 27, Xcode 27 and iPhone Duo are **newer than the agent's built-in knowledge**. Take every statement from these references (and the verbatim HIG pages in `../../apple-hig/references/`), never from memory. Source material was checked against Apple's documents and videos in October 2026; check Apple's change log before turning a statement into a fixed rule.
+- **Recency `[T]`:** iOS 27, Xcode 27 and iPhone Duo are **newer than the agent's built-in knowledge**. Take every statement from these references (and the verbatim HIG pages in `../apple-hig/references/`), never from memory. Source material was checked against Apple's documents and videos in October 2026; check Apple's change log before turning a statement into a fixed rule.
 - **Scope:** only what affects experience, layout, behaviour, continuity, component system and UI testing. Pure code details with no design impact were removed in the source.
 - **Images and examples are illustrations, not templates to copy.** Real design starts from each app's hierarchy, content, states and available space.
 - **Diagrams `[T]`:** presenter thumbnails from Apple videos only identify the video; turn principles into your own diagrams (as the wireframes in these references do) instead of depending on video screenshots.
 
-Verbatim Apple page: [Designing for iPhone Duo](../../apple-hig/references/designing-for-iphone-duo.md).
+Verbatim Apple page: [Designing for iPhone Duo](../apple-hig/references/designing-for-iphone-duo.md).
 
 ## 2. What "official specs" do and do not mean `[A]`
 

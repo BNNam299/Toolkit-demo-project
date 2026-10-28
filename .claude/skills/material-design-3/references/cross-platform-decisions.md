@@ -4,7 +4,7 @@
 
 Use this when one product ships on iOS and Android and you must pick the right native pattern on each side, or decide between native, shared
 and custom components. For a component-by-component iOS ↔ Android name map see
-`../../design-system-audit/references/component-system.md`. Verbatim rules: iOS → `../../apple-hig/references/<page>.md`,
+`../design-system-audit/references/component-system.md`. Verbatim rules: iOS → `../apple-hig/references/<page>.md`,
 Android → the `components__*.md` pages in this folder.
 
 ## 1. Navigation by number of destinations and width

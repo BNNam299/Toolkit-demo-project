@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/ios-27-iphone-duo-ux-ui-knowledge.md §8 (fig. 9–10), §9, §16.4, §23.1 (05:01–06:05), §23.2 (all), §23.6 (02:03–03:41 PiP, 05:07–06:32, 08:36–10:32) @ 3c0e291 — translated, complete
 
 Labels: `[A]` Apple rule · `[C]` design consequence · `[T]` toolkit proposal (see `duo-foundations.md`).
-Verbatim Apple pages: [designing-for-iphone-duo](../../apple-hig/references/designing-for-iphone-duo.md), [toolbars](../../apple-hig/references/toolbars.md), [tab-bars](../../apple-hig/references/tab-bars.md), [sheets](../../apple-hig/references/sheets.md), [alerts](../../apple-hig/references/alerts.md), [menus](../../apple-hig/references/menus.md), [popovers](../../apple-hig/references/popovers.md), [split-views](../../apple-hig/references/split-views.md), [multitasking](../../apple-hig/references/multitasking.md).
+Verbatim Apple pages: [designing-for-iphone-duo](../apple-hig/references/designing-for-iphone-duo.md), [toolbars](../apple-hig/references/toolbars.md), [tab-bars](../apple-hig/references/tab-bars.md), [sheets](../apple-hig/references/sheets.md), [alerts](../apple-hig/references/alerts.md), [menus](../apple-hig/references/menus.md), [popovers](../apple-hig/references/popovers.md), [split-views](../apple-hig/references/split-views.md), [multitasking](../apple-hig/references/multitasking.md).
 
 ## Contents
 1. Why and when bars go vertical

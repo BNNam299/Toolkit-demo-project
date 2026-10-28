@@ -228,7 +228,7 @@ content, the right priority, at the right time**.
 - Offer retry, an alternative path or contextual support.
 - An error code is only secondary information for support.
 
-Detailed rubric: `../../ux-writing/references/handbook-patterns.md` §2.
+Detailed rubric: `../ux-writing/references/handbook-patterns.md` §2.
 
 ### 3.10 Help and documentation
 The interface should explain itself, but complex systems still need help. NN/g distinguishes:

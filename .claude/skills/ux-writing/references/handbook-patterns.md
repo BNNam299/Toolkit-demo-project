@@ -253,7 +253,7 @@ Accessible content is more than contrast. The words must work across many ways o
 - Allow enough reading time; content that disappears by itself needs a control mechanism when it matters.
 - Test with VoiceOver, TalkBack, zoom, large text, reduce motion and voice control on a real build.
 
-(Accessibility beyond copy: `../../mobile-ux-fundamentals/references/accessibility.md`.)
+(Accessibility beyond copy: `../mobile-ux-fundamentals/references/accessibility.md`.)
 
 ### 4.1 Alt text by purpose
 - Product image: describe the traits that affect the purchase decision.
@@ -358,7 +358,7 @@ Write a data commitment only if engineering and policy truly guarantee it. Copy 
 
 ## 7. Adaptive layouts (iPhone Duo / iOS 27)
 
-Copy topics for adaptive, posture-aware layouts live in the iPhone Duo knowledge (`../../iphone-duo-adaptive/SKILL.md`):
+Copy topics for adaptive, posture-aware layouts live in the iPhone Duo knowledge (`../iphone-duo-adaptive/SKILL.md`):
 - text expansion, RTL, and strings that vary by posture when the layout adapts;
 - copy for loading, empty, error and recovery states;
 - onboarding and feature discovery by posture.

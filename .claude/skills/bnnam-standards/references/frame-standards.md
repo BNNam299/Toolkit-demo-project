@@ -176,7 +176,7 @@ Measured on 31 of the designer's real Duo screens:
 - Outer: one `Content pane` 382 (= 466 − 84) holding content + CTA · Inner Landscape: a `Leading pane` (CTA, controls) + a large content pane.
 - **Safe area:** the `Device` variant of the standard `Safe-Area` (§6) — Inner Landscape, Outer: **no Safe-Area — padding left 20 / top 24 / bottom 24, edge touching the vertical bar 0** (replaces "Top / Bottom 24 inside each pane"); the 84 edge is held by `Pane controls` · Inner Portrait: top is the 84 system bar (no Safe-Area), bottom 24 · pane margins are padding ≥ 20.
 
-Adaptive (iOS 27 / Duo / iPad) layouts in depth: the `iphone-duo-adaptive` skill.
+Measurements, pane split and how expanded states move per frame: `../mobile-ui-master/references/screen-structure.md` §11 · adaptive (iOS 27 / Duo / iPad) layouts in depth: the `iphone-duo-adaptive` skill.
 
 ## 10. Platforms (iOS / Android / Web)
 

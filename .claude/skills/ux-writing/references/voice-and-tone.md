@@ -25,7 +25,7 @@ Background knowledge for this job: `handbook-patterns.md` §3 (voice chart, four
 - **Maintenance project** (an existing file): extract the current voice from the screens first with `../scripts/textdump.js` (§3.0).
 
 **Do not use it** to write copy for individual screens (that is wireframe work — `principles.md` §11 and
-`../../figma-ui-flow/references/build-loop.md`) or to review copy already built (`../../ux-review-handoff/SKILL.md`).
+`../figma-ui-flow/references/build-loop.md`) or to review copy already built (`../ux-review-handoff/SKILL.md`).
 
 Role: designer.
 
@@ -33,7 +33,7 @@ Role: designer.
 
 | Check | If missing |
 |---|---|
-| `design/prd.md` approved | read the PRD first (`../../prd-to-ux-flow/SKILL.md`) |
+| `design/prd.md` approved | read the PRD first (`../prd-to-ux-flow/SKILL.md`) |
 | `design/analysis.md` (competitor analysis) approved | run the analysis first — the measured competitor text rhythm and competitor voice are needed |
 | `design/style.md` (visual style) — **read if present** | does not block; say in the report that the visual vibe has not been cross-checked |
 
@@ -109,7 +109,7 @@ in every text node · **words outside the glossary** for a concept that already 
 chosen) · capitalization that breaks the rule · meta text inside the frame. In the tool demo: the meta/forbidden-word scan in
 `principles.md` §2.5, and `../scripts/textdump.js` statistics (length, capitalization per role) for the rest.
 
-Everything else — is the voice right, does the tone fit the moment — is judgement and belongs to the review (`../../ux-review-handoff/SKILL.md`).
+Everything else — is the voice right, does the tone fit the moment — is judgement and belongs to the review (`../ux-review-handoff/SKILL.md`).
 
 ---
 

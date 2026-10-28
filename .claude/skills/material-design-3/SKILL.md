@@ -89,7 +89,7 @@ name** rather than reading them whole. System-level tokens (color, type, shape, 
 ## How to read these files
 - **Component pages:** the four site tabs are `##` headings; point at the `###` you need (e.g. `components__dialogs.md › Guidelines › Usage`).
 - **Token pointers:** inside a Specs tab, a line `*[Token table (measurements, color, shape): tokens__components__X.md — …]*` points to
-  `references/tokens__components__X.md`, followed by the token sets it contains.
+  the matching `tokens__components__*.md` file in `references/`, followed by the token sets it contains.
 - **Token table columns:** `Group` (group/state) · `Token` · `Reference` (the system token it aliases) · `Value (default contrast, light)`.
   Values are the **public (3P) set, Light, default contrast, Android**.
 - **Images and videos** survive only as text: `*[image: …]*` = image description, `*[video …]*` = video description. Labels

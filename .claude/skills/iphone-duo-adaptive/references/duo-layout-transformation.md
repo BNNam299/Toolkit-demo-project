@@ -3,7 +3,7 @@
 > Source: bnnam-appdev-toolkit/design-toolkit/2.0.0/knowledge/ios-27-iphone-duo-ux-ui-knowledge.md §5.2–5.4 (fig. 4–7), §6, §7, §13, §16.1, §23.1 (00:30–05:00, 05:01–06:05), §23.3 (02:26–17:45), §23.6 (03:42–05:06, 07:34–08:35) @ 3c0e291 — translated, complete
 
 Labels: `[A]` Apple rule · `[C]` design consequence · `[T]` toolkit proposal (see `duo-foundations.md`).
-Verbatim Apple pages: [designing-for-iphone-duo](../../apple-hig/references/designing-for-iphone-duo.md), [layout](../../apple-hig/references/layout.md), [split-views](../../apple-hig/references/split-views.md), [multitasking](../../apple-hig/references/multitasking.md). Geometry and regions: `duo-device-postures.md`. Bars and presentations: `duo-components.md`.
+Verbatim Apple pages: [designing-for-iphone-duo](../apple-hig/references/designing-for-iphone-duo.md), [layout](../apple-hig/references/layout.md), [split-views](../apple-hig/references/split-views.md), [multitasking](../apple-hig/references/multitasking.md). Geometry and regions: `duo-device-postures.md`. Bars and presentations: `duo-components.md`.
 
 ## Contents
 1. How to transform a screen (procedure)

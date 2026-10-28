@@ -88,7 +88,7 @@ Every important string needs:
 - Trigger, fallback, error mapping and related analytics.
 - A screenshot or prototype link.
 
-(Developer handoff in the tool demo: `../../figma-ui-flow/references/handoff-qa.md`; full handoff job: `../../ux-review-handoff/SKILL.md`.)
+(Developer handoff in the tool demo: `../figma-ui-flow/references/handoff-qa.md`; full handoff job: `../ux-review-handoff/SKILL.md`.)
 
 ### Step 7 — Content QA and operations
 - Check the build on real devices, every locale/state.

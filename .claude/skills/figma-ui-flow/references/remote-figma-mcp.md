@@ -69,7 +69,7 @@ Each `use_figma` script should:
 
 ## 5. Plugin API recipes and common errors
 
-The JavaScript recipes (variables, binding, Auto Layout, text, components, audit) work the same in `use_figma` and `execute_code`: see `../../figma-agent-tools/references/plugin-api-recipes.md`. Common errors: `../../figma-agent-tools/references/troubleshooting.md`.
+The JavaScript recipes (variables, binding, Auto Layout, text, components, audit) work the same in `use_figma` and `execute_code`: see `../figma-agent-tools/references/plugin-api-recipes.md`. Common errors: `../figma-agent-tools/references/troubleshooting.md`.
 
 | Symptom specific to the remote MCP | Fix |
 |---|---|

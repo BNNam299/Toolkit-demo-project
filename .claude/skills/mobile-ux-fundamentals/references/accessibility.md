@@ -30,8 +30,8 @@ background from the same source (where personas, maps and usability tests fit), 
 Material adds three orientations: respect individual needs, research before locking a solution, and treat minimum standards as a starting
 point, not the destination.
 
-Platform: `../../apple-hig/references/accessibility.md`, `../../apple-hig/references/inclusion.md`,
-`../../material-design-3/references/foundations__building-for-all.md`.
+Platform: `../apple-hig/references/accessibility.md`, `../apple-hig/references/inclusion.md`,
+`../material-design-3/references/foundations__building-for-all.md`.
 
 ## 1.2 Interaction target size
 
@@ -55,7 +55,7 @@ The visible shape may be smaller, but the touch area must be large enough, **non
 ## 1.4 Contrast and color
 
 - Common WCAG AA reference: **4.5:1** for normal small text and **3:1** for large/bold text (HIG: large = 18 pt and up, or bold at any size);
-  check both light and dark and the disabled/focused states. (Non-text UI parts: 3:1 — `../../figma-ui-flow/references/handoff-qa.md`.)
+  check both light and dark and the disabled/focused states. (Non-text UI parts: 3:1 — `../figma-ui-flow/references/handoff-qa.md`.)
 - Apple's Accessibility Inspector uses the WCAG AA levels as guidance; Material provides accessible color relationships and three contrast
   levels: standard, medium, high.
 - Never use color as the only signal. Combine with label, icon, shape, pattern or position.
@@ -73,7 +73,7 @@ Every interactive element needs:
 - Custom gestures always have an alternative via an accessible control.
 
 Test on real devices with **VoiceOver** and **TalkBack**, not only with automated inspectors.
-Platform: `../../apple-hig/references/voiceover.md`, `../../material-design-3/references/foundations__content-design__alt-text.md`.
+Platform: `../apple-hig/references/voiceover.md`, `../material-design-3/references/foundations__content-design__alt-text.md`.
 
 ## 1.6 Focus and alternative input
 
@@ -83,7 +83,7 @@ Platform: `../../apple-hig/references/voiceover.md`, `../../material-design-3/re
 - Hover must not be the only way to reveal information or actions.
 - Keyboard shortcuts avoid system conflicts and are discoverable.
 
-Platform: `../../apple-hig/references/focus-and-selection.md`, `../../apple-hig/references/pointing-devices.md`.
+Platform: `../apple-hig/references/focus-and-selection.md`, `../apple-hig/references/pointing-devices.md`.
 
 ## 1.7 Motion, sound and cognition
 
@@ -211,7 +211,7 @@ tasks or quantitative comparisons need different samples.
 **Heuristic evaluation** — experts judge the interface against established principles. The common Nielsen set: visibility of system status;
 match with the real world; user control; consistency; error prevention; recognition over recall; flexibility; minimalism; helpful error
 recovery; help/documentation. Use several independent evaluators, then merge and rate severity.
-Full procedure: `../../ux-review-handoff/references/heuristics-evaluation.md`.
+Full procedure: `../ux-review-handoff/references/heuristics-evaluation.md`.
 
 **Cognitive walkthrough** — focuses on newcomers and one specific task. At each step ask: does the user want this effect, do they see the
 right action, do they connect the action with the result, and does the feedback tell them they are on the right track? Suits onboarding,
@@ -248,7 +248,7 @@ heuristic evaluation and cognitive walkthrough (expert review) · UX patterns an
 
 # Part C — iOS 27 / iPhone Duo additions (pointers)
 
-Accessibility checks when the layout adapts; full content in the `iphone-duo-adaptive` skill (`../../iphone-duo-adaptive/SKILL.md`):
+Accessibility checks when the layout adapts; full content in the `iphone-duo-adaptive` skill (`../iphone-duo-adaptive/SKILL.md`):
 - Focus continuity after resize / fold.
 - Liquid Glass clear ↔ tinted, Reduce Transparency, Increase Contrast — the Figma kit dropped the Increase Contrast mode; check it on Device Hub.
 - Vertical bars with Dynamic Type up to AX5.
