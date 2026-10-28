@@ -120,6 +120,10 @@ for (const t of root.findAll(n => n.type === "TEXT" && n.visible !== false)) {
 return { scanned, hits };
 ```
 
+For a whole page, `../../ux-review-handoff/scripts/audit.js` runs the same META patterns plus forbidden words, glossary terms
+(`TERMS`), length limits (`LIMITS`) and capitalization (`CASE`) from `voice.md` — see `metaText`, `placeholderText`, `forbiddenWord`,
+`termMismatch`, `length`, `caseCheck` in its result.
+
 Note: JavaScript `\b` is ASCII-only, so an alternative that ends in a non-ASCII letter (`bấm vào đây sẽ`) matches only when an ASCII
 letter or digit follows it. Treat a clean result for that phrase as unproven and read the text yourself.
 
