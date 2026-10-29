@@ -415,8 +415,9 @@ for (const screen of screens) {
   if (CONFIG.SAFE_AREA && !vBar) {                                   // vertical-bar configuration: the status sits inside the vertical bar — no top / bottom blocks
     const kids = (screen.children || []).filter(k => k.visible !== false && Math.abs(k.width - screen.width) < 1
       && !/^visual_/i.test(k.name) && !CONFIG.BACKGROUND_PREFIX.test(k.name) && Math.abs(k.height - screen.height) >= 1);   // a full-screen background layer is not a top / bottom block
-    const topBox = kids.find(k => Math.abs(k.y) < 1);
-    const botBox = kids.find(k => Math.abs(k.y + k.height - screen.height) < 1 && k !== topBox);
+    // several blocks can touch an edge (Content scrolls under the bars and often reaches the bottom) → take the TOPMOST layer: Top / Bottom Container sit above Content
+    const topBox = kids.filter(k => Math.abs(k.y) < 1).pop();
+    const botBox = kids.filter(k => Math.abs(k.y + k.height - screen.height) < 1 && k !== topBox).pop();
     const check = async (box, want, h, pick, where) => {
       if (!want) return;
       if (isVariant && where === "top" && box && box.type === "INSTANCE") { const bm = await box.getMainComponentAsync(); if (bm && CONFIG.DUO_TOP_BAR.test((bm.parent && bm.parent.type === "COMPONENT_SET" ? bm.parent.name : bm.name))) return; }   // the kit's Duo toolbar already holds the status
@@ -435,7 +436,7 @@ for (const screen of screens) {
       const m = await k.getMainComponentAsync();
       const mn = m ? (m.parent && m.parent.type === "COMPONENT_SET" ? m.parent.name : m.name) : null;
       if (mn !== want) return add("safeArea", screen, k, { where: where, error: `instance of "${mn}", need "${want}"` });
-      const dev = (k.variantProperties || {}).Device;                 // standard set Position × Device — the component decides the height
+      const dev = (() => { try { return (k.variantProperties || {}).Device; } catch (e) { return null; } })();   // standard set Position × Device — the component decides the height; a broken set throws → treat as no Device
       if (dev) {
         const need = screenDevice;
         if (dev !== need) add("safeArea", screen, k, { where: where, error: `variant Device=${dev}, the screen needs Device=${need}` });

@@ -322,9 +322,9 @@ All three can open with a brainstorm (§13) — the designer picks an option, th
 - **Everything the agent creates** — new screens, `_Fix AI`, `_Variant`, prototype flows — sits in a **section the agent created**. Never put it in a designer's section, **never enlarge** a designer's section, never put it in the original section that holds the source screen.
 - **Move into the original only when the designer is sure** — they say *"chốt"* / *"lắp vào section …"* ("put it into section …").
 - **Clone with `../figma-project-maintain/scripts/clone.js`, never a bare `clone()`** — a bare clone duplicates every main component that sits inside the screen. The script turns any main component inside the copy into an instance of the original.
-- **Check for overlap after every placement** — a new section must not cover any section or top-level frame; move it if it does (`clone.js` and `../figma-prototype-flow/scripts/prototype.js` move it themselves).
+- **Check for overlap after every placement** — a new section must not cover any section or top-level frame; move it if it does (`clone.js` and `../figma-prototype-flow/scripts/prototype.js` move it themselves). Check: `../ux-review-handoff/scripts/audit.js` › `overlaps` = 0.
 - **Screens sit inside the section frame.** Coordinates of a screen inside a section are **relative** to the section. Built outside and moved in → use a move that keeps the canvas position (`move_nodes`) or recompute x/y relative to the section, then grow the section to fit. Check: `../ux-review-handoff/scripts/audit.js` › `outsideSection` = 0.
-- **The title frame names the right section.** When copying the file's section title frame, **change its text** to the new section name — never leave the source section's name.
+- **The title frame names the right section.** When copying the file's section title frame, **change its text** to the new section name — never leave the source section's name. Check: `../ux-review-handoff/scripts/audit.js` › `sectionTitles` = 0.
 - **A new section gets a number + name title frame** copied from the file's style, placed next to the original section, with the next number (`3.2` → `3.2.1`) — create it with `../figma-project-maintain/scripts/section.js`; then place the screens in it with `clone.js`.
 
 ### 12.3 Designer edits win

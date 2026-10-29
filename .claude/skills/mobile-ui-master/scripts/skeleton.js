@@ -66,7 +66,7 @@ for (const name of CONFIG.TARGETS) {
   const first = (T.children || [])[0];
   const notes = [];
   if ((R.children || [])[0] && /^INSTANCE:background/i.test(key(R.children[0])) && !(first && /^INSTANCE:background/i.test(key(first)))) notes.push("reference has a background instance as the bottom-most layer — the new screen does not");
-  if (JSON.stringify(R).match(/"component":"[^"]*safe area/i) && !JSON.stringify(T).match(/"component":"[^"]*safe area/i)) notes.push("reference uses a safe area component — the new screen does not");
+  if (JSON.stringify(R).match(/"component":"[^"]*safe[ _-]?area/i) && !JSON.stringify(T).match(/"component":"[^"]*safe[ _-]?area/i)) notes.push("reference uses a safe area component — the new screen does not");
   out.screens.push({ screen: name, matches: d.length === 0 && !notes.length, differenceCount: d.length, differences: d.slice(0, 40), ...(notes.length ? { required: notes } : {}) });
 }
 out.note = "difference = the new screen's structure differs from the reference. Fix it to match; an intentional difference (the screen has its own block) → tell the designer explicitly, never silently";

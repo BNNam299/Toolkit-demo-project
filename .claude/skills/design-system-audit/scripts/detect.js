@@ -3,7 +3,7 @@
 // Use when: starting on an unfamiliar file · the project's conventions (project.yaml) have no Figma part yet · at the start of a session to
 //           re-detect page positions · progress counting needs frame names (the `screens` field).
 // The result is a DRAFT for the user to confirm — never write it into project.yaml before confirmation.
-// KNOWN BUG: errors on files with a broken component set, and does not see a `Safe-Area` set (SKILL.md › Pitfalls).
+// A broken component set (Figma: "has existing errors") is skipped and listed in `brokenSets` — ask the designer to repair it.
 
 const CONFIG = {
   PAGES: null,                     // null = every page · or ["3. Wireframe", "5. UI Design"] for a quick pass
@@ -70,14 +70,17 @@ for (const page of pages) {
     inc(frameSizes, `${Math.round(s.width)} × ${Math.round(s.height)}`);
     // safe area: first/last block as wide as the screen, repeated across screens
     const kids = (s.children || []).filter(k => k.visible !== false && Math.abs(k.width - s.width) < 1);
-    const first = kids.find(k => Math.abs(k.y) < 1);
+    // several blocks can touch an edge (Content scrolls under the bars) → take the TOPMOST layer: Top / Bottom Container sit above Content
+    const first = kids.filter(k => Math.abs(k.y) < 1).pop();
     if (first && first.height < 140) inc(safeTop, `${Math.round(first.height)} · "${first.name}"`);
-    const last = kids.find(k => Math.abs(k.y + k.height - s.height) < 1 && k !== first);
+    const last = kids.filter(k => Math.abs(k.y + k.height - s.height) < 1 && k !== first).pop();
     if (last && last.height < 100) inc(safeBottom, `${Math.round(last.height)} · "${last.name}"`);
     // safe area as a component: first instance of the top block · last instance of the bottom block
     const edgeInst = async (box, pick) => {
-      if (!box || !box.children || !box.children.length) return null;
-      const k = pick(box.children);
+      if (!box) return null;
+      const self = box.type === "INSTANCE" && /safe[ _-]?area/i.test(box.name);   // Safe-Area placed straight on the screen root
+      if (!self && (!box.children || !box.children.length)) return null;
+      const k = self ? box : pick(box.children);
       if (!k || k.type !== "INSTANCE") return null;
       const m = await k.getMainComponentAsync();
       return m ? `${m.parent && m.parent.type === "COMPONENT_SET" ? m.parent.name : m.name} · height ${Math.round(k.height)}` : null;

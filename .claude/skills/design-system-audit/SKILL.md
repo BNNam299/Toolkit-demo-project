@@ -123,9 +123,9 @@ run → report → real run → the screen audit. Touching a main component: `im
 structural change can drop overrides — reapply from `overrideDetail`.
 
 ## Common pitfalls
-- **`detect.js` known bugs:** it errors on a file whose component set is broken (check `brokenSets` and ask the designer to repair the set
-  first) and does not see a `Safe-Area` component set — confirm the safe-area components with the designer when `safeTop` / `safeBottom`
-  come back empty.
+- **Broken component sets** (`brokenSets` in `detect.js`, *"has existing errors"* from `search_design_system`): the script skips them and
+  carries on; tool calls on that set still fail — ask the designer to repair the set before binding or componentising against it.
+  `safeAreaComponent` empty → confirm the safe-area components with the designer before assuming there are none.
 - Binding a color to a primitive "because it matched" — it breaks theming; use the mapped variable or report.
 - Deleting "unused" variables after auditing only some pages, or variables reserved for developers / future modes.
 - Treating a responsive collection as usable when every mode holds the same value (`valuesFilled: false`) — report it.
